@@ -15,3 +15,5 @@ gem "middleman-bourbon", "~> 0.0.2"
 gem "middleman-minify-html", "~> 3.4.0"
 gem "oj", "~> 2.10.0"
 gem "middleman-imageoptim", "~> 0.1.4"
+
+gem 'rack-contrib'
