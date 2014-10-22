@@ -3,14 +3,14 @@ require 'rack/contrib/try_static'
 require 'newrelic_rpm'
 require 'new_relic/agent/instrumentation/rack'
 require 'rack/rewrite'
-require 'rack-zippy'
+
+use Rack::Deflater
 
 # First, normalize the requests
 use Rack::Rewrite do
     rewrite '/cv.html', '/'
 end
 
-use Rack::Deflater
 
 # Try the static content
 use Rack::TryStatic,
