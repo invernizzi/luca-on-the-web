@@ -6,14 +6,18 @@ per_page: 5
 = partial '/partials/blog_navigation'
 
 / Page Header
-%header.intro-header{:style => "background-image: url('/img/home-bg.jpg')"}
+%header.intro-header{:style => "background-image: url('/img/blog/blog-cover.jpg')"}
   .container
     .row
       .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1
         .site-heading
-          %h1 0x1BADFEED
-          %hr.small/
-          %span.subheading A blog about security &amp; curiosity
+          .tight-heading
+            %h1<
+              0x1
+              %span.highlight> BAD
+              F&#398;&#398;D
+            %hr.small/
+            %span.subheading A blog about security &amp; curiosity
 
 / Main Content
 .container
