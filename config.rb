@@ -118,6 +118,14 @@ configure :development do
 end
 
 # ========================================================================
+# Analytics
+# ========================================================================
+activate :google_analytics do |ga|
+  ga.tracking_id = 'UA-651614-13'
+  ga.minify = true
+end
+
+# ========================================================================
 # Build-specific configuration
 # ========================================================================
 configure :build do
@@ -152,4 +160,5 @@ configure :build do
       { icon: "mstile-144x144", format: "png" },
     ]
   }
+
 end

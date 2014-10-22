@@ -85,6 +85,9 @@ GEM
     middleman-favicon-maker (3.7)
       favicon_maker (~> 1.3)
       middleman-core (>= 3.0.0)
+    middleman-google-analytics (1.0.2)
+      middleman-core (~> 3.2)
+      uglifier (>= 2.1, < 3.0)
     middleman-imageoptim (0.1.4)
       image_optim (~> 0.9.1)
       middleman-core (>= 3.0)
@@ -151,6 +154,7 @@ DEPENDENCIES
   middleman (~> 3.3.4)
   middleman-bourbon (~> 0.0.2)
   middleman-favicon-maker (~> 3.7)
+  middleman-google-analytics
   middleman-imageoptim (~> 0.1.4)
   middleman-minify-html (~> 3.4.0)
   newrelic_rpm

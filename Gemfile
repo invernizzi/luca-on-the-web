@@ -16,6 +16,9 @@ gem "middleman-minify-html", "~> 3.4.0"
 gem "oj", "~> 2.10.0"
 gem "middleman-imageoptim", "~> 0.1.4"
 
+# Analytics
+gem "middleman-google-analytics"
+
 # Rack
 gem 'newrelic_rpm'
 gem 'rack-contrib'
