@@ -2,7 +2,7 @@
   = partial '/partials/blog_navigation'
 
   / Page Header
-  %header.intro-header{:style => "background-image: url('#{current_article.data.image_src}')"}
+  %header.intro-header{:style => "background-image: url('#{current_article.data.header || '/img/blog/blog-cover.jpg'}')"}
     .container
       .row
         .col-lg-8.col-lg-offset-2.col-md-10.col-md-offset-1

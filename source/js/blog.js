@@ -33,3 +33,13 @@ jQuery(document).ready(function($) {
             });
     }
 });
+
+$(document).ready(function() {
+    $('header')
+    .css('opacity', 0)
+    .slideDown()
+    .animate(
+        { opacity: 1 },
+        { queue: false, duration: 'slow' }
+      );
+})
