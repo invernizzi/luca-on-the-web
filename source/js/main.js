@@ -68,9 +68,7 @@ $('#show-resume-button').mouseover(big_resume_button);
 
 $().on('ready', setTimeout(big_resume_button, 3000));
 
-
-// Print button
-$('#print').click(function() {
+function reformat_for_print(){
     is_print = true;
     $('.obnoxious').show();
     $('#phone_number').find('span').text( $('#phone_number').data('last') );
@@ -131,11 +129,28 @@ $('#print').click(function() {
         minwordlength : 2
     });
     Hyphenator.run();
+}
+
+// Print button
+$('#print').click(function() {
+    reformat_for_print();
     // finally, print
     window.print();
     // if the user press cancel, reload the page
     location.reload();
 });
+
+
+function text_resume() {
+    reformat_for_print();
+    $('#hello').insertBefore('#about');
+    $('#contact').insertAfter('#about');
+    $('#skills').insertAfter('#contact');
+    $('#press').insertAfter('#competitions');
+    $('#patents').insertAfter('#press');
+    $('#publications').insertAfter('#patents');
+    $('#references').insertAfter('#publications');
+}
 
 function show_buzzwords() {
     var buzzwords = [
