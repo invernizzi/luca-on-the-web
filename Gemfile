@@ -16,5 +16,7 @@ gem "middleman-minify-html", "~> 3.4.0"
 gem "oj", "~> 2.10.0"
 gem "middleman-imageoptim", "~> 0.1.4"
 
-gem 'rack-contrib'
+# Rack
 gem 'newrelic_rpm'
+gem 'rack-contrib'
+gem 'rack-rewrite'

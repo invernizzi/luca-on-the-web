@@ -2,13 +2,20 @@ require 'rack'
 require 'rack/contrib/try_static'
 require 'newrelic_rpm'
 require 'new_relic/agent/instrumentation/rack'
+require 'rack/rewrite'
 
+# First, normalize the requests
+use Rack::Rewrite do
+    rewrite '/cv.html', '/'
+end
+
+# Try the static content
 use Rack::TryStatic,
     root: "build",  # static files root dir
     urls: %w[/],     # match all requests
     try: ['.html', 'index.html', '/index.html'] # try these postfixes sequentially
 
-# otherwise 404 NotFound
+# Otherwise, 404
 run proc { |app|
   [
     404,
