@@ -23,4 +23,3 @@ gem "middleman-google-analytics"
 gem 'newrelic_rpm'
 gem 'rack-contrib'
 gem 'rack-rewrite'
-gem 'rack-zippy'

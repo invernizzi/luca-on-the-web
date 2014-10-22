@@ -10,7 +10,7 @@ use Rack::Rewrite do
     rewrite '/cv.html', '/'
 end
 
-use Rack::Zippy::AssetServer, 'build'
+use Rack::Deflater
 
 # Try the static content
 use Rack::TryStatic,
