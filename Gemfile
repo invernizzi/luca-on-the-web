@@ -13,6 +13,8 @@ gem "font-awesome-middleman", "~> 4.1.1"
 gem "middleman-favicon-maker", "~> 3.7"
 gem "middleman-bourbon", "~> 0.0.2"
 
+gem "middleman-livereload"
+
 # file optimization & minification
 gem "middleman-minify-html", "~> 3.4.0"
 gem "oj", "~> 2.10.0"
@@ -25,3 +27,12 @@ gem "middleman-google-analytics"
 gem 'newrelic_rpm'
 gem 'rack-contrib'
 gem 'rack-rewrite'
+
+gem 'middleman-blog'
+# For feed.xml.builder
+gem "builder", "~> 3.0"
+gem "middleman-syntax"
+gem 'redcarpet' # markdown
+gem 'nokogiri'  # summaries
+
+

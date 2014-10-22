@@ -4,13 +4,12 @@ require 'newrelic_rpm'
 require 'new_relic/agent/instrumentation/rack'
 require 'rack/rewrite'
 
-use Rack::Deflater
+# [ WEBSERVER ] ---------------------------------------------------------------
 
 # First, normalize the requests
 use Rack::Rewrite do
     rewrite '/cv.html', '/'
 end
-
 
 # Try the static content
 use Rack::TryStatic,

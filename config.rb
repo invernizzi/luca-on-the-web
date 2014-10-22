@@ -20,6 +20,23 @@ set :images_dir,            'img'
 
 set :sass, line_comments: false, style: :nested
 
+# Blog (has to be before directory_indexes)
+activate :blog do |blog|
+  blog.prefix = "blog"
+  blog.sources = "articles/:year-:month-:day-:title.html"
+  blog.layout = "blog_article"
+  blog.summary_separator = /(READMORE)/
+  blog.summary_length = 250
+  # Enable pagination
+  blog.paginate = true
+  blog.per_page = 10
+  blog.page_link = "page/{num}"
+end
+page "blog/feed.xml", layout: false
+activate :syntax
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :smartypants => true
+
 # Internationalization
 activate :i18n
 # Use relative URLs
@@ -64,7 +81,7 @@ set :url_home,              "/"
 # activate :automatic_image_sizes
 
 # Reload the browser automatically whenever files change
-# activate :livereload
+activate :livereload
 
 # Methods defined in the helpers block are available in templates
 # helpers do
