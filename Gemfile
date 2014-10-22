@@ -17,3 +17,4 @@ gem "oj", "~> 2.10.0"
 gem "middleman-imageoptim", "~> 0.1.4"
 
 gem 'rack-contrib'
+gem 'newrelic_rpm'

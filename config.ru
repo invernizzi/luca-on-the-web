@@ -1,5 +1,7 @@
 require 'rack'
 require 'rack/contrib/try_static'
+require 'newrelic_rpm'
+require 'new_relic/agent/instrumentation/rack'
 
 use Rack::TryStatic,
     root: "build",  # static files root dir
