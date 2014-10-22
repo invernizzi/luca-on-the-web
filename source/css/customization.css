@@ -241,6 +241,7 @@ EXPERIENCES
 }
 
 .job .where {
+    text-align: left;
     font-size: 1.4em;
     font-weight: bold;
 }

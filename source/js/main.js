@@ -58,7 +58,7 @@ $('#show-resume-button').click(function() {
 
 function big_resume_button() {
     $('#show-resume-button').animate({
-        width: [ '50%', "easeOutBounce" ],
+        width: [ '300px', "easeOutBounce" ],
         height: [ '50px', "easeOutBounce" ],
         fontSize: "1.3em",
         opacity: "1.0"
