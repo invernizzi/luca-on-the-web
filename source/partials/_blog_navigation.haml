@@ -12,7 +12,7 @@
               / Collect the nav links, forms, and other content for toggling
     #bart.collapse.navbar-collapse
       %ul.nav.navbar-nav.navbar-right
-        - unless current_article.nil?
+        - if defined? current_article
           %li
             %a{href: '/blog'} All posts
         %li
