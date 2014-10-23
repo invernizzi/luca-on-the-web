@@ -159,10 +159,10 @@ activate :search_engine_sitemap, default_change_frequency: 'daily'
 # ========================================================================
 # Spellcheck
 # ========================================================================
-# if ENV['HEROKU'].nil?
-#   OK_SPELLINGS = File.readlines('spell.txt').map{|l|l.gsub!(/\n/ , '')}
-#   activate :spellcheck, allow: OK_SPELLINGS
-# end
+if ENV['HEROKU'].nil?
+  OK_SPELLINGS = File.readlines('spell.txt').map{|l|l.gsub!(/\n/ , '')}
+  activate :spellcheck, allow: OK_SPELLINGS
+end
 
 # ========================================================================
 # Build-specific configuration
