@@ -136,7 +136,7 @@ end
 # Sitemap
 # ========================================================================
 # Workaround for: https://github.com/Aupajo/middleman-search_engine_sitemap/issues/2
-Filewatcher ignore list
+# Filewatcher ignore list
 set :file_watcher_ignore,[
     /^bin(\/|$)/,
     /^\.bundle(\/|$)/,
