@@ -109,6 +109,12 @@ GEM
     middleman-minify-html (3.4.0)
       htmlcompressor (~> 0.1.0)
       middleman-core (>= 3.2)
+    middleman-search_engine_sitemap (1.1.0)
+      builder
+      middleman-core (~> 3.2)
+    middleman-spellcheck (0.7.4)
+      middleman-core (~> 3.2)
+      nokogiri
     middleman-sprockets (3.3.6)
       middleman-core (~> 3.3)
       sprockets (~> 2.12.1)
@@ -187,6 +193,8 @@ DEPENDENCIES
   middleman-imageoptim (~> 0.1.4)
   middleman-livereload
   middleman-minify-html (~> 3.4.0)
+  middleman-search_engine_sitemap
+  middleman-spellcheck
   middleman-syntax
   newrelic_rpm
   nokogiri

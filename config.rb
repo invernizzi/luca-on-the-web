@@ -1,19 +1,17 @@
 # ========================================================================
-# Hello Jason
-# http://hellojason.net
-# ========================================================================
-
-# Copy ./source/environment_variables.example to ./source/environment_variables.rb
-# then update settings there.
-require "./source/environment_variables.rb"
-
-# ========================================================================
 # Site settings
 # ========================================================================
+PRODUCTION_URL = 'http://www.lucainvernizzi.net'
+DEVELOPEMENT_URL = 'http://127.0.0.1:4567/'
+set :url_root,              PRODUCTION_URL
+set :site_url_production,   PRODUCTION_URL
+set :site_url_development,  DEVELOPEMENT_URL
+set :site_url,              PRODUCTION_URL
+configure :development do
+  set :site_url,            DEVELOPEMENT_URL
+end
 set :site_title,            'Luca Invernizzi'
 set :site_description,      "Luca Invernizzi's personal web site."
-set :site_url_production,   ENV['site_url_production']
-set :site_url_development,  ENV['site_url_development']
 set :css_dir,               'css'
 set :js_dir,                'js'
 set :images_dir,            'img'
@@ -126,14 +124,6 @@ helpers do
 
 end
 
-
-# ========================================================================
-# Development-specific configuration
-# ========================================================================
-configure :development do
-  set :site_url, "#{site_url_development}"
-end
-
 # ========================================================================
 # Analytics
 # ========================================================================
@@ -141,6 +131,17 @@ activate :google_analytics do |ga|
   ga.tracking_id = 'UA-651614-13'
   ga.minify = true
 end
+
+# ========================================================================
+# Sitemap
+# ========================================================================
+activate :search_engine_sitemap, default_change_frequency: 'daily'
+
+# ========================================================================
+# Spellcheck
+# ========================================================================
+OK_SPELLINGS = File.readlines('spell.txt').map{|l|l.gsub!(/\n/ , '')}
+activate :spellcheck, allow: OK_SPELLINGS
 
 # ========================================================================
 # Build-specific configuration

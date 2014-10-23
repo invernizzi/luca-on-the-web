@@ -36,3 +36,5 @@ gem 'redcarpet' # markdown
 gem 'nokogiri'  # summaries
 
 
+gem 'middleman-search_engine_sitemap'
+gem 'middleman-spellcheck'
