@@ -18,7 +18,7 @@ gem "middleman-livereload"
 # file optimization & minification
 gem "middleman-minify-html", "~> 3.4.0"
 gem "oj", "~> 2.10.0"
-gem "middleman-imageoptim", "~> 0.1.4"
+gem "middleman-imageoptim"
 
 # Analytics
 gem "middleman-google-analytics"

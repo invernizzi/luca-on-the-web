@@ -190,7 +190,7 @@ DEPENDENCIES
   middleman-bourbon (~> 0.0.2)
   middleman-favicon-maker (~> 3.7)
   middleman-google-analytics
-  middleman-imageoptim (~> 0.1.4)
+  middleman-imageoptim
   middleman-livereload
   middleman-minify-html (~> 3.4.0)
   middleman-search_engine_sitemap
