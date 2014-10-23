@@ -38,3 +38,5 @@ gem 'nokogiri'  # summaries
 
 gem 'middleman-search_engine_sitemap'
 gem 'middleman-spellcheck'
+
+gem 'link-checker'
