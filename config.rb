@@ -135,6 +135,25 @@ end
 # ========================================================================
 # Sitemap
 # ========================================================================
+# Workaround for: https://github.com/Aupajo/middleman-search_engine_sitemap/issues/2
+#Filewatcher ignore list
+set :file_watcher_ignore,[
+    /^bin(\/|$)/,
+    /^\.bundle(\/|$)/,
+#        /^vendor(\/|$)/,
+    /^node_modules(\/|$)/,
+    /^\.sass-cache(\/|$)/,
+    /^\.cache(\/|$)/,
+    /^\.git(\/|$)/,
+    /^\.gitignore$/,
+    /\.DS_Store/,
+    /^\.rbenv-.*$/,
+    /^Gemfile$/,
+    /^Gemfile\.lock$/,
+    /~$/,
+    /(^|\/)\.?#/,
+    /^tmp\//
+  ]
 activate :search_engine_sitemap, default_change_frequency: 'daily'
 
 # ========================================================================
