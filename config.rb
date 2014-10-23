@@ -159,9 +159,8 @@ activate :search_engine_sitemap, default_change_frequency: 'daily'
 # ========================================================================
 # Spellcheck
 # ========================================================================
-# Checking if this doesn't work on heroku
-# OK_SPELLINGS = File.readlines('spell.txt').map{|l|l.gsub!(/\n/ , '')}
-# activate :spellcheck, allow: OK_SPELLINGS
+OK_SPELLINGS = File.readlines('spell.txt').map{|l|l.gsub!(/\n/ , '')}
+activate :spellcheck, allow: OK_SPELLINGS
 
 # ========================================================================
 # Build-specific configuration
