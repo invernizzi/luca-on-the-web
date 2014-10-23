@@ -9,7 +9,7 @@ require 'rack/rewrite'
 # First, normalize the requests
 use Rack::Rewrite do
     rewrite '/cv.html', '/'
-    rewrite '/pdf/Luca_Invernizzi_cv_english.pdf', 'files/luca_invernizzi_resume.pdf'
+    rewrite '/pdf/Luca_Invernizzi_cv_english.pdf', '/files/luca_invernizzi_resume.pdf'
 end
 
 # Try the static content
