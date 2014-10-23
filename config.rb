@@ -152,7 +152,6 @@ configure :build do
   activate :minify_css
   activate :minify_html
   activate :minify_javascript
-  activate :imageoptim
   activate :gzip
   # Enable cache buster
   activate :asset_hash, :exts => ['.css', '.png', '.jpg', '.gif']
