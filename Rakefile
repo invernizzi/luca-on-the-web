@@ -19,3 +19,8 @@ task :test do
   Rake::Task[:check_links].invoke
 end
 
+
+desc 'Optimize images'
+task :optimize_images do
+  `bundle exec image_optim -r source/img`
+end

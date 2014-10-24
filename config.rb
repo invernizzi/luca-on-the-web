@@ -172,8 +172,8 @@ configure :build do
   set :site_url, "#{site_url_production}"
   set :sass, style: :compressed
   activate :minify_css
-  activate :minify_html
-  activate :minify_javascript
+  activate :minify_html, remove_input_attributes: true
+  activate :minify_javascript, inline: true
   activate :gzip
   # Enable cache buster
   activate :asset_hash, :exts => ['.css', '.png', '.jpg', '.gif']

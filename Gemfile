@@ -19,6 +19,8 @@ gem "middleman-livereload"
 gem "middleman-minify-html", "~> 3.4.0"
 gem "oj", "~> 2.10.0"
 gem "middleman-imageoptim"
+gem 'image_optim'
+gem 'yui-compressor'
 
 # Analytics
 gem "middleman-google-analytics"
