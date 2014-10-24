@@ -12,12 +12,14 @@ use Rack::Rewrite do
     rewrite '/pdf/Luca_Invernizzi_cv_english.pdf', '/files/luca_invernizzi_resume.pdf'
 end
 
+# Compress
+use Rack::Deflater
+
 # Try the static content
 use Rack::TryStatic,
     root: "build",  # static files root dir
     urls: %w[/],     # match all requests
     try: ['.html', 'index.html', '/index.html'] # try these postfixes sequentially
-
 # Otherwise, 404
 run proc { |app|
   [
