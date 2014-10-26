@@ -227,5 +227,14 @@ function show_buzzwords() {
   }
 }
 
+$(document).ready(function() {
+    $('.container')
+    .css('opacity', 0)
+    .slideDown()
+    .animate(
+        { opacity: 1 },
+        { queue: false, duration: 'slow' }
+      );
+})
 
 console.log('Ah, the console. What a wonderful thing!');

@@ -18,7 +18,9 @@ gem "middleman-livereload"
 # file optimization & minification
 gem "middleman-minify-html", "~> 3.4.0"
 gem "oj", "~> 2.10.0"
-gem "middleman-imageoptim", "~> 0.1.4"
+gem "middleman-imageoptim"
+gem 'image_optim'
+gem 'yui-compressor'
 
 # Analytics
 gem "middleman-google-analytics"
@@ -36,3 +38,7 @@ gem 'redcarpet' # markdown
 gem 'nokogiri'  # summaries
 
 
+gem 'middleman-search_engine_sitemap'
+gem 'middleman-spellcheck'
+
+gem 'link-checker'
