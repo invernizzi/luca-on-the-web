@@ -136,7 +136,7 @@ end
 # Comments
 # ========================================================================
 activate :disqus do |d|
-    d.shortname = '0xbadfeed'
+    d.shortname = '0x1badfeed'
 end
 
 
