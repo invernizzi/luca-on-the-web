@@ -133,6 +133,14 @@ activate :google_analytics do |ga|
 end
 
 # ========================================================================
+# Comments
+# ========================================================================
+activate :disqus do |d|
+    d.shortname = '0xbadfeed'
+end
+
+
+# ========================================================================
 # Sitemap
 # ========================================================================
 # Workaround for: https://github.com/Aupajo/middleman-search_engine_sitemap/issues/2

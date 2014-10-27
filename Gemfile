@@ -24,6 +24,7 @@ gem 'yui-compressor'
 
 # Analytics
 gem "middleman-google-analytics"
+gem "middleman-disqus"
 
 # Rack
 gem 'newrelic_rpm'
