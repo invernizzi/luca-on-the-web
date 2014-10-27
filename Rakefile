@@ -19,8 +19,14 @@ task :test do
   Rake::Task[:check_links].invoke
 end
 
-
 desc 'Optimize images'
 task :optimize_images do
   `bundle exec image_optim -r source/img`
 end
+
+desc 'Rebuild the PDF version of the resume'
+task :build_resume do
+  require './lib/resume.rb'
+  Resume.build
+end
+

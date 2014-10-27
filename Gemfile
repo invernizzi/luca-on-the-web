@@ -42,3 +42,6 @@ gem 'middleman-search_engine_sitemap'
 gem 'middleman-spellcheck'
 
 gem 'link-checker'
+
+gem 'watir-webdriver'
+gem "chromedriver-helper"
