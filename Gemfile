@@ -24,6 +24,7 @@ gem 'yui-compressor'
 
 # Analytics
 gem "middleman-google-analytics"
+gem "middleman-disqus"
 
 # Rack
 gem 'newrelic_rpm'
@@ -42,3 +43,6 @@ gem 'middleman-search_engine_sitemap'
 gem 'middleman-spellcheck'
 
 gem 'link-checker'
+
+gem 'watir-webdriver'
+gem "chromedriver-helper"
