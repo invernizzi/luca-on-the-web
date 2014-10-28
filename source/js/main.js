@@ -150,11 +150,11 @@ function text_resume() {
     $('#publications').insertAfter('#pb-after-education');
     $('#press').insertAfter('#patents');
     $('#patents').insertAfter('#publications');
-    $('#references').insertAfter('#patents');
     $('#work').insertAfter('#press');
     $('#competitions').insertAfter('#press');
-    $("<div/>", {id: 'pb-after-competitions', style: 'margin-top: 150px'}).insertAfter('#competitions');
+    $("<div/>", {id: 'pb-after-competitions', style: 'margin-top: 0px'}).insertAfter('#competitions');
     $('#opensource').insertAfter('#pb-after-competitions');
+    $('#references').insertAfter('#work');
 }
 
 function show_buzzwords() {
