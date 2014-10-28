@@ -151,6 +151,20 @@ function text_resume() {
     $('#publications').insertAfter('#patents');
     $('#references').insertAfter('#publications');
 }
+function academia_resume() {
+    // reformat_for_print();
+    $('.not-academia').hide();
+    $('#skills').insertAfter('#contact');
+    $("<div/>", {id: 'pb-after-education', style: 'margin-top: 150px'}).insertAfter('#education');
+    $('#publications').insertAfter('#pb-after-education');
+    $('#press').insertAfter('#patents');
+    $('#patents').insertAfter('#publications');
+    $('#references').insertAfter('#patents');
+    $('#work').insertAfter('#press');
+    $('#competitions').insertAfter('#press');
+    $("<div/>", {id: 'pb-after-competitions', style: 'margin-top: 150px'}).insertAfter('#competitions');
+    $('#opensource').insertAfter('#pb-after-competitions');
+}
 
 function show_buzzwords() {
     var buzzwords = [
