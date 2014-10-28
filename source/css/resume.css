@@ -550,7 +550,11 @@ MEDIA
         page-break-before: always;
         page-break-inside: avoid;
     }
+     .box ul {
+         page-break-after: avoid;
+     }
      .box h2 {
+         page-break-after: avoid;
          color: #EC7263;
          font-size: 1.2em;
          font-weight: 700;

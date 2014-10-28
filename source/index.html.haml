@@ -51,6 +51,16 @@
         %ul#education.clearfix
           %li
             .year.pull-left
+              2013
+            .description.pull-right
+              %h3
+                Research Intern at Narus, Inc.
+              %p
+                At Narus, I've designed Nazca, a system capable of discovering and tracking malicious downloads in the network traffic of ISPs. This work resulted in a NDSS'13 paper, a patent, and has sparked the interest of the
+                = succeed "." do
+                  %a{:href => "http://www.theregister.co.uk/2014/02/18/zoom_out_for_a_view_of_malware_say_boffins/"} press
+          %li
+            .year.pull-left
               2010
               %span.hidden-print -
               2014
@@ -137,7 +147,7 @@
                 %i Path of Excellence
                 honors program.
       / EXPERIENCES
-      .box
+      .box#work
         %h2 Professional Experience
         .job.clearfix
           .col-xs-3
@@ -155,16 +165,6 @@
               and Humana
               = succeed "." do
                 %a{:href => "https://www.humana.com/vitality/"} Vitality
-        .job.clearfix
-          .col-xs-3
-            .where Narus
-            .year 2013
-          .col-xs-9
-            .profession Research Intern
-            .description
-              At Narus, I've designed Nazca, a system capable of discovering and tracking malicious downloads in the network traffic of ISPs. This work resulted in a NDSS'13 paper, a patent, and has sparked the interest of the
-              = succeed "." do
-                %a{:href => "http://www.theregister.co.uk/2014/02/18/zoom_out_for_a_view_of_malware_say_boffins/"} press
         .job.clearfix
           .col-xs-3
             .where Appfolio
@@ -199,7 +199,7 @@
                 %a{:href => "http://sssa.bioroboticsinstitute.it/projects/ANGELS"}
                   ANGELS
               an European project in underwater robotics.
-      .box
+      .box#opensource
         %h2 Open Source contributions
         .job.clearfix
           .col-xs-3
@@ -324,7 +324,7 @@
         %h2 Skills
         .skills
           .item-skills{"data-percent" => "1.00"} Pentesting & hacking
-          .item-skills{"data-percent" => "0.95"} Agile web design (mostly backend)
+          .item-skills.not-academia{"data-percent" => "0.95"} Agile web design (mostly backend)
           .item-skills{"data-percent" => "0.80"} Creating large-scale scalable systems
           .item-skills{"data-percent" => "0.70"} Data mining
           .item-skills{"data-percent" => "0.55"} Robotics
@@ -407,7 +407,7 @@
             %a{:href => "http://www.keyt.com/news/worlds-largest-computer-hacking-contest-happening-at-ucsb/23363462"} World's Largest Computer Hacking Contest Happening at UCSB
           %li
             %a{:href => "http://www.cnbc.com/id/101179977"} Cyberteams duke it out in the World Series of hacking
-          %li
+          %li.not-academia
             %a{:href => "http://arstechnica.com/information-technology/2009/07/getting-things-done-with-linux-todo-list-programs/"} Getting things done with Linux to-do list programs
           %li
             %a{:href => "http://www.esa.int/Education/Germany_s_CESAR_crowned_king_of_rovers_in_ESA_s_Robotics_Challenge2"} Germany's CESAR crowned king of rovers in ESA’s Robotics Challenge
@@ -444,7 +444,7 @@
         .hobby Breaking websites
         .hobby Growing plants in custom hydroponics contraptions
         .hobby Proposing tons of startup ideas to my annoyed wife
-      / REFRENCES
+      / REFERENCES
       #references.box.wrap.visible-print
         %h2 References
         %ul
@@ -457,14 +457,18 @@
             , full professor at UCSB, Lastline founder
             %code.visible-print chris@cs.ucsb.edu
           %li
+            %a{:href => "https://www.cs.ucsb.edu/~kemm/"}> Richard Kemmerer
+            , full professor at UCSB
+            %code.visible-print kemm@cs.ucsb.edu
+          %li.not-academia
             %a{:href => "http://alessiosignorini.com/"}> Alessio Signorini
             , The Activity Exchange founder
             %code.visible-print alessio@signorini.us
-          %li
+          %li.not-academia
             %a{:href => "http://lucafoschini.com/"}> Luca Foschini
             , The Activity Exchange founder
             %code.visible-print luca@achievemint.com
-          %li
+          %li.not-academia
             %a{:href => "http://www.linkedin.com/in/jwalker"}> Jon Walker
             , Appfolio founder
             %code.visible-print jon.walker@appfolio.com

@@ -129,6 +129,7 @@ function reformat_for_print(){
         minwordlength : 2
     });
     Hyphenator.run();
+    text_resume();
 }
 
 // Print button
@@ -136,20 +137,24 @@ $('#print').click(function() {
     reformat_for_print();
     // finally, print
     window.print();
-    // if the user press cancel, reload the page
-    location.reload();
+    // // // if the user press cancel, reload the page
+    // location.reload();
 });
 
 
 function text_resume() {
-    reformat_for_print();
-    $('#hello').insertBefore('#about');
-    $('#contact').insertAfter('#about');
+    // reformat_for_print();
+    $('.not-academia').hide();
     $('#skills').insertAfter('#contact');
-    $('#press').insertAfter('#competitions');
-    $('#patents').insertAfter('#press');
-    $('#publications').insertAfter('#patents');
-    $('#references').insertAfter('#publications');
+    $("<div/>", {id: 'pb-after-education', style: 'margin-top: 150px'}).insertAfter('#education');
+    $('#publications').insertAfter('#pb-after-education');
+    $('#press').insertAfter('#patents');
+    $('#patents').insertAfter('#publications');
+    $('#references').insertAfter('#patents');
+    $('#work').insertAfter('#press');
+    $('#competitions').insertAfter('#press');
+    $("<div/>", {id: 'pb-after-competitions', style: 'margin-top: 150px'}).insertAfter('#competitions');
+    $('#opensource').insertAfter('#pb-after-competitions');
 }
 
 function show_buzzwords() {
