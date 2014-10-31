@@ -35,7 +35,7 @@ body {
     font-weight: 400;
     font-size: 1.2em;
     color: #363636;
-    background: #ededed;
+    background: #f0ece7;
 }
 /*******************************************
 OBNOXIUS
@@ -68,7 +68,7 @@ PHOTO (AVATAR)
     border-radius: 50%;
     overflow: hidden;
     padding: 5px;
-    background: #ededed;
+    background: #f0ece7;
     display: inline-block;
 }
 
