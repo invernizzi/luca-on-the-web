@@ -102,7 +102,7 @@ PHOTO (AVATAR)
     opacity: 0.5;
 }
 
-#text-header:after {
+#text-header.longline:after {
     width: 100%;
     height: 3px;
     background: url(../img/line.png);
@@ -149,7 +149,18 @@ DEFAULT BOX
     line-height: 1.5em;
 }
 /*******************************************
-EDUCATION
+ ABOUT
+ *******************************************/
+#about h2 {
+    display: none;
+}
+
+#about {
+    margin-top: 20px;
+}
+
+/*******************************************
+ EDUCATION
  *******************************************/
 #education {
     margin-top: 20px;

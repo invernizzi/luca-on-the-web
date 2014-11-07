@@ -45,7 +45,9 @@ $('#obnoxiousbtn').click(function() {
 $('#show-resume-button').click(function() {
     $(this).hide();
     $('.frontpage-only').hide('slide');
+    $('#text-header').addClass('longline');
     $('.not-frontpage').show('slide');
+    $('#about h2').show('slide');
 	$('.item-skills').each(function(){
 		$(this).width(0);
     });
