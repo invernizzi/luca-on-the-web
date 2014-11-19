@@ -413,3 +413,17 @@ img::-moz-selection {
 body {
   webkit-tap-highlight-color: #0085a1;
 }
+
+// Syntax highlight
+pre {
+  background-color: #f8f8f8;
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.7em;
+  white-space: pre;
+}
+
+.output {
+    background-color: #eeeeee;
+}
+
+@import "syntax";

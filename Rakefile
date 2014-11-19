@@ -30,3 +30,8 @@ task :build_resume do
   Resume.build
 end
 
+desc 'Generate syntax CSS file'
+task :build_syntax_css do
+  `pygmentize -S colorful -f html > source/css/syntax.css`
+end
+
