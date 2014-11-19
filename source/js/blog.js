@@ -1,3 +1,8 @@
+//= require "./skulpt/skulpt.min.js"
+//= require "./skulpt/skulpt-stdlib.js"
+
+
+
 /*!
  * Clean Blog v1.0.0 (http://startbootstrap.com)
  * Copyright 2014 Start Bootstrap
@@ -43,3 +48,41 @@ $(document).ready(function() {
         { queue: false, duration: 'slow' }
       );
 })
+
+
+function builtinRead(x) {
+    if (Sk.builtinFiles === undefined || Sk.builtinFiles["files"][x] === undefined)
+        throw "File not found: '" + x + "'";
+}
+
+$('pre .highlight').each(function() {
+    container = $('<div/>', {class: 'code-container'}).insertAfter($(this));
+    $(this).appendTo(container);
+
+    $('<button/>', {class: 'btn pull-right', text: 'Run this code!'}).appendTo(container)
+    .click(function(){
+        container = $(this).closest('.code-container');
+        highlight = container.find('.highlight');
+        output = container.find('.output');
+        program = highlight.text().replace(/^\s{8}/gm, '').replace(/^ */,'');
+
+        output.html('');
+        $('<h4/>', {text: 'Code output:'}).appendTo(output);
+        Sk.pre = "";
+        Sk.configure({
+            output: function(text) {
+                        output.html(output.html() + text);
+                    },
+            read:builtinRead
+        });
+        try {
+            eval(Sk.importMainWithBody("<stdin>",false, program));
+        }
+        catch(e) {
+            alert(e.toString())
+        }
+    });
+    $('<div/>', {class: 'output'}).appendTo(container);
+
+});
+
