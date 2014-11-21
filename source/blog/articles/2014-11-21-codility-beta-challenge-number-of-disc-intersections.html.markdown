@@ -4,13 +4,13 @@ date: 2014-11-21 07:16 UTC
 tags: coding-challenge
 ---
 
-This [challenge](https://codility.com/programmers/challenges/beta2010) on [Codility](https://codility.com) is an interesting one: given a number of disks of various radiuses distributed over a line, can you count the total number of intersections in O(N&middot;log(N))?
+This [challenge](https://codility.com/programmers/challenges/beta2010) on [Codility](https://codility.com) is an interesting one: given a number of disks of various radii distributed over a line, can you count the total number of intersections in O(N&middot;log(N))?
 
 Here’s an example:
 
 ![disk intersection example](/img/blog/disk-intersections.png )
 
-To have a clear idea of how to solve this, I’ve found it effective to visualize this in slighlty different terms: if you give every disk a one inch thickness, then the number of intersections in a particular point will be equal to how thick the set of disks is (minus one). To avoid counting the same intersection twice, we only consider the thikness of disks of lower order (given any total ordering).
+To have a clear idea of how to solve this, I’ve found it effective to visualize this in slightly different terms: if you give every disk a one inch thickness, then the number of intersections in a particular point will be equal to how thick the set of disks is (minus one). To avoid counting the same intersection twice, we only consider the thickness of disks of lower order (given any total ordering).
 
 Here’s the example from above, in ``thickness’’ terms. The higher the disk, the higher its order.
 
@@ -18,7 +18,7 @@ Here’s the example from above, in ``thickness’’ terms. The higher the disk
 
 Ah, now it’s much easier to count the intersections. Also, it is easy to code.
 
-Here’s the [solution](https://codility.com/demo/results/demoR7AE23-S6Z/), which passes all tests for correctess and complexity:
+Here’s the [solution](https://codility.com/demo/results/demoR7AE23-S6Z/), which passes all tests for correctness and complexity:
 
 * First, we create an array of "events", where an event is a disk start point or end point. We tag each event with +1 (for the beginning of a disk), or -1 (for its end).
 * Then, we sort the array of events, making sure that the start of a disk in a particular point P comes before the end of any disk at P. This is because we have to consider that two disk intersect if they are barely tangent, per the problem statement.

@@ -19,6 +19,7 @@ set :images_dir,            'img'
 set :sass, line_comments: false, style: :nested
 
 # Blog (has to be before directory_indexes)
+set :haml, { ugly: true }
 activate :blog do |blog|
   blog.prefix = "blog"
   blog.sources = "articles/:year-:month-:day-:title.html"
@@ -47,7 +48,6 @@ activate :bourbon
 # Sitemap URLs (use trailing slashes). Create additional variables here
 # for referenceing your pages.
 set :url_home,              "/"
-
 
 # ========================================================================
 # Page options, layouts, aliases and proxies
@@ -131,6 +131,7 @@ activate :google_analytics do |ga|
   ga.tracking_id = 'UA-651614-13'
   ga.minify = true
 end
+
 
 # ========================================================================
 # Comments
