@@ -1,7 +1,7 @@
 ---
 title: Codility Sulphur 2014 programming challenge - BreakTheRope
 date: 2014-11-19 19:57 UTC
-tags: coding_training
+tags: coding-challenge
 ---
 
 Hi there!
