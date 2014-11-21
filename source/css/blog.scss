@@ -165,7 +165,7 @@ hr.small {
     font-weight: 700;
 }
 .intro-header {
-padding: 3em;
+    padding-top: 3em;
 }
 .intro-header .site-heading,
 .intro-header .page-heading {
@@ -405,6 +405,13 @@ img::-moz-selection {
 }
 body {
   webkit-tap-highlight-color: #0085a1;
+}
+
+// hide navbar on mobile
+@media (max-width: 767px) {
+    .navbar{
+        display:none;
+    }
 }
 
 // Syntax highlight

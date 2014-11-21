@@ -64,7 +64,7 @@ $('pre .highlight').each(function() {
         container = $(this).closest('.code-container');
         highlight = container.find('.highlight');
         output = container.find('.output');
-        program = highlight.text().replace(/^\s{8}/gm, '').replace(/^ */,'');
+        program = highlight.text();
 
         output.html('');
         $('<h4/>', {text: 'Code output:'}).appendTo(output);
@@ -86,3 +86,5 @@ $('pre .highlight').each(function() {
 
 });
 
+
+$('img').addClass('img-responsive');
