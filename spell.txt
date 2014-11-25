@@ -188,6 +188,7 @@ Yaktocat
 yml
 NDSS'
 codility
+Codility's
 breaktherope
 Richard
 len
@@ -201,4 +202,13 @@ solution
 print
 'Ok
 '
+reachability
+ShortestAdjSeq
+Codility’s
+lookup
+N
+and
+smaller
+bigger
+expected
 
