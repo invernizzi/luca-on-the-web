@@ -55,14 +55,14 @@ function builtinRead(x) {
         throw "File not found: '" + x + "'";
 }
 
-$('pre .highlight').each(function() {
+$('pre .python').each(function() {
     container = $('<div/>', {class: 'code-container'}).insertAfter($(this));
     $(this).appendTo(container);
 
     $('<button/>', {class: 'btn pull-right', text: 'Run this code!'}).appendTo(container)
     .click(function(){
         container = $(this).closest('.code-container');
-        highlight = container.find('.highlight');
+        highlight = container.find('.python');
         output = container.find('.output');
         program = highlight.text();
 
