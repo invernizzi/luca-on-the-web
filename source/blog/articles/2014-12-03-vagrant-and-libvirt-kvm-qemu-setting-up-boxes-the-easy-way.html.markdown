@@ -155,3 +155,16 @@ vagrant up
 
 Pretty great :)
 
+
+## [OPTIONAL] Setting libvirt as default provider
+
+You might grow bored of passing `--provider=libvirt` in the command line. If
+that’s the case, just add
+
+```ruby
+ENV['VAGRANT_DEFAULT_PROVIDER'] = 'libvirt'
+```
+
+at the top of your `Vagrantfile`. Good coders are lazy, after all.
+
+
