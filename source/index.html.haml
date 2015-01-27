@@ -266,9 +266,10 @@
               %a{:href => "http://4.bp.blogspot.com/_PZedSw-39RQ/SSqXB53sdSI/AAAAAAAAAAc/WuE0kscIj_4/s1600/pESApod_moon.jpg"} hexapod
               that managed to be selected up to the final in Tenerife. Unfortunately, while our robot was in the crater it started raining (in a very lunar fashion), which shorted our robot's circuits :)
       .text-center
-        %button#show-blog-button.hidden-print.btn.btn-success.popbutton
-          %span.fa.fa-fw.fa-rss
-            Blog
+        %a{href: '/blog'}
+          %button#show-blog-button.hidden-print.btn.btn-success.popbutton
+            %span.fa.fa-fw.fa-rss
+              Blog
       .text-center
         %button#show-resume-button.hidden-print.btn.btn-success.popbutton
           %span.fa.fa-fw.fa-user
@@ -283,7 +284,7 @@
           Invernizzi.
       / CONTACT
       #contact.box.clearfix.frontpage
-        %h2 Contact
+        %h2 Contacts
         .contact-item.obnoxious
           .icon.pull-left.text-center
             %span.fa.fa-phone.fa-fw
@@ -298,27 +299,23 @@
         .contact-item
           .icon.pull-left.text-center
             %span.fa.fa-twitter.fa-fw
-          .title
+          .title.only
             %a.no-href-in-print{:href => "https://twitter.com/invernizzi"} @invernizzi
-          .description.hidden-print Twitter
-        .contact-item.obnoxious.hidden-print
+        .contact-item.hidden-print
           .icon.pull-left.text-center
             %span.fa.fa-linkedin.fa-fw
-          .title
+          .title.only
             %a.no-href-in-print{:href => "http://www.linkedin.com/in/lucainvernizzi"} lucainvernizzi
-          .description.hidden-print Linkedin
         .contact-item
           .icon.pull-left.text-center
             %span.fa.fa-github.fa-fw
-          .title
+          .title.only
             %a.no-href-in-print{:href => "https://github.com/invernizzi"} invernizzi
-          .description.hidden-print Github
         .contact-item
           .icon.pull-left.text-center
             %span.fa.fa-stack-overflow.fa-fw
-          .title
+          .title.only
             %a.no-href-in-print{:href => "https://stackoverflow.com/users/633403/luca-invernizzi"} invernizzi
-          .description.hidden-print StackOverflow
       / SKILLS
       #skills.box.not-academia
         %h2 Skills
