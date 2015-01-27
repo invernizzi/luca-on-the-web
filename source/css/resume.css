@@ -111,6 +111,10 @@ PHOTO (AVATAR)
     display: block;
 }
 
+.popbutton {
+    width: 100px;
+}
+
 #show-resume-button {
     background-color: #F0563D;
     border-color: #fff;

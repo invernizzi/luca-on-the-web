@@ -266,9 +266,13 @@
               %a{:href => "http://4.bp.blogspot.com/_PZedSw-39RQ/SSqXB53sdSI/AAAAAAAAAAc/WuE0kscIj_4/s1600/pESApod_moon.jpg"} hexapod
               that managed to be selected up to the final in Tenerife. Unfortunately, while our robot was in the crater it started raining (in a very lunar fashion), which shorted our robot's circuits :)
       .text-center
-        %button#show-resume-button.hidden-print.btn.btn-success
-          %span.fa.fa-fw.fa-fire
-          Check out my résumé!
+        %button#show-blog-button.hidden-print.btn.btn-success.popbutton
+          %span.fa.fa-fw.fa-rss
+            Blog
+      .text-center
+        %button#show-resume-button.hidden-print.btn.btn-success.popbutton
+          %span.fa.fa-fw.fa-user
+          Résumé
     .col-xs-12.col-sm-5.column-right
       / HELLO in print
       #hello.box.clearfix.visible-print
@@ -315,12 +319,6 @@
           .title
             %a.no-href-in-print{:href => "https://stackoverflow.com/users/633403/luca-invernizzi"} invernizzi
           .description.hidden-print StackOverflow
-        .contact-item.hidden-print
-          .icon.pull-left.text-center
-            %span.fa.fa-cog.fa-fw.fa-spin
-          .title
-            %a{:href => "/blog"} 0x1badfeed
-          .description Blog
       / SKILLS
       #skills.box.not-academia
         %h2 Skills

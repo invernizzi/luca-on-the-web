@@ -58,17 +58,24 @@ $('#show-resume-button').click(function() {
     });
 });
 
-function big_resume_button() {
+function big_buttons() {
     $('#show-resume-button').animate({
         width: [ '300px', "easeOutBounce" ],
         height: [ '50px', "easeOutBounce" ],
         fontSize: "1.3em",
         opacity: "1.0"
-    }, 200)
+    }, 200);
+    $('#show-blog-button').animate({
+        width: [ '300px', "easeOutBounce" ],
+        height: [ '50px', "easeOutBounce" ],
+        fontSize: "1.3em",
+        opacity: "1.0"
+    }, 200);
 }
-$('#show-resume-button').mouseover(big_resume_button);
 
-$().on('ready', setTimeout(big_resume_button, 3000));
+$('#show-resume-button').mouseover(big_buttons);
+
+$().on('ready', setTimeout(big_buttons, 3000));
 
 function reformat_for_print(){
     is_print = true;
