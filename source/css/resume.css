@@ -113,14 +113,12 @@ PHOTO (AVATAR)
 
 .popbutton {
     width: 100px;
-}
-
-#show-resume-button {
     background-color: #F0563D;
     border-color: #fff;
     opacity: 0.9;
     margin-bottom: 1em;
 }
+
 /*******************************************
 DEFAULT BOX
  *******************************************/
