@@ -75,7 +75,7 @@ function big_buttons() {
 
 $('#show-resume-button').mouseover(big_buttons);
 
-$().on('ready', setTimeout(big_buttons, 3000));
+$().on('ready', setTimeout(big_buttons, 500));
 
 function reformat_for_print(){
     is_print = true;
