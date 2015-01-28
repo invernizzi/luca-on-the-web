@@ -43,7 +43,7 @@ $('#obnoxiousbtn').click(function() {
 
 
 $('#show-resume-button').click(function() {
-    $(this).hide();
+    $('.popbutton').hide();
     $('.frontpage-only').hide('slide');
     $('#text-header').addClass('longline');
     $('.not-frontpage').show('slide');
