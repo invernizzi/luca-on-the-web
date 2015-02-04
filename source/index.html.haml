@@ -21,15 +21,6 @@
             %span#full-name{:itemprop => "name"}
               %span.name Luca
               %sup{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Sorry for that, that's hard to pronounce :)"} (Invernizzi)
-  .row.pull-right.hidden-print.not-frontpage{:style => "margin-right:20px"}
-    %span.obnoxious.defaulton Need more details, such as my phone number?
-    Press the
-    %a#obnoxiousbtn.btn.btn-info.btn-xs
-      %span.obnoxious.defaulton ¬
-      TL;DR
-    button to show
-    %span.obnoxious.defaulton more
-    %span.obnoxious less
   .row
     .col-xs-12.col-sm-7.column-left
       / ABOUT ME
@@ -139,6 +130,15 @@
       / EXPERIENCES
       .box#work
         %h2 Professional Experience
+        .job.clearfix
+          .col-xs-3
+            .where Google, Inc.
+            .year
+              2015
+          .col-xs-9
+            .profession Software Engineering Intern
+            .description
+              At Google, I've joined the anti-abuse team to research on how to improve search at the expense of cybercriminals.
         .job.clearfix
           .col-xs-3
             .where The Activity Exchange
@@ -469,6 +469,15 @@
             %a{:href => "http://www.linkedin.com/in/jwalker"}> Jon Walker
             , Appfolio founder
             %code.visible-print jon.walker@appfolio.com
+  .row.pull-right.hidden-print.not-frontpage{:style => "margin-right:20px"}
+    %span.obnoxious.defaulton Need more details, such as my phone number?
+    Press the
+    %a#obnoxiousbtn.btn.btn-info.btn-xs
+      %span.obnoxious.defaulton ¬
+      TL;DR
+    button to show
+    %span.obnoxious.defaulton more
+    %span.obnoxious less
 .page-break
 #links.box.visible-print
   %h2 Links
