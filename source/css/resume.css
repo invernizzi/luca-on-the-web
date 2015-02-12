@@ -34,8 +34,8 @@ body {
     font-family: 'Ubuntu', Arial, Tahoma;
     font-weight: 400;
     font-size: 1.2em;
-    color: #363636;
-    background: #f0ece7;
+ background: linear-gradient(#fff, #eee);
+
 }
 /*******************************************
 OBNOXIUS
@@ -50,11 +50,43 @@ OBNOXIUS
 /*******************************************
 CONTAINER
  *******************************************/
-.container {
-    margin-top: 80px;
-    margin-bottom: 15px;
-    background: #fff;
+@media only screen and (min-width : 800px) {
+    .letter {
+      margin: 80px auto 100px;
+      max-width: 900px;
+      min-width: 850px;
+      min-height: 600px;
+      padding: 24px;
+      position: relative;
+      width: 95%;
+      border-color: #e5e5e5 #dbdbdb #d2d2d2;
+      background: #fff;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+    .letter:before, .letter:after {
+      content: "";
+      height: 98%;
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+    }
+    .letter:before {
+      background: #fafafa;
+      box-shadow: 0 0 8px rgba(0,0,0,0.2);
+      left: -5px;
+      top: 4px;
+      transform: rotate(-1.1deg);
+    }
+    .letter:after {
+      background: #f6f6f6;
+      box-shadow: 0 0 3px rgba(0,0,0,0.2);
+      right: -3px;
+      top: 1px;
+      transform: rotate(1.2deg);
+    }
 }
+
+
 /*******************************************
 PHOTO (AVATAR)
  *******************************************/
