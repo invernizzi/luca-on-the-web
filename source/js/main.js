@@ -145,7 +145,7 @@ $('#print').click(function() {
     reformat_for_print();
     // finally, print
     window.print();
-    // if the user press cancel, reload the page
+    // // if the user press cancel, reload the page
     location.reload();
 });
 
