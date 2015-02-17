@@ -48,5 +48,20 @@ task :deploy do
 	"#{base_url}/zones/#{zone_id}/purge_cache",
 	 headers: {"X-Auth-Email" => username, "X-Auth-Key" => api_key},
 	 body: 'purge_everything=true',  :debug_output => $stdout
-	) 
+	)
+end
+
+
+desc 'Notify search engines'
+task :ping do
+  require 'httparty'
+  [
+    'http://www.bing.com/ping',
+    'http://www.google.com/webmasters/tools/ping',
+  ].each do |url|
+    puts HTTParty.get(
+      url,
+      query: {'sitemap' => 'http://lucainvernizzi.net/sitemap.xml'}
+    )
+  end
 end
