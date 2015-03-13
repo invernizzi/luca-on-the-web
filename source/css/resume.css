@@ -768,5 +768,8 @@ MEDIA
     .column-right {
         padding: 0px;
     }
+    #photo-header {
+        margin-top: 0px;
+    }
 
 }
