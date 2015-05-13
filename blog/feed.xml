@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog Name</title>
+  <subtitle>Blog subtitle</subtitle>
+  <id>http://blog.url.com/blog</id>
+  <link href="http://blog.url.com/blog"/>
+  <link href="http://blog.url.com/blog/feed.xml" rel="self"/>
+  <updated>2015-02-16T20:42:00-08:00</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>Fast, Internet-wide scans processing with Rapid7's DAP</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/02/17/fast-internet-wide-scans-processing-with-rapid7-s-dap/"/>
+    <id>http://blog.url.com/blog/2015/02/17/fast-internet-wide-scans-processing-with-rapid7-s-dap/</id>
+    <published>2015-02-16T20:42:00-08:00</published>
+    <updated>2015-02-16T21:25:34-08:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;One day of last week I came up with an idea that I had to test against the HTTP headers of millions of servers.
+To do this quickly, writing practically no code, I’ve used Rapid7’s &lt;a href="https://github.com/rapid7/dap.git"&gt;DAP&lt;/a&gt;. It is
+ a nifty little utility that has been the ultimate time-saver for me, and it certainly deserves much more spotlight than it currently has. Plus, &lt;a href="https://en.wikipedia.org/wiki/H._D._Moore"&gt;hdmoore&lt;/a&gt; &lt;a href="https://news.ycombinator.com/item?id=8738020"&gt;digs it&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Since the docs are scarce at the moment, I though to contribute with a complete example.&lt;/p&gt;
+
+&lt;h1&gt;Get all the webservers with a particular header&lt;/h1&gt;
+
+&lt;h3&gt;Get the dataset&lt;/h3&gt;
+
+&lt;p&gt;First, get the data. &lt;a href="https://scans.io/study/sonar.http"&gt;Scans.io&lt;/a&gt; does the heavy lifting for us, providing a dataset of GET requests to all IPv4 hosts (so, no vhosts, unfortunately, so we won’t see domains co-located on the same host).
+Get it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;wget https://scans.io/data/rapid7/sonar.http/20150203-http.gz -O the_Internet.gz  &lt;span class="c"&gt;# Get the latest one from the site.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Install&lt;/h3&gt;
+
+&lt;p&gt;Of course, we need to install stuff. Here’s the instructions for Debian/Ubuntu:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;sudo aptitude install libgeoip-dev parallel pigz ruby-bundler pv
+git clone https://github.com/rapid7/dap.git
+&lt;span class="nb"&gt;cd &lt;/span&gt;dap
+gem install bundler
+bundle install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Fire!&lt;/h3&gt;
+
+&lt;p&gt;Now we are ready to go. It’s a long pipeline, that works like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;pigz -dc the_Internet.gz | &lt;span class="se"&gt;\&lt;/span&gt;
+         pv -t -r -a -l | &lt;span class="se"&gt;\&lt;/span&gt;
+         head -n 300000 | &lt;span class="se"&gt;\&lt;/span&gt;
+         parallel --gnu  --nice 10 --pipe &lt;span class="se"&gt;\&lt;/span&gt;
+         &lt;span class="s2"&gt;"cd dap; bundle exec bin/dap json  + transform data=base64decode + decode_http_reply data + include data.http_server='Apache' + include data.fancy_header='42' + select ip data data.http_code data.http_raw_headers data.http_server + json"&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pigz&lt;/code&gt; will decompress our dataset quickly (using multiple cores)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pv&lt;/code&gt; will just let us see what’s going on (printing the progress on the screen)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;head&lt;/code&gt; is nice for getting the pipeline right quickly (processing only the first k sites, for a faster turnaround during debugging)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;parallel&lt;/code&gt; lets us use DAP (a single-core program) on multiple cores (or even multiple hosts!), by splitting the input across a set of workers.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dap&lt;/code&gt; has is own pipeline to interpret the data, described by its arguments. In particular:
+
+&lt;ul&gt;
+&lt;li&gt;Input processing
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;json&lt;/code&gt; specifies the input is in JSON, and it needs to be decoded&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;transform data=base64decode&lt;/code&gt; specifies that the “data” field in the JSON is BASE64 encoded, and needs decoding&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;decode_http_reply data&lt;/code&gt; specifies that the “data” field contains an HTTP reply, which DAP knows how to process to give easier access to its fields.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Filtering
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;include data.http_server=’Apache’&lt;/code&gt; will filter out all servers that do not self-report as “Apache” in theirs HTTP headers.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;include data.fancy_header=’42’&lt;/code&gt; will further filter all the servers without this header&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;Output generation
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;select ip data data.http_code data.http_raw_headers data.http_server&lt;/code&gt; specifies we only want these fields in our output, discarding all the rest&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;json&lt;/code&gt; tells DAP we want our output as a JSON file.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So, there you go. On my workstation, I can process about 10k sites per second. Pretty sweet, for a few lines of bash.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Extracting URLs from network traffic in just 9 Python lines with Scapy-HTTP</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/02/12/extracting-urls-from-network-traffic-in-just-9-python-lines-with-scapy-http/"/>
+    <id>http://blog.url.com/blog/2015/02/12/extracting-urls-from-network-traffic-in-just-9-python-lines-with-scapy-http/</id>
+    <published>2015-02-11T20:58:00-08:00</published>
+    <updated>2015-02-11T21:56:48-08:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Today at work my &lt;a href="https://github.com/invernizzi/scapy-http"&gt;scapy-http&lt;/a&gt; library became again very useful,
+so I thought to showcase it a little here.&lt;/p&gt;
+
+&lt;p&gt;This example assumes that you have both scapy and scapy-http installed. If you don’t, you can fix this unexcusable mistake by (on a Debian/Ubuntu host):&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;sudo apt-get install python-scapy python-pip
+sudo pip install scapy_http
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Extract URLs from network traffic&lt;/h2&gt;
+
+&lt;p&gt;Just for fun, sometimes I sniff my laptop’s network traffic to check what it does in the background.
+Here’s the code to see all your HTTP requests:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight python"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.all&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sniff&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.layers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;
+
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;process_tcp_packet&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="s"&gt;'''
+    Processes a TCP packet, and if it contains an HTTP request, it prints it.
+    '''&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;haslayer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTTPRequest&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+        &lt;span class="c"&gt;# This packet doesn't contain an HTTP request so we skip it&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt;
+    &lt;span class="n"&gt;http_layer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getlayer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;http&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HTTPRequest&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;ip_layer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getlayer&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;IP&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s"&gt;'&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;{0[src]} just requested a {1[Method]} {1[Host]}{1[Path]}'&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;ip_layer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;http_layer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fields&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="c"&gt;# Start sniffing the network.&lt;/span&gt;
+&lt;span class="n"&gt;sniff&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;filter&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;'tcp'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;prn&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;process_tcp_packet&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Here’s a sample output:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight plaintext"&gt;192.168.1.70 just requested a GET 192.168.1.68:8060/dial/dd.xml
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That’s an odd request, actually. After the first thought &lt;em&gt;“My mama always said not to play with malware, that’s what you get for doing it anyway”&lt;/em&gt;, it turns out, it’s my Roku advertising over the network.&lt;/p&gt;
+
+&lt;p&gt;A few obligatory caveats:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;You may need to be root (or have the proper capability) to run this code&lt;/li&gt;
+&lt;li&gt;Depending on your network, you may not have a complete view of the traffic (there are methods to get it, but they are out of scope here)&lt;/li&gt;
+&lt;li&gt;You’ll just get HTTP requests. Everything else won’t be displayed.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Hiplogging - broadcast Python logs to Hipchat</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/"/>
+    <id>http://blog.url.com/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/</id>
+    <published>2015-01-27T21:58:00-08:00</published>
+    <updated>2015-01-27T22:22:38-08:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Lately, in my research job, I’ve dealt quite a bit with long-running
+distributed experiments, handlings lots of non-structured data. The code
+running these experiments is usually best described as a “almost-working
+prototype” and, especially during the first few iterations of the experiment,
+is likely to crash in spectacular, unexpected ways.&lt;/p&gt;
+
+&lt;p&gt;To minimize downtimes, I’d like to be notified of any progress (or crash) in
+the experiment as soon as possible. I’ve looked into finding a (free, possibly) solution
+that can let me monitor my experiments wherever I am, and I’ve found Hipchat to
+be a nice, well-integrated solution.&lt;/p&gt;
+
+&lt;p&gt;To simplify integrating HipChat in my code, I’ve wrote a little
+library, &lt;a href="https://github.com/invernizzi/hiplogging"&gt;hiplogging&lt;/a&gt;, that I think
+is useful enough to be shared with the world :)&lt;/p&gt;
+
+&lt;p&gt;You just need to add a little preamble to your code, to configure your HipChat
+account,&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight python"&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;os&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;logging&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;hiplogging&lt;/span&gt;
+
+&lt;span class="c"&gt;# Set up a standard logger&lt;/span&gt;
+&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;basicConfig&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;level&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;logger&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;getLogger&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="c"&gt;# Add the hipchat handler&lt;/span&gt;
+&lt;span class="c"&gt;# Get an admin token from: https://&amp;lt;YOUR_HIPCHAT_NAME&amp;gt;.hipchat.com/admin/api&lt;/span&gt;
+&lt;span class="n"&gt;handler&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;hiplogging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;HipChatHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'HIPCHAT_ADMIN_TOKEN'&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+                                   &lt;span class="n"&gt;os&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;environ&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;'HIPCHAT_ROOM'&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;handler&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;setLevel&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logging&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;DEBUG&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;addHandler&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;handler&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and you can keep using the standard Python
+&lt;a href="https://docs.python.org/2/library/logging.html"&gt;logging&lt;/a&gt; module,&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight python"&gt;&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;debug&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'debug - we are approaching the anomaly'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;info&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'info - shields up, red alert!'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;warn&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'warn - shield down to 15&lt;/span&gt;&lt;span class="si"&gt;%&lt;/span&gt;&lt;span class="s"&gt;'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;logger&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fatal&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;'fatal - what shields?'&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;and check
+your logs on HipChat web interface, or your mobile device.&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="hiplogging" src="https://github.com/invernizzi/hiplogging/raw/master/example.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Try it out!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Parsing HTTP in Scapy!</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/01/26/parsing-http-in-scapy/"/>
+    <id>http://blog.url.com/blog/2015/01/26/parsing-http-in-scapy/</id>
+    <published>2015-01-26T15:26:00-08:00</published>
+    <updated>2015-01-27T21:56:21-08:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Hello people,&lt;/p&gt;
+
+&lt;p&gt;If you need to handle HTTP packets in
+&lt;a href="http://www.secdev.org/projects/scapy/"&gt;Scapy&lt;/a&gt;, check out my
+&lt;a href="https://github.com/invernizzi/scapy-http"&gt;scapy-http&lt;/a&gt; library.&lt;/p&gt;
+
+&lt;p&gt;To install it, run&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;sudo pip install scapy-http
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;After you import it in your program like so&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight python"&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;scapy.layers&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You’ll be able to have a pretty output like this one:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight python"&gt;&lt;span class="n"&gt;some_http_packet&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;show&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class="highlight python"&gt;&lt;span class="o"&gt;==============================================================================&lt;/span&gt;
+&lt;span class="c"&gt;###[ Ethernet ]###&lt;/span&gt;
+  &lt;span class="n"&gt;dst&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;d8&lt;/span&gt;
+  &lt;span class="n"&gt;src&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;63&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;94&lt;/span&gt;
+  &lt;span class="nb"&gt;type&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x800&lt;/span&gt;
+&lt;span class="c"&gt;###[ IP ]###&lt;/span&gt;
+     &lt;span class="n"&gt;version&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;4L&lt;/span&gt;
+     &lt;span class="n"&gt;ihl&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;5L&lt;/span&gt;
+     &lt;span class="n"&gt;tos&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0&lt;/span&gt;
+     &lt;span class="nb"&gt;len&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;154&lt;/span&gt;
+     &lt;span class="nb"&gt;id&lt;/span&gt;        &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;46316&lt;/span&gt;
+     &lt;span class="n"&gt;flags&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DF&lt;/span&gt;
+     &lt;span class="n"&gt;frag&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;0L&lt;/span&gt;
+     &lt;span class="n"&gt;ttl&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;
+     &lt;span class="n"&gt;proto&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt;
+     &lt;span class="n"&gt;chksum&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x100b&lt;/span&gt;
+     &lt;span class="n"&gt;src&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;192.168&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;1.105&lt;/span&gt;
+     &lt;span class="n"&gt;dst&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;207.97&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;227.243&lt;/span&gt;
+     \&lt;span class="n"&gt;options&lt;/span&gt;   \
+&lt;span class="c"&gt;###[ TCP ]###&lt;/span&gt;
+        &lt;span class="n"&gt;sport&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;52157&lt;/span&gt;
+        &lt;span class="n"&gt;dport&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;
+        &lt;span class="n"&gt;seq&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3687400232&lt;/span&gt;
+        &lt;span class="n"&gt;ack&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2748912324&lt;/span&gt;
+        &lt;span class="n"&gt;dataofs&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;5L&lt;/span&gt;
+        &lt;span class="n"&gt;reserved&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;0L&lt;/span&gt;
+        &lt;span class="n"&gt;flags&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PA&lt;/span&gt;
+        &lt;span class="n"&gt;window&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;14600&lt;/span&gt;
+        &lt;span class="n"&gt;chksum&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0xb333&lt;/span&gt;
+        &lt;span class="n"&gt;urgptr&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="n"&gt;options&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="c"&gt;###[ HTTP ]###&lt;/span&gt;
+&lt;span class="c"&gt;###[ HTTP Request ]###&lt;/span&gt;
+              &lt;span class="n"&gt;Method&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'GET'&lt;/span&gt;
+              &lt;span class="n"&gt;Path&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'/'&lt;/span&gt;
+              &lt;span class="n"&gt;Http&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'HTTP/1.1'&lt;/span&gt;
+              &lt;span class="n"&gt;Host&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'www.github.com'&lt;/span&gt;
+              &lt;span class="n"&gt;User&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Agent&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'Wget/1.13.4 (linux-gnu)'&lt;/span&gt;
+              &lt;span class="n"&gt;Accept&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'*/*'&lt;/span&gt;
+              &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Language&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Charset&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Referer&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Authorization&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Expect&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;From&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;If&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Match&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;If&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Modified&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Since&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;If&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="bp"&gt;None&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Match&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;If&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;If&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Unmodified&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Since&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Max&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Forwards&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Proxy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Authorization&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Range&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;TE&lt;/span&gt;        &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Cache&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Control&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Connection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'Keep-Alive'&lt;/span&gt;
+              &lt;span class="n"&gt;Date&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Pragma&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Trailer&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Transfer&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Upgrade&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Via&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="nb"&gt;Warning&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Keep&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Alive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Allow&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Language&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Location&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;MD5&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Expires&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Last&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Modified&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Cookie&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Additional&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+&lt;span class="o"&gt;==============================================================================&lt;/span&gt;
+&lt;span class="c"&gt;###[ Ethernet ]###&lt;/span&gt;
+  &lt;span class="n"&gt;dst&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;64&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;99&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;63&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;94&lt;/span&gt;
+  &lt;span class="n"&gt;src&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mo"&gt;00&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;21&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;29&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;77&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="n"&gt;d8&lt;/span&gt;
+  &lt;span class="nb"&gt;type&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x800&lt;/span&gt;
+&lt;span class="c"&gt;###[ IP ]###&lt;/span&gt;
+     &lt;span class="n"&gt;version&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;4L&lt;/span&gt;
+     &lt;span class="n"&gt;ihl&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;5L&lt;/span&gt;
+     &lt;span class="n"&gt;tos&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x0&lt;/span&gt;
+     &lt;span class="nb"&gt;len&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;418&lt;/span&gt;
+     &lt;span class="nb"&gt;id&lt;/span&gt;        &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;29348&lt;/span&gt;
+     &lt;span class="n"&gt;flags&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;DF&lt;/span&gt;
+     &lt;span class="n"&gt;frag&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;0L&lt;/span&gt;
+     &lt;span class="n"&gt;ttl&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;55&lt;/span&gt;
+     &lt;span class="n"&gt;proto&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tcp&lt;/span&gt;
+     &lt;span class="n"&gt;chksum&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x5a4b&lt;/span&gt;
+     &lt;span class="n"&gt;src&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;207.97&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;227.243&lt;/span&gt;
+     &lt;span class="n"&gt;dst&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;192.168&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="mf"&gt;1.105&lt;/span&gt;
+     \&lt;span class="n"&gt;options&lt;/span&gt;   \
+&lt;span class="c"&gt;###[ TCP ]###&lt;/span&gt;
+        &lt;span class="n"&gt;sport&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;http&lt;/span&gt;
+        &lt;span class="n"&gt;dport&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;52157&lt;/span&gt;
+        &lt;span class="n"&gt;seq&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2748912324&lt;/span&gt;
+        &lt;span class="n"&gt;ack&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;3687400346&lt;/span&gt;
+        &lt;span class="n"&gt;dataofs&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;5L&lt;/span&gt;
+        &lt;span class="n"&gt;reserved&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="il"&gt;0L&lt;/span&gt;
+        &lt;span class="n"&gt;flags&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PA&lt;/span&gt;
+        &lt;span class="n"&gt;window&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;5840&lt;/span&gt;
+        &lt;span class="n"&gt;chksum&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mh"&gt;0x78e7&lt;/span&gt;
+        &lt;span class="n"&gt;urgptr&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;
+        &lt;span class="n"&gt;options&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="c"&gt;###[ HTTP ]###&lt;/span&gt;
+&lt;span class="c"&gt;###[ HTTP Response ]###&lt;/span&gt;
+              &lt;span class="n"&gt;Status&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Line&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'HTTP/1.1 301 Moved Permanently'&lt;/span&gt;
+              &lt;span class="n"&gt;Accept&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Ranges&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Age&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;E&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Tag&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Location&lt;/span&gt;  &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'http://github.com/'&lt;/span&gt;
+              &lt;span class="n"&gt;Proxy&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Authenticate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Retry&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Server&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'nginx/1.0.13'&lt;/span&gt;
+              &lt;span class="n"&gt;Vary&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;WWW&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Authenticate&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Cache&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Control&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Connection&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'keep-alive'&lt;/span&gt;
+              &lt;span class="n"&gt;Date&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'Wed, 27 Jun 2012 06:53:41 GMT'&lt;/span&gt;
+              &lt;span class="n"&gt;Pragma&lt;/span&gt;    &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Trailer&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Transfer&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Upgrade&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Via&lt;/span&gt;       &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="nb"&gt;Warning&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Keep&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Alive&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Allow&lt;/span&gt;     &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Language&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Length&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'185'&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Location&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;MD5&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Range&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Content&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'text/html'&lt;/span&gt;
+              &lt;span class="n"&gt;Expires&lt;/span&gt;   &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Last&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Modified&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+              &lt;span class="n"&gt;Additional&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;Headers&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="bp"&gt;None&lt;/span&gt;
+&lt;span class="c"&gt;###[ Raw ]###&lt;/span&gt;
+                 &lt;span class="n"&gt;load&lt;/span&gt;      &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;'&amp;lt;html&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;head&amp;gt;&amp;lt;title&amp;gt;301 Moved Permanently&amp;lt;/title&amp;gt;&amp;lt;/head&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;body bgcolor="white"&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;center&amp;gt;&amp;lt;h1&amp;gt;301 Moved Permanently&amp;lt;/h1&amp;gt;&amp;lt;/center&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;hr&amp;gt;&amp;lt;center&amp;gt;nginx/1.0.13&amp;lt;/center&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;/body&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;&amp;lt;/html&amp;gt;&lt;/span&gt;&lt;span class="se"&gt;\r\n&lt;/span&gt;&lt;span class="s"&gt;'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that this works on a per-packet basis, so it won&amp;rsquo;t do stream reconstruction or anything &lt;a href="https://github.com/OISF/libhtp"&gt;fancy&lt;/a&gt; but parsing.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Vagrant-scp - copy files to vagrant VMs easily</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/"/>
+    <id>http://blog.url.com/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/</id>
+    <published>2015-01-26T15:10:00-08:00</published>
+    <updated>2015-01-27T21:56:21-08:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I faced quite a few times the problem of copying files to virtual machines started via &lt;a href="https://www.vagrantup.com/"&gt;Vagrant&lt;/a&gt;.
+Since &lt;a href="http://minimul.com/ssh-and-scp-into-a-vagrant-box.html"&gt;many&lt;/a&gt; &lt;a href="https://stackoverflow.com/questions/24941237/unable-to-scp-files-from-local-machine-into-vagrant"&gt;people&lt;/a&gt; were facing the same issue, I&amp;rsquo;ve written a quick  Vagrant plugin to solve this problem.&lt;/p&gt;
+
+&lt;p&gt;Install it via:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant plugin install vagrant-scp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Use it like so:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant scp &amp;lt;some_local_file_or_dir&amp;gt; &amp;lt;somewhere_on_the_vm&amp;gt; &lt;span class="o"&gt;[&lt;/span&gt;vm_name]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Enjoy!&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Vagrant and libVirt(KVM/Qemu) - Setting up boxes the easy way</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/"/>
+    <id>http://blog.url.com/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/</id>
+    <published>2014-12-03T12:07:00-08:00</published>
+    <updated>2015-01-27T21:56:21-08:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;In my &lt;a href="http://seclab.cs.ucsb.edu"&gt;research lab&lt;/a&gt; at UCSB, we routinely run large-scale experiments that, essentially, need lots of computation and memory. These are pretty cool to run, but setting them up can be quite cumbersome. To make this task easier on us, we have been running an OpenStack shop for quite a while, and we were running Eucalyptus before that.&lt;/p&gt;
+
+&lt;p&gt;Unfortunately, maintaining an OpenStack installation with ever-shifting requirements can become a chore too, as there are lots of moving parts that need to be monitored and occasionally fixed and updated. Since we don’t really need all the features of OpenStack, we have been looking for a while for alternative solutions.&lt;/p&gt;
+
+&lt;p&gt;Our requirements boil down to:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Easy to maintain: adding and removing host servers should be easily automated. Debugging faulty servers should be immediate.&lt;/li&gt;
+&lt;li&gt;Easy to use: newcomers should not need to learn any API, and they could not be familiar with virtualization.&lt;/li&gt;
+&lt;li&gt;Efficient: we have &amp;gt;20 fat servers running this little cloud. The more VMs we can pack into them, the better. In other words: the overhead servers (puppet muster, JuJu etc) should be kept at minimum, or eliminated.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The current lightweight solution: simply running independent KVM/libvirt servers, and manage them via &lt;a href="https://www.vagrantup.com"&gt;Vagrant&lt;/a&gt;. Here, KVM servers provide the “easy to administrate” part, and Vagrant provides a nice wrapper that makes it easy to deploy and manage VMs, since it provides a clear separation between base boxes (for which there is an extensive repository, a la Amazon AWS) and provisioning. Plus, Vagrant provides an abstraction over KVM: running the same VM on OpenStack, libVirt/KVM, or VirtualBox is just a matter of a command line switch.&lt;/p&gt;
+
+&lt;p&gt;This solution fits well to our needs. The only outstanding issues are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Managing a pool of IPs, which could maybe be solved by having a little Redis server that keeps the list of free IPs&lt;/li&gt;
+&lt;li&gt;Load balancing&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;I’ve noticed that there isn’t a good guide on the Internet on how to accomplish something like this, so here’s a quick tutorial.&lt;/p&gt;
+
+&lt;h2&gt;Install Vagrant&lt;/h2&gt;
+
+&lt;p&gt;Note that the version of Vagrant in the Ubuntu 14.04 repositories is too old, and it is incompatible with the libvirt plugin. So,&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;    sudo apt-get install vagrant  &lt;span class="c"&gt;# Nope, not this one, too old.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Won’t do on Ubuntu 14.04&lt;/strong&gt;. You need to install the &lt;a href="https://www.vagrantup.com/downloads.html"&gt;latest official Vagrant&lt;/a&gt; from their website (it’s nicely packaged).
+So, execute:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;    wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb -O vagrant.deb
+    sudo dpkg -i vagrant.deb
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Install Vagrant Plugins&lt;/h3&gt;
+
+&lt;p&gt;Vagrant has a nice plugin framework, to whom people have contributed lots of very helpful plugins. Here’s the ones we need.&lt;/p&gt;
+
+&lt;h4&gt;Vagrant-libvirt&lt;/h4&gt;
+
+&lt;p&gt;Vagrant doesn’t know how to talk to libvirt, so we have to teach that to it.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant plugin install vagrant-libvirt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Vagrant-mutate&lt;/h4&gt;
+
+&lt;p&gt;In a few moments, we will download an official Vagrant guest box to run. These boxes are not made for KVM, so we need to convert them to a KVM-friendly format.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant plugin install vagrant-mutate
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4&gt;Vagrant-rekey&lt;/h4&gt;
+
+&lt;p&gt;The official Vagrant boxes come with preset passwords and a built-in “insecure” SSH key. This plugin clears all of those, and generates a new SSH key to use instead of the insecure one.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant plugin install vagrant-rekey-ssh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Download your first box&lt;/h2&gt;
+
+&lt;p&gt;Let’s get the official Vagrant box for Ubuntu 14.04, and make it KVM-friendly. There are plenty other boxes ready to use on Vagrant’s &lt;a href="https://vagrantcloud.com/discover/featured"&gt;site&lt;/a&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant box add trusty64 https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box
+vagrant mutate trusty64  libvirt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;[OPTIONAL] Modify the box&lt;/h2&gt;
+
+&lt;p&gt;If you want to modify the VM, I suggest you install VirtualBox and run the VM there.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant up  &lt;span class="c"&gt;# This will start the VM in VirtualBox&lt;/span&gt;
+vagrant ssh  &lt;span class="c"&gt;# Do your modifications&lt;/span&gt;
+vagrant package  &lt;span class="c"&gt;# Will package the VM as a box&lt;/span&gt;
+vagrant box add trusty64 package.box  --force  &lt;span class="c"&gt;# Rewrite the trusty64 box&lt;/span&gt;
+vagrant mutate trusty64  libvirt  &lt;span class="c"&gt;# Remember to convert the box to the KVM format &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Configure your guest VM&lt;/h2&gt;
+
+&lt;p&gt;All the configuration Vagrant needs is in a single file, which is nice. So,
+create a file called &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;Vagrant&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"2"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+
+  &lt;span class="c1"&gt;# Tell Vagrant where would you like to start your VMs (you can also have a&lt;/span&gt;
+  &lt;span class="c1"&gt;# specific per-VM configuration. Do not put this section in case you want to&lt;/span&gt;
+  &lt;span class="c1"&gt;# start your VMs on the same host)&lt;/span&gt;
+  &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;provider&lt;/span&gt; &lt;span class="ss"&gt;:libvirt&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+    &lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;host&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'myawesomehostname or IP'&lt;/span&gt;
+    &lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'root'&lt;/span&gt;
+    &lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;connect_via_ssh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
+  &lt;span class="k"&gt;end&lt;/span&gt;
+
+  &lt;span class="c1"&gt;# Here's our VM confguration&lt;/span&gt;
+  &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:my_fancy_vm&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# It should be an Ubuntu 14.04 box&lt;/span&gt;
+    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;box&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"trusty64"&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# With a public IP (it's optional)&lt;/span&gt;
+    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;network&lt;/span&gt; &lt;span class="ss"&gt;:public_network&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;ip: &lt;/span&gt;&lt;span class="s1"&gt;'192.168.48.193'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:dev&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"br0"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:mode&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'bridge'&lt;/span&gt;
+    &lt;span class="c1"&gt;# With so much RAM and CPUs&lt;/span&gt;
+    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;provider&lt;/span&gt; &lt;span class="ss"&gt;:libvirt&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+      &lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;memory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt;
+      &lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;cpus&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
+    &lt;span class="k"&gt;end&lt;/span&gt;
+
+    &lt;span class="c1"&gt;# Finally, let's provision it by running a script. You can also run&lt;/span&gt;
+    &lt;span class="c1"&gt;# puppet, chef, ansible, and others. Check the Vagrant website for&lt;/span&gt;
+    &lt;span class="c1"&gt;# details.&lt;/span&gt;
+    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;provision&lt;/span&gt; &lt;span class="ss"&gt;:shell&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;path: &lt;/span&gt;&lt;span class="s2"&gt;"bootstrap.sh"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;args: &lt;/span&gt;&lt;span class="s2"&gt;"42"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;keep_color: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;
+
+  &lt;span class="k"&gt;end&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Start &amp;amp; provision your guest VM&lt;/h2&gt;
+
+&lt;p&gt;Start it up:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant up --provider&lt;span class="o"&gt;=&lt;/span&gt;libvirt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;SSH to it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant ssh
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Burn it to the ground:&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant destroy
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Oh, and by the way, do you want to start the VM locally in VirtualBox?&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Pretty great :)&lt;/p&gt;
+
+&lt;h2&gt;[OPTIONAL] Setting libvirt as default provider&lt;/h2&gt;
+
+&lt;p&gt;You might grow bored of passing &lt;code&gt;--provider=libvirt&lt;/code&gt; in the command line. If
+that’s the case, just add&lt;/p&gt;
+&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'VAGRANT_DEFAULT_PROVIDER'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'libvirt'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;at the top of your &lt;code&gt;Vagrantfile&lt;/code&gt;. Good coders are lazy, after all.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
