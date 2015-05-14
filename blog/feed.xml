@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/2015/02/17/fast-internet-wide-scans-processing-with-rapid7-s-dap/"/>
     <id>http://blog.url.com/blog/2015/02/17/fast-internet-wide-scans-processing-with-rapid7-s-dap/</id>
     <published>2015-02-16T20:42:00-08:00</published>
-    <updated>2015-05-13T23:02:01-07:00</updated>
+    <updated>2015-05-13T23:13:19-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -91,7 +91,7 @@ bundle install
     <link rel="alternate" href="http://blog.url.com/blog/2015/02/12/extracting-urls-from-network-traffic-in-just-9-python-lines-with-scapy-http/"/>
     <id>http://blog.url.com/blog/2015/02/12/extracting-urls-from-network-traffic-in-just-9-python-lines-with-scapy-http/</id>
     <published>2015-02-11T20:58:00-08:00</published>
-    <updated>2015-05-13T23:02:01-07:00</updated>
+    <updated>2015-05-13T23:13:19-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -146,7 +146,7 @@ Here’s the code to see all your HTTP requests:&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/"/>
     <id>http://blog.url.com/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/</id>
     <published>2015-01-27T21:58:00-08:00</published>
-    <updated>2015-05-13T23:02:01-07:00</updated>
+    <updated>2015-05-13T23:13:19-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -204,7 +204,7 @@ your logs on HipChat web interface, or your mobile device.&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/blog/2015/01/26/parsing-http-in-scapy/"/>
     <id>http://blog.url.com/blog/2015/01/26/parsing-http-in-scapy/</id>
     <published>2015-01-26T15:26:00-08:00</published>
-    <updated>2015-05-13T23:02:01-07:00</updated>
+    <updated>2015-05-13T23:13:19-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -378,7 +378,7 @@ your logs on HipChat web interface, or your mobile device.&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/"/>
     <id>http://blog.url.com/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/</id>
     <published>2015-01-26T15:10:00-08:00</published>
-    <updated>2015-05-13T23:02:01-07:00</updated>
+    <updated>2015-05-13T23:13:19-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -401,7 +401,7 @@ Since &lt;a href="http://minimul.com/ssh-and-scp-into-a-vagrant-box.html"&gt;man
     <link rel="alternate" href="http://blog.url.com/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/"/>
     <id>http://blog.url.com/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/</id>
     <published>2014-12-03T12:07:00-08:00</published>
-    <updated>2015-05-13T23:02:01-07:00</updated>
+    <updated>2015-05-13T23:13:19-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
