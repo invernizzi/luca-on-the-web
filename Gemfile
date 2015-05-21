@@ -47,3 +47,4 @@ gem 'link-checker'
 gem 'watir-webdriver'
 gem "chromedriver-helper"
 gem "httparty"
+gem 'middleman-gh-pages'

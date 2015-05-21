@@ -171,7 +171,7 @@ activate :search_engine_sitemap, default_change_frequency: 'daily'
 require 'mkmf'
 unless find_executable('aspell').nil?
   OK_SPELLINGS = File.readlines('spell.txt').map{|l|l.gsub!(/\n/ , '')}
-  activate :spellcheck, allow: OK_SPELLINGS, ignored_exts: [".xml", ".png"]
+  # activate :spellcheck, allow: OK_SPELLINGS, ignored_exts: [".xml", ".png"]
 end
 
 # ========================================================================

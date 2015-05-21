@@ -173,6 +173,8 @@ function academia_resume() {
     $('#competitions').insertAfter('#press');
     $("<div/>", {id: 'pb-after-competitions', style: 'margin-top: 150px'}).insertAfter('#competitions');
     $('#opensource').insertAfter('#pb-after-competitions');
+    $('.job .col-xs-9').addClass('col-xs-12');
+    $('.job .col-xs-9').removeClass('col-xs-9');
 }
 
 function show_buzzwords() {

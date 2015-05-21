@@ -1,3 +1,5 @@
+require 'middleman-gh-pages'
+
 desc "Check all external links"
 task :check_links do
   require 'link_checker'
