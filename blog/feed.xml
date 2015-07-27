@@ -5,16 +5,51 @@
   <id>http://blog.url.com/blog</id>
   <link href="http://blog.url.com/blog"/>
   <link href="http://blog.url.com/blog/feed.xml" rel="self"/>
-  <updated>2015-02-16T20:42:00-08:00</updated>
+  <updated>2015-07-27T15:29:00-07:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Mitigate Android's Stagefright by disabling MMSes</title>
+    <link rel="alternate" href="http://blog.url.com/blog/2015/07/27/mitigate-android-s-stagefright-by-disabling-mmses/"/>
+    <id>http://blog.url.com/blog/2015/07/27/mitigate-android-s-stagefright-by-disabling-mmses/</id>
+    <published>2015-07-27T15:29:00-07:00</published>
+    <updated>2015-07-27T16:00:13-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;a href="http://blog.zimperium.com/experts-found-a-unicorn-in-the-heart-of-android/"&gt;Stagefright&lt;/a&gt; is a novel attack that allows remote code execution on the vast majority of devices running Android.
+Whereas the details of the vulnerability will be publicly released on August 5th, the general idea behind the attack (which was released just two hours ago) is to compromize the multimidia library that parses and displays MMS media.&lt;/p&gt;
+
+&lt;p&gt;Since the attack looks terribly effective, it is a good idea to mitigate it by disabling MMSes, until a fix is released (provided, of couse, that you don&amp;rsquo;t use MMSes).&lt;/p&gt;
+
+&lt;p&gt;To do that, open the &amp;ldquo;Settings&amp;rdquo; menu (here, on Android 5.1, the look of your menu might be different)
+&lt;img alt="settings" src="../img/blog/stagefright-mms-1-a73b0a0a.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select &amp;ldquo;Cellular Networks&amp;rdquo;
+&lt;img alt="settings" src="../img/blog/stagefright-mms-2-68f0ed9d.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select &amp;ldquo;Access Point Names&amp;rdquo;
+&lt;img alt="settings" src="../img/blog/stagefright-mms-3-1f667bda.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Select your access point. It should look something like this.
+&lt;img alt="settings" src="../img/blog/stagefright-mms-4-71f85f83.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now remove &amp;ldquo;mms&amp;rdquo; from &amp;ldquo;APN Type&amp;rdquo;.
+&lt;img alt="settings" src="../img/blog/stagefright-mms-5-d1cbd174.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve also cleared out &amp;ldquo;MMSC&amp;rdquo; for good measure (optional)
+&lt;img alt="settings" src="../img/blog/stagefright-mms-6-4df8d10a.png" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Your new settings will take effect after you reboot the phone, or put it in airplane mode for a few seconds.&lt;/p&gt;
+</content>
+  </entry>
   <entry>
     <title>Fast, Internet-wide scans processing with Rapid7's DAP</title>
     <link rel="alternate" href="http://blog.url.com/blog/2015/02/17/fast-internet-wide-scans-processing-with-rapid7-s-dap/"/>
     <id>http://blog.url.com/blog/2015/02/17/fast-internet-wide-scans-processing-with-rapid7-s-dap/</id>
     <published>2015-02-16T20:42:00-08:00</published>
-    <updated>2015-05-13T23:13:19-07:00</updated>
+    <updated>2015-02-17T20:26:23-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -91,7 +126,7 @@ bundle install
     <link rel="alternate" href="http://blog.url.com/blog/2015/02/12/extracting-urls-from-network-traffic-in-just-9-python-lines-with-scapy-http/"/>
     <id>http://blog.url.com/blog/2015/02/12/extracting-urls-from-network-traffic-in-just-9-python-lines-with-scapy-http/</id>
     <published>2015-02-11T20:58:00-08:00</published>
-    <updated>2015-05-13T23:13:19-07:00</updated>
+    <updated>2015-02-17T20:26:23-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -146,7 +181,7 @@ Here’s the code to see all your HTTP requests:&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/"/>
     <id>http://blog.url.com/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/</id>
     <published>2015-01-27T21:58:00-08:00</published>
-    <updated>2015-05-13T23:13:19-07:00</updated>
+    <updated>2015-01-27T22:25:38-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -204,7 +239,7 @@ your logs on HipChat web interface, or your mobile device.&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/blog/2015/01/26/parsing-http-in-scapy/"/>
     <id>http://blog.url.com/blog/2015/01/26/parsing-http-in-scapy/</id>
     <published>2015-01-26T15:26:00-08:00</published>
-    <updated>2015-05-13T23:13:19-07:00</updated>
+    <updated>2015-01-26T15:38:08-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -378,7 +413,7 @@ your logs on HipChat web interface, or your mobile device.&lt;/p&gt;
     <link rel="alternate" href="http://blog.url.com/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/"/>
     <id>http://blog.url.com/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/</id>
     <published>2015-01-26T15:10:00-08:00</published>
-    <updated>2015-05-13T23:13:19-07:00</updated>
+    <updated>2015-01-26T15:19:20-08:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -394,157 +429,6 @@ Since &lt;a href="http://minimul.com/ssh-and-scp-into-a-vagrant-box.html"&gt;man
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Enjoy!&lt;/p&gt;
-</content>
-  </entry>
-  <entry>
-    <title>Vagrant and libVirt(KVM/Qemu) - Setting up boxes the easy way</title>
-    <link rel="alternate" href="http://blog.url.com/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/"/>
-    <id>http://blog.url.com/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/</id>
-    <published>2014-12-03T12:07:00-08:00</published>
-    <updated>2015-05-13T23:13:19-07:00</updated>
-    <author>
-      <name>Article Author</name>
-    </author>
-    <content type="html">&lt;p&gt;In my &lt;a href="http://seclab.cs.ucsb.edu"&gt;research lab&lt;/a&gt; at UCSB, we routinely run large-scale experiments that, essentially, need lots of computation and memory. These are pretty cool to run, but setting them up can be quite cumbersome. To make this task easier on us, we have been running an OpenStack shop for quite a while, and we were running Eucalyptus before that.&lt;/p&gt;
-
-&lt;p&gt;Unfortunately, maintaining an OpenStack installation with ever-shifting requirements can become a chore too, as there are lots of moving parts that need to be monitored and occasionally fixed and updated. Since we don’t really need all the features of OpenStack, we have been looking for a while for alternative solutions.&lt;/p&gt;
-
-&lt;p&gt;Our requirements boil down to:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Easy to maintain: adding and removing host servers should be easily automated. Debugging faulty servers should be immediate.&lt;/li&gt;
-&lt;li&gt;Easy to use: newcomers should not need to learn any API, and they could not be familiar with virtualization.&lt;/li&gt;
-&lt;li&gt;Efficient: we have &amp;gt;20 fat servers running this little cloud. The more VMs we can pack into them, the better. In other words: the overhead servers (puppet muster, JuJu etc) should be kept at minimum, or eliminated.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The current lightweight solution: simply running independent KVM/libvirt servers, and manage them via &lt;a href="https://www.vagrantup.com"&gt;Vagrant&lt;/a&gt;. Here, KVM servers provide the “easy to administrate” part, and Vagrant provides a nice wrapper that makes it easy to deploy and manage VMs, since it provides a clear separation between base boxes (for which there is an extensive repository, a la Amazon AWS) and provisioning. Plus, Vagrant provides an abstraction over KVM: running the same VM on OpenStack, libVirt/KVM, or VirtualBox is just a matter of a command line switch.&lt;/p&gt;
-
-&lt;p&gt;This solution fits well to our needs. The only outstanding issues are:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Managing a pool of IPs, which could maybe be solved by having a little Redis server that keeps the list of free IPs&lt;/li&gt;
-&lt;li&gt;Load balancing&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;I’ve noticed that there isn’t a good guide on the Internet on how to accomplish something like this, so here’s a quick tutorial.&lt;/p&gt;
-
-&lt;h2&gt;Install Vagrant&lt;/h2&gt;
-
-&lt;p&gt;Note that the version of Vagrant in the Ubuntu 14.04 repositories is too old, and it is incompatible with the libvirt plugin. So,&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;    sudo apt-get install vagrant  &lt;span class="c"&gt;# Nope, not this one, too old.&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Won’t do on Ubuntu 14.04&lt;/strong&gt;. You need to install the &lt;a href="https://www.vagrantup.com/downloads.html"&gt;latest official Vagrant&lt;/a&gt; from their website (it’s nicely packaged).
-So, execute:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;    wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.5_x86_64.deb -O vagrant.deb
-    sudo dpkg -i vagrant.deb
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3&gt;Install Vagrant Plugins&lt;/h3&gt;
-
-&lt;p&gt;Vagrant has a nice plugin framework, to whom people have contributed lots of very helpful plugins. Here’s the ones we need.&lt;/p&gt;
-
-&lt;h4&gt;Vagrant-libvirt&lt;/h4&gt;
-
-&lt;p&gt;Vagrant doesn’t know how to talk to libvirt, so we have to teach that to it.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant plugin install vagrant-libvirt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4&gt;Vagrant-mutate&lt;/h4&gt;
-
-&lt;p&gt;In a few moments, we will download an official Vagrant guest box to run. These boxes are not made for KVM, so we need to convert them to a KVM-friendly format.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant plugin install vagrant-mutate
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h4&gt;Vagrant-rekey&lt;/h4&gt;
-
-&lt;p&gt;The official Vagrant boxes come with preset passwords and a built-in “insecure” SSH key. This plugin clears all of those, and generates a new SSH key to use instead of the insecure one.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant plugin install vagrant-rekey-ssh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Download your first box&lt;/h2&gt;
-
-&lt;p&gt;Let’s get the official Vagrant box for Ubuntu 14.04, and make it KVM-friendly. There are plenty other boxes ready to use on Vagrant’s &lt;a href="https://vagrantcloud.com/discover/featured"&gt;site&lt;/a&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant box add trusty64 https://vagrantcloud.com/ubuntu/boxes/trusty64/versions/14.04/providers/virtualbox.box
-vagrant mutate trusty64  libvirt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;[OPTIONAL] Modify the box&lt;/h2&gt;
-
-&lt;p&gt;If you want to modify the VM, I suggest you install VirtualBox and run the VM there.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant up  &lt;span class="c"&gt;# This will start the VM in VirtualBox&lt;/span&gt;
-vagrant ssh  &lt;span class="c"&gt;# Do your modifications&lt;/span&gt;
-vagrant package  &lt;span class="c"&gt;# Will package the VM as a box&lt;/span&gt;
-vagrant box add trusty64 package.box  --force  &lt;span class="c"&gt;# Rewrite the trusty64 box&lt;/span&gt;
-vagrant mutate trusty64  libvirt  &lt;span class="c"&gt;# Remember to convert the box to the KVM format &lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Configure your guest VM&lt;/h2&gt;
-
-&lt;p&gt;All the configuration Vagrant needs is in a single file, which is nice. So,
-create a file called &lt;code&gt;Vagrantfile&lt;/code&gt;.&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;Vagrant&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"2"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-
-  &lt;span class="c1"&gt;# Tell Vagrant where would you like to start your VMs (you can also have a&lt;/span&gt;
-  &lt;span class="c1"&gt;# specific per-VM configuration. Do not put this section in case you want to&lt;/span&gt;
-  &lt;span class="c1"&gt;# start your VMs on the same host)&lt;/span&gt;
-  &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;provider&lt;/span&gt; &lt;span class="ss"&gt;:libvirt&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-    &lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;host&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'myawesomehostname or IP'&lt;/span&gt;
-    &lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;username&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'root'&lt;/span&gt;
-    &lt;span class="n"&gt;libvirt&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;connect_via_ssh&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="kp"&gt;true&lt;/span&gt;
-  &lt;span class="k"&gt;end&lt;/span&gt;
-
-  &lt;span class="c1"&gt;# Here's our VM confguration&lt;/span&gt;
-  &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;define&lt;/span&gt; &lt;span class="ss"&gt;:my_fancy_vm&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# It should be an Ubuntu 14.04 box&lt;/span&gt;
-    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;box&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"trusty64"&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# With a public IP (it's optional)&lt;/span&gt;
-    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;network&lt;/span&gt; &lt;span class="ss"&gt;:public_network&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;ip: &lt;/span&gt;&lt;span class="s1"&gt;'192.168.48.193'&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:dev&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s2"&gt;"br0"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;:mode&lt;/span&gt; &lt;span class="o"&gt;=&amp;gt;&lt;/span&gt; &lt;span class="s1"&gt;'bridge'&lt;/span&gt;
-    &lt;span class="c1"&gt;# With so much RAM and CPUs&lt;/span&gt;
-    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;provider&lt;/span&gt; &lt;span class="ss"&gt;:libvirt&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
-      &lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;memory&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2048&lt;/span&gt;
-      &lt;span class="n"&gt;domain&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;cpus&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;
-    &lt;span class="k"&gt;end&lt;/span&gt;
-
-    &lt;span class="c1"&gt;# Finally, let's provision it by running a script. You can also run&lt;/span&gt;
-    &lt;span class="c1"&gt;# puppet, chef, ansible, and others. Check the Vagrant website for&lt;/span&gt;
-    &lt;span class="c1"&gt;# details.&lt;/span&gt;
-    &lt;span class="n"&gt;machine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;vm&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;provision&lt;/span&gt; &lt;span class="ss"&gt;:shell&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;path: &lt;/span&gt;&lt;span class="s2"&gt;"bootstrap.sh"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;args: &lt;/span&gt;&lt;span class="s2"&gt;"42"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="ss"&gt;keep_color: &lt;/span&gt;&lt;span class="kp"&gt;true&lt;/span&gt;
-
-  &lt;span class="k"&gt;end&lt;/span&gt;
-&lt;span class="k"&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2&gt;Start &amp;amp; provision your guest VM&lt;/h2&gt;
-
-&lt;p&gt;Start it up:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant up --provider&lt;span class="o"&gt;=&lt;/span&gt;libvirt
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;SSH to it:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant ssh
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Burn it to the ground:&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant destroy
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Oh, and by the way, do you want to start the VM locally in VirtualBox?&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight shell"&gt;vagrant up
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Pretty great :)&lt;/p&gt;
-
-&lt;h2&gt;[OPTIONAL] Setting libvirt as default provider&lt;/h2&gt;
-
-&lt;p&gt;You might grow bored of passing &lt;code&gt;--provider=libvirt&lt;/code&gt; in the command line. If
-that’s the case, just add&lt;/p&gt;
-&lt;pre&gt;&lt;code class="highlight ruby"&gt;&lt;span class="no"&gt;ENV&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;'VAGRANT_DEFAULT_PROVIDER'&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;'libvirt'&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;at the top of your &lt;code&gt;Vagrantfile&lt;/code&gt;. Good coders are lazy, after all.&lt;/p&gt;
 </content>
   </entry>
 </feed>
