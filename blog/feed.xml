@@ -14,7 +14,7 @@
     <link rel="alternate" href="http://blog.url.com/blog/2015/07/27/mitigate-android-s-stagefright-by-disabling-mmses/"/>
     <id>http://blog.url.com/blog/2015/07/27/mitigate-android-s-stagefright-by-disabling-mmses/</id>
     <published>2015-07-27T15:29:00-07:00</published>
-    <updated>2015-07-27T16:00:13-07:00</updated>
+    <updated>2015-07-27T16:14:38-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
@@ -24,10 +24,10 @@ Whereas the details of the vulnerability will be publicly released on August 5th
 &lt;p&gt;Since the attack looks terribly effective, it is a good idea to mitigate it by disabling MMSes, until a fix is released (provided, of couse, that you don&amp;rsquo;t use MMSes).&lt;/p&gt;
 
 &lt;p&gt;To do that, open the &amp;ldquo;Settings&amp;rdquo; menu (here, on Android 5.1, the look of your menu might be different)
-&lt;img alt="settings" src="../img/blog/stagefright-mms-1-a73b0a0a.png" /&gt;&lt;/p&gt;
+&lt;img alt="settings" src="../img/blog/stagefright-mms-1.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Select &amp;ldquo;Cellular Networks&amp;rdquo;
-&lt;img alt="settings" src="../img/blog/stagefright-mms-2-68f0ed9d.png" /&gt;&lt;/p&gt;
+&lt;img alt="settings" src="../img/blog/stagefright-mms-2.png" /&gt;&lt;/p&gt;
 
 &lt;p&gt;Select &amp;ldquo;Access Point Names&amp;rdquo;
 &lt;img alt="settings" src="../img/blog/stagefright-mms-3-1f667bda.png" /&gt;&lt;/p&gt;
