@@ -11,22 +11,24 @@ Whereas the details of the vulnerability will be publicly released on August 5th
 Since the attack looks terribly effective, it is a good idea to mitigate it by disabling MMSes, until a fix is released (provided, of couse, that you don't use MMSes).
 
 To do that, open the "Settings" menu (here, on Android 5.1, the look of your menu might be different)
-![settings](/img/blog/stagefright-mms-1.png)
+![stagefright](/img/blog/stagefright-mms-1.png)
 
 Select "Cellular Networks"
-![settings](/img/blog/stagefright-mms-2.png)
+![stagefright](/img/blog/stagefright-mms-2.png)
 
 Select "Access Point Names"
-![settings](/img/blog/stagefright-mms-3.png)
+![stagefright](/img/blog/stagefright-mms-3.png)
 
 Select your access point. It should look something like this.
-![settings](/img/blog/stagefright-mms-4.png)
+![stagefright](/img/blog/stagefright-mms-4.png)
 
 Now remove "mms" from "APN Type".
-![settings](/img/blog/stagefright-mms-5.png)
+![stagefright](/img/blog/stagefright-mms-5.png)
 
 I've also cleared out "MMSC" for good measure (optional)
-![settings](/img/blog/stagefright-mms-6.png)
+![stagefright](/img/blog/stagefright-mms-6.png)
 
 Your new settings will take effect after you reboot the phone, or put it in airplane mode for a few seconds.
 
+Note that Android converts group SMSes to MMSes, so you might want to disable that too. To do that, go to the Messaging app, open the Settings menu, and disable Group Messaging and Auto-Retrieve.
+![stagefright](/img/blog/stagefright-mms-7.png)
