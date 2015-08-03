@@ -1,5 +1,5 @@
 ---
-title: 8x speed up for Python's csv.DictWriter
+title: 8x speedup for Python's csv.DictWriter
 date: 2015-08-03 21:34 UTC
 tags:
 ---
