@@ -10,11 +10,11 @@
     <name>Blog Author</name>
   </author>
   <entry>
-    <title>8x speed up for Python's csv.DictWriter</title>
+    <title>8x speedup for Python's csv.DictWriter</title>
     <link rel="alternate" href="http://blog.url.com/blog/2015/08/03/8x-speed-up-for-python-s-csv-dictwriter/"/>
     <id>http://blog.url.com/blog/2015/08/03/8x-speed-up-for-python-s-csv-dictwriter/</id>
     <published>2015-08-03T14:34:00-07:00</published>
-    <updated>2015-08-03T14:59:27-07:00</updated>
+    <updated>2015-08-03T15:02:31-07:00</updated>
     <author>
       <name>Article Author</name>
     </author>
