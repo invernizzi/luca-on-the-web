@@ -4,20 +4,22 @@ source 'https://rubygems.org'
 
 ruby '2.2.1'
 
+gem "therubyracer"
+
 gem 'puma'
 
 gem "middleman", "~> 3.3.4"
-gem "slim", "~> 2.0.3"
-gem "bootstrap-sass", "~> 3.2.0.1", require: false
-gem "font-awesome-middleman", "~> 4.1.1"
-gem "middleman-favicon-maker", "~> 3.7"
-gem "middleman-bourbon", "~> 0.0.2"
+gem "slim"
+gem "bootstrap-sass", require: false
+gem "font-awesome-middleman"
+gem "middleman-favicon-maker"
+gem "middleman-bourbon"
 
 gem "middleman-livereload"
 
 # file optimization & minification
-gem "middleman-minify-html", "~> 3.4.0"
-gem "oj", "~> 2.10.0"
+gem "middleman-minify-html"
+gem "oj"
 gem "middleman-imageoptim"
 gem 'image_optim'
 gem 'yui-compressor'
@@ -44,7 +46,7 @@ gem 'middleman-spellcheck'
 
 gem 'link-checker'
 
-gem 'watir-webdriver'
-gem "chromedriver-helper"
+# gem 'watir-webdriver'
+# gem "chromedriver-helper"
 gem "httparty"
 gem 'middleman-gh-pages'

@@ -26,22 +26,22 @@
               = " I'm"
               %span#full-name{:itemprop => "name"}
                 %span.name Luca
-                %sup{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Sorry for that, that's hard to pronounce :)"} (Invernizzi)
+                %span{"data-placement" => "top", "data-toggle" => "tooltip", :title => "Sorry for that, that's hard to pronounce :)"} Invernizzi
     .row
       .col-xs-12.col-sm-7.column-left
         / ABOUT ME
         #about.box.frontpage
           %h2 About Me
           %div{:itemref => "full-name", :itemscope => "", :itemtype => "http://data-vocabulary.org/Person"}
-            %p My passion is information security, and my expertise is malware. I am keen on building large-scale systems that discover hidden (malicious, usually) patterns in a sea of data. In my free time, I love to challenge myself by competing in (or, sometimes, by running) hacking competitions.
+            %p My passion is information security, and my expertise is malware. I am keen on building large-scale systems that discover miscreants in a sea of data. In my free time, I love to challenge myself by competing in (or, sometimes, by running) hacking competitions.
             %p
-              I am a
-              %span{:itemprop => "role"} Ph.D. Candidate
-              at the
+              Since October '15, I am a
+              %span{:itemprop => "role"} Research Scientist
+              at 
               = succeed "." do
-                %span{:itemprop => "affiliation"} University of California, Santa Barbara
-              My main research focus is finding novel, robust ways to detect and prevent the spreading of malware. I am currently also researching in securing Android devices, and in maintaining (and breaking) one's privacy through traces left online. Also, I've recently joined Google to study and detect cloaking sites.
-            %p In the past, I've been an active member of the GNOME open-source community, and I've had some fun in underwater robotics research.
+                %span{:itemprop => "affiliation"} Google
+              My main research focus is finding novel, robust ways to detect and prevent the spreading of malicious and abusive content.
+            %p In the past, I have done research in censorship resistance and Android security, I've been an active member of the GNOME open-source community, and I've had some fun in underwater robotics research.
         / EDUCATION
         .box
           %h2 Education
@@ -53,15 +53,16 @@
                 2015
               .description.pull-right
                 %h3
-                  Ph.D. Candidate in Information Security at
+                  Ph.D. in Computer Science, Information Security at
                   %a{:href => "https://seclab.cs.ucsb.edu/"} U.C. Santa Barbara
                 %p
                   During my Ph.D. studies, I have been having fun researching on:
                   %ul
-                    %li Leveraging big-data analysis to discover malware being distributed online (with papers in the top infosec conferences: S&amp;P, NDSS, CSS, and UCSB Computer Science Outstanding Publication Award '15)
-                    %li How to better secure Android mobile devices (one S&amp;P paper, 2 papers under submission, secured $1.1M <a href='http://campustechnology.com/articles/2014/09/18/ucsb-security-researchers-to-help-too-trusting-smartphone-app-users.aspx?admgarea=news'>grant</a>)
-                    %li How to maintain some privacy online, and novel ways to invade it again (one paper under submission, and one ACSAC paper)
-                    %li How to teach information security with the help of hacking competitions
+                    %li Leveraging big-data analysis to discover malware being distributed online (with papers in the top infosec conferences: S&amp;P, NDSS, CSS. Publications include a CSAW best security paper '12 finalist, and UCSB Computer Science Outstanding Publication Award '15)
+                    %li How to better secure Android mobile devices (one S&amp;P paper, 1 ACSAC paper, secured $1.1M <a href='http://campustechnology.com/articles/2014/09/18/ucsb-security-researchers-to-help-too-trusting-smartphone-app-users.aspx?admgarea=news'>grant</a>)
+                    %li How to maintain some privacy online, and novel ways to invade it again.
+                    %li How to teach information security with the help of hacking competitions.
+                %p.obnoxious GPA 4.0
             %li
               .year.pull-left
                 2010
@@ -69,7 +70,7 @@
                 2015
               .description.pull-right
                 %h3
-                  Master's Student in Computer Science at
+                  Master's  in Computer Science at
                   %a{:href => "https://seclab.cs.ucsb.edu/"} U.C. Santa Barbara
                 %p.obnoxious GPA 4.0
             %li
@@ -92,7 +93,7 @@
                   %i "Diploma di Licenza"
                   at the
                   = succeed ',' do
-                    %a{:href => "http://www.sssup.it"} Sant'Anna School of Advanced Studies
+                    %a{:href => "http://www.sssup.it"} Sant'Anna School of Advanced Studies University,
                   Italy
                 %p.obnoxious
                   %i> Summa cum laude
@@ -136,6 +137,14 @@
         / EXPERIENCES
         .box#work
           %h2 Professional Experience
+          .job.clearfix
+            .col-xs-3
+              .where Google, Inc.
+              .year
+                2015
+            .col-xs-9
+              .profession Research Scientist
+              .description
           .job.clearfix
             .col-xs-3
               .where Google, Inc.
