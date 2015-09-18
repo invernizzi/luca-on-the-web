@@ -1,110 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://www.lucainvernizzi.net/blog/page/3/</loc>
-    <lastmod>2014-11-21T19:13:51-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/page/2/</loc>
-    <lastmod>2014-11-21T19:13:51-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
     <loc>http://www.lucainvernizzi.net/</loc>
-    <lastmod>2015-08-14T16:50:30-07:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/</loc>
-    <lastmod>2014-11-21T19:13:51-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2011/12/03/ictf-2011-challenges-writeup/</loc>
-    <lastmod>2015-01-26T16:05:29-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/</loc>
-    <lastmod>2015-01-27T22:25:38-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2011/04/03/debugging-leaky-python/</loc>
-    <lastmod>2015-01-26T16:14:04-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2014/11/25/codility-iota-2011-coding-challenge/</loc>
-    <lastmod>2014-11-25T13:01:09-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2014/11/22/coding-interview-question-find-all-three-numbers-that-sum-up-to-x/</loc>
-    <lastmod>2014-11-21T19:39:34-08:00</lastmod>
+    <lastmod>2015-09-18T00:07:09-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.lucainvernizzi.net/blog/2014/12/03/vagrant-and-libvirt-kvm-qemu-setting-up-boxes-the-easy-way/</loc>
-    <lastmod>2015-01-15T10:53:57-08:00</lastmod>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2011/12/03/ictf-2011-challenges-writeup/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.lucainvernizzi.net/blog/2015/08/03/8x-speed-up-for-python-s-csv-dictwriter/</loc>
-    <lastmod>2015-08-03T15:02:31-07:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2011/06/06/defcon-quals-19-pwtent-pwanble-200-writup/</loc>
-    <lastmod>2015-01-26T15:57:50-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2014/11/21/codility-beta-challenge-number-of-disc-intersections/</loc>
-    <lastmod>2014-11-21T19:13:51-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/</loc>
-    <lastmod>2015-01-26T15:19:20-08:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>http://www.lucainvernizzi.net/blog/2015/01/26/parsing-http-in-scapy/</loc>
-    <lastmod>2015-01-26T15:38:08-08:00</lastmod>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.lucainvernizzi.net/blog/2015/07/27/mitigate-android-s-stagefright-by-disabling-mmses/</loc>
-    <lastmod>2015-07-27T16:29:51-07:00</lastmod>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2011/06/06/defcon-quals-19-pwtent-pwanble-200-writup/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2015/01/26/vagrant-scp-copy-files-to-vagrant-vms/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2015/01/26/parsing-http-in-scapy/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2011/04/03/debugging-leaky-python/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2015/01/28/hiplogging-broadcast-python-logs-to-hipchat/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2014/11/22/coding-interview-question-find-all-three-numbers-that-sum-up-to-x/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.lucainvernizzi.net/blog/2015/02/12/extracting-urls-from-network-traffic-in-just-9-python-lines-with-scapy-http/</loc>
-    <lastmod>2015-02-17T20:26:23-08:00</lastmod>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2014/11/21/codility-beta-challenge-number-of-disc-intersections/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/2014/11/25/codility-iota-2011-coding-challenge/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>http://www.lucainvernizzi.net/blog/2015/02/17/fast-internet-wide-scans-processing-with-rapid7-s-dap/</loc>
-    <lastmod>2015-02-17T20:26:23-08:00</lastmod>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/page/2/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://www.lucainvernizzi.net/blog/page/3/</loc>
+    <lastmod>2015-09-17T01:01:45-07:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
