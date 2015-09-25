@@ -226,13 +226,14 @@ EDUCATION
 }
 
 #education:before {
-  width: 5px;
+  width: 0px;
   height: 100%;
   position: absolute;
   left: 25px;
   top: 0;
   content: ' ';
   display: block;
+  opacity: .3;
   background: #ec7263;
   background: -moz-linear-gradient(top,  #ffffff 0%, #ec7263 7%, #ec7263 89%, #ffffff 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(7%,#ec7263), color-stop(89%,#ec7263), color-stop(100%,#ffffff));
@@ -251,18 +252,17 @@ EDUCATION
 }
 
 #education .year {
-  width: 10%;
-  background: #fff;
+  width: 15%;
   padding: 10px;
-  font-size: 1.5em;
-  font-weight: 700;
+  font-size: 1.3em;
+  opacity: .7;
+  /* font-weight: 700; */
   display: inline-block;
 }
 
 #education .description {
-  width: 80%;
+  width: 84%;
   display: inline-block;
-  /* background: #eee; */
   margin-bottom: 10px;
   position: relative;
   padding: 10px 10px 0 10px;
@@ -524,34 +524,13 @@ MEDIA
     margin-top: 0px;
   }
 }
-@media (min-width: 500px) {
-  #education .description {
-    width: 85%;
-  }
-}
 
-@media (min-width: 768px) {
-  #education .description {
-    width: 85%;
-  }
-}
 @media (min-width: 800px) {
   #photo-header {
     margin-top: -75px;
   }
 }
 
-@media (min-width: 992px) {
-  #education .description {
-    width: 87%;
-  }
-}
-
-@media (min-width: 1200px) {
-  #education .description {
-    width: 90%;
-  }
-}
 @media print {
   body {
     margin: auto auto auto auto ;
@@ -588,17 +567,8 @@ MEDIA
   #education {
     margin-top: 0px;
   }
-  /* #education .description h3 { */
-  /*     font-size: 1.4em; */
-  /*     padding-left:20px; */
-  /* } */
   #education .description {
-    /* padding-left: 0px; */
-    width: 100%;
-    /* margin-top: none; */
-    /* margin-bottom: none; */
-    /* padding-top: none; */
-    /* padding-bottom: none; */
+    width: 84%;
     padding:0;
     padding-left: 5px;
     margin:0;
