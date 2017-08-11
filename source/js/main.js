@@ -38,7 +38,6 @@ window.onresize = function() {
 $('#obnoxiousbtn').click(function() {
     $('.obnoxious').slideToggle();
     $(this).toggleClass('btn-info btn-warning');
-    $('#phone_number').find('span').text( $('#phone_number').data('last') );
 });
 
 
