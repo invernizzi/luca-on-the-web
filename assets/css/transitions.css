@@ -1,0 +1,37 @@
+/* Global page transitions */
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+/* Ensure proper containment for transitions */
+.page {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Improve transition performance */
+.page > * {
+  will-change: transform, opacity;
+}
+
+/* Override default Nuxt transitions */
+.page-transition {
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Improve transition performance */
+.page-transition > * {
+  will-change: transform, opacity;
+} 
