@@ -87,6 +87,9 @@ importers:
       sass-embedded:
         specifier: ^1.86.3
         version: 1.86.3
+      tailwindcss:
+        specifier: ^4.1.4
+        version: 4.1.4
       vitest:
         specifier: ^3.1.1
         version: 3.1.1(@types/debug@4.1.12)(@types/node@22.14.1)(happy-dom@17.4.4)(jiti@2.4.2)(jsdom@26.1.0)(lightningcss@1.29.2)(sass-embedded@1.86.3)(terser@5.39.0)(yaml@2.7.1)
