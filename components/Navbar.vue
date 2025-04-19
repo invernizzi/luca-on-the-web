@@ -32,6 +32,7 @@
           </NuxtLink>
           <NuxtLink 
             to="/publications" 
+            aria-label="Publications"
             class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors"
             :class="{ 'text-primary font-medium': $route.path === '/publications' }"
           >
@@ -47,6 +48,7 @@
           </NuxtLink>
           <NuxtLink 
             to="/committees" 
+            aria-label="Committees"
             class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors"
             :class="{ 'text-primary font-medium': $route.path === '/committees' }"
           >
@@ -54,6 +56,7 @@
           </NuxtLink>
           <NuxtLink 
             to="/cv" 
+            aria-label="CV"
             class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors"
             :class="{ 'text-primary font-medium': $route.path === '/cv' }"
           >
