@@ -3,7 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
   ssr: false,
- 
+
   modules: [
     "@nuxt/eslint",
     "@nuxt/fonts",
@@ -14,11 +14,11 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/sitemap",
   ],
-   // For the sitemap module.
-   site: { 
-    url: 'https://lucainvernizzi.net', 
-    name: 'Luca Invernizzi', 
-    }, 
+  // For the sitemap module.
+  site: {
+    url: "https://lucainvernizzi.net",
+    name: "Luca Invernizzi",
+  },
   image: {
     quality: 80,
     format: ["webp"],
@@ -41,6 +41,10 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Luca Invernizzi - Research Scientist",
+      // Needed for accessibility.
+      htmlAttrs: {
+        lang: "en",
+      },
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
