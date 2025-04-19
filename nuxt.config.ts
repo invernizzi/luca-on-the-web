@@ -29,6 +29,7 @@ export default defineNuxtConfig({
     prerender: {
       routes: [
         '/_ipx/w_1536&f_webp&q_80/images/face.jpg',
+       '/_ipx/w_640&f_webp&q_80/images/face.jpg',
       ]
     }
   },
