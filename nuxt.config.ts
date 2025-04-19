@@ -13,9 +13,8 @@ export default defineNuxtConfig({
     "@nuxt/test-utils/module",
     "@pinia/nuxt",
     "@nuxtjs/sitemap",
-    "@nuxtjs/robots",
   ],
-   //
+   // For the sitemap module.
    site: { 
     url: 'https://lucainvernizzi.net', 
     name: 'Luca Invernizzi', 
