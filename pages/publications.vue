@@ -4,10 +4,10 @@
       <h1 class="text-4xl font-display font-bold text-text-primary mb-12">Publications</h1>
       
       <div class="space-y-12">
-        <CardComponent title="Publications">
+        <CardComponent title="">
           <div class="mb-6  items-center">
             For a complete list of my publications, please visit my  
-            <NuxtLink to="https://scholar.google.com/citations?user=YOUR_SCHOLAR_ID" 
+            <NuxtLink to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ" 
                    external
                    target="_blank"
                    class="inline-flex text-[#FF9D02] items-center px-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">

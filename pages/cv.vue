@@ -1,18 +1,17 @@
 <template>
   <div class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-display font-bold text-text-primary mb-8">Curriculum Vitae</h1>
-    
-    <div class="flex justify-between items-center mb-8">
-      <p class="text-text-secondary">{{ cvStore.title }}</p>
+    <h1 class="text-4xl font-display font-bold text-text-primary mb-8">Curriculum Vitae
+    <span >
       <button 
         @click="downloadResume"
-        class="inline-flex items-center px-4 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+        class="inline-flex cursor-pointer items-center  bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
-        Download Resume
+       
       </button>
-    </div>
+    </span>
+    </h1>
 
     <!-- Timeline Container -->
     <div class="relative">
@@ -265,7 +264,7 @@ const cvStore = useCVStore()
 const downloadResume = () => {
   // Instead of linking directly to a file that might not exist yet,
   // we'll show a message that the resume is available on request
-  alert('Full resume is available upon request. Please contact me via email.')
+  alert('Full resume is available upon request. Please contact me via email at luca@lucainvernizzi.net')
 }
 </script>
 
@@ -276,8 +275,8 @@ const downloadResume = () => {
   left: 1rem;
   top: 0;
   bottom: 0;
-  width: 2px;
-  background-color: rgba(255, 157, 2, 0.2);
+  width: 3px;
+  background-color: rgba(255, 157, 2, 0.4);
   transform: translateX(-50%);
   z-index: 0;
 }
@@ -299,11 +298,11 @@ const downloadResume = () => {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: rgba(255, 157, 2, 0.8);
+  background-color: rgba(255, 157, 2, 0.9);
   border-radius: 50%;
   left: -4px;
   filter: blur(2px);
-  box-shadow: 0 0 6px 2px rgba(255, 157, 2, 0.6);
+  box-shadow: 0 0 6px 2px rgba(255, 157, 2, 0.7);
   z-index: 1;
 }
 

@@ -13,8 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, computed, onMounted, onBeforeUnmount, provide } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 
 const props = defineProps({
   forceDirection: {
@@ -24,9 +24,13 @@ const props = defineProps({
 })
 
 const route = useRoute()
+const router = useRouter()
 const transitionName = ref('page-slide-right')
 const lastPath = ref('')
 const navLinks = ref<{path: string, position: number}[]>([])
+
+// Provide the transition name for other components to consume
+provide('transitionName', transitionName)
 
 // Function to determine transition direction based on navbar position
 const determineTransitionDirection = (from: string, to: string) => {
@@ -62,6 +66,15 @@ const cacheNavbarPositions = () => {
     }
   })
 }
+
+// Public method to manually trigger a transition with a specific direction
+const triggerDirectionalTransition = (direction: 'left' | 'right', path: string) => {
+  transitionName.value = direction === 'left' ? 'page-slide-left' : 'page-slide-right'
+  router.push(path)
+}
+
+// Expose method to components
+provide('triggerDirectionalTransition', triggerDirectionalTransition)
 
 // Transition hooks
 const beforeLeave = (el: Element) => {

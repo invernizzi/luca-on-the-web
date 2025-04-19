@@ -7,9 +7,13 @@
     <!-- Foreground content with higher z-index -->
     <div class="relative z-20">
       <Navbar />
-      <main class="relative">
-        <slot />
-      </main>
+      <SwipeHandler>
+        <PageTransition>
+          <main class="relative">
+            <slot />
+          </main>
+        </PageTransition>
+      </SwipeHandler>
       <footer class="container mx-auto px-4 py-8 text-center text-text-secondary">
         <p>© {{ new Date().getFullYear() }} Luca Invernizzi</p>
       </footer>
@@ -23,6 +27,7 @@ import Navbar from '../components/Navbar.vue'
 import FlyingElementsContainer from '../components/FlyingElementsContainer.vue'
 import PageTransition from '../components/PageTransition.vue'
 import GameOfLife from '../components/GameOfLife.vue'
+import SwipeHandler from '../components/SwipeHandler.vue'
 </script>
 
 <style>
