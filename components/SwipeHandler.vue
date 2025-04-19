@@ -72,14 +72,13 @@ const getAdjacentPath = (direction: 'next' | 'prev') => {
 }
 
 // Navigate to the next or previous page
-const navigateTo = (direction: 'next' | 'prev') => {
+const navigateTo = (direction: 'next' | 'prev', swipeDirection: 'left' | 'right') => {
   const targetPath = getAdjacentPath(direction)
   if (!targetPath) return
 
   if (triggerDirectionalTransition) {
-    // Use the provided transition method with the correct animation direction
-    const transitionDirection = direction === 'next' ? 'left' : 'right'
-    triggerDirectionalTransition(transitionDirection, targetPath)
+    // Use the swipe direction directly for the transition
+    triggerDirectionalTransition(swipeDirection, targetPath)
   } else {
     // Fallback to standard navigation
     router.push(targetPath)
@@ -114,11 +113,11 @@ const handleTouchEnd = (e: TouchEvent) => {
   // Ensure horizontal swipe (not vertical)
   if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > props.threshold) {
     if (deltaX > 0) {
-      // Swipe right - go to previous page
-      navigateTo('prev')
+      // Swipe right - go to previous page with right transition
+      navigateTo('prev', 'right')
     } else {
-      // Swipe left - go to next page
-      navigateTo('next')
+      // Swipe left - go to next page with left transition
+      navigateTo('next', 'left')
     }
   }
   
@@ -138,7 +137,6 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .swipe-container {
-  min-height: 100vh;
   width: 100%;
   position: relative;
   touch-action: pan-y; /* Allow vertical scrolling but capture horizontal swipes */

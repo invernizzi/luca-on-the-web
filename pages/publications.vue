@@ -10,10 +10,10 @@
             <NuxtLink to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ" 
                    external
                    target="_blank"
-                   class="inline-flex text-[#FF9D02] items-center px-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+                   class=" text-[#FF9D02] items-center px-1 py-1 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
               <Icon name="mdi:school" class="h-5 w-5 mr-2" />
-              Google Scholar Profile
-            </NuxtLink>
+              Google Scholar 
+            </NuxtLink> profile.
           </div>
 
           <div class="mb-6">
@@ -85,12 +85,12 @@
         <div v-if="openSourcePublications.length > 0" class="mt-12">
           <h1 class="text-4xl font-display font-bold text-text-primary mb-4">Open Source</h1>
           <CardComponent>
-            <div class="mb-6 flex items-center">
+            <div class="mb-6  items-center">
             These are some of the projects I contributed to. For a better overview of my open source projects, please visit my  
             <NuxtLink to="https://github.com/invernizzi" 
                    external
                    target="_blank"
-                   class="inline-flex text-[#FF9D02] items-center px-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+                   class="text-[#FF9D02] items-center px-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
               <Icon name="mdi:github" class="h-5 w-5 mr-2" />
               GitHub Profile
             </NuxtLink>

@@ -7,13 +7,13 @@
     <!-- Foreground content with higher z-index -->
     <div class="relative z-20">
       <Navbar />
-      <SwipeHandler>
-        <PageTransition>
+      <PageTransition>
+        <SwipeHandler>
           <main class="relative">
             <slot />
           </main>
-        </PageTransition>
-      </SwipeHandler>
+        </SwipeHandler>
+      </PageTransition>
       <footer class="container mx-auto px-4 py-8 text-center text-text-secondary">
         <p>© {{ new Date().getFullYear() }} Luca Invernizzi</p>
       </footer>

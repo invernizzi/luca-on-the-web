@@ -351,6 +351,11 @@ const downloadResume = () => {
   top: 1.5rem;
   z-index: 2;
   box-shadow: 0 0 0 4px var(--color-surface), 0 0 0 5px rgba(255, 157, 2, 0.3);
+  position: relative;
+  z-index: 0;
+
+
+
 }
 
 /* Timeline Card */
@@ -385,15 +390,31 @@ const downloadResume = () => {
     margin-left: auto;
   }
   
+
+  
   /* Odd items (left side) */
   .timeline-item:nth-child(odd) .timeline-card {
     margin-right: auto;
   }
-  
+
   /* Remove right-alignment for left items */
   .timeline-item:nth-child(odd) {
     text-align: left;
   }
+
+  .timeline-dot::before {
+    content: ' ';
+    position: absolute;
+    width: 40px;
+    top: calc( 50% - 1px);
+    height: 2px;
+    background-color: rgba(255, 157, 2, 0.4);
+    z-index: -1;
+  }
+  .timeline-item:nth-child(odd) .timeline-dot::before {
+   transform: translateX(-30px);  
+  }
+  
   
   /* Make border-left consistent on both sides */
   .pl-4.border-l-2 {

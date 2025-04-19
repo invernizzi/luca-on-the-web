@@ -115,25 +115,25 @@ onBeforeUnmount(() => {
   z-index: 10;
 }
 
-/* Sliding from right */
+/* 'right' direction - sliding toward the right side of screen */
 .page-slide-right-enter-from {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(-30px); /* Coming from left */
 }
 
 .page-slide-right-leave-to {
   opacity: 0;
-  transform: translateX(-30px);
+  transform: translateX(30px); /* Exiting to right */
 }
 
-/* Sliding from left */
+/* 'left' direction - sliding toward the left side of screen */
 .page-slide-left-enter-from {
   opacity: 0;
-  transform: translateX(-30px);
+  transform: translateX(30px); /* Coming from right */
 }
 
 .page-slide-left-leave-to {
   opacity: 0;
-  transform: translateX(30px);
+  transform: translateX(-30px); /* Exiting to left */
 }
 </style> 
