@@ -20,6 +20,7 @@
           </NuxtLink>
           <NuxtLink 
             to="/projects" 
+            aria-label="Projects"
             class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors"
             :class="{ 'text-primary font-medium': $route.path === '/projects' }"
           >
