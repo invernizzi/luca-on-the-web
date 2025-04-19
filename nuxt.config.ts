@@ -19,9 +19,17 @@ export default defineNuxtConfig({
     url: "https://lucainvernizzi.net",
     name: "Luca Invernizzi",
   },
+  // Image configuration.
   image: {
     quality: 80,
     format: ["webp"],
+  },
+  nitro: {
+    prerender: {
+      routes: [
+        '/_ipx/w_1536&f_webp&q_80/images/face.jpg',
+      ]
+    }
   },
   fonts: {
     families: [
