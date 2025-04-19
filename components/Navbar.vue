@@ -4,7 +4,7 @@
       <nav class="flex items-center justify-between">
         <NuxtLink to="/" class="text-xl font-display font-semibold text-text-primary">
           <span class="hidden sm:inline">Luca Invernizzi</span>
-          <!-- <span class="sm:hidden text-primary text-2xl font-bold">LI</span> -->
+          <span class="sm:hidden text-primary text-2xl font-bold">LI</span>
         </NuxtLink>
         <div class="flex space-x-3 sm:space-x-6 relative nav-links-container">
           <NuxtLink 
@@ -13,24 +13,37 @@
             :class="{ 'text-primary font-medium': $route.path === '/' }"
             aria-label="Home"
             title="Home"
+          
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1h2" />
-            </svg>
+          <UIcon name="uil:home-alt" class="h-7 w-7"  />
+          
           </NuxtLink>
           <NuxtLink 
             to="/projects" 
             class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors"
             :class="{ 'text-primary font-medium': $route.path === '/projects' }"
           >
-            Projects
+          
+            <span class="hidden sm:inline">Projects</span>
+          <span class="sm:hidden text-primary text-2xl font-bold">
+
+            <UIcon name="uil:lightbulb-alt" class="h-5 w-5" />
+          </span>
           </NuxtLink>
           <NuxtLink 
             to="/publications" 
             class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors"
             :class="{ 'text-primary font-medium': $route.path === '/publications' }"
           >
-            Publications
+        
+
+            <span class="hidden sm:inline">Publications</span>
+          <span class="sm:hidden text-primary text-2xl font-bold">
+
+
+            <UIcon name="mdi:book-open-outline" class="h-5 w-5" />
+          </span>
+     
           </NuxtLink>
           <NuxtLink 
             to="/committees" 
