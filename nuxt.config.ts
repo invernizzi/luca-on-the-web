@@ -28,15 +28,26 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        "/_ipx/w_320&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_640&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_768&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_1024&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_1280&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_1536&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_2048&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_2560&f_webp&q_80/images/face.jpg",
-        "/_ipx/w_3072&f_webp&q_80/images/face.jpg",
+        "/",
+        // images.
+        "/_ipx/f_webp&q_80&s_2560x2560/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_768x768/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_1024x1024/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_320x320/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_1280x1280/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_2048x2048/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_640x640/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_320x320/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_768x768/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_640x640/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_2560x2560/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_1536x1536/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_1536x1536/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_3072x3072/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_2048x2048/images/face.jpg",
+        "/_ipx/f_jpeg&q_80&s_3072x3072/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_1280x1280/images/face.jpg",
+        "/_ipx/f_webp&q_80&s_1024x1024/images/face.jpg",
       ],
     },
   },
@@ -80,6 +91,29 @@ export default defineNuxtConfig({
     pageTransition: {
       name: "page",
       mode: "out-in",
+    },
+  },
+  vite: {
+    build: {
+      sourcemap: false, // Disable source map generation
+      terserOptions: {
+        format: {
+          comments: false, // Strip comments from generated JavaScript
+        },
+      },
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes("node_modules")) {
+              return id
+                .toString()
+                .split("node_modules/")[1]
+                .split("/")[0]
+                .toString();
+            }
+          },
+        },
+      },
     },
   },
 });
