@@ -6,9 +6,6 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// App configuration
-</script>
 
 <style>
 :root {
@@ -23,7 +20,6 @@
 
 html {
   scroll-behavior: smooth;
-
 }
 
 body {

@@ -7,7 +7,7 @@
             class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000">
           </div>
           <div class="relative w-32 h-32 rounded-full overflow-hidden ring-4 ring-surface">
-            <LazyNuxtPicture width="128" height="128" src="/images/face.jpg" alt="Luca Invernizzi"
+            <LazyNuxtPicture hydrate-on-visible width="128" height="128" src="/images/face.jpg" alt="Luca Invernizzi"
               class="w-full h-full object-cover" />
           </div>
         </div>
@@ -87,50 +87,50 @@
           <ul class="space-y-2 text-text-secondary ">
             <li>
               <NuxtLink to="http://www.linkedin.com/in/lucainvernizzi" external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <LazyUIcon name="mdi:linkedin" class="w-4 h-4" />
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]">
+                <LazyUIcon hydrate-on-visible name="mdi:linkedin" class="w-4 h-4" />
                 LinkedIn
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="mailto:luca@lucainvernizzi.net" external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <LazyUIcon name="mdi:email" class="w-4 h-4" />
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]">
+                <LazyUIcon hydrate-on-visible name="mdi:email" class="w-4 h-4" />
                 Email
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ" external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <LazyUIcon name="mdi:school" class="w-4 h-4" />
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]">
+                <LazyUIcon hydrate-on-visible name="mdi:school" class="w-4 h-4" />
                 Google Scholar
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://twitter.com/invernizzi" external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <LazyUIcon name="mdi:twitter" class="w-4 h-4" />
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]">
+                <LazyUIcon hydrate-on-visible name="mdi:twitter" class="w-4 h-4" />
                 Twitter
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://github.com/invernizzi" external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <LazyUIcon name="mdi:github" class="w-4 h-4" />
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]">
+                <LazyUIcon hydrate-on-visible name="mdi:github" class="w-4 h-4" />
                 GitHub
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://stackoverflow.com/users/633403/luca-invernizzi" external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <LazyUIcon name="mdi:stack-overflow" class="w-4 h-4" />
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]">
+                <LazyUIcon hydrate-on-visible name="mdi:stack-overflow" class="w-4 h-4" />
                 Stack Overflow
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://research.google/people/104783/?&type=google" external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <LazyUIcon name="mdi:google" class="w-4 h-4" />
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]">
+                <LazyUIcon hydrate-on-visible name="mdi:google" class="w-4 h-4" />
                 Google Research
               </NuxtLink>
             </li>
@@ -142,10 +142,7 @@
 </template>
 
 <script setup lang="ts">
-import { useProjectsStore } from '~/stores/projects'
-import { computed } from 'vue'
-
-const projectsStore = useProjectsStore()
+const projectsStore = await import('~/stores/projects').then(module => module.useProjectsStore());
 
 const featuredProjects = computed(() => {
   return projectsStore.projects.filter(p => p.featured)
