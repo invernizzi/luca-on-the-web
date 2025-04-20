@@ -10,7 +10,7 @@
       <component 
         :is="titleSize" 
         v-if="title"
-        class="font-display font-semibold text-text-primary mb-6 transition-colors"
+        class="font-display font-semibold text-text-primary mb-2 transition-colors"
         :class="{ 
           'text-2xl': titleSize === 'normal',
           'text-xl': titleSize === 'small',

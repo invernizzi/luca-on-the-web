@@ -30,9 +30,9 @@
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.professionalExperience" :key="index" class="relative timeline-item">
             <div class="timeline-dot"></div>
-            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg">
-              <h3 class="text-xl font-display font-semibold text-text-primary mb-2">{{ item.title }}</h3>
-              <div class="flex-block items-center mb-2">
+            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
+            :title="item.title" title-size="small">
+              <div class="flex-block items-center mb-2 text-sm">
                 <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
@@ -89,9 +89,10 @@
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.education" :key="index" class="relative timeline-item">
             <div class="timeline-dot"></div>
-            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg">
-              <h3 class="text-xl font-display font-semibold text-text-primary mb-2">{{ item.title }}</h3>
-              <div class="flex-block items-center mb-2">
+            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
+            
+            :title="item.title" title-size="small">
+              <div class="flex-block items-center mb-2 text-sm">
                 <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
@@ -151,7 +152,7 @@
           <div v-for="(item, index) in cvStore.openSourceContributions" :key="index" class="relative">
             <div class="border-b border-surface-light/30 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
               <h3 class="text-xl font-display font-semibold text-text-primary mb-2">{{ item.title }}</h3>
-              <div class="flex-block items-center mb-2">
+              <div class="flex-block items-center mb-2 text-sm">
                 <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
@@ -203,10 +204,10 @@
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.competitions" :key="index" class="relative timeline-item">
             <div class="timeline-dot"></div>
-            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg">
-              <h3 class="text-xl font-display font-semibold text-text-primary mb-2">{{ item.title }}</h3>
-              <div class="flex items-center mb-2">
-                <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
+            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
+            :title="item.title" title-size="small">
+              <div class="flex items-center text-sm mb-2 text-sm">
+                <span class="bg-yellow-500/10  text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
               </div>

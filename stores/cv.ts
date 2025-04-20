@@ -181,7 +181,7 @@ export const useCVStore = defineStore('cv', {
       
       {
         title: 'Visiting Researcher',
-        organization: 'U.C. Santa Barbara',
+        organization: 'University of California, Santa Barbara',
         period: '2008',
         description: 'Worked on a distributed algorithm to drive autonomous land vehicles for area patrol in UCSB\'s mechanical engineering department. Part of this work is now in the Player/Stage open-source framework.'
       },
@@ -222,7 +222,7 @@ export const useCVStore = defineStore('cv', {
       {
         title: 'Hacking Competitions',
         organization: 'Shellphish Team',
-        period: '2010 - Present',
+        period: '2010 - 2015',
         links: [
             {
                 name: 'CNBC',
@@ -233,9 +233,15 @@ export const useCVStore = defineStore('cv', {
                 name: 'SB Independent',
                 type: 'news',
                 url: 'https://www.independent.com/2007/12/08/ucsb-hosts-largest-computer-hacking-competition-ever/'
+            },
+            {
+                name: 'CTFtime',
+                type: 'website',
+                url: 'https://ctftime.org/team/285'
+             
             }
         ],
-        description: 'Participated in numerous hacking competitions including DEFCON CTF in Las Vegas. Also helped design and organize the iCTF, the biggest academic hacking competition (back then) with more than 1,000 players globally, for four years.'
+        description: 'Participated in numerous hacking competitions including DEFCON CTF in Las Vegas with the ShellPhish team (#2 in the world in 2025 according to CTFtime). Also helped design and organize the iCTF, the biggest academic hacking competition (back then) with more than 1,000 players globally, for four years.'
       },
       {
         title: 'European Space Agency Robotic Challenge',
