@@ -3,7 +3,7 @@
     <h1 class="text-4xl font-display font-bold text-text-primary mb-12">Academic Service</h1>
     
     <div class="space-y-12">
-      <CardComponent title="Recent Technical Program Committees" :interactive="false">
+      <CardComponent title="" :interactive="false">
         <p class="text-text-secondary mb-4">In the last 5 years, I have been a member of the technical program committee of the following conferences:</p>
         <div class="space-y-8">
           <div v-for="yearGroup in committeesStore.participationsByYear" :key="yearGroup.year" class="space-y-4">

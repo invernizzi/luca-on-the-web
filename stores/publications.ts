@@ -20,7 +20,9 @@ export interface Publication {
   award?: string
   projectId?: ProjectId
   citations?: number
-  categories: PublicationCategory[]
+  categories: PublicationCategory[],
+  description?: string,
+  openSource?: boolean
 }
 
 // Define the hardcoded metadata for publications
@@ -38,6 +40,7 @@ const openSourcePublications: Publication[] = [
     categories: [PublicationCategory.HARDWARE, PublicationCategory.SECURITY],
     link: 'https://github.com/google/WaseFire',
     venue: 'GitHub',
+    description: 'WaseFire is a platform to build secure firmware in a usable way.',
     year: 2024,
     authors: []
   },
@@ -46,6 +49,7 @@ const openSourcePublications: Publication[] = [
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
     link: 'https://github.com/google/unisim',
     venue: 'GitHub',
+    description: 'Package for efficiently computing similarity, performing fuzzy matching, deduplicating datasets, and clustering data.',
     year: 2023,
     authors: []
   }
@@ -137,14 +141,15 @@ const mergePublicationData = (): Publication[] => {
       title: pub.title,
       categories: [],
       projectId: undefined,
-      award: undefined
+      award: undefined,
     };
     
     return {
       ...pub,
       categories: metadata.categories,
       projectId: metadata.projectId || pub.projectId,
-      award: metadata.award || pub.award
+      award: metadata.award || pub.award,
+      openSource: pub.venue && /github/i.test(pub.venue)
     } as Publication;
   });
 };

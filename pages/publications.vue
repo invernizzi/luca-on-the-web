@@ -39,20 +39,12 @@
                 <CardComponent v-for="pub in yearGroup.publications" :key="pub.title" 
                     :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
                     class="scroll-mt-20 transition-all duration-500"
+                    :title="pub.title"
+                    title-size="small"
+                    :to="pub.link"
                     :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }"
-                    :interactive="false">
-                  <div class="flex justify-between items-start gap-2 mb-2">
-                    <NuxtLink :to="pub.link" external class="group flex-grow">
-                      <h3 class="font-display font-medium text-text-primary text-lg group-hover:text-primary transition-colors">{{ pub.title }}</h3>
-                    </NuxtLink>
-                    <NuxtLink :to="pub.link" external
-                       class="flex-shrink-0 inline-flex items-center gap-1.5 px-2 py-1 text-xs bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors mt-1">
-                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                      Open
-                    </NuxtLink>
-                  </div>
+                    :interactive="true">
+                  
                   <p class="text-sm mb-1" v-html="highlightAuthor(pub.authors)"></p>
                   <div class="flex items-center mb-3">
                     <p class="text-sm text-primary">{{ pub.venue }}, {{ pub.year }}</p>
@@ -100,26 +92,20 @@
             <div class="space-y-12">
               <div v-for="yearGroup in openSourcePublications" :key="yearGroup.year" class="space-y-4">
                 <h2 class="text-2xl font-bold text-text-primary">{{ yearGroup.year }}</h2>
-                <div class="space-y-6">
-                  <div v-for="pub in yearGroup.publications" :key="pub.title" 
-                      :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
-                      class="scroll-mt-20 transition-all duration-500 bg-surface p-4 rounded-lg border border-surface-light/30 shadow-sm"
-                      :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }">
-                    <div class="flex justify-between items-start gap-2 mb-2">
-                      <NuxtLink :to="pub.link" external class="group flex-grow">
-                        <h3 class="font-display font-medium text-text-primary text-lg group-hover:text-primary transition-colors">{{ pub.title }}</h3>
-                      </NuxtLink>
-                      <NuxtLink :to="pub.link" external
-                         class="flex-shrink-0 inline-flex items-center gap-1.5 px-2 py-1 text-xs bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors mt-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                        Open
-                      </NuxtLink>
-                    </div>
-                    <p class="text-sm mb-1" v-html="highlightAuthor(pub.authors)"></p>
-                    <div class="flex items-center mb-3">
-                      <p class="text-sm text-primary">{{ pub.venue }}, {{ pub.year }}</p>
+                <div class="grid grid-cols-1 gap-6">
+                  <CardComponent 
+                    v-for="pub in yearGroup.publications" 
+                    :key="pub.title" 
+                    :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
+                    class="scroll-mt-20 transition-all duration-500"
+                    :title="pub.title"
+                    title-size="small"
+                    :to="pub.link"
+                    :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }"
+                    :interactive="true"
+                  >
+                    <p class="text-sm " v-html="highlightAuthor(pub.authors)"></p>
+                    <div class="flex items-center ">
                       <span v-if="pub.citations" 
                             class="ml-2 text-xs px-1.5 py-0.5 rounded-md"
                             :class="pub.citations > 200 ? 
@@ -128,17 +114,20 @@
                         {{ pub.citations }} {{ pub.citations === 1 ? 'citation' : 'citations' }}
                       </span>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-3">
-                      <span v-if="pub.award" 
-                            class="px-3 py-1 text-xs font-bold bg-yellow-500/10 text-yellow-400 rounded-full border border-yellow-500/30">
-                        🏆 {{ pub.award }}
+                    <span v-if="pub.description" 
+                            class="text-primary text-sm ">
+                        {{ pub.description }}
                       </span>
+                    <div class="flex flex-wrap gap-2 mb-3">
+             
+
+                   
                       <span v-for="category in pub.categories" :key="category"
                             class="px-3 py-1 text-xs font-medium bg-surface-light text-text-secondary rounded-full border border-surface-light/50 hover:bg-surface-light/80 transition-colors">
                         {{ category }}
                       </span>
                     </div>
-                  </div>
+                  </CardComponent>
                 </div>
               </div>
             </div>
@@ -196,8 +185,8 @@ const allFilteredPublications = computed(() => {
 // Academic publications (not GitHub)
 const academicPublications = computed(() => {
   // Filter out GitHub publications
-  const academicPubs = allFilteredPublications.value.filter(pub => 
-    pub.venue && !/github/i.test(pub.venue)
+  const academicPubs = allFilteredPublications.value.filter(pub => pub.openSource === false
+ 
   )
   
   // Group publications by year
@@ -223,7 +212,7 @@ const academicPublications = computed(() => {
 const openSourcePublications = computed(() => {
   // Only include GitHub publications
   const openSourcePubs = allFilteredPublications.value.filter(pub => 
-    pub.venue && /github/i.test(pub.venue)
+    pub.openSource === true
   )
   
   // Group by year
