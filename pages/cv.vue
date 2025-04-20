@@ -26,7 +26,7 @@
       </div>
 
       <!-- Work Experience Section -->
-      <CardComponent title="Professional Experience" class="mb-8 z-10 relative">
+      <CardComponent title="Professional Experience" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.professionalExperience" :key="index" class="relative timeline-item">
             <div class="timeline-dot"></div>
@@ -85,7 +85,7 @@
       </CardComponent>
 
       <!-- Education Section -->
-      <CardComponent title="Education" class="mb-8 z-10 relative">
+      <CardComponent title="Education" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.education" :key="index" class="relative timeline-item">
             <div class="timeline-dot"></div>
@@ -146,7 +146,7 @@
       </CardComponent>
 
       <!-- Open Source Section -->
-      <CardComponent title="Open Source Contributions" class="mb-8 z-10 relative">
+      <CardComponent title="Open Source Contributions" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-6">
           <div v-for="(item, index) in cvStore.openSourceContributions" :key="index" class="relative">
             <div class="border-b border-surface-light/30 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
@@ -199,7 +199,7 @@
       </CardComponent>
 
       <!-- Competitions Section -->
-      <CardComponent title="Competitions" class="mb-8 z-10 relative">
+      <CardComponent title="Competitions" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.competitions" :key="index" class="relative timeline-item">
             <div class="timeline-dot"></div>

@@ -43,14 +43,12 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <CardComponent title="Featured Projects">
           <div class="space-y-8">
-            <div v-for="project in featuredProjects" :key="project.title">
+            <div v-for="project in featuredProjects" :key="project.title" class="hover:text-[#FF9D02]">
               <NuxtLink :to="{ path: '/projects', hash: `#${project.id}`, query: { scrollBehavior: 'smooth' } }"
-                       class="flex items-center justify-between mb-2 group">
-                <h3 class="text-xl font-display font-semibold text-text-primary group-hover:text-primary transition-colors">{{ project.title }}</h3>
+                         class="flex items-center justify-between mb-2 group transition-colors">
+                <h3 class="text-xl font-display font-semibold text-text-primary  group-hover:text-primary transition-colors">{{ project.title }}</h3>
                 <div class="p-1 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                <Icon icon="mdi:arrow-right" class="h-4 w-4 " />
                 </div>
               </NuxtLink>
               <p class="text-text-secondary/70 pl-0.5">{{ project.blurb }}</p>
@@ -59,45 +57,45 @@
         </CardComponent>
 
         <CardComponent title="Contacts">
-          <ul class="space-y-2 text-text-secondary">
+          <ul class="space-y-2 text-text-secondary ">
             <li>
-              <NuxtLink to="http://www.linkedin.com/in/lucainvernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm">
+              <NuxtLink to="http://www.linkedin.com/in/lucainvernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
                 <Icon icon="mdi:linkedin" class="w-4 h-4" />
                 LinkedIn
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="mailto:luca@lucainvernizzi.net" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm">
+              <NuxtLink to="mailto:luca@lucainvernizzi.net" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
                 <Icon icon="mdi:email" class="w-4 h-4" />
                 Email
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm">
+              <NuxtLink to="https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
                 <Icon icon="mdi:school" class="w-4 h-4" />
                 Google Scholar
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="https://twitter.com/invernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm">
+              <NuxtLink to="https://twitter.com/invernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
                 <Icon icon="mdi:twitter" class="w-4 h-4" />
                 Twitter
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="https://github.com/invernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm">
+              <NuxtLink to="https://github.com/invernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
                 <Icon icon="mdi:github" class="w-4 h-4" />
                 GitHub
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="https://stackoverflow.com/users/633403/luca-invernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm">
+              <NuxtLink to="https://stackoverflow.com/users/633403/luca-invernizzi" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
                 <Icon icon="mdi:stack-overflow" class="w-4 h-4" />
                 Stack Overflow
               </NuxtLink>
             </li>
             <li>
-              <NuxtLink to="https://research.google/people/104783/?&type=google" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm">
+              <NuxtLink to="https://research.google/people/104783/?&type=google" external class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
                 <Icon icon="mdi:google" class="w-4 h-4" />
                 Google Research 
               </NuxtLink>

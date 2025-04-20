@@ -10,8 +10,8 @@
       <CardComponent v-for="project in activeProjects" :key="project.title"
                     :id="project.id"
                     class="transition-all duration-500 scroll-mt-20"
+                    :title="project.title"
                     :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(project.id) }">
-        <h2 class="text-2xl font-display font-semibold text-text-primary mb-4">{{ project.title }}</h2>
         <div class="flex flex-wrap gap-2 mb-4">
           <a v-for="url in project.urls" :key="url.name"
              :href="url.url"
@@ -66,14 +66,14 @@
     <!-- Archived Projects Section -->
     <h2 class="text-3xl font-display font-bold text-text-primary mb-6">Archived Projects</h2>
     <p class="text-text-secondary mb-4">
-      These are projects that have concluded or are no longer actively maintained.
+      Older fun projects.
     </p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 [&>*]:h-full">
       <CardComponent v-for="project in archivedProjects" :key="project.title"
                     :id="project.id"
                     class="transition-all duration-500 opacity-80 hover:opacity-100 scroll-mt-20"
+                     :title="project.title"
                     :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(project.id) }">
-        <h2 class="text-2xl font-display font-semibold text-text-primary mb-4">{{ project.title }}</h2>
         <div class="flex flex-wrap gap-2 mb-4">
           <a v-for="url in project.urls" :key="url.name"
              :href="url.url"

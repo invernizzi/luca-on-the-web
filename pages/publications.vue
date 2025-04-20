@@ -4,7 +4,7 @@
       <h1 class="text-4xl font-display font-bold text-text-primary mb-12">Publications</h1>
       
       <div class="space-y-12">
-        <CardComponent title="">
+        <CardComponent title="" :interactive="false">
           <div class="mb-6  items-center">
             For a complete list of my publications, please visit my  
             <NuxtLink to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ" 
@@ -39,7 +39,8 @@
                 <CardComponent v-for="pub in yearGroup.publications" :key="pub.title" 
                     :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
                     class="scroll-mt-20 transition-all duration-500"
-                    :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }">
+                    :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }"
+                    :interactive="false">
                   <div class="flex justify-between items-start gap-2 mb-2">
                     <NuxtLink :to="pub.link" external class="group flex-grow">
                       <h3 class="font-display font-medium text-text-primary text-lg group-hover:text-primary transition-colors">{{ pub.title }}</h3>
