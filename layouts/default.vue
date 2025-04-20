@@ -18,10 +18,3 @@
     </div>
   </div>
 </template>
-
-<style>
-/* Ensure content has proper z-index and positioning */
-.relative {
-  position: relative;
-}
-</style> 

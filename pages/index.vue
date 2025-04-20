@@ -7,7 +7,7 @@
             class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000">
           </div>
           <div class="relative w-32 h-32 rounded-full overflow-hidden ring-4 ring-surface">
-            <NuxtPicture width="128" height="128" src="/images/face.jpg" alt="Luca Invernizzi"
+            <LazyNuxtPicture width="128" height="128" src="/images/face.jpg" alt="Luca Invernizzi"
               class="w-full h-full object-cover" />
           </div>
         </div>
@@ -66,7 +66,7 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <CardComponent title="Featured Projects">
+        <LazyCardComponent title="Featured Projects">
           <div class="space-y-8">
             <div v-for="project in featuredProjects" :key="project.title" class="hover:text-[#FF9D02]">
               <NuxtLink :to="{ path: '/projects', hash: `#${project.id}`, query: { scrollBehavior: 'smooth' } }"
@@ -75,67 +75,67 @@
                   class="text-xl font-display font-semibold text-text-primary  group-hover:text-primary transition-colors">
                   {{ project.title }}</div>
                 <div class="p-1 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors">
-                  <Icon icon="mdi:arrow-right" class="h-4 w-4 " />
+                  <LazyUIcon name="mdi:arrow-right" class="h-4 w-4 " />
                 </div>
               </NuxtLink>
               <p class="text-text-secondary/70 pl-0.5">{{ project.blurb }}</p>
             </div>
           </div>
-        </CardComponent>
+        </LazyCardComponent>
 
-        <CardComponent title="Contacts">
+        <LazyCardComponent title="Contacts">
           <ul class="space-y-2 text-text-secondary ">
             <li>
               <NuxtLink to="http://www.linkedin.com/in/lucainvernizzi" external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <Icon icon="mdi:linkedin" class="w-4 h-4" />
+                <LazyUIcon name="mdi:linkedin" class="w-4 h-4" />
                 LinkedIn
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="mailto:luca@lucainvernizzi.net" external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <Icon icon="mdi:email" class="w-4 h-4" />
+                <LazyUIcon name="mdi:email" class="w-4 h-4" />
                 Email
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ" external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <Icon icon="mdi:school" class="w-4 h-4" />
+                <LazyUIcon name="mdi:school" class="w-4 h-4" />
                 Google Scholar
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://twitter.com/invernizzi" external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <Icon icon="mdi:twitter" class="w-4 h-4" />
+                <LazyUIcon name="mdi:twitter" class="w-4 h-4" />
                 Twitter
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://github.com/invernizzi" external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <Icon icon="mdi:github" class="w-4 h-4" />
+                <LazyUIcon name="mdi:github" class="w-4 h-4" />
                 GitHub
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://stackoverflow.com/users/633403/luca-invernizzi" external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <Icon icon="mdi:stack-overflow" class="w-4 h-4" />
+                <LazyUIcon name="mdi:stack-overflow" class="w-4 h-4" />
                 Stack Overflow
               </NuxtLink>
             </li>
             <li>
               <NuxtLink to="https://research.google/people/104783/?&type=google" external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors text-sm hover:text-[#FF9D02]">
-                <Icon icon="mdi:google" class="w-4 h-4" />
+                <LazyUIcon name="mdi:google" class="w-4 h-4" />
                 Google Research
               </NuxtLink>
             </li>
           </ul>
-        </CardComponent>
+        </LazyCardComponent>
       </div>
     </div>
   </div>
@@ -143,9 +143,6 @@
 
 <script setup lang="ts">
 import { useProjectsStore } from '~/stores/projects'
-import CardComponent from '~/components/CardComponent.vue'
-import { Icon } from '@iconify/vue'
-import type { Project } from '~/stores/projects'
 import { computed } from 'vue'
 
 const projectsStore = useProjectsStore()
