@@ -19,7 +19,7 @@
             }"
           >
             <UIcon v-if="item.icon" :name="item.icon" class="h-7 w-7" />
-            <span v-else class="text-sm sm:text-normal">{{ item.label }}</span>
+            <span v-else class="text-sm sm:text-base">{{ item.label }}</span>
           </NuxtLink>
         </div>
       </nav>
