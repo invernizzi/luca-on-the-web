@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    "nuxt-purgecss",
+   // "nuxt-purgecss",
   ],
   // For the sitemap module.
   site: {
