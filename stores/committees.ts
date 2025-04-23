@@ -53,7 +53,13 @@ export const useCommitteesStore = defineStore('committees', {
         conference: "Annual Computer Security Applications Conference (ACSAC)",
         year: 2025,
         url: "https://www.acsac.org/2025/submissions/artifacts_competition/committee/"
-      }
+      },
+      {
+        conference: "USENIX Security Symposium",
+        year: 2026,
+        // Not the PC url yet
+        url: "https://www.usenix.org/conference/usenixsecurity26"
+      },
      
    
     ]
