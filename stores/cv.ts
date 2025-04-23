@@ -54,12 +54,12 @@ export const useCVStore = defineStore('cv', {
           {
             name: 'Magika',
             type: 'website',
-            url: 'projects#magika'
+            url: '/projects#magika'
           },
           {
             name: 'SecGemini',
             type: 'website',
-            url: 'projects#secgemini'
+            url: '/projects#secgemini'
           }
         ]
       },
@@ -80,7 +80,7 @@ export const useCVStore = defineStore('cv', {
           }, {
             name: 'Ransomware',
             type: 'website',
-            url: 'projects#ransomware'
+            url: '/projects#ransomware'
           }
         ]
       },
