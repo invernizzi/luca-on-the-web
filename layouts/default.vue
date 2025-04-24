@@ -28,7 +28,7 @@ useHead({
   htmlAttrs: { lang: 'en-US' },
   link: [{
     rel: 'canonical',
-    href: `https://lucainvernizzi.net/${useRoute().path}`,
+    href: `https://lucainvernizzi.net${useRoute().path}`,
   }]
 })
 

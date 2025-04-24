@@ -152,7 +152,7 @@ const drawGrid = () => {
   // Draw scanning line with blur effect
   ctx.shadowColor = 'rgba(255, 157, 2, 0.15)'
   ctx.shadowBlur = 10
-  ctx.strokeStyle = 'rgba(255, 157, 2, 0.07)'
+  ctx.strokeStyle = 'rgba(255, 157, 2, 0.10)'
   ctx.lineWidth = 1
   ctx.beginPath()
   ctx.moveTo(0, scanLineY)
@@ -170,7 +170,7 @@ const drawGrid = () => {
   }
 
   // Draw cells with very low opacity
-  ctx.fillStyle = 'rgba(255, 157, 2, 0.05)'
+  ctx.fillStyle = 'rgba(255, 157, 2, 0.07)'
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       if (grid[y][x]) {
@@ -213,8 +213,8 @@ onMounted(() => {
   animate()
   window.addEventListener('resize', initGrid)
   
-  // Start the interval to add new gliders every 20 seconds
-  gliderInterval = window.setInterval(addRandomGlider, 20000)
+  // Start the interval to add new gliders every 10 seconds
+  gliderInterval = window.setInterval(addRandomGlider, 10000)
 })
 
 onUnmounted(() => {
