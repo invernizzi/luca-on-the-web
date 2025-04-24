@@ -2,14 +2,14 @@
   <div class="container mx-auto px-4 py-12">
     <h1 class="text-4xl font-display font-bold text-text-primary mb-8">Curriculum Vitae
     <span >
-      <button 
+     <!--   <button 
         @click="downloadResume"
         class="inline-flex cursor-pointer items-center  bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
         </svg>
        
-      </button>
+      </button> -->
     </span>
     </h1>
 
@@ -262,11 +262,12 @@ import { useCVStore } from '@/stores/cv'
 
 const cvStore = useCVStore()
 
+/*
 const downloadResume = () => {
   // Instead of linking directly to a file that might not exist yet,
   // we'll show a message that the resume is available on request
   alert('Full resume is available upon request. Please contact me via email at luca@lucainvernizzi.net')
-}
+} */
 </script>
 
 <style scoped>
