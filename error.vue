@@ -48,12 +48,12 @@
             </div>
           </div>
           
-          <h1 class="text-3xl md:text-4xl font-display font-bold mb-4">{{ error?.statusCode === 404 ? 'Access Denied' : 'Security Alert' }}</h1>
+          <h1 class="text-3xl md:text-4xl font-display font-bold mb-4">{{ error?.statusCode === 404 ? 'Access Denied' : '?' }}</h1>
           
           <p class="text-text-secondary text-lg mb-8">
             {{ error?.statusCode === 404 
               ? "The resource you're trying to access doesn't exist or requires authorization." 
-              : "We've detected an unexpected system behavior. Our security team has been notified." 
+              : "Something's not right." 
             }}
           </p>
           

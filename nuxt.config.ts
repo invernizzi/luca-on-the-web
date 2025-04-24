@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
+    'nuxt-link-checker',
    // "nuxt-purgecss",
   ],
   // For the sitemap module.
@@ -29,7 +30,6 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
-        "/",
         // images.
         "/_ipx/f_webp&q_80&s_2560x2560/images/face.jpg",
         "/_ipx/f_jpeg&q_80&s_768x768/images/face.jpg",
@@ -51,6 +51,9 @@ export default defineNuxtConfig({
         "/_ipx/f_webp&q_80&s_1024x1024/images/face.jpg",
       ],
     },
+  },
+  linkChecker: {
+    failOnError: true,
   },
   fonts: {
     families: [
@@ -116,5 +119,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  },
+  }
 });
