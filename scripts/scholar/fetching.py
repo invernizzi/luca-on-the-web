@@ -8,7 +8,7 @@ from scholar.caching import cache_results
 
 AUTHOR_ID = '4CEVnEMAAAAJ'  # Luca Invernizzi
 
-@cache_results("../cache/scholar_publications_cache.json", 86400)
+@cache_results(".scholar_publications_cache.json", 86400)
 def fetch_publications() -> List[Dict[str, Any]]:
     """Fetch all publications for the specified author."""
     print(f"Searching for author ID: {AUTHOR_ID}")

@@ -20,10 +20,12 @@ def cache_results(cache_file_path: str, cache_duration: int):
 
             # Call the original function and cache its result
             result = func(*args, **kwargs)
-
-            with open(cache_file, 'w', encoding='utf-8') as f:
-                json.dump(result, f, ensure_ascii=False, indent=2)
-
+            try:
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(result, f, ensure_ascii=False, indent=2)
+            except FileNotFoundError:
+                print('Could not write to cache file.')
+                pass
             return result
 
         return wrapper
