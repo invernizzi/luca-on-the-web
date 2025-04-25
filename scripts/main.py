@@ -58,15 +58,15 @@ def main():
     # The publications store expects just an array of publications, not a wrapper object
     output_data = transformed_pubs
     
-    # Write to JSON file
+    if not output_data or len(output_data) < 30:
+        print("No valid publications found after transformation.")
+        return
+    # Write to JSON file.
     with open(output_path, 'w', encoding='utf-8') as f:
         json.dump(output_data, f, ensure_ascii=False, indent=2)
     
     print(f"Successfully exported {len(transformed_pubs)} publications to {output_path}")
-    print("\nNext steps:")
-    print("1. Review the JSON file and add missing information (categories, projectId, awards)")
-    print("2. Normalize venue names if needed")
-    print("3. Import into your Pinia store")
+
 
 
 if __name__ == "__main__":
