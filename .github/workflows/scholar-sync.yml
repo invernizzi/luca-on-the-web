@@ -6,7 +6,6 @@ on:
   workflow_dispatch: # Allows manual triggering
 
 permissions:
-  contents: read # Allows the workflow to read the repository contents
   contents: write # Allows the workflow to checkout and commit changes to the repository
 
 jobs:
