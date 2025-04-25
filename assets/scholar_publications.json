@@ -12,7 +12,29 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
-    "citations": 1510,
+    "citations": 1530,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Magika content-type scanner",
+    "authors": [
+      "Yanick Fratantonio",
+      "Elie Bursztein",
+      "Luca Invernizzi",
+      "Marina Zhang",
+      "Giancarlo Metitieri",
+      "Thomas Kurt",
+      "Francois Galilee",
+      "Alexandre Petit-Bianco",
+      "Loua Farah",
+      "Ange Albertini"
+    ],
+    "venue": "GitHub",
+    "year": 2024,
+    "link": "https://github.com/google/magika",
+    "citations": 3,
     "award": null,
     "projectId": null,
     "categories": []
@@ -36,28 +58,6 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://arxiv.org/abs/2409.13768",
-    "citations": 0,
-    "award": null,
-    "projectId": null,
-    "categories": []
-  },
-  {
-    "title": "Magika content-type scanner",
-    "authors": [
-      "Yanick Fratantonio",
-      "Elie Bursztein",
-      "Luca Invernizzi",
-      "Marina Zhang",
-      "Giancarlo Metitieri",
-      "Thomas Kurt",
-      "Francois Galilee",
-      "Alexandre Petit-Bianco",
-      "Loua Farah",
-      "Ange Albertini"
-    ],
-    "venue": "GitHub",
-    "year": 2024,
-    "link": "https://github.com/google/magika",
     "citations": 0,
     "award": null,
     "projectId": null,
@@ -97,7 +97,7 @@
     "venue": "ACNS Workshop on Secure Cryptographic Implementation",
     "year": 2022,
     "link": "https://link.springer.com/chapter/10.1007/978-3-031-41181-6_26",
-    "citations": 17,
+    "citations": 18,
     "award": null,
     "projectId": null,
     "categories": []
@@ -109,7 +109,7 @@
       "Luca Invernizzi",
       "Elie Bursztein"
     ],
-    "venue": "Unknown Venue",
+    "venue": "http://arxiv.org/abs/",
     "year": 2020,
     "link": "http://arxiv.org/abs/2006.10861",
     "citations": 31,
@@ -154,7 +154,7 @@
     "venue": "GitHub",
     "year": 2019,
     "link": "https://github.com/keras-team/kerastuner",
-    "citations": 905,
+    "citations": 907,
     "award": null,
     "projectId": null,
     "categories": []
@@ -177,7 +177,7 @@
     "venue": "USENIX Security Symposium",
     "year": 2019,
     "link": "https://www.usenix.org/conference/usenixsecurity19/presentation/thomas&lang=en",
-    "citations": 177,
+    "citations": 178,
     "award": null,
     "projectId": null,
     "categories": []
@@ -245,7 +245,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2018,
     "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
-    "citations": 310,
+    "citations": 311,
     "award": null,
     "projectId": null,
     "categories": []
@@ -308,7 +308,7 @@
     "venue": "USENIX security symposium (USENIX Security 17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
-    "citations": 2896,
+    "citations": 2904,
     "award": null,
     "projectId": null,
     "categories": []
@@ -331,7 +331,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2017,
     "link": "https://dl.acm.org/doi/abs/10.1145/3133956.3134067",
-    "citations": 340,
+    "citations": 343,
     "award": null,
     "projectId": null,
     "categories": []
