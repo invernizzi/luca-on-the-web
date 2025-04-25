@@ -32,8 +32,16 @@ useHead({
   }]
 })
 
-useSchemaOrg({
-identity: definePerson({
+useHead({
+  templateParams: {
+    schemaOrg: {
+      host: 'https://lucainvernizzi.net',
+    }
+  }
+})
+
+useSchemaOrg([
+  definePerson({
       // Basic Information
       name: 'Luca Invernizzi',
       givenName: 'Luca',
@@ -59,6 +67,6 @@ identity: definePerson({
         'url': 'https://google.com'
       },
     })
-})
+])
 
 </script>
