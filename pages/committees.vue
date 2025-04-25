@@ -4,7 +4,7 @@
     
     <div class="space-y-12">
       <CardComponent title="" :interactive="false">
-        <p class="text-text-secondary mb-4">In the last 5 years, I have been a member of the technical program committee of the following conferences:</p>
+        <p class="text-text-secondary mb-4">I have been a member of the technical program committee of the following conferences:</p>
         <div class="space-y-8">
           <div v-for="yearGroup in committeesStore.participationsByYear" :key="yearGroup.year" class="space-y-4">
             <h2 class="text-2xl font-bold text-text-primary">{{ yearGroup.year }}</h2>

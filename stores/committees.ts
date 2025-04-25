@@ -10,6 +10,21 @@ export const useCommitteesStore = defineStore("committees", {
   state: () => ({
     participations: [
       {
+        conference: "APWG Symposium on Electronic Crime Research (ECRIME)",
+        year: 2016,
+        url: "https://ieeexplore.ieee.org/xpl/conhome/7486625/proceeding",
+      },
+      {
+        conference: "ACM Web Conference (WWW)",
+        year: 2017,
+        url: "https://dl.acm.org/doi/proceedings/10.5555/3038912",
+      },
+      {
+        conference: "ACM Web Conference (WWW)",
+        year: 2018,
+        url: "https://archives.iw3c2.org/www2018/committees/program-committee-members/",
+      },
+      {
         conference:
           "International Symposium on Research in Attacks, Intrusions and Defenses (RAID)",
         year: 2020,
@@ -27,10 +42,13 @@ export const useCommitteesStore = defineStore("committees", {
         year: 2021,
         url: "https://www.sigsac.org/ccs/CCS2021/program-committee.html",
       },
-
-
       {
-        conference: "ACM The Web Conference (WWW)",
+        conference: "IEEE Symposium on Security and Privacy (S&P)",
+        year: 2021,
+        url: "https://www.ieee-security.org/TC/SP2021/cfpapers.html",
+      },
+      {
+        conference: "ACM Web Conference (WWW)",
         year: 2022,
         url: "https://archives.iw3c2.org/www2022/program-committee-members-by-tracks/",
       },
