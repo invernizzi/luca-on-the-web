@@ -28,7 +28,7 @@ jobs:
       run: |
         cd scripts
         uv sync --locked --all-extras --dev
-        bash run.sh
+        uv run python3 -m main
 
     - name: Commit and push changes
       run: |
