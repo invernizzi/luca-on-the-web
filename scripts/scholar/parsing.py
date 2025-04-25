@@ -74,6 +74,8 @@ def extract_venue(pub: Dict[str, Any]) -> str:
                 if ',' in venue:
                     venue = venue.split(',', 1)[1].strip()
         venue = clean_venue(venue)
+        print(f"Extracted venue: {venue}")
+        return venue
     return "Unknown Venue"
 
 def extract_authors(pub: Dict[str, Any]) -> [str]:

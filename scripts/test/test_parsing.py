@@ -64,8 +64,8 @@ class TestParsing(unittest.TestCase):
         self.assertEqual(extract_venue(pub_with_citation), "IEEE Conference")
 
         # Test with citation field
-        pub_with_citation = {"bib": {"citation": " Proceedings of the 2024 ACM on Internet Measurement Conference, 704-712, 2024"}}
-        self.assertEqual(extract_venue(pub_with_citation), "ACM on Internet Measurement Conference")
+        pub_with_citation = {"bib": {"citation": " Proceedings of the 2024 ACM Internet Measurement Conference, 704-712, 2024"}}
+        self.assertEqual(extract_venue(pub_with_citation), "ACM Internet Measurement Conference")
         
 
         # Test with no venue information
