@@ -25,6 +25,7 @@ export const useOpenGraphStore = defineStore("open_graph", () => {
   const personSocialProfiles = ref([
     "https://twitter.com/invernizzi",
     "https://github.com/invernizzi",
+    "https://github.com/invernizzi-at-google",
     "https://linkedin.com/in/lucainvernizzi",
     "https://scholar.google.com/citations?user=4CEVnEMAAAAJ",
   ]);
