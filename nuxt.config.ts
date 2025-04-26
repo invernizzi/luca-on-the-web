@@ -72,24 +72,13 @@ export default defineNuxtConfig({
   css: ["~/assets/css/main.css", "~/assets/css/transitions.css"],
   app: {
     head: {
-      title: "Luca Invernizzi - Research Scientist",
-      // Needed for accessibility.
-      htmlAttrs: {
-        lang: "en",
-      },
       meta: [
         { charset: "utf-8" },
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { name: "robots", content: "index,follow" },
-        {
-          name: "description",
-          content:
-            "Personal website of Luca Invernizzi, Research Scientist Manager at Google specializing in cybersecurity and machine learning.",
-        },
       ],
       link: [
         { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-        { rel: "canonical", href: "http://www.lucainvernizzi.net/" },
       ],
     },
     pageTransition: {
