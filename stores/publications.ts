@@ -1,6 +1,7 @@
-import { defineStore } from 'pinia'
-import { ProjectId } from '@/stores/projects'
-import scholarPublications from '../assets/scholar_publications.json'
+import { defineStore } from 'pinia';
+import { ref, computed } from 'vue'; // Import ref and computed
+import { ProjectId } from '@/stores/projects';
+import scholarPublications from '../assets/scholar_publications.json';
 
 export enum PublicationCategory {
   MACHINE_LEARNING = 'Machine Learning',
@@ -127,23 +128,23 @@ const normalizeTitle = (title: string): string => {
 // Function to merge Scholar data with our metadata
 const mergePublicationData = (): Publication[] => {
   const metadataMap = new Map<string, PublicationMetadata>();
-  
+
   // Create a map of metadata by normalized title
   publicationMetadata.forEach(meta => {
     metadataMap.set(normalizeTitle(meta.title), meta);
   });
-  
+
   // Merge scholar data with our metadata
   return [...scholarPublications, ...openSourcePublications].map(pub => {
 
     const normalizedTitle = normalizeTitle(pub.title);
-    const metadata = metadataMap.get(normalizedTitle) || { 
+    const metadata = metadataMap.get(normalizedTitle) || {
       title: pub.title,
       categories: [],
       projectId: undefined,
       award: undefined,
     };
-    
+
     return {
       ...pub,
       categories: metadata.categories,
@@ -154,62 +155,68 @@ const mergePublicationData = (): Publication[] => {
   });
 };
 
-export const usePublicationsStore = defineStore('publications', {
-  state: () => ({
-    recentPublications: mergePublicationData(),
-    researchAreas: [
-      {
-        title: 'Machine Learning Security',
-        description: 'Applying ML/AI to security problems like malware detection, file-type identification (Magika), side-channel analysis (SCAAML/GPAM), and abuse/fraud detection (CoinPolice, Giveaway Scams).'
-      },
-      {
-        title: 'System and Network Security',
-        description: 'Securing computer systems and networks, including large-scale malware analysis and distribution detection (Nazca, EvilSeed), vulnerability analysis (e.g., outdated libraries), botnet analysis (Mirai), and Android security.'
-      },
-      {
-        title: 'Hardware Security',
-        description: 'Analyzing and securing hardware components, focusing on side-channel vulnerabilities in cryptographic hardware (SCAAML/GPAM), security key architectures, post-quantum cryptography implementations, and secure firmware.'
-      },
-      {
-        title: 'Privacy and Abuse Prevention',
-        description: 'Protecting user privacy online and combating web abuse. Includes research on credential stuffing risks, cryptojacking, large-scale scam detection, and analysis of privacy policies like the "Right to be Forgotten".'
-      },
-      {
-        title: 'Censorship Resistance',
-        description: 'Developing and analyzing techniques to bypass internet censorship and ensure free communication.'
-      },
-      {
-        title: 'Robotics / Autonomous Systems',
-        description: 'Earlier work focused on control strategies for autonomous systems, particularly autonomous underwater vehicles (AUVs).'
-      }
-    ]
-  }),
+export const usePublicationsStore = defineStore('publications', () => {
+  // State
+  const recentPublications = ref<Publication[]>(mergePublicationData());
+  const researchAreas = ref([
+    {
+      title: 'Machine Learning Security',
+      description: 'Applying ML/AI to security problems like malware detection, file-type identification (Magika), side-channel analysis (SCAAML/GPAM), and abuse/fraud detection (CoinPolice, Giveaway Scams).'
+    },
+    {
+      title: 'System and Network Security',
+      description: 'Securing computer systems and networks, including large-scale malware analysis and distribution detection (Nazca, EvilSeed), vulnerability analysis (e.g., outdated libraries), botnet analysis (Mirai), and Android security.'
+    },
+    {
+      title: 'Hardware Security',
+      description: 'Analyzing and securing hardware components, focusing on side-channel vulnerabilities in cryptographic hardware (SCAAML/GPAM), security key architectures, post-quantum cryptography implementations, and secure firmware.'
+    },
+    {
+      title: 'Privacy and Abuse Prevention',
+      description: 'Protecting user privacy online and combating web abuse. Includes research on credential stuffing risks, cryptojacking, large-scale scam detection, and analysis of privacy policies like the "Right to be Forgotten".'
+    },
+    {
+      title: 'Censorship Resistance',
+      description: 'Developing and analyzing techniques to bypass internet censorship and ensure free communication.'
+    },
+    {
+      title: 'Robotics / Autonomous Systems',
+      description: 'Earlier work focused on control strategies for autonomous systems, particularly autonomous underwater vehicles (AUVs).'
+    }
+  ]);
 
-  getters: {
-    groupedPublications: (state: { recentPublications: any[] }) => {
-      const grouped = state.recentPublications.reduce((acc: Record<number, Publication[]>, pub) => {
-        if (!acc[pub.year]) {
-          acc[pub.year] = []
-        }
-        acc[pub.year].push(pub)
+  // Getters
+  const groupedPublications = computed(() => {
+    const grouped = recentPublications.value.reduce((acc: Record<number, Publication[]>, pub) => {
+      if (!acc[pub.year]) {
+        acc[pub.year] = []
+      }
+      acc[pub.year].push(pub)
+      return acc
+    }, {} as Record<number, Publication[]>)
+
+    return Object.entries(grouped)
+      .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
+      .reduce((acc, [year, pubs]) => {
+        acc[Number(year)] = pubs
         return acc
       }, {} as Record<number, Publication[]>)
+  });
 
-      return Object.entries(grouped)
-        .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
-        .reduce((acc, [year, pubs]) => {
-          acc[Number(year)] = pubs
-          return acc
-        }, {} as Record<number, Publication[]>)
-    },
+  const allCategories = computed(() => {
+    const categories = new Set<PublicationCategory>()
+    recentPublications.value.forEach(pub => {
+      pub.categories.forEach((cat: PublicationCategory) => categories.add(cat))
+    })
 
-    allCategories: (state: { recentPublications: any[] }) => {
-      const categories = new Set<PublicationCategory>()
-      state.recentPublications.forEach(pub => {
-        pub.categories.forEach((cat: PublicationCategory) => categories.add(cat))
-      })
-      
-      return Array.from(categories)
-    }
-  }
-}) 
+    return Array.from(categories)
+  });
+
+  // Return state and getters
+  return {
+    recentPublications,
+    researchAreas,
+    groupedPublications,
+    allCategories
+  };
+});

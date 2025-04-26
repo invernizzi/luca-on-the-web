@@ -27,96 +27,85 @@ import {
   defineWebPage,
   defineWebSite,
   useSchemaOrg,
+  defineBreadcrumb,
 } from "@unhead/schema-org/vue";
+import { useOpenGraphStore } from "~/stores/open_graph";
 
-// --- Define Core Information Once ---
-const personGivenName = "Luca";
-const personFamilyName = "Invernizzi";
-const personName = `${personGivenName} ${personFamilyName}`;
-const personJobTitle = "Research Scientist Manager";
-const employerName = "Google";
-const employerUrl = "https://google.com";
-const siteName = `${personName} (Research Scientist)`;
-const siteDescription =
-  "Personal website of Luca Invernizzi, Research Scientist Manager at Google specializing in cybersecurity and machine learning.";
-const siteUrl = "https://lucainvernizzi.net";
-const personDescription =
-  "Cybersecurity and machine learning researcher with a focus on AI applications in security.";
-const personEmail = "luca@lucainvernizzi.net";
-const personImageRelativePath = "/images/social.jpg";
-const personImageUrlAbsolute = `${siteUrl}${personImageRelativePath}`;
-const twitterHandle = "invernizzi";
-const personSocialProfiles = [
-  `https://twitter.com/${twitterHandle}`,
-  "https://github.com/invernizzi",
-  "https://linkedin.com/in/lucainvernizzi",
-  "https://scholar.google.com/citations?user=4CEVnEMAAAAJ",
-];
-const currentPageUrl = `${siteUrl}${useRoute().fullPath}`;
-
-const getPageName = () => {
-  const routeName = String(useRoute().name);
-  return routeName === "index"
-    ? null
-    : routeName.charAt(0).toUpperCase() + routeName.slice(1);
-};
-const pageTitle = [siteName, getPageName()].filter((t) => !!t).join(": ");
-const pageDescription = [siteDescription, getPageName()]
-  .filter((t) => !!t)
-  .join(". Page: ");
+const ogStore = useOpenGraphStore();
+const route = useRoute();
 
 // --- Schema.org Structured Data ---
 // These are defaults; specific pages might add or override (e.g., define Article)
+const schemaPerson = definePerson({
+  name: ogStore.personName,
+  givenName: ogStore.personGivenName,
+  familyName: ogStore.personFamilyName,
+  image: ogStore.personImageUrlAbsolute,
+  description: ogStore.personDescription,
+  jobTitle: ogStore.personJobTitle,
+  email: ogStore.personEmail,
+  url: ogStore.siteUrl,
+  sameAs: ogStore.personSocialProfiles,
+  worksFor: {
+    "@type": "Organization",
+    name: ogStore.employerName,
+    url: ogStore.employerUrl,
+  },
+});
 useSchemaOrg([
   defineWebPage({
-    "@id": currentPageUrl,
-    name: pageTitle,
-    description: pageDescription,
+    "@id": ogStore.currentPageUrl,
+    name: ogStore.pageTitle,
+    description: ogStore.pageDescription,
   }),
   defineWebSite({
-    name: siteName,
-    description: siteDescription,
-    url: siteUrl,
+    name: ogStore.siteName,
+    description: ogStore.siteDescription,
+    url: ogStore.siteUrl,
   }),
-  definePerson({
-    name: personName,
-    givenName: personGivenName,
-    familyName: personFamilyName,
-    image: personImageUrlAbsolute,
-    description: personDescription,
-    jobTitle: personJobTitle,
-    email: personEmail,
-    url: siteUrl,
-    sameAs: personSocialProfiles,
-    worksFor: {
-      "@type": "Organization",
-      name: employerName,
-      url: employerUrl,
-    },
+  schemaPerson,
+  defineBreadcrumb({
+    itemListElement: [
+      { name: "Home", item: "/" },
+      { name: "Projects", item: "/projects" },
+      { name: "Publications", item: "/publications" },
+      { name: "Service", item: "/service" },
+      { name: "CV", item: "/cv" },
+    ],
   }),
+  // Add ProfilePage schema only for the homepage
+  ...(route.path === "/"
+    ? [
+        {
+          "@type": "ProfilePage",
+          "@id": ogStore.siteUrl,
+          mainEntity: schemaPerson,
+        },
+      ]
+    : []),
 ]);
 
 // --- SEO Meta Tags (including Open Graph & Twitter Cards) ---
 useSeoMeta({
-  title: pageTitle,
-  description: pageDescription,
+  title: ogStore.pageTitle,
+  description: ogStore.pageDescription,
 
   // -- Open Graph (og:*) --
-  ogTitle: pageTitle,
-  ogDescription: pageDescription,
-  ogUrl: currentPageUrl,
+  ogTitle: ogStore.pageTitle,
+  ogDescription: ogStore.pageDescription,
+  ogUrl: ogStore.currentPageUrl,
   ogType: "website", // Default type, override with 'article' etc. on specific pages
   ogLocale: "en_US",
-  ogSiteName: siteName,
-  ogImage: personImageUrlAbsolute,
+  ogSiteName: ogStore.siteName,
+  ogImage: ogStore.personImageUrlAbsolute,
 
   // -- Twitter Card (twitter:*) --
   twitterCard: "summary_large_image",
-  twitterSite: `@${twitterHandle}`,
-  twitterCreator: `@${twitterHandle}`,
-  twitterTitle: pageTitle,
-  twitterDescription: pageDescription,
-  twitterImage: personImageUrlAbsolute,
+  twitterSite: `@${ogStore.twitterHandle}`,
+  twitterCreator: `@${ogStore.twitterHandle}`,
+  twitterTitle: ogStore.pageTitle,
+  twitterDescription: ogStore.pageDescription,
+  twitterImage: ogStore.personImageUrlAbsolute,
 });
 
 // --- Set Canonical Link ---
@@ -125,7 +114,7 @@ useHead({
   link: [
     {
       rel: "canonical",
-      href: currentPageUrl,
+      href: ogStore.currentPageUrl,
     },
   ],
 });
