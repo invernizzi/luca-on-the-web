@@ -27,6 +27,16 @@ export default defineNuxtConfig({
     quality: 80,
     format: ["webp"],
   },
+  icon: {
+    clientBundle: {
+      // scan all components in the project and include icons (dynamic names will not be detected)
+      scan: true,
+      // include all custom collections in the client bundle
+      includeCustomCollections: true, 
+      // guard for uncompressed bundle size, will fail the build if exceeds
+      sizeLimitKb: 256,
+    },
+  },
   nitro: {
     prerender: {
       routes: [
