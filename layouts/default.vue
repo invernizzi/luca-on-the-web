@@ -35,7 +35,8 @@ const ogStore = useOpenGraphStore();
 const route = useRoute();
 
 // --- Schema.org Structured Data ---
-// These are defaults; specific pages might add or override (e.g., define Article)
+// Test with https://search.google.com/test/rich-results
+// Test with https://validator.schema.org/
 const schemaPerson = definePerson({
   name: ogStore.personName,
   givenName: ogStore.personGivenName,
@@ -69,7 +70,7 @@ useSchemaOrg([
       { name: "Home", item: "/" },
       { name: "Projects", item: "/projects" },
       { name: "Publications", item: "/publications" },
-      { name: "Service", item: "/service" },
+      { name: "Service", item: "/committees" },
       { name: "CV", item: "/cv" },
     ],
   }),
