@@ -96,6 +96,9 @@ export default defineNuxtConfig({
       mode: "out-in",
     },
   },
+   ui: {
+    colorMode: false
+  },
   vite: {
     build: {
       sourcemap: false, // Disable source map generation
