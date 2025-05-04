@@ -1,8 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: "2024-11-01",
+  compatibilityDate: "2025-04-24",
   devtools: { enabled: true },
-  ssr: false,
+  ssr: true,
 
   modules: [
     "@nuxt/eslint",
@@ -14,8 +14,8 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@nuxtjs/sitemap",
     "@nuxtjs/robots",
-    'nuxt-link-checker',
-   // "nuxt-purgecss",
+    "nuxt-link-checker",
+    "nitro-cloudflare-dev",
   ],
   // For the sitemap module.
   site: {
@@ -32,38 +32,54 @@ export default defineNuxtConfig({
       // scan all components in the project and include icons (dynamic names will not be detected)
       scan: true,
       // include all custom collections in the client bundle
-      includeCustomCollections: true, 
+      includeCustomCollections: true,
       // guard for uncompressed bundle size, will fail the build if exceeds
       sizeLimitKb: 256,
     },
   },
+  ui: {
+    colorMode: false,
+  },
   nitro: {
     prerender: {
+      crawlLinks: true,
       routes: [
-        // images.
-        "/_ipx/f_webp&q_80&s_2560x2560/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_768x768/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_1024x1024/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_320x320/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_1280x1280/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_2048x2048/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_640x640/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_320x320/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_768x768/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_640x640/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_2560x2560/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_1536x1536/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_1536x1536/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_3072x3072/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_2048x2048/images/face.jpg",
-        "/_ipx/f_jpeg&q_80&s_3072x3072/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_1280x1280/images/face.jpg",
-        "/_ipx/f_webp&q_80&s_1024x1024/images/face.jpg",
+        "/",
+        "/cv",
+        "/projects",
+        "/publications",
+        "/committees",
+        // // images.
+        // "/_ipx/f_webp&q_80&s_2560x2560/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_768x768/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_1024x1024/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_320x320/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_1280x1280/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_2048x2048/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_640x640/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_320x320/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_768x768/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_640x640/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_2560x2560/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_1536x1536/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_1536x1536/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_3072x3072/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_2048x2048/images/face.jpg",
+        // "/_ipx/f_jpeg&q_80&s_3072x3072/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_1280x1280/images/face.jpg",
+        // "/_ipx/f_webp&q_80&s_1024x1024/images/face.jpg",
       ],
+    },
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
     },
   },
   linkChecker: {
     failOnError: true,
+  },
+  typescript: {
+    typeCheck: true,
   },
   fonts: {
     families: [
@@ -87,24 +103,28 @@ export default defineNuxtConfig({
         { name: "viewport", content: "width=device-width, initial-scale=1" },
         { name: "robots", content: "index,follow" },
       ],
-      link: [
-        { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
-      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
     },
     pageTransition: {
       name: "page",
       mode: "out-in",
     },
   },
-   ui: {
-    colorMode: false
+  sourcemap: {
+    server: false, // Disable source maps for server-side code
+    client: false, // Disable source maps for client-side code
   },
   vite: {
     build: {
       sourcemap: false, // Disable source map generation
+      minify: "terser", // Use Terser for minification
       terserOptions: {
         format: {
           comments: false, // Strip comments from generated JavaScript
+        },
+        compress: {
+          drop_console: true, // Remove console statements
+          drop_debugger: true, // Remove debugger statements
         },
       },
       rollupOptions: {
@@ -121,5 +141,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  }
+  },
 });

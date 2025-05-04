@@ -4,7 +4,7 @@
     <LazyGameOfLife hydrate-on-idle />
     <!-- Foreground content with higher z-index -->
     <div class="relative z-20">
-      <LazyNavbar hydrate-on-idle />
+      <LazyNavBar hydrate-on-idle />
       <PageTransition>
         <SwipeHandler>
           <main class="relative">

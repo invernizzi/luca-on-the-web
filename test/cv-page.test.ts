@@ -1,5 +1,4 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { mount } from '@vue/test-utils';
 import { setActivePinia, createPinia } from 'pinia';
 import { useCVStore } from '../stores/cv';
 
@@ -57,7 +56,7 @@ describe('CV Data Validation', () => {
     let allLinks = 0;
     
     // Check professional experience links
-    cvStore.professionalExperience.forEach((item: { links: any[]; }) => {
+    cvStore.professionalExperience.forEach((item) => {
       if (item.links && item.links.length > 0) {
         allLinks += item.links.length;
         item.links.forEach(link => {
@@ -72,14 +71,14 @@ describe('CV Data Validation', () => {
     });
     
     // Check education links
-    cvStore.education.forEach((item: { links: any[]; }) => {
+    cvStore.education.forEach((item: TimelineItem) => {
       if (item.links && item.links.length > 0) {
         allLinks += item.links.length;
         item.links.forEach(link => {
           expect(link.name).toBeDefined();
           expect(link.type).toBeDefined();
           expect(link.url).toBeDefined();
-        });
+        }); 
       }
     });
     
@@ -91,7 +90,7 @@ describe('CV Data Validation', () => {
     const cvStore = useCVStore();
     let gpaFound = false;
     
-    cvStore.education.forEach((item: { gpa: { trim: () => { (): any; new(): any; length: any; }; }; }) => {
+    cvStore.education.forEach((item: TimelineItem) => {
       if (item.gpa) {
         gpaFound = true;
         // GPA should be a string

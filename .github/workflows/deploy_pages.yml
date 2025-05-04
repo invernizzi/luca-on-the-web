@@ -6,10 +6,27 @@ on:
       - master
       - main
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
+    timeout-minutes: 60
     permissions:
       contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: pnpm install
+      - run: pnpm run test
+      - run: pnpm run lint
+      - run: pnpm run typecheck
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    needs: test
     steps:
       - uses: actions/checkout@v4
       - run: corepack enable
@@ -19,7 +36,7 @@ jobs:
       # Pick your own package manager and build script
       - run: pnpm install
       
-      - run: pnpm build --preset github_pages
+      - run: pnpm build:github 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

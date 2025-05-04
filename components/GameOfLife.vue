@@ -1,6 +1,6 @@
 <template>
   <div class="fixed inset-0 -z-10 overflow-hidden">
-    <canvas ref="canvas" class="w-full h-full"></canvas>
+    <canvas ref="canvas" class="w-full h-full"/>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ const cellSize = 8
 let width = 0
 let height = 0
 let scanLineY = 0
-let scanLineSpeed = 2
+const scanLineSpeed = 2
 let gliderInterval: number | null = null
 
 // Define patterns outside functions so they're available everywhere

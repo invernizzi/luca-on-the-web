@@ -16,21 +16,22 @@
     <!-- Timeline Container -->
     <div class="relative">
       <!-- Vertical line -->
-      <div class="timeline-line"></div>
+      <div class="timeline-line"/>
       
       <!-- Energy pulses -->
       <div class="pulse-container">
-        <div class="energy-pulse pulse-1"></div>
-        <div class="energy-pulse pulse-2"></div>
-        <div class="energy-pulse pulse-3"></div>
+        <div class="energy-pulse pulse-1"/>
+        <div class="energy-pulse pulse-2"/>
+        <div class="energy-pulse pulse-3"/>
       </div>
 
       <!-- Work Experience Section -->
-      <CardComponent title="Professional Experience" class="mb-8 z-10 relative" :interactive="false">
+      <LazyCardComponent title="Professional Experience" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.professionalExperience" :key="index" class="relative timeline-item">
-            <div class="timeline-dot"></div>
-            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
+            <div class="timeline-dot"/>
+            <CardComponent
+class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
             :title="item.title" title-size="small">
               <div class="flex-block items-center mb-2 text-sm">
                 <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
@@ -40,7 +41,8 @@
               
               <!-- Links as Pills -->
               <div v-if="item.links && item.links.length > 0" class="flex flex-wrap gap-2 mb-4">
-                <a v-for="link in item.links" :key="link.name"
+                <a
+v-for="link in item.links" :key="link.name"
                   :href="link.url"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -82,14 +84,15 @@
             </CardComponent>
           </div>
         </div>
-      </CardComponent>
+      </LazyCardComponent>
 
       <!-- Education Section -->
-      <CardComponent title="Education" class="mb-8 z-10 relative" :interactive="false">
+      <LazyCardComponent title="Education" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.education" :key="index" class="relative timeline-item">
-            <div class="timeline-dot"></div>
-            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
+            <div class="timeline-dot"/>
+            <CardComponent
+class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
             
             :title="item.title" title-size="small">
               <div class="flex-block items-center mb-2 text-sm">
@@ -102,7 +105,8 @@
               
               <!-- Links as Pills -->
               <div v-if="item.links && item.links.length > 0" class="flex flex-wrap gap-2 mb-4">
-                <a v-for="link in item.links" :key="link.name"
+                <a
+v-for="link in item.links" :key="link.name"
                   :href="link.url"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -144,14 +148,14 @@
             </CardComponent>
           </div>
         </div>
-      </CardComponent>
+      </LazyCardComponent>
 
       <!-- Open Source Section -->
-      <CardComponent title="Open Source Contributions" class="mb-8 z-10 relative" :interactive="false">
+      <LazyCardComponent title="Open Source Contributions" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-6">
           <div v-for="(item, index) in cvStore.openSourceContributions" :key="index" class="relative">
             <div class="border-b border-surface-light/30 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
-              <h3 class="text-xl font-display font-semibold text-text-primary mb-2">{{ item.title }}</h3>
+              <h2 class="text-xl font-display font-semibold text-text-primary mb-2">{{ item.title }}</h2>
               <div class="flex-block items-center mb-2 text-sm">
                 <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
@@ -160,7 +164,8 @@
               
               <!-- Links as Pills -->
               <div v-if="item.links && item.links.length > 0" class="flex flex-wrap gap-2 mb-4">
-                <a v-for="link in item.links" :key="link.name"
+                <a
+v-for="link in item.links" :key="link.name"
                   :href="link.url"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -197,14 +202,15 @@
             </div>
           </div>
         </div>
-      </CardComponent>
+      </LazyCardComponent>
 
       <!-- Competitions Section -->
-      <CardComponent title="Competitions" class="mb-8 z-10 relative" :interactive="false">
+      <LazyCardComponent title="Competitions" class="mb-8 z-10 relative" :interactive="false">
         <div class="space-y-10">
           <div v-for="(item, index) in cvStore.competitions" :key="index" class="relative timeline-item">
-            <div class="timeline-dot"></div>
-            <CardComponent class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
+            <div class="timeline-dot"/>
+            <CardComponent
+class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
             :title="item.title" title-size="small">
               <div class="flex items-center text-sm mb-2 text-sm">
                 <span class="bg-yellow-500/10  text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
@@ -214,7 +220,8 @@
               
               <!-- Links as Pills -->
               <div v-if="item.links && item.links.length > 0" class="flex flex-wrap gap-2 mb-4">
-                <a v-for="link in item.links" :key="link.name"
+                <a
+v-for="link in item.links" :key="link.name"
                   :href="link.url"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -251,7 +258,7 @@
             </CardComponent>
           </div>
         </div>
-      </CardComponent>
+      </LazyCardComponent>
     </div>
   </div>
 </template>

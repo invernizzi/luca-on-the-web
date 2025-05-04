@@ -1,7 +1,7 @@
 <template>
   <div
     ref="swipeEl"
-    class="swipe-container"
+    class="touch-pan-y overflow-x-hidden w-full"
     @touchstart="handleTouchStart"
     @touchmove="handleTouchMove"
     @touchend="handleTouchEnd"
@@ -94,7 +94,7 @@ const handleTouchStart = (e: TouchEvent) => {
   swipingInProgress.value = true
 }
 
-const handleTouchMove = (e: TouchEvent) => {
+const handleTouchMove = (_e: TouchEvent) => {
   if (!swipingInProgress.value || props.disabled) return
   
   // Optional: add visual feedback during swipe
@@ -135,11 +135,3 @@ onBeforeUnmount(() => {
 })
 </script>
 
-<style scoped>
-.swipe-container {
-  width: 100%;
-  position: relative;
-  touch-action: pan-y; /* Allow vertical scrolling but capture horizontal swipes */
-  overflow-x: hidden;
-}
-</style> 

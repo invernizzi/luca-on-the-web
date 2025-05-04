@@ -1,7 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { setActivePinia, createPinia } from 'pinia';
 import { useCVStore } from '../stores/cv';
-import type { LinkItem } from '../stores/cv';
 
 // Function to validate URL format
 function isValidUrl(url: string): boolean {
@@ -16,6 +15,7 @@ function isValidUrl(url: string): boolean {
     new URL(url);
     return true;
   } catch (e) {
+    console.error('Invalid URL:', url, e);
     return false;
   }
 }

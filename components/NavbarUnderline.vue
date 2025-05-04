@@ -3,7 +3,7 @@
     ref="underlineEl"
     class="sliding-underline absolute h-1 bg-primary rounded-full transition-all duration-300 ease-out"
     :style="underlinePosition"
-  ></div>
+  />
 </template>
 
 <script setup lang="ts">

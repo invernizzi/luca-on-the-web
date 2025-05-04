@@ -40,7 +40,7 @@
       </component>
       
       <div class="flex-grow">
-        <slot></slot>
+        <slot/>
       </div>
     </div>
   </div>
@@ -48,7 +48,10 @@
 
 <script setup lang="ts">
 defineProps({
-  title: String,
+  title: {
+    type: String,
+    default: ''
+  },
   interactive: {
     type: Boolean,
     default: true
@@ -65,7 +68,7 @@ defineProps({
 })
 </script>
 
-<style scoped lang="scss">
+<style scoped >
 .group:hover .hover\:shadow-glow {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 
               0 8px 10px -6px rgba(0, 0, 0, 0.1),

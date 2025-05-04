@@ -5,7 +5,6 @@
       mode="out-in"
       @before-leave="beforeLeave"
       @enter="enter"
-      @after-enter="afterEnter"
     >
       <slot />
     </transition>
@@ -13,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, onBeforeUnmount, provide } from 'vue'
+import { ref, onMounted, onBeforeUnmount, provide } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const props = defineProps({
@@ -77,20 +76,17 @@ const triggerDirectionalTransition = (direction: 'left' | 'right', path: string)
 provide('triggerDirectionalTransition', triggerDirectionalTransition)
 
 // Transition hooks
-const beforeLeave = (el: Element) => {
+const beforeLeave = (_el: Element) => {
   const newPath = route.path
   transitionName.value = determineTransitionDirection(lastPath.value, newPath)
   lastPath.value = newPath
 }
 
-const enter = (el: Element, done: () => void) => {
+const enter = (_el: Element, done: () => void) => {
   // Optional: add custom enter logic
   done()
 }
 
-const afterEnter = (el: Element) => {
-  // Optional: add cleanup after transition
-}
 
 // Initialize
 onMounted(() => {

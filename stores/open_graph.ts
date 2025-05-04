@@ -1,5 +1,4 @@
 import { defineStore } from "pinia";
-import { ref, computed } from "vue";
 
 export const useOpenGraphStore = defineStore("open_graph", () => {
   // --- State ---
@@ -20,7 +19,7 @@ export const useOpenGraphStore = defineStore("open_graph", () => {
   );
 
   const personEmail = ref("luca@lucainvernizzi.net");
-  const personImageRelativePath = ref("/images/social.jpg");
+  const personImageRelativePath = ref("/images/social.webp");
   const twitterHandle = ref("invernizzi");
   const personSocialProfiles = ref([
     "https://twitter.com/invernizzi",

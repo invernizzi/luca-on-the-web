@@ -7,7 +7,8 @@
         <CardComponent title="" :interactive="false">
           <div class="mb-6  items-center">
             For a complete list of my publications, please visit my  
-            <NuxtLink to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ" 
+            <NuxtLink
+to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ" 
                    external
                    target="_blank"
                    class=" text-[#FF9D02] items-center px-1 py-1 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
@@ -19,11 +20,13 @@
           <div class="mb-6">
             <div class="flex items-center gap-4">
               <label for="category-filter" class="text-sm text-text-secondary">Filter by category:</label>
-              <select id="category-filter" 
+              <select
+id="category-filter" 
                       v-model="selectedCategory"
                       class="px-3 py-1.5 text-sm bg-surface border border-surface-light rounded-lg text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20">
                 <option value="">All </option>
-                <option v-for="category in publicationsStore.allCategories" 
+                <option
+v-for="category in publicationsStore.allCategories" 
                         :key="category"
                         :value="category">
                   {{ category }}
@@ -36,8 +39,9 @@
             <div v-for="yearGroup in academicPublications" :key="yearGroup.year" class="space-y-4">
               <h2 class="text-2xl font-bold text-text-primary">{{ yearGroup.year }}</h2>
               <div class="grid grid-cols-1 gap-6">
-                <CardComponent v-for="pub in yearGroup.publications" :key="pub.title" 
-                    :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
+                <CardComponent
+v-for="pub in yearGroup.publications" :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')" 
+                    :key="pub.title"
                     class="scroll-mt-20 transition-all duration-500"
                     :title="pub.title"
                     title-size="small"
@@ -45,10 +49,13 @@
                     :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }"
                     :interactive="true">
                   
-                  <p class="text-sm mb-1" v-html="highlightAuthor(pub.authors)"></p>
+                  <p class="text-sm mb-1">
+                    <HighlightAuthor :authors="pub.authors || []" />
+                  </p>
                   <div class="flex items-center mb-3">
                     <p class="text-sm text-primary">{{ pub.venue }}, {{ pub.year }}</p>
-                    <span v-if="pub.citations" 
+                    <span
+v-if="pub.citations" 
                           class="ml-2 text-xs px-1.5 py-0.5 rounded-md"
                           :class="pub.citations > 200 ? 
                                  'text-yellow-400 font-medium bg-yellow-500/10 border border-yellow-500/20' : 
@@ -57,11 +64,13 @@
                     </span>
                   </div>
                   <div class="flex flex-wrap gap-2 mb-3">
-                    <span v-if="pub.award" 
+                    <span
+v-if="pub.award" 
                           class="px-3 py-1 text-xs font-bold bg-yellow-500/10 text-yellow-400 rounded-full border border-yellow-500/30">
                       🏆 {{ pub.award }}
                     </span>
-                    <span v-for="category in pub.categories" :key="category"
+                    <span
+v-for="category in pub.categories" :key="category"
                           class="px-3 py-1 text-xs font-medium bg-surface-light text-text-secondary rounded-full border border-surface-light/50 hover:bg-surface-light/80 transition-colors">
                       {{ category }}
                     </span>
@@ -80,7 +89,8 @@
           <CardComponent>
             <div class="mb-6  items-center">
             These are some of the projects I contributed to. For a better overview of my open source projects, please visit my  
-            <NuxtLink to="https://github.com/invernizzi" 
+            <NuxtLink
+to="https://github.com/invernizzi" 
                    external
                    target="_blank"
                    class="text-[#FF9D02] items-center px-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
@@ -95,8 +105,8 @@
                 <div class="grid grid-cols-1 gap-6">
                   <CardComponent 
                     v-for="pub in yearGroup.publications" 
-                    :key="pub.title" 
-                    :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
+                    :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')" 
+                    :key="pub.title"
                     class="scroll-mt-20 transition-all duration-500"
                     :title="pub.title"
                     title-size="small"
@@ -104,9 +114,12 @@
                     :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }"
                     :interactive="true"
                   >
-                    <p class="text-sm " v-html="highlightAuthor(pub.authors)"></p>
+                    <p class="text-sm ">
+                      <HighlightAuthor :authors="pub.authors || []" />
+                    </p>
                     <div class="flex items-center ">
-                      <span v-if="pub.citations" 
+                      <span
+v-if="pub.citations" 
                             class="ml-2 text-xs px-1.5 py-0.5 rounded-md"
                             :class="pub.citations > 200 ? 
                                    'text-yellow-400 font-medium bg-yellow-500/10 border border-yellow-500/20' : 
@@ -114,7 +127,8 @@
                         {{ pub.citations }} {{ pub.citations === 1 ? 'citation' : 'citations' }}
                       </span>
                     </div>
-                    <span v-if="pub.description" 
+                    <span
+v-if="pub.description" 
                             class="text-primary text-sm ">
                         {{ pub.description }}
                       </span>
@@ -122,7 +136,8 @@
              
 
                    
-                      <span v-for="category in pub.categories" :key="category"
+                      <span
+v-for="category in pub.categories" :key="category"
                             class="px-3 py-1 text-xs font-medium bg-surface-light text-text-secondary rounded-full border border-surface-light/50 hover:bg-surface-light/80 transition-colors">
                         {{ category }}
                       </span>
@@ -152,12 +167,10 @@
 
 <script setup lang="ts">
 import { usePublicationsStore } from '~/stores/publications'
-import CardComponent from '~/components/CardComponent.vue'
 import { onMounted, ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import type { PublicationCategory } from '~/stores/publications'
-import { Icon } from '#components'
-import { NuxtLink } from '#components'
+import { Icon, NuxtLink  } from '#components'
 
 const publicationsStore = usePublicationsStore()
 const route = useRoute()
@@ -234,19 +247,6 @@ const openSourcePublications = computed(() => {
     }))
 })
 
-const highlightAuthor = (authors: string[] | undefined) => {
-  if (!authors || authors.length === 0) return ''
-  
-  // Join the author array with commas for display
-  return authors.map(author => {
-    // Bold your name wherever it appears
-    if (author.includes('Luca Invernizzi')) {
-      return `<span class="font-bold text-primary">${author}</span>`
-    }
-    return author
-  }).join(', ')
-}
-
 onMounted(() => {
   const hash = route.hash.slice(1) // Remove the # from the hash
   if (hash) {
@@ -262,4 +262,4 @@ onMounted(() => {
     }
   }
 })
-</script> 
+</script>

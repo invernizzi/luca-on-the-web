@@ -4,7 +4,7 @@
   >
     <div class="container mx-auto px-4 py-4">
       <nav class="flex items-center justify-between">
-        <span></span>
+        <span/>
         <div class="flex space-x-3 sm:space-x-6 relative nav-links-container">
           <NuxtLink
             v-for="item in navItems" 
