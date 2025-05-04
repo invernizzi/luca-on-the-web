@@ -12,7 +12,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
-    "citations": 1530,
+    "citations": 1591,
     "award": null,
     "projectId": null,
     "categories": []
@@ -154,7 +154,7 @@
     "venue": "GitHub",
     "year": 2019,
     "link": "https://github.com/keras-team/kerastuner",
-    "citations": 907,
+    "citations": 917,
     "award": null,
     "projectId": null,
     "categories": []
@@ -177,7 +177,7 @@
     "venue": "USENIX Security Symposium",
     "year": 2019,
     "link": "https://www.usenix.org/conference/usenixsecurity19/presentation/thomas&lang=en",
-    "citations": 178,
+    "citations": 180,
     "award": null,
     "projectId": null,
     "categories": []
@@ -245,7 +245,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2018,
     "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
-    "citations": 311,
+    "citations": 314,
     "award": null,
     "projectId": null,
     "categories": []
@@ -308,7 +308,7 @@
     "venue": "USENIX security symposium (USENIX Security 17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
-    "citations": 2904,
+    "citations": 2908,
     "award": null,
     "projectId": null,
     "categories": []
@@ -331,7 +331,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2017,
     "link": "https://dl.acm.org/doi/abs/10.1145/3133956.3134067",
-    "citations": 343,
+    "citations": 346,
     "award": null,
     "projectId": null,
     "categories": []
@@ -368,7 +368,7 @@
     "venue": "IEEE Security and Privacy (S&P)",
     "year": 2016,
     "link": "https://ieeexplore.ieee.org/abstract/document/7546533/",
-    "citations": 123,
+    "citations": 124,
     "award": null,
     "projectId": null,
     "categories": []
@@ -386,7 +386,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2015,
     "link": "https://ieeexplore.ieee.org/abstract/document/7163069/",
-    "citations": 227,
+    "citations": 228,
     "award": null,
     "projectId": null,
     "categories": []
