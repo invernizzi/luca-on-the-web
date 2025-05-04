@@ -64,6 +64,7 @@ const $route = useRoute();
 
 <style scoped>
 .nav-links-container {
+  /* Todo: move to tailwind */
   position: relative;
 }
 
