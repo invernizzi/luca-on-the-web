@@ -169,6 +169,11 @@ export const useProjectsStore = defineStore('projects', () => {
                     name: 'SecurityWeek',
                     type: 'news',
                     url: 'https://www.securityweek.com/google-pushing-sec-gemini-ai-model-for-threat-intel-workflows/'
+                },
+                {
+                    name: 'Forbes',
+                    type: 'news',
+                    url: 'https://www.forbes.com/sites/thomasbrewster/2025/04/08/the-wiretap-plagued-by-child-predators-former-200-million-whisper-app-has-disappeared/'
                 }],
             featured: true,
             blurb: 'Research model on agentic security',
