@@ -1,0 +1,641 @@
+[
+  {
+    "title": "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context",
+    "authors": [
+      "Machel Reid",
+      "Nikolay Savinov",
+      "Denis Teplyashin",
+      "Dmitry Lepikhin",
+      "Timothy Lillicrap",
+      "et al. (606 authors)"
+    ],
+    "venue": "arXiv",
+    "year": 2024,
+    "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
+    "citations": 1602,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Magika content-type scanner",
+    "authors": [
+      "Yanick Fratantonio",
+      "Elie Bursztein",
+      "Luca Invernizzi",
+      "Marina Zhang",
+      "Giancarlo Metitieri",
+      "Thomas Kurt",
+      "Francois Galilee",
+      "Alexandre Petit-Bianco",
+      "Loua Farah",
+      "Ange Albertini"
+    ],
+    "venue": "GitHub",
+    "year": 2024,
+    "link": "https://github.com/google/magika",
+    "citations": 3,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Magika: AI-Powered Content-Type Detection",
+    "authors": [
+      "Yanick Fratantonio",
+      "Luca Invernizzi",
+      "Loua Farah",
+      "Kurt Thomas",
+      "Marina Zhang",
+      "Ange Albertini",
+      "Francois Galilee",
+      "Giancarlo Metitieri",
+      "Julien Cretin",
+      "Alex Petit-Bianco",
+      "David Tao",
+      "Elie Bursztein"
+    ],
+    "venue": "arXiv",
+    "year": 2024,
+    "link": "https://arxiv.org/abs/2409.13768",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Generalized power attacks against crypto hardware using long-range deep learning",
+    "authors": [
+      "Elie Bursztein",
+      "Luca Invernizzi",
+      "Karel Král",
+      "Daniel Moghimi",
+      "Jean-Michel Picod",
+      "Marina Zhang"
+    ],
+    "venue": "arXiv",
+    "year": 2023,
+    "link": "https://arxiv.org/abs/2306.07249",
+    "citations": 13,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Hybrid Post-Quantum Signatures in Hardware Security Keys",
+    "authors": [
+      "Diana Ghinea",
+      "Fabian Kaczmarczyck",
+      "Jennifer Pullman",
+      "Julien Cretin",
+      "Stefan Kölbl",
+      "Rafael Misoczki",
+      "Picod Jean-Michel",
+      "Luca Invernizzi",
+      "Elie Bursztein"
+    ],
+    "venue": "ACNS Workshop on Secure Cryptographic Implementation",
+    "year": 2022,
+    "link": "https://link.springer.com/chapter/10.1007/978-3-031-41181-6_26",
+    "citations": 18,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "CoinPolice: Detecting Hidden Cryptojacking Attacks with Neural Networks",
+    "authors": [
+      "Ivan Petrov",
+      "Luca Invernizzi",
+      "Elie Bursztein"
+    ],
+    "venue": "http://arxiv.org/abs/",
+    "year": 2020,
+    "link": "http://arxiv.org/abs/2006.10861",
+    "citations": 31,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Spotlight: Malware Lead Generation at Scale",
+    "authors": [
+      "Fabian Kaczmarczyck",
+      "Bernhard Grill",
+      "Luca Invernizzi",
+      "Jennifer Pullman",
+      "Cecilia M. Procopiuc",
+      "David Tao",
+      "Borbala Benko",
+      "Elie Bursztein"
+    ],
+    "venue": "Annual Computer Security Applications Conference (ACSAC)",
+    "year": 2020,
+    "link": "https://dl.acm.org/doi/abs/10.1145/3427228.3427273",
+    "citations": 8,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Keras Tuner",
+    "authors": [
+      "Tom O’Malley",
+      "Elie Bursztein",
+      "James Long",
+      "François Chollet",
+      "Haifeng Jin",
+      "Luca Invernizzi",
+      "G de Marmiesse",
+      "Y Fu",
+      "J Podivìn",
+      "F Schäfer"
+    ],
+    "venue": "GitHub",
+    "year": 2019,
+    "link": "https://github.com/keras-team/kerastuner",
+    "citations": 918,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Protecting accounts from credential stuffing with password breach alerting",
+    "authors": [
+      "Kurt Thomas",
+      "Jennifer Pullman",
+      "Kevin Yeo",
+      "Ananth Raghunathan",
+      "Patrick Gage Kelley",
+      "Luca Invernizzi",
+      "Borbala Benko",
+      "Tadek Pietraszek",
+      "Sarvar Patel",
+      "Dan Boneh",
+      "Elie Bursztein"
+    ],
+    "venue": "USENIX Security Symposium",
+    "year": 2019,
+    "link": "https://www.usenix.org/conference/usenixsecurity19/presentation/thomas&lang=en",
+    "citations": 180,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Five years of the right to be forgotten",
+    "authors": [
+      "Theo Bertram",
+      "Elie Bursztein",
+      "Stephanie Caro",
+      "Hubert Chao",
+      "Rutledge Chin Feman",
+      "Peter Fleischer",
+      "Albin Gustafsson",
+      "Jess Hemerly",
+      "Chris Hibbert",
+      "Luca Invernizzi",
+      "Lanah Kammourieh Donnelly",
+      "Jason Ketover",
+      "Jay Laefer",
+      "Paul Nicholas",
+      "Yuan Niu",
+      "Harjinder Obhi",
+      "David Price",
+      "Andrew Strait",
+      "Kurt Thomas",
+      "Al Verney"
+    ],
+    "venue": "ACM SIGSAC Conference on Computer and Communications Security",
+    "year": 2019,
+    "link": "https://dl.acm.org/doi/abs/10.1145/3319535.3354208",
+    "citations": 48,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Serverless Cybersecurity Training",
+    "authors": [
+      "Luca Invernizzi",
+      "Elie Bursztein"
+    ],
+    "venue": "TDCommons",
+    "year": 2019,
+    "link": "https://www.tdcommons.org/dpubs_series/2225/",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Tracking ransomware end-to-end",
+    "authors": [
+      "Danny Yuxing Huang",
+      "Maxwell Matthaios Aliapoulios",
+      "Vector Guo Li",
+      "Luca Invernizzi",
+      "Elie Bursztein",
+      "Kylie McRoberts",
+      "Jonathan Levin",
+      "Kirill Levchenko",
+      "Alex C Snoeren",
+      "Damon McCoy"
+    ],
+    "venue": "IEEE Symposium on Security and Privacy (S&P)",
+    "year": 2018,
+    "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
+    "citations": 315,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Three years of the Right to be Forgotten",
+    "authors": [
+      "Theo Bertram",
+      "Elie Bursztein",
+      "Stephanie Caro",
+      "Hubert Chao",
+      "Rutledge Chin Feman",
+      "Peter Fleischer",
+      "Albin Gustafsson",
+      "Jess Hemerly",
+      "Chris Hibbert",
+      "Luca Invernizzi",
+      "LK Donnelly",
+      "J Ketover",
+      "Jay Laefer",
+      "Paul Nicholas",
+      "Yuan Niu",
+      "Harjinder Obhi",
+      "David Price",
+      "Andrew Strait",
+      "Kurt Thomas",
+      "Al Verney"
+    ],
+    "venue": "ArXiv",
+    "year": 2018,
+    "link": "https://img.corrierecomunicazioni.it/wp-content/uploads/2018/02/google.pdf",
+    "citations": 24,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Understanding the mirai botnet",
+    "authors": [
+      "Manos Antonakakis",
+      "Tim April",
+      "Michael Bailey",
+      "Matt Bernhard",
+      "Elie Bursztein",
+      "Jaime Cochran",
+      "Zakir Durumeric",
+      "J Alex Halderman",
+      "Luca Invernizzi",
+      "Michalis Kallitsis",
+      "Deepak Kumar",
+      "Chaz Lever",
+      "Zane Ma",
+      "Joshua Mason",
+      "Damian Menscher",
+      "Chad Seaman",
+      "Nick Sullivan",
+      "Kurt Thomas",
+      "Yi Zhou"
+    ],
+    "venue": "USENIX security symposium (USENIX Security 17)",
+    "year": 2017,
+    "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
+    "citations": 2912,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Data Breaches, Phishing, or Malware?: Understanding the Risks of Stolen Credentials",
+    "authors": [
+      "Kurt Thomas",
+      "Frank Li",
+      "Ali Zand",
+      "Jacob Barrett",
+      "Juri Ranieri",
+      "Luca Invernizzi",
+      "Yarik Markov",
+      "Oxana Comanescu",
+      "Vijay Eranti",
+      "Angelika Moscicki",
+      "et al"
+    ],
+    "venue": "ACM SIGSAC Conference on Computer and Communications Security",
+    "year": 2017,
+    "link": "https://dl.acm.org/doi/abs/10.1145/3133956.3134067",
+    "citations": 346,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Gossip: Automatically identifying malicious domains from mailing list discussions",
+    "authors": [
+      "Cheng Huang",
+      "Shuang Hao",
+      "Luca Invernizzi",
+      "Jiayong Liu",
+      "Yong Fang",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
+    ],
+    "venue": "ACM on Asia Conference on Computer and Communications Security (AsiaCCS)",
+    "year": 2017,
+    "link": "https://dl.acm.org/doi/abs/10.1145/3052973.3053017",
+    "citations": 23,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Cloak of Visibility: Detecting When Machines Browse A Different Web",
+    "authors": [
+      "Luca Invernizzi",
+      "Kurt Thomas",
+      "Alexandros Kapravelos",
+      "Oxana Comanescu",
+      "Jean-Michel Picod",
+      "Elie Bursztein"
+    ],
+    "venue": "IEEE Security and Privacy (S&P)",
+    "year": 2016,
+    "link": "https://ieeexplore.ieee.org/abstract/document/7546533/",
+    "citations": 124,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "What the app is that? deception and countermeasures in the android user interface",
+    "authors": [
+      "Antonio Bianchi",
+      "Jacopo Corbetta",
+      "Luca Invernizzi",
+      "Yanick Fratantonio",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
+    ],
+    "venue": "IEEE Symposium on Security and Privacy (S&P)",
+    "year": 2015,
+    "link": "https://ieeexplore.ieee.org/abstract/document/7163069/",
+    "citations": 229,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Baredroid: Large-scale analysis of android apps on real devices",
+    "authors": [
+      "Simone Mutti",
+      "Yanick Fratantonio",
+      "Antonio Bianchi",
+      "Luca Invernizzi",
+      "Jacopo Corbetta",
+      "Dhilung Kirat",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
+    ],
+    "venue": "Annual Computer Security Applications Conference (ACSAC)",
+    "year": 2015,
+    "link": "https://dl.acm.org/doi/abs/10.1145/2818000.2818036",
+    "citations": 94,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Detecting malware infestations in large-scale networks",
+    "authors": [
+      "Luca Invernizzi",
+      "Stanislav Miskovic",
+      "Ruben Torres",
+      "Sabyasachi Saha",
+      "Christopher Kruegel",
+      "Antonio Nucci",
+      "Sung-Ju Lee",
+      "Giovanni Vigna"
+    ],
+    "venue": "US Patent",
+    "year": 2015,
+    "link": "https://patents.google.com/patent/US8959643B1/en",
+    "citations": 50,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Detecting the stealthy distribution of malicious and abusive content online",
+    "authors": [
+      "Luca Invernizzi"
+    ],
+    "venue": "Thesis",
+    "year": 2015,
+    "link": "https://search.proquest.com/openview/81ae62c8cde161dea081e9564886aa81/1?pq-origsite=gscholar&cbl=18750",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Nazca: Detecting Malware Distribution in Large-Scale Networks.",
+    "authors": [
+      "Luca Invernizzi",
+      "Stanislav Miskovic",
+      "Ruben Torres",
+      "Christopher Kruegel",
+      "Sabyasachi Saha",
+      "Giovanni Vigna",
+      "Sung-Ju Lee",
+      "Marco Mellia"
+    ],
+    "venue": "Annual Network and Distributed Systems Security (NDSS)",
+    "year": 2014,
+    "link": "https://www.cs.umd.edu/class/fall2022/cmsc614/papers/nazca.pdf",
+    "citations": 202,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Ten Years of {iCTF}: The Good, The Bad, and The Ugly",
+    "authors": [
+      "Giovanni Vigna",
+      "Kevin Borgolte",
+      "Jacopo Corbetta",
+      "Adam Doupe",
+      "Yanick Fratantonio",
+      "Luca Invernizzi",
+      "Dhilung Kirat",
+      "Yan Shoshitaishvili"
+    ],
+    "venue": "USENIX Summit on Gaming  Games  and Gamification in Security Education (3GSE 14)",
+    "year": 2014,
+    "link": "https://www.usenix.org/conference/3gse14/summit-program/presentation/vigna",
+    "citations": 88,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Do you feel lucky? A large-scale analysis of risk-rewards trade-offs in cyber security",
+    "authors": [
+      "Yan Shoshitaishvili",
+      "Luca Invernizzi",
+      "Adam Doupe",
+      "Giovanni Vigna"
+    ],
+    "venue": "Annual ACM Symposium on Applied Computing (ACSAC)",
+    "year": 2014,
+    "link": "https://dl.acm.org/doi/abs/10.1145/2554850.2554880",
+    "citations": 18,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Eyes of a human, eyes of a program: Leveraging different views of the web for analysis and detection",
+    "authors": [
+      "Jacopo Corbetta",
+      "Luca Invernizzi",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
+    ],
+    "venue": "Research in Attacks  Intrusions and Defenses (RAID)",
+    "year": 2014,
+    "link": "https://link.springer.com/chapter/10.1007/978-3-319-11379-1_7",
+    "citations": 13,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "You are what you include: large-scale evaluation of remote javascript inclusions",
+    "authors": [
+      "Nick Nikiforakis",
+      "Luca Invernizzi",
+      "Alexandros Kapravelos",
+      "Steven Van Acker",
+      "Wouter Joosen",
+      "Christopher Kruegel",
+      "Frank Piessens",
+      "Giovanni Vigna"
+    ],
+    "venue": "ACM conference on Computer and communications security",
+    "year": 2012,
+    "link": "https://dl.acm.org/doi/abs/10.1145/2382196.2382274",
+    "citations": 404,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "EVILSEED: A Guided Approach to Finding Malicious Web Pages",
+    "authors": [
+      "Luca Invernizzi",
+      "UC Santa Barbara",
+      "Stefano Benvenuti",
+      "Marco Cova",
+      "Paolo Milani Comparetti",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
+    ],
+    "venue": "IEEE Symposium on Security & Privacy (S&P)  and AT&T NYU CSAW best security paper '12 finalist",
+    "year": 2012,
+    "link": "https://ieeexplore.ieee.org/abstract/document/6234428/",
+    "citations": 271,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Message In A Bottle: Sailing Past Censorship",
+    "authors": [
+      "Luca Invernizzi",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
+    ],
+    "venue": "Annual Computer Security Applications Conference (ACSAC)  and in HotPETS12 (workshop)",
+    "year": 2012,
+    "link": "https://dl.acm.org/doi/abs/10.1145/2523649.2523654",
+    "citations": 51,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "A geometric approach to trajectory design for an autonomous underwater vehicle: Surveying the bulbous bow of a ship",
+    "authors": [
+      "Ryan N Smith",
+      "Dario Cazzaro",
+      "Luca Invernizzi",
+      "Giacomo Marani",
+      "Song K Choi",
+      "Monique Chyba"
+    ],
+    "venue": "Acta Applicandae Mathematicae",
+    "year": 2011,
+    "link": "https://link.springer.com/article/10.1007/s10440-011-9616-8",
+    "citations": 9,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Geometric control for autonomous underwater vehicles: overcoming a thruster failure",
+    "authors": [
+      "Michael Andonian",
+      "Dario Cazzaro",
+      "Luca Invernizzi",
+      "Monique Chyba",
+      "Sergio Grammatico"
+    ],
+    "venue": "IEEE Conference on Decision and Control (CDC)",
+    "year": 2010,
+    "link": "https://ieeexplore.ieee.org/abstract/document/5718157/",
+    "citations": 16,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Trajectory design for autonomous underwater vehicles for basin exploration",
+    "authors": [
+      "Monique Chyba",
+      "D Cazzaro",
+      "L Invernizzi",
+      "M Andonian"
+    ],
+    "venue": "International Conference on Computer and IT Applications in the Maritime Industries (COMPIT)",
+    "year": 2010,
+    "link": "https://math.hawaii.edu/~mchyba/documents/publications/COMPIT2010.doc",
+    "citations": 5,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Designing Practical Motions for Autonomous Underwater Vehicles: A Ship Hull Survey Mission",
+    "authors": [
+      "Ryan N Smith",
+      "M Chyba",
+      "SB Singh",
+      "SK Choi",
+      "G Marani"
+    ],
+    "venue": "IEEE Journal of Oceanic Engineering",
+    "year": 2010,
+    "link": "https://scholar.google.com/scholar?cluster=16445937835961538741&hl=en&oi=scholarr",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  }
+]
