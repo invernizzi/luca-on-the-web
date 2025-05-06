@@ -1,0 +1,22 @@
+name: Run tests, lint, and typecheck.
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - run: corepack enable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: pnpm install
+      - run: pnpm run test
+      - run: pnpm run lint
+      - run: pnpm run typecheck
