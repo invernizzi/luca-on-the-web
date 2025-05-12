@@ -45,7 +45,7 @@
     "@testing-library/vue": "^8.1.0",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.15.14",
-    "@vitejs/plugin-vue": "^5.2.3",
+    "@vitejs/plugin-vue": "^5.2.4",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.21",
     "happy-dom": "^17.4.6",
