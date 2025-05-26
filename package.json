@@ -33,7 +33,7 @@
     "@unhead/schema-org": "^2.0.8",
     "eslint": "^9.26.0",
     "glob": "^11.0.2",
-    "nuxt": "^3.17.3",
+    "nuxt": "^3.17.4",
     "nuxt-link-checker": "^4.3.0",
     "vue-router": "^4.5.1"
   },
