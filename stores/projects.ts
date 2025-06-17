@@ -92,7 +92,7 @@ export const useProjectsStore = defineStore('projects', () => {
                     name: "Google Security Blog",
                     type: 'blog',
                     url: 'https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html'
-                }
+                },
             ],
             archived: true,
             featured: false,
@@ -156,6 +156,11 @@ export const useProjectsStore = defineStore('projects', () => {
             title: 'Sec-Gemini',
             urls: [
                 {
+                    name: 'Sec-Gemini Website',
+                    type: 'website',
+                    url: 'https://secgemini.google'
+                },
+                {
                     name: 'Google Security Blog',
                     type: 'blog',
                     url: 'https://security.googleblog.com/2025/04/google-launches-sec-gemini-v1-new.html'
@@ -174,7 +179,13 @@ export const useProjectsStore = defineStore('projects', () => {
                     name: 'Forbes',
                     type: 'news',
                     url: 'https://www.forbes.com/sites/thomasbrewster/2025/04/08/the-wiretap-plagued-by-child-predators-former-200-million-whisper-app-has-disappeared/'
-                }],
+                },
+                {
+                    name: "Google Cloud Blog",
+                    type: "blog",
+                    url: "https://www.googlecloudcommunity.com/gc/Community-Blog/Fueling-AI-Innovation-in-SecOps-Products-The-SecLM-Platform-and/ba-p/913254"
+                }
+            ],
             featured: true,
             blurb: 'Research model on agentic security',
             description: 'An experimental AI model focused on advancing cybersecurity AI frontiers to help shift the balance back to the defenders. SecGemini combines advanced ML techniques with security expertise to provide real-time threat detection and analysis.',
