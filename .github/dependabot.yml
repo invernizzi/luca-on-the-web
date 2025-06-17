@@ -9,3 +9,22 @@ updates:
     directory: "/" 
     schedule:
       interval: "weekly"
+    groups:
+      framework:
+        patterns:
+          - "@nuxt/*"
+          - "@unhead/*"
+          - "vitest"
+          - "vite"
+          - "@types/node"
+          - "eslint"
+          - "rack"
+          - "tzinfo"
+          - "happydom"
+          - "redcarpet"
+          - "puma"
+          - "rake"  
+      cloud:
+        patterns:
+          - "wrangler"
+          
