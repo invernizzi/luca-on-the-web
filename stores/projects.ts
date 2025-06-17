@@ -156,7 +156,7 @@ export const useProjectsStore = defineStore('projects', () => {
             title: 'Sec-Gemini',
             urls: [
                 {
-                    name: 'Sec-Gemini Website',
+                    name: 'Website',
                     type: 'website',
                     url: 'https://secgemini.google'
                 },
