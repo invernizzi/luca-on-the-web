@@ -30,7 +30,7 @@
     "@nuxtjs/robots": "5.2.10",
     "@nuxtjs/sitemap": "^7.2.10",
     "@pinia/nuxt": "0.11.0",
-    "@unhead/schema-org": "^2.0.8",
+    "@unhead/schema-org": "^2.0.10",
     "eslint": "^9.26.0",
     "glob": "^11.0.2",
     "nuxt": "^3.17.5",

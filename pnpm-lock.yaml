@@ -36,8 +36,8 @@ importers:
         specifier: 0.11.0
         version: 0.11.0(magicast@0.3.5)(pinia@3.0.2(typescript@5.8.3)(vue@3.5.14(typescript@5.8.3)))
       '@unhead/schema-org':
-        specifier: ^2.0.8
-        version: 2.0.8(@unhead/vue@2.0.8(vue@3.5.14(typescript@5.8.3)))
+        specifier: ^2.0.10
+        version: 2.0.10(@unhead/vue@2.0.10(vue@3.5.14(typescript@5.8.3)))
       eslint:
         specifier: ^9.26.0
         version: 9.26.0(jiti@2.4.2)
@@ -2063,13 +2063,13 @@ packages:
     resolution: {integrity: sha512-qHV7pW7E85A0x6qyrFn+O+q1k1p3tQCsqIZ1KZ5ESLXY57aTvUd3/a4rdPTeXisvhXn2VQG0VSKUqs8KHF2zcA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@unhead/schema-org@2.0.8':
-    resolution: {integrity: sha512-AR2xdPggAQA+9+qWDw/jM8tMWXASVVCyHNi1vVd+q7qMRs87P6jt05dZ5z5JmutUoUE+mFfGYXisRnjv3y8jTA==}
+  '@unhead/schema-org@2.0.10':
+    resolution: {integrity: sha512-hg4hM1ntXP1Lk/ybzTjCaxGRLQDlyatR8H42nbSsOeXo3qXGVGLwSKJr0od4t7IvmXKMqzm3WOTv8h6nPZgiVw==}
     peerDependencies:
-      '@unhead/react': 2.0.8
-      '@unhead/solid-js': 2.0.8
-      '@unhead/svelte': 2.0.8
-      '@unhead/vue': 2.0.8
+      '@unhead/react': 2.0.10
+      '@unhead/solid-js': 2.0.10
+      '@unhead/svelte': 2.0.10
+      '@unhead/vue': 2.0.10
     peerDependenciesMeta:
       '@unhead/react':
         optional: true
@@ -2082,11 +2082,6 @@ packages:
 
   '@unhead/vue@2.0.10':
     resolution: {integrity: sha512-lV7E1sXX6/te8+IiUwlMysBAyJT/WM5Je47cRnpU5hsvDRziSIGfim9qMWbsTouH+paavRJz1i8gk5hRzjvkcw==}
-    peerDependencies:
-      vue: '>=3.5.13'
-
-  '@unhead/vue@2.0.8':
-    resolution: {integrity: sha512-e30+CfCl1avR+hzFtpvnBSesZ5TN2KbShStdT2Z+zs5WIBUvobQwVxSR0arX43To6KfwtCXAfi0iOOIH0kufHQ==}
     peerDependencies:
       vue: '>=3.5.13'
 
@@ -6024,9 +6019,6 @@ packages:
   unhead@2.0.10:
     resolution: {integrity: sha512-GT188rzTCeSKt55tYyQlHHKfUTtZvgubrXiwzGeXg6UjcKO3FsagaMzQp6TVDrpDY++3i7Qt0t3pnCc/ebg5yQ==}
 
-  unhead@2.0.8:
-    resolution: {integrity: sha512-63WR+y08RZE7ChiFdgNY64haAkhCtUS5/HM7xo4Q83NA63txWbEh2WGmrKbArdQmSct+XlqbFN8ZL1yWpQEHEA==}
-
   unhead@2.0.9:
     resolution: {integrity: sha512-ZLTNJ51PZPO4/3keW7FHiTMb6K+JmhhVApJA52qWNw7NMYPD8fM2eA+hUEaCA2L5bZtbRg43TT7n/lJ+/9o6pw==}
 
@@ -8979,27 +8971,27 @@ snapshots:
       '@typescript-eslint/types': 8.34.0
       eslint-visitor-keys: 4.2.1
 
-  '@unhead/schema-org@2.0.8(@unhead/vue@2.0.8(vue@3.5.14(typescript@5.8.3)))':
+  '@unhead/schema-org@2.0.10(@unhead/vue@2.0.10(vue@3.5.14(typescript@5.8.3)))':
     dependencies:
       defu: 6.1.4
       ohash: 2.0.11
       ufo: 1.6.1
-      unhead: 2.0.8
+      unhead: 2.0.10
     optionalDependencies:
-      '@unhead/vue': 2.0.8(vue@3.5.14(typescript@5.8.3))
+      '@unhead/vue': 2.0.10(vue@3.5.14(typescript@5.8.3))
+
+  '@unhead/vue@2.0.10(vue@3.5.14(typescript@5.8.3))':
+    dependencies:
+      hookable: 5.5.3
+      unhead: 2.0.10
+      vue: 3.5.14(typescript@5.8.3)
+    optional: true
 
   '@unhead/vue@2.0.10(vue@3.5.16(typescript@5.8.3))':
     dependencies:
       hookable: 5.5.3
       unhead: 2.0.10
       vue: 3.5.16(typescript@5.8.3)
-
-  '@unhead/vue@2.0.8(vue@3.5.14(typescript@5.8.3))':
-    dependencies:
-      hookable: 5.5.3
-      unhead: 2.0.8
-      vue: 3.5.14(typescript@5.8.3)
-    optional: true
 
   '@unhead/vue@2.0.9(vue@3.5.14(typescript@5.8.3))':
     dependencies:
@@ -13476,10 +13468,6 @@ snapshots:
       ufo: 1.6.1
 
   unhead@2.0.10:
-    dependencies:
-      hookable: 5.5.3
-
-  unhead@2.0.8:
     dependencies:
       hookable: 5.5.3
 
