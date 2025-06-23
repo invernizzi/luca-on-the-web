@@ -55,7 +55,7 @@
     "pinia": "^3.0.3",
     "playwright-core": "^1.53.0",
     "sass-embedded": "^1.89.2",
-    "tailwindcss": "^4.1.6",
+    "tailwindcss": "^4.1.10",
     "terser": "^5.43.0",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4",
