@@ -165,6 +165,11 @@ export const useProjectsStore = defineStore('projects', () => {
                     type: 'blog',
                     url: 'https://security.googleblog.com/2025/04/google-launches-sec-gemini-v1-new.html'
                 },
+                { 
+                    name: 'blog.google',
+                    type: 'blog',
+                    url: 'https://blog.google/technology/safety-security/cybersecurity-updates-summer-2025/'
+                },
                 {
                     name: 'TechRepublic',
                     type: 'news',
