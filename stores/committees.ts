@@ -97,7 +97,7 @@ export const useCommitteesStore = defineStore("committees", () => {
       if (!acc[participation.year]) {
         acc[participation.year] = [];
       }
-      acc[participation.year].push(participation);
+    (acc[participation.year] || []).push(participation);
       return acc;
     }, {} as Record<number, CommitteeParticipation[]>);
 

@@ -191,7 +191,7 @@ export const usePublicationsStore = defineStore('publications', () => {
       if (!acc[pub.year]) {
         acc[pub.year] = []
       }
-      acc[pub.year].push(pub)
+      (acc[pub.year] || []).push(pub)
       return acc
     }, {} as Record<number, Publication[]>)
 

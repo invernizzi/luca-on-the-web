@@ -88,9 +88,9 @@ const navigateTo = (direction: 'next' | 'prev', swipeDirection: 'left' | 'right'
 // Touch event handlers
 const handleTouchStart = (e: TouchEvent) => {
   if (props.disabled) return
-  
-  touchStartX.value = e.touches[0].clientX
-  touchStartY.value = e.touches[0].clientY
+  if (!e.touches || e.touches.length === 0) return
+  touchStartX.value = e.touches[0]?.clientX || 0
+  touchStartY.value = e.touches[0]?.clientY || 0
   swipingInProgress.value = true
 }
 
@@ -102,9 +102,9 @@ const handleTouchMove = (_e: TouchEvent) => {
 
 const handleTouchEnd = (e: TouchEvent) => {
   if (!swipingInProgress.value || props.disabled) return
-  
-  const touchEndX = e.changedTouches[0].clientX
-  const touchEndY = e.changedTouches[0].clientY
+    if (!e.changedTouches || e.changedTouches.length === 0) return
+  const touchEndX = e.changedTouches[0]?.clientX || 0
+  const touchEndY = e.changedTouches[0]?.clientY  || 0
   
   // Calculate distances
   const deltaX = touchEndX - touchStartX.value
