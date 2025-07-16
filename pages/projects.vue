@@ -273,7 +273,8 @@
 
 <script setup lang="ts">
 import { useProjectsStore } from "~/stores/projects";
-import { usePublicationsStore, type Publication } from "~/stores/publications";
+import { usePublicationsStore } from "~/stores/publications";
+import type { Publication } from "~/stores/publications";
 import CardComponent from "~/components/CardComponent.vue";
 import { useRouter, useRoute } from "vue-router";
 import { onMounted, ref, computed } from "vue";
