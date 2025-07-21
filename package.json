@@ -22,7 +22,7 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "@nuxt/eslint": "1.5.2",
+    "@nuxt/eslint": "1.6.0",
     "@nuxt/fonts": "0.11.4",
     "@nuxt/icon": "1.15.0",
     "@nuxt/image": "1.10.0",
@@ -44,7 +44,7 @@
     "@nuxt/types": "^2.18.1",
     "@testing-library/vue": "^8.1.0",
     "@types/jsdom": "^21.1.7",
-    "@types/node": "^24.0.13",
+    "@types/node": "^24.0.15",
     "@vitejs/plugin-vue": "^5.2.4",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.21",
