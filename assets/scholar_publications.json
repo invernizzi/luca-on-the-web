@@ -12,7 +12,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
-    "citations": 2190,
+    "citations": 2390,
     "award": null,
     "projectId": null,
     "categories": []
@@ -36,7 +36,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://arxiv.org/abs/2409.13768",
-    "citations": 3,
+    "citations": 4,
     "award": null,
     "projectId": null,
     "categories": []
@@ -54,7 +54,7 @@
     "venue": "arXiv",
     "year": 2023,
     "link": "https://arxiv.org/abs/2306.07249",
-    "citations": 15,
+    "citations": 17,
     "award": null,
     "projectId": null,
     "categories": []
@@ -75,7 +75,7 @@
     "venue": "ACNS Workshop on Secure Cryptographic Implementation",
     "year": 2022,
     "link": "https://link.springer.com/chapter/10.1007/978-3-031-41181-6_26",
-    "citations": 19,
+    "citations": 22,
     "award": null,
     "projectId": null,
     "categories": []
@@ -132,7 +132,7 @@
     "venue": "GitHub",
     "year": 2019,
     "link": "https://github.com/keras-team/kerastuner",
-    "citations": 969,
+    "citations": 988,
     "award": null,
     "projectId": null,
     "categories": []
@@ -155,7 +155,7 @@
     "venue": "USENIX Security Symposium",
     "year": 2019,
     "link": "https://www.usenix.org/system/files/sec19-thomas.pdf",
-    "citations": 187,
+    "citations": 190,
     "award": null,
     "projectId": null,
     "categories": []
@@ -187,7 +187,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2019,
     "link": "https://dl.acm.org/doi/abs/10.1145/3319535.3354208",
-    "citations": 53,
+    "citations": 55,
     "award": null,
     "projectId": null,
     "categories": []
@@ -223,7 +223,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2018,
     "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
-    "citations": 316,
+    "citations": 318,
     "award": null,
     "projectId": null,
     "categories": []
@@ -286,7 +286,7 @@
     "venue": "USENIX security symposium (USENIX Security 17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
-    "citations": 2980,
+    "citations": 3016,
     "award": null,
     "projectId": null,
     "categories": []
@@ -309,7 +309,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2017,
     "link": "https://dl.acm.org/doi/abs/10.1145/3133956.3134067",
-    "citations": 355,
+    "citations": 359,
     "award": null,
     "projectId": null,
     "categories": []
@@ -346,7 +346,7 @@
     "venue": "IEEE Security and Privacy (S&P)",
     "year": 2016,
     "link": "https://ieeexplore.ieee.org/abstract/document/7546533/",
-    "citations": 124,
+    "citations": 126,
     "award": null,
     "projectId": null,
     "categories": []
@@ -364,7 +364,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2015,
     "link": "https://ieeexplore.ieee.org/abstract/document/7163069/",
-    "citations": 229,
+    "citations": 231,
     "award": null,
     "projectId": null,
     "categories": []
@@ -404,7 +404,7 @@
     "venue": "US Patent",
     "year": 2015,
     "link": "https://patents.google.com/patent/US8959643B1/en",
-    "citations": 51,
+    "citations": 52,
     "award": null,
     "projectId": null,
     "categories": []
@@ -437,7 +437,7 @@
     "venue": "Annual Network and Distributed Systems Security (NDSS)",
     "year": 2014,
     "link": "https://www.cs.umd.edu/class/fall2022/cmsc614/papers/nazca.pdf",
-    "citations": 199,
+    "citations": 202,
     "award": null,
     "projectId": null,
     "categories": []
@@ -524,7 +524,7 @@
     "venue": "ACM conference on Computer and communications security",
     "year": 2012,
     "link": "https://dl.acm.org/doi/abs/10.1145/2382196.2382274",
-    "citations": 409,
+    "citations": 410,
     "award": null,
     "projectId": null,
     "categories": []
@@ -543,7 +543,7 @@
     "venue": "IEEE Symposium on Security & Privacy (S&P)  and AT&T NYU CSAW best security paper '12 finalist",
     "year": 2012,
     "link": "https://ieeexplore.ieee.org/abstract/document/6234428/",
-    "citations": 262,
+    "citations": 264,
     "award": null,
     "projectId": null,
     "categories": []
@@ -576,7 +576,7 @@
     "venue": "Acta Applicandae Mathematicae",
     "year": 2011,
     "link": "https://link.springer.com/article/10.1007/s10440-011-9616-8",
-    "citations": 9,
+    "citations": 10,
     "award": null,
     "projectId": null,
     "categories": []
