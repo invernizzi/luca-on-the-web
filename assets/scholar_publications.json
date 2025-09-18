@@ -12,7 +12,28 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
-    "citations": 2461,
+    "citations": 2524,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Give and take: An end-to-end investigation of giveaway scam conversion rates",
+    "authors": [
+      "Enze Liu",
+      "George Kappos",
+      "Eric Mugnier",
+      "Luca Invernizzi",
+      "Stefan Savage",
+      "David Tao",
+      "Kurt Thomas",
+      "Geoffrey M Voelker",
+      "Sarah Meiklejohn"
+    ],
+    "venue": "ACM Internet Measurement Conference (IMC)",
+    "year": 2024,
+    "link": "https://dl.acm.org/doi/abs/10.1145/3646547.3689005",
+    "citations": 7,
     "award": null,
     "projectId": null,
     "categories": []
@@ -36,7 +57,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://arxiv.org/abs/2409.13768",
-    "citations": 4,
+    "citations": 5,
     "award": null,
     "projectId": null,
     "categories": []
@@ -54,7 +75,7 @@
     "venue": "arXiv",
     "year": 2023,
     "link": "https://arxiv.org/abs/2306.07249",
-    "citations": 18,
+    "citations": 20,
     "award": null,
     "projectId": null,
     "categories": []
@@ -75,7 +96,7 @@
     "venue": "ACNS Workshop on Secure Cryptographic Implementation",
     "year": 2022,
     "link": "https://link.springer.com/chapter/10.1007/978-3-031-41181-6_26",
-    "citations": 22,
+    "citations": 23,
     "award": null,
     "projectId": null,
     "categories": []
@@ -132,7 +153,7 @@
     "venue": "GitHub",
     "year": 2019,
     "link": "https://github.com/keras-team/kerastuner",
-    "citations": 996,
+    "citations": 1005,
     "award": null,
     "projectId": null,
     "categories": []
@@ -155,7 +176,7 @@
     "venue": "USENIX Security Symposium",
     "year": 2019,
     "link": "https://www.usenix.org/system/files/sec19-thomas.pdf",
-    "citations": 193,
+    "citations": 195,
     "award": null,
     "projectId": null,
     "categories": []
@@ -187,7 +208,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2019,
     "link": "https://dl.acm.org/doi/abs/10.1145/3319535.3354208",
-    "citations": 55,
+    "citations": 56,
     "award": null,
     "projectId": null,
     "categories": []
@@ -223,7 +244,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2018,
     "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
-    "citations": 318,
+    "citations": 321,
     "award": null,
     "projectId": null,
     "categories": []
@@ -286,7 +307,7 @@
     "venue": "USENIX security symposium (USENIX Security 17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
-    "citations": 3042,
+    "citations": 3068,
     "award": null,
     "projectId": null,
     "categories": []
@@ -309,7 +330,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2017,
     "link": "https://dl.acm.org/doi/abs/10.1145/3133956.3134067",
-    "citations": 360,
+    "citations": 364,
     "award": null,
     "projectId": null,
     "categories": []
@@ -346,7 +367,7 @@
     "venue": "IEEE Security and Privacy (S&P)",
     "year": 2016,
     "link": "https://ieeexplore.ieee.org/abstract/document/7546533/",
-    "citations": 127,
+    "citations": 128,
     "award": null,
     "projectId": null,
     "categories": []
@@ -384,7 +405,7 @@
     "venue": "Annual Computer Security Applications Conference (ACSAC)",
     "year": 2015,
     "link": "https://dl.acm.org/doi/abs/10.1145/2818000.2818036",
-    "citations": 96,
+    "citations": 98,
     "award": null,
     "projectId": null,
     "categories": []
@@ -404,7 +425,7 @@
     "venue": "US Patent",
     "year": 2015,
     "link": "https://patents.google.com/patent/US8959643B1/en",
-    "citations": 52,
+    "citations": 53,
     "award": null,
     "projectId": null,
     "categories": []
@@ -501,7 +522,7 @@
       "Herbert Bos",
       "Georgios Portokalidis"
     ],
-    "venue": "",
+    "venue": "Springer International Publishing",
     "year": 2014,
     "link": "https://link.springer.com/content/pdf/10.1007/978-3-319-11379-1.pdf",
     "citations": 2,
