@@ -1,5 +1,27 @@
 [
   {
+    "title": "Evaluating the robustness of a production malware detection system to transferable adversarial attacks",
+    "authors": [
+      "Milad Nasr",
+      "Yanick Fratantonio",
+      "Luca Invernizzi",
+      "Ange Albertini",
+      "Loua Farah",
+      "Alex Petit-Bianco",
+      "Andreas Terzis",
+      "Kurt Thomas",
+      "Elie Bursztein",
+      "Nicholas Carlini"
+    ],
+    "venue": "ACM SIGSAC Conference on Computer and Communications Security",
+    "year": 2025,
+    "link": "https://www.sigsac.org/ccs/CCS2025/",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
     "title": "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context",
     "authors": [
       "Machel Reid",
@@ -12,7 +34,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
-    "citations": 2524,
+    "citations": 2545,
     "award": null,
     "projectId": null,
     "categories": []
@@ -57,7 +79,23 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://arxiv.org/abs/2409.13768",
-    "citations": 5,
+    "citations": 6,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Sedpack - Scalable and efficient dataset library",
+    "authors": [
+      "Karel Král",
+      "Jean-Michel Picod",
+      "Luca Invernizzi",
+      "Elie Bursztein"
+    ],
+    "venue": "GitHub",
+    "year": 2024,
+    "link": "https://github.com/google/sedpack",
+    "citations": 0,
     "award": null,
     "projectId": null,
     "categories": []
@@ -108,7 +146,7 @@
       "Luca Invernizzi",
       "Elie Bursztein"
     ],
-    "venue": "http://arxiv.org/abs/",
+    "venue": "arXiv",
     "year": 2020,
     "link": "http://arxiv.org/abs/2006.10861",
     "citations": 33,
@@ -153,7 +191,7 @@
     "venue": "GitHub",
     "year": 2019,
     "link": "https://github.com/keras-team/kerastuner",
-    "citations": 1005,
+    "citations": 1008,
     "award": null,
     "projectId": null,
     "categories": []
@@ -208,7 +246,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2019,
     "link": "https://dl.acm.org/doi/abs/10.1145/3319535.3354208",
-    "citations": 56,
+    "citations": 57,
     "award": null,
     "projectId": null,
     "categories": []
@@ -244,7 +282,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2018,
     "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
-    "citations": 321,
+    "citations": 322,
     "award": null,
     "projectId": null,
     "categories": []
@@ -307,7 +345,7 @@
     "venue": "USENIX security symposium (USENIX Security 17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
-    "citations": 3068,
+    "citations": 3072,
     "award": null,
     "projectId": null,
     "categories": []
@@ -545,7 +583,7 @@
     "venue": "ACM conference on Computer and communications security",
     "year": 2012,
     "link": "https://dl.acm.org/doi/abs/10.1145/2382196.2382274",
-    "citations": 411,
+    "citations": 412,
     "award": null,
     "projectId": null,
     "categories": []
@@ -564,7 +602,7 @@
     "venue": "IEEE Symposium on Security & Privacy (S&P)  and AT&T NYU CSAW best security paper '12 finalist",
     "year": 2012,
     "link": "https://ieeexplore.ieee.org/abstract/document/6234428/",
-    "citations": 264,
+    "citations": 265,
     "award": null,
     "projectId": null,
     "categories": []
