@@ -4,6 +4,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: true,
 
+  routeRules: {
+    "/meet": {
+      redirect: { to: "https://calendar.app.google/Bdwk9knaB9bQ1Cge9", statusCode: 301 },
+    },
+  },
+
   modules: [
     "@nuxt/eslint",
     "@nuxt/fonts",
@@ -49,25 +55,6 @@ export default defineNuxtConfig({
         "/projects",
         "/publications",
         "/committees",
-        // // images.
-        // "/_ipx/f_webp&q_80&s_2560x2560/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_768x768/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_1024x1024/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_320x320/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_1280x1280/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_2048x2048/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_640x640/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_320x320/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_768x768/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_640x640/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_2560x2560/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_1536x1536/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_1536x1536/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_3072x3072/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_2048x2048/images/face.jpg",
-        // "/_ipx/f_jpeg&q_80&s_3072x3072/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_1280x1280/images/face.jpg",
-        // "/_ipx/f_webp&q_80&s_1024x1024/images/face.jpg",
       ],
     },
     cloudflare: {
