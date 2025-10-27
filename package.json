@@ -24,9 +24,9 @@
   "dependencies": {
     "@nuxt/eslint": "1.9.0",
     "@nuxt/fonts": "0.11.4",
-    "@nuxt/icon": "2.0.0",
+    "@nuxt/icon": "2.1.0",
     "@nuxt/image": "1.11.0",
-    "@nuxt/ui": "^4.0.1",
+    "@nuxt/ui": "^4.1.0",
     "@nuxtjs/robots": "5.5.6",
     "@nuxtjs/sitemap": "^7.4.7",
     "@pinia/nuxt": "0.11.2",
@@ -40,7 +40,7 @@
   "devDependencies": {
     "@iconify-json/mdi": "^1.2.3",
     "@iconify-json/uil": "^1.2.3",
-    "@nuxt/test-utils": "3.19.2",
+    "@nuxt/test-utils": "3.20.1",
     "@nuxt/types": "^2.18.1",
     "@testing-library/vue": "^8.1.0",
     "@types/jsdom": "^21.1.7",
@@ -58,7 +58,7 @@
     "tailwindcss": "^4.1.16",
     "terser": "^5.44.0",
     "typescript": "^5.8.3",
-    "vitest": "^3.2.4",
+    "vitest": "^4.0.4",
     "vue": "^3.5.22",
     "vue-tsc": "^3.1.1",
     "wrangler": "^4.45.0"
