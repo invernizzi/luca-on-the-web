@@ -34,7 +34,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
-    "citations": 2654,
+    "citations": 2793,
     "award": null,
     "projectId": null,
     "categories": []
@@ -79,7 +79,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://arxiv.org/abs/2409.13768",
-    "citations": 7,
+    "citations": 8,
     "award": null,
     "projectId": null,
     "categories": []
@@ -113,7 +113,7 @@
     "venue": "arXiv",
     "year": 2023,
     "link": "https://arxiv.org/abs/2306.07249",
-    "citations": 21,
+    "citations": 22,
     "award": null,
     "projectId": null,
     "categories": []
@@ -134,7 +134,7 @@
     "venue": "ACNS Workshop on Secure Cryptographic Implementation",
     "year": 2022,
     "link": "https://link.springer.com/chapter/10.1007/978-3-031-41181-6_26",
-    "citations": 25,
+    "citations": 28,
     "award": null,
     "projectId": null,
     "categories": []
@@ -149,7 +149,7 @@
     "venue": "arXiv",
     "year": 2020,
     "link": "http://arxiv.org/abs/2006.10861",
-    "citations": 33,
+    "citations": 34,
     "award": null,
     "projectId": null,
     "categories": []
@@ -169,7 +169,7 @@
     "venue": "Annual Computer Security Applications Conference (ACSAC)",
     "year": 2020,
     "link": "https://dl.acm.org/doi/abs/10.1145/3427228.3427273",
-    "citations": 8,
+    "citations": 9,
     "award": null,
     "projectId": null,
     "categories": []
@@ -191,7 +191,7 @@
     "venue": "GitHub",
     "year": 2019,
     "link": "https://github.com/keras-team/kerastuner",
-    "citations": 1023,
+    "citations": 1038,
     "award": null,
     "projectId": null,
     "categories": []
@@ -214,7 +214,7 @@
     "venue": "USENIX Security Symposium",
     "year": 2019,
     "link": "https://www.usenix.org/system/files/sec19-thomas.pdf",
-    "citations": 195,
+    "citations": 200,
     "award": null,
     "projectId": null,
     "categories": []
@@ -246,7 +246,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2019,
     "link": "https://dl.acm.org/doi/abs/10.1145/3319535.3354208",
-    "citations": 58,
+    "citations": 59,
     "award": null,
     "projectId": null,
     "categories": []
@@ -282,7 +282,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2018,
     "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
-    "citations": 325,
+    "citations": 328,
     "award": null,
     "projectId": null,
     "categories": []
@@ -345,7 +345,7 @@
     "venue": "USENIX security symposium (USENIX Security 17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
-    "citations": 3113,
+    "citations": 3134,
     "award": null,
     "projectId": null,
     "categories": []
@@ -368,7 +368,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2017,
     "link": "https://dl.acm.org/doi/abs/10.1145/3133956.3134067",
-    "citations": 370,
+    "citations": 372,
     "award": null,
     "projectId": null,
     "categories": []
@@ -405,7 +405,7 @@
     "venue": "IEEE Security and Privacy (S&P)",
     "year": 2016,
     "link": "https://ieeexplore.ieee.org/abstract/document/7546533/",
-    "citations": 132,
+    "citations": 135,
     "award": null,
     "projectId": null,
     "categories": []
@@ -423,7 +423,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2015,
     "link": "https://ieeexplore.ieee.org/abstract/document/7163069/",
-    "citations": 232,
+    "citations": 234,
     "award": null,
     "projectId": null,
     "categories": []
@@ -463,7 +463,7 @@
     "venue": "US Patent",
     "year": 2015,
     "link": "https://patents.google.com/patent/US8959643B1/en",
-    "citations": 53,
+    "citations": 51,
     "award": null,
     "projectId": null,
     "categories": []
