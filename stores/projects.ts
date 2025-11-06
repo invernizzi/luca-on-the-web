@@ -230,7 +230,11 @@ export const useProjectsStore = defineStore('projects', () => {
                     name: "Website",
                     type: 'github',
                     url: 'https://google.github.io/magika/'
-                }
+                },
+                {
+                    name: "Google Open Source Blog",
+                    type: 'blog',
+                    url: 'https://opensource.googleblog.com/2025/11/announcing-magika-10-now-faster-smarter.html'
             ],
             featured: true,
             blurb: 'ML-based file type detection system',
