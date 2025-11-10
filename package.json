@@ -48,7 +48,7 @@
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.21",
-    "happy-dom": "^20.0.8",
+    "happy-dom": "^20.0.10",
     "jsdom": "^26.1.0",
     "nitro-cloudflare-dev": "^0.2.2",
     "node-glob": "^1.2.0",
