@@ -203,20 +203,6 @@
             </li>
             <li>
               <NuxtLink
-                to="https://stackoverflow.com/users/633403/luca-invernizzi"
-                external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
-              >
-                <LazyUIcon
-                  hydrate-on-visible
-                  name="mdi:stack-overflow"
-                  class="w-4 h-4"
-                />
-                Stack Overflow
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
                 to="https://research.google/people/104783/?&type=google"
                 external
                 class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
