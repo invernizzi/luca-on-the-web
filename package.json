@@ -44,7 +44,7 @@
     "@nuxt/types": "^2.18.1",
     "@testing-library/vue": "^8.1.0",
     "@types/jsdom": "^21.1.7",
-    "@types/node": "^24.10.0",
+    "@types/node": "^25.0.9",
     "@vitejs/plugin-vue": "^6.0.1",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.4.23",
