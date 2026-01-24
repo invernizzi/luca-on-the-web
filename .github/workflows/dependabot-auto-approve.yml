@@ -18,16 +18,20 @@ jobs:
       - name: Check for merge conflicts
         id: conflict_check
         run: |
-          if [[ "${{ github.event.pull_request.mergeable }}" == "true" ]]; then
-            echo "has_conflicts=false" >> $GITHUB_OUTPUT
-          else
+          MERGEABLE="${{ github.event.pull_request.mergeable }}"
+          if [[ "$MERGEABLE" == "false" ]]; then
             echo "has_conflicts=true" >> $GITHUB_OUTPUT
+            echo "PR has merge conflicts"
+          else
+            # If mergeable is true or null (still calculating), allow approval
+            echo "has_conflicts=false" >> $GITHUB_OUTPUT
+            echo "PR is mergeable or status is being calculated"
           fi
       - name: Approve Dependabot PR if no conflicts
         if: steps.conflict_check.outputs.has_conflicts == 'false'
-        run: gh pr review --approve "$PR_URL"
+        run: gh pr review --approve "$PR_NUMBER"
         env:
-          PR_URL: ${{github.event.pull_request.html_url}}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Enable auto-merge for Dependabot PRs
         if: steps.metadata.outputs.update-type == 'version-update:semver-patch' || steps.metadata.outputs.update-type == 'version-update:semver-minor'
