@@ -14,20 +14,22 @@ updates:
         patterns:
           - "@nuxt/*"
           - "@unhead/*"
+          - "@testing-library/*"
+          - "@vitejs/*"
+          - "@types/*"
           - "vitest"
           - "vite"
-          - "@types/node"
           - "eslint"
-          - "rack"
-          - "tzinfo"
-          - "happydom"
-          - "redcarpet"
-          - "puma"
-          - "rake" 
           - "sass*"
           - "pinia*"
           - "playwright*"
+          - "typescript"
       cloud:
         patterns:
           - "wrangler"
-          
+  
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+

@@ -34,7 +34,7 @@ jobs:
           node-version: "24"
       # Pick your own package manager and build script
       - run: pnpm install
-      - run: pnpm build:cloudflare
+      - run: pnpm run build:cloudflare
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3
 
