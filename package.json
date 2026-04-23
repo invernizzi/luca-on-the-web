@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "prebuild": "pnpm wrangler types",
-    "build:github": "nuxt build --target static --ssr false --preset=github_pages",
-    "build:cloudflare": "nuxt build --ssr true --preset=cloudflare_module",
+    "build:github": "nuxt build --target static --ssr=false --preset=github_pages",
+    "build:cloudflare": "nuxt build --ssr=true --preset=cloudflare_module",
     "dev": "nuxt dev",
     "analyze-bundle": "npx nuxi analyze",
     "generate": "nuxt generate",
