@@ -35,7 +35,7 @@
 
       <div class="prose prose-invert max-w-none mb-16">
         <p class="text-text-secondary text-lg">
-          I am a Research Scientist Manager in the
+          I am a Senior Staff Research Scientist Manager in the
 
           <NuxtLink
             to="https://research.google/teams/security-privacy-and-abuse/"
