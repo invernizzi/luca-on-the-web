@@ -36,8 +36,8 @@ importers:
         specifier: 0.11.3
         version: 0.11.3(magicast@0.5.2)(pinia@3.0.4(typescript@6.0.3)(vue@3.5.33(typescript@6.0.3)))
       '@unhead/schema-org':
-        specifier: ^3.0.5
-        version: 3.0.5(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.46.2)(yaml@2.8.3))
+        specifier: ^2.1.13
+        version: 2.1.13(@unhead/vue@2.1.13(vue@3.5.33(typescript@6.0.3)))
       eslint:
         specifier: ^10.2.1
         version: 10.2.1(jiti@2.6.1)
@@ -2536,13 +2536,13 @@ packages:
     resolution: {integrity: sha512-/uejZt4dSere1bx12WLlPfv8GktzcaDtuJ7s42/HEZ5zGj9oxRaD4bj7qwSunXkf+pbAhFt2zjpHYUiT5lHf0Q==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@unhead/schema-org@3.0.5':
-    resolution: {integrity: sha512-J2OjTRG7NITlA5n6fVa92y71bzk0Qjl6BVs9jqDk/8520+6BWzg7o5ELEN3oQOy8ZchX9tE3o7SqKsnatpyQcQ==}
+  '@unhead/schema-org@2.1.13':
+    resolution: {integrity: sha512-D9458jeB20lgLRgZxiTGi/iSbqP/pPsD2klGO5P2PlHOFxvejh9RUAhsz6LILac28Z6lFZPY4hs3mpW3batUtA==}
     peerDependencies:
-      '@unhead/react': ^3.0.5
-      '@unhead/solid-js': ^3.0.5
-      '@unhead/svelte': ^3.0.5
-      '@unhead/vue': ^3.0.5
+      '@unhead/react': ^2.1.13
+      '@unhead/solid-js': ^2.1.13
+      '@unhead/svelte': ^2.1.13
+      '@unhead/vue': ^2.1.13
     peerDependenciesMeta:
       '@unhead/react':
         optional: true
@@ -5851,14 +5851,6 @@ packages:
   unhead@2.1.13:
     resolution: {integrity: sha512-jO9M1sI6b2h/1KpIu4Jeu+ptumLmUKboRRLxys5pYHFeT+lqTzfNHbYUX9bxVDhC1FBszAGuWcUVlmvIPsah8Q==}
 
-  unhead@3.0.5:
-    resolution: {integrity: sha512-CJldelG14jlsUYq4S6e4RevzcuGRnsyelZ4WrPWcbivHn4COtT7ECTbvY5TVrpUVC+VQH506LRHWyflgC6w+qA==}
-    peerDependencies:
-      vite: '>=6.4.2'
-    peerDependenciesMeta:
-      vite:
-        optional: true
-
   unicorn-magic@0.3.0:
     resolution: {integrity: sha512-+QBBXBCvifc56fsbuxZQ6Sic3wqqc3WWaqxs58gvJrcOuN83HGTCwz3oS5phzU9LthRNE9VrJCFCLUgHeeFnfA==}
     engines: {node: '>=18'}
@@ -8988,12 +8980,12 @@ snapshots:
       '@typescript-eslint/types': 8.59.0
       eslint-visitor-keys: 5.0.1
 
-  '@unhead/schema-org@3.0.5(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.46.2)(yaml@2.8.3))':
+  '@unhead/schema-org@2.1.13(@unhead/vue@2.1.13(vue@3.5.33(typescript@6.0.3)))':
     dependencies:
       ufo: 1.6.3
-      unhead: 3.0.5(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.46.2)(yaml@2.8.3))
-    transitivePeerDependencies:
-      - vite
+      unhead: 2.1.13
+    optionalDependencies:
+      '@unhead/vue': 2.1.13(vue@3.5.33(typescript@6.0.3))
 
   '@unhead/vue@2.1.13(vue@3.5.33(typescript@6.0.3))':
     dependencies:
@@ -12799,12 +12791,6 @@ snapshots:
   unhead@2.1.13:
     dependencies:
       hookable: 6.1.1
-
-  unhead@3.0.5(vite@7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.46.2)(yaml@2.8.3)):
-    dependencies:
-      hookable: 6.1.1
-    optionalDependencies:
-      vite: 7.3.2(@types/node@25.6.0)(jiti@2.6.1)(lightningcss@1.32.0)(sass-embedded@1.99.0)(sass@1.99.0)(terser@5.46.2)(yaml@2.8.3)
 
   unicorn-magic@0.3.0: {}
 

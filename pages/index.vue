@@ -35,17 +35,13 @@
 
       <div class="prose prose-invert max-w-none mb-16">
         <p class="text-text-secondary text-lg">
-          I am a Senior Staff Research Scientist Manager in the
-
+          I'm a Senior Staff Research Scientist Manager at Google's
           <NuxtLink
             to="https://research.google/teams/security-privacy-and-abuse/"
             external
             class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
             >Security Research Group</NuxtLink
-          >
-          at Google, where I focus on designing better ways to protect people
-          online, advancing cybersecurity through AI, and better hardware
-          attacks and defenses.
+          >, focused on protecting people online through advances in cybersecurity & AI and hardware security.
         </p>
         <p class="text-text-secondary text-lg mt-2">
           My research has been featured by
@@ -96,8 +92,7 @@
           >.
         </p>
         <p class="text-text-secondary text-lg mt-2">
-          I regularly give talks at academic and industry conferences and
-          participate in committees like Usenix Security. I hold a PhD in
+          I regularly speak at academic and industry conferences and serve on committees for venues such as USENIX Security. I hold a PhD in
           Computer Science from
           <NuxtLink
             to="https://www.ucsb.edu/"
