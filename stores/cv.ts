@@ -76,7 +76,7 @@ export const useCVStore = defineStore('cv', () => {
         {
           name: 'Shattered',
           type: 'website',
-          url: 'https://shattered.io/'
+          url: 'https://marc-stevens.nl/research/shattered.io/'
         }, {
           name: 'Ransomware',
           type: 'website',

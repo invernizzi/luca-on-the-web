@@ -73,7 +73,7 @@ export const useProjectsStore = defineStore('projects', () => {
                 {
                     name: "Website",
                     type: 'website',
-                    url: 'http://shattered.io/'
+                    url: 'https://marc-stevens.nl/research/shattered.io/'
                 }, {
                     name: "Ars Technica",
                     type: 'news',
