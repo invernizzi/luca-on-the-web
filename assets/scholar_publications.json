@@ -1,14 +1,49 @@
 [
   {
-    "title": "Google announces Sec-Gemini v1, a new experimental cybersecurity model",
+    "title": "ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?",
     "authors": [
-      "E Burzstein",
-      "M Tishchenko"
+      "Zhun Wang",
+      "Nico Schiller",
+      "Hongwei Li",
+      "Srijiith Sesha Narayana",
+      "Milad Nasr",
+      "Nicholas Carlini",
+      "Xiangyu Qi",
+      "Eric Wallace",
+      "Elie Bursztein",
+      "Luca Invernizzi",
+      "Kurt Thomas",
+      "Yan Shoshitaishvili",
+      "Wenbo Guo",
+      "Jingxuan He",
+      "Thorsten Holz",
+      "Dawn Song"
     ],
-    "venue": "April",
-    "year": 2025,
-    "link": "https://scholar.google.com/scholar?cluster=10170716878692842010&hl=en&oi=scholarr",
-    "citations": 2,
+    "venue": "arXiv",
+    "year": 2026,
+    "link": "https://arxiv.org/abs/2605.11086",
+    "citations": 1,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Honeyval: A Comprehensive Evaluation Framework for LLM-powered HTTP Honeypots",
+    "authors": [
+      "Mark Vero",
+      "Fabian Kaczmarczyck",
+      "Ivan Petrov",
+      "Ilia Shumailov",
+      "Jamie Hayes",
+      "Niels Heinen",
+      "Tianqi Fan",
+      "Luca Invernizzi",
+      "Martin Vechev"
+    ],
+    "venue": "arXiv",
+    "year": 2026,
+    "link": "https://arxiv.org/abs/2605.29963",
+    "citations": 0,
     "award": null,
     "projectId": null,
     "categories": []
@@ -30,7 +65,21 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2025,
     "link": "https://dl.acm.org/doi/abs/10.1145/3719027.3765118",
-    "citations": 0,
+    "citations": 2,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "Google announces Sec-Gemini v1, a new experimental cybersecurity model",
+    "authors": [
+      "E Burzstein",
+      "M Tishchenko"
+    ],
+    "venue": "April",
+    "year": 2025,
+    "link": "https://scholar.google.com/scholar?cluster=10170716878692842010&hl=en&oi=scholarr",
+    "citations": 2,
     "award": null,
     "projectId": null,
     "categories": []
@@ -48,7 +97,7 @@
     "venue": "arXiv",
     "year": 2024,
     "link": "https://storage.googleapis.com/deepmind-media/gemini/gemini_v1_5_report.pdf",
-    "citations": 3238,
+    "citations": 4222,
     "award": null,
     "projectId": null,
     "categories": []
@@ -69,10 +118,10 @@
       "David Tao",
       "Elie Bursztein"
     ],
-    "venue": "arXiv",
+    "venue": "International Conference on Software Engineering (ICSE)",
     "year": 2024,
-    "link": "https://arxiv.org/abs/2409.13768",
-    "citations": 12,
+    "link": "https://ieeexplore.ieee.org/abstract/document/11029883/",
+    "citations": 13,
     "award": null,
     "projectId": null,
     "categories": []
@@ -93,7 +142,7 @@
     "venue": "ACM Internet Measurement Conference (IMC)",
     "year": 2024,
     "link": "https://dl.acm.org/doi/abs/10.1145/3646547.3689005",
-    "citations": 11,
+    "citations": 13,
     "award": null,
     "projectId": null,
     "categories": []
@@ -127,7 +176,7 @@
     "venue": "arXiv",
     "year": 2023,
     "link": "https://arxiv.org/abs/2306.07249",
-    "citations": 25,
+    "citations": 30,
     "award": null,
     "projectId": null,
     "categories": []
@@ -148,7 +197,7 @@
     "venue": "ACNS Workshop on Secure Cryptographic Implementation",
     "year": 2022,
     "link": "https://link.springer.com/chapter/10.1007/978-3-031-41181-6_26",
-    "citations": 31,
+    "citations": 37,
     "award": null,
     "projectId": null,
     "categories": []
@@ -163,7 +212,7 @@
     "venue": "arXiv",
     "year": 2020,
     "link": "http://arxiv.org/abs/2006.10861",
-    "citations": 37,
+    "citations": 40,
     "award": null,
     "projectId": null,
     "categories": []
@@ -183,7 +232,7 @@
     "venue": "Annual Computer Security Applications Conference (ACSAC)",
     "year": 2020,
     "link": "https://dl.acm.org/doi/abs/10.1145/3427228.3427273",
-    "citations": 11,
+    "citations": 12,
     "award": null,
     "projectId": null,
     "categories": []
@@ -205,7 +254,7 @@
     "venue": "GitHub",
     "year": 2019,
     "link": "https://github.com/keras-team/kerastuner",
-    "citations": 1081,
+    "citations": 1158,
     "award": null,
     "projectId": null,
     "categories": []
@@ -228,7 +277,7 @@
     "venue": "USENIX Security Symposium",
     "year": 2019,
     "link": "https://www.usenix.org/system/files/sec19-thomas.pdf",
-    "citations": 208,
+    "citations": 218,
     "award": null,
     "projectId": null,
     "categories": []
@@ -260,7 +309,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2019,
     "link": "https://dl.acm.org/doi/abs/10.1145/3319535.3354208",
-    "citations": 60,
+    "citations": 66,
     "award": null,
     "projectId": null,
     "categories": []
@@ -296,7 +345,7 @@
     "venue": "IEEE Symposium on Security and Privacy (S&P)",
     "year": 2018,
     "link": "https://ieeexplore.ieee.org/abstract/document/8418627/",
-    "citations": 333,
+    "citations": 351,
     "award": null,
     "projectId": null,
     "categories": []
@@ -328,7 +377,7 @@
     "venue": "ArXiv",
     "year": 2018,
     "link": "https://img.corrierecomunicazioni.it/wp-content/uploads/2018/02/google.pdf",
-    "citations": 25,
+    "citations": 24,
     "award": null,
     "projectId": null,
     "categories": []
@@ -359,7 +408,7 @@
     "venue": "USENIX security symposium (USENIX Security 17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
-    "citations": 3246,
+    "citations": 3483,
     "award": null,
     "projectId": null,
     "categories": []
@@ -382,7 +431,7 @@
     "venue": "ACM SIGSAC Conference on Computer and Communications Security",
     "year": 2017,
     "link": "https://dl.acm.org/doi/abs/10.1145/3133956.3134067",
-    "citations": 384,
+    "citations": 404,
     "award": null,
     "projectId": null,
     "categories": []
@@ -419,7 +468,7 @@
     "venue": "IEEE Security and Privacy (S&P)",
     "year": 2016,
     "link": "https://ieeexplore.ieee.org/abstract/document/7546533/",
-    "citations": 137,
+    "citations": 142,
     "award": null,
     "projectId": null,
     "categories": []
@@ -457,7 +506,7 @@
     "venue": "Annual Computer Security Applications Conference (ACSAC)",
     "year": 2015,
     "link": "https://dl.acm.org/doi/abs/10.1145/2818000.2818036",
-    "citations": 99,
+    "citations": 102,
     "award": null,
     "projectId": null,
     "categories": []
@@ -477,7 +526,7 @@
     "venue": "US Patent",
     "year": 2015,
     "link": "https://patents.google.com/patent/US8959643B1/en",
-    "citations": 55,
+    "citations": 58,
     "award": null,
     "projectId": null,
     "categories": []
@@ -510,7 +559,7 @@
     "venue": "Annual Network and Distributed Systems Security (NDSS)",
     "year": 2014,
     "link": "https://www.cs.umd.edu/class/fall2022/cmsc614/papers/nazca.pdf",
-    "citations": 206,
+    "citations": 203,
     "award": null,
     "projectId": null,
     "categories": []
@@ -530,7 +579,7 @@
     "venue": "USENIX Summit on Gaming  Games  and Gamification in Security Education (3GSE 14)",
     "year": 2014,
     "link": "https://www.usenix.org/conference/3gse14/summit-program/presentation/vigna",
-    "citations": 92,
+    "citations": 91,
     "award": null,
     "projectId": null,
     "categories": []
@@ -597,7 +646,7 @@
     "venue": "ACM conference on Computer and communications security",
     "year": 2012,
     "link": "https://dl.acm.org/doi/abs/10.1145/2382196.2382274",
-    "citations": 420,
+    "citations": 427,
     "award": null,
     "projectId": null,
     "categories": []
@@ -616,7 +665,7 @@
     "venue": "IEEE Symposium on Security & Privacy (S&P)  and AT&T NYU CSAW best security paper '12 finalist",
     "year": 2012,
     "link": "https://ieeexplore.ieee.org/abstract/document/6234428/",
-    "citations": 268,
+    "citations": 262,
     "award": null,
     "projectId": null,
     "categories": []
@@ -631,7 +680,7 @@
     "venue": "Annual Computer Security Applications Conference (ACSAC)  and in HotPETS12 (workshop)",
     "year": 2012,
     "link": "https://dl.acm.org/doi/abs/10.1145/2523649.2523654",
-    "citations": 51,
+    "citations": 50,
     "award": null,
     "projectId": null,
     "categories": []
@@ -681,7 +730,7 @@
     ],
     "venue": "International Conference on Computer and IT Applications in the Maritime Industries (COMPIT)",
     "year": 2010,
-    "link": "https://math.hawaii.edu/~mchyba/documents/publications/COMPIT2010.doc",
+    "link": "http://math.hawaii.edu/~mchyba/documents/publications/COMPIT2010.doc",
     "citations": 5,
     "award": null,
     "projectId": null,
