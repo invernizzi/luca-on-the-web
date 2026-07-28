@@ -81,8 +81,12 @@ export const useCommitteesStore = defineStore("committees", () => {
     {
       conference: "USENIX Security Symposium",
       year: 2026,
-      // Not the PC url yet
       url: "https://www.usenix.org/conference/usenixsecurity26",
+    },
+    {
+      conference: "USENIX Security Symposium",
+      year: 2027,
+      url: "https://www.usenix.org/conference/usenixsecurity27",
     },
   ]);
 
