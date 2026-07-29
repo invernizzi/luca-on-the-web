@@ -36,6 +36,13 @@ export interface ContactItem {
   link?: string
 }
 
+export interface CVPublication {
+  title: string
+  authors: string
+  venue: string
+  award?: string
+}
+
 export const useCVStore = defineStore('cv', () => {
   const title = ref('Research Scientist Manager at Google')
   const professionalExperience = ref<TimelineItem[]>([
@@ -277,7 +284,7 @@ export const useCVStore = defineStore('cv', () => {
       description: 'For the Credential Alerting system that automatically detects and disables leaked service account keys.'
     }
   ])
-  const selectedPublications = ref<any[]>([ // Consider defining a specific interface for publications
+  const selectedPublications = ref<CVPublication[]>([ // Typed publications from CV
     {
       title: 'BareDroid: Large-Scale Analysis of Android Apps on Real Devices',
       authors: 'S. Mutti, Y. Fratantonio, A. Bianchi, J. Corbetta, L. Invernizzi, D. Kirat, C. Kruegel, G. Vigna',

@@ -15,7 +15,7 @@
         :key="project.title"
         class="transition-all duration-500 scroll-mt-20"
         :title="project.title"
-        :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(project.id) }"
+        :class="{ 'border-l-4 border-l-primary': isHighlighted(project.id) }"
       >
         <div class="flex flex-wrap gap-2 mb-4">
           <a
@@ -148,7 +148,7 @@
         :key="project.title"
         class="transition-all duration-500 opacity-80 hover:opacity-100 scroll-mt-20"
         :title="project.title"
-        :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(project.id) }"
+        :class="{ 'border-l-4 border-l-primary': isHighlighted(project.id) }"
       >
         <div class="flex flex-wrap gap-2 mb-4">
           <a

@@ -77,7 +77,7 @@ defineProps({
 }
 
 .group > div:hover >.text-xl.interactive, .group > div:hover > .text-2xl.interactive { 
-  color: #FF9D02; /* Change to your desired color */
+  color: var(--color-primary); /* Primary brand color */
   transition: color 0.3s ease;
 }  
 </style> 

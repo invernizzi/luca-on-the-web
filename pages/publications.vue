@@ -11,7 +11,8 @@
 to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ" 
                    external
                    target="_blank"
-                   class=" text-[#FF9D02] items-center px-1 py-1 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+                   rel="noopener noreferrer"
+                   class=" text-primary items-center px-1 py-1 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
               <Icon name="mdi:school" class="h-5 w-5 mr-2" />
               Google Scholar 
             </NuxtLink> profile.
@@ -46,7 +47,7 @@ v-for="pub in yearGroup.publications" :id="pub.title.toLowerCase().replace(/[^a-
                     :title="pub.title"
                     title-size="small"
                     :to="pub.link"
-                    :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }"
+                    :class="{ 'border-l-4 border-l-primary': isHighlighted(pub.title) }"
                     :interactive="true">
                   
                   <p class="text-sm mb-1">
@@ -93,7 +94,8 @@ v-for="category in pub.categories" :key="category"
 to="https://github.com/invernizzi" 
                    external
                    target="_blank"
-                   class="text-[#FF9D02] items-center px-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
+                   rel="noopener noreferrer"
+                   class="text-primary items-center px-2 py-2 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors">
               <Icon name="mdi:github" class="h-5 w-5 mr-2" />
               GitHub Profile
             </NuxtLink>
@@ -111,7 +113,7 @@ to="https://github.com/invernizzi"
                     :title="pub.title"
                     title-size="small"
                     :to="pub.link"
-                    :class="{ 'border-l-4 border-l-[#FF9D02]': isHighlighted(pub.title) }"
+                    :class="{ 'border-l-4 border-l-primary': isHighlighted(pub.title) }"
                     :interactive="true"
                   >
                     <p class="text-sm ">

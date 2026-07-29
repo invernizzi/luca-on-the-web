@@ -1,4 +1,7 @@
 /**
+ * Primary Wrangler configuration file.
+ * Note: wranger.toml (note the typo) is an auto-generated/legacy file from the build process.
+ * This wrangler.jsonc is the source configuration—edit this file for deployment settings.
  * For more details on how to configure Wrangler, refer to:
  * https://developers.cloudflare.com/workers/wrangler/configuration/
  */

@@ -16,7 +16,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "24"
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
       - run: pnpm run test
       - run: pnpm run lint
       - run: pnpm run typecheck
@@ -33,7 +33,7 @@ jobs:
         with:
           node-version: "24"
       # Pick your own package manager and build script
-      - run: pnpm install
+      - run: pnpm install --frozen-lockfile
       - run: pnpm run build:cloudflare
       - name: Build & Deploy Worker
         uses: cloudflare/wrangler-action@v3

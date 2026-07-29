@@ -1,7 +1,7 @@
 <template>
   <CardComponent title="Featured Projects">
     <div class="space-y-8">
-      <div v-for="project in featuredProjects" :key="project.title" class="hover:text-[#FF9D02]">
+      <div v-for="project in featuredProjects" :key="project.title" class="hover:text-primary">
         <NuxtLink
 :to="{ path: '/projects', hash: `#${project.id}`}"
           class="flex items-center justify-between mb-2 group transition-colors">

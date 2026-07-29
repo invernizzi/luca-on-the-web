@@ -19,8 +19,8 @@
               sizes="128px"
               densities="x1 x2"
               placeholder
+              class="w-full h-full object-cover"
             />
-            class="w-full h-full object-cover" />
           </div>
         </div>
         <div>
@@ -39,7 +39,7 @@
           <NuxtLink
             to="https://research.google/teams/security-privacy-and-abuse/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >Security Research Group</NuxtLink
           >, focused on protecting people online through advances in cybersecurity & AI and hardware security.
         </p>
@@ -48,25 +48,25 @@
           <NuxtLink
             to="https://www.bbc.com/news/technology-40737060"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >CNN</NuxtLink
           >,
           <NuxtLink
             to="https://www.forbes.com/sites/daveywinder/2024/02/15/new-google-security-includes-gmail-magic-protection--ai-cyber-defense-initiative/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >Forbes</NuxtLink
           >,
           <NuxtLink
             to="https://www.wired.com/story/gmail-catching-more-malicious-attachments-deep-learning/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >Wired</NuxtLink
           >,
           <NuxtLink
             to="https://www.cnet.com/tech/services-and-software/new-google-messages-safety-features-blur-nudity-warn-about-scams/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
           >
             CNET</NuxtLink
           >,
@@ -74,20 +74,20 @@
           <NuxtLink
             to="https://www.theverge.com/2017/2/23/14712118/google-sha1-collision-broken-web-encryption-shattered"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >The Verge</NuxtLink
           >, and tech news sites like
           <NuxtLink
             to="https://arstechnica.com/information-technology/2017/02/watershed-sha1-collision-just-broke-the-webkit-repository-others-may-follow/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >Ars Technica</NuxtLink
           >
           and
           <NuxtLink
             to="https://www.techrepublic.com/article/news-google-sec-gemini-v1/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >TechRepublic</NuxtLink
           >.
         </p>
@@ -97,25 +97,25 @@
           <NuxtLink
             to="https://www.ucsb.edu/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >UCSB</NuxtLink
           >, an EMBA from
           <NuxtLink
             to="https://quantic.edu/"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >Quantic School of Business</NuxtLink
           >, a Master in Robotics from the
           <NuxtLink
             to="https://www.unipi.it/index.php/english"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >University of Pisa</NuxtLink
           >, and an engineering degree from the
           <NuxtLink
             to="https://www.santannapisa.it/en"
             external
-            class="text-[#FF9D02] hover:text-[#FF9D02]/80 transition-colors"
+            class="text-primary hover:text-primary/80 transition-colors"
             >Sant'Anna School of Advanced Studies </NuxtLink
           >.
         </p>
@@ -128,9 +128,9 @@
           <ul class="space-y-2 text-text-secondary">
             <li>
               <NuxtLink
-                to="http://www.linkedin.com/in/lucainvernizzi"
+                to="https://www.linkedin.com/in/lucainvernizzi"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -144,7 +144,7 @@
               <NuxtLink
                 to="mailto:luca@lucainvernizzi.net"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -158,7 +158,7 @@
               <NuxtLink
                 to="https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -172,7 +172,7 @@
               <NuxtLink
                 to="https://twitter.com/invernizzi"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -186,7 +186,7 @@
               <NuxtLink
                 to="https://github.com/invernizzi"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -200,7 +200,7 @@
               <NuxtLink
                 to="https://research.google/people/104783/?&type=google"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-[#FF9D02]"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
               >
                 <LazyUIcon
                   hydrate-on-visible

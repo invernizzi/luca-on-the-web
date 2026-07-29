@@ -12,7 +12,7 @@
             :to="item.path"
             :aria-label="item.label"
             :title="item.label"
-            class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors hover:text-[#FF9D02]"
+            class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors hover:text-[primary]"
             :class="{ 
               'text-primary font-medium': $route.path === item.path,
               'flex items-center': item.icon
