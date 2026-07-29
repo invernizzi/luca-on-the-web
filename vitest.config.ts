@@ -1,4 +1,4 @@
-import { defineConfig } from 'vitest/config';
+import { configDefaults, defineConfig } from 'vitest/config';
 import { fileURLToPath } from 'url';
 import { resolve, dirname } from 'path';
 
@@ -10,6 +10,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './test/setup.ts',
+    exclude: [...configDefaults.exclude, 'e2e/**'],
     // Skip CV page component tests for now as they require complex Nuxt component resolution
    // exclude: ['**/cv-page.component.test.ts'],
   },

@@ -14,7 +14,13 @@ const extractExternalLinks = (htmlContent: string) => {
 
 describe('Validate NuxtLink external targets', () => {
   it('should ensure all external links are valid', async () => {
-    const vueFiles = glob.sync(resolve(__dirname, '../**/*.vue'));
+    const vueFiles = glob.sync([
+      resolve(__dirname, '../app.vue'),
+      resolve(__dirname, '../error.vue'),
+      resolve(__dirname, '../pages/**/*.vue'),
+      resolve(__dirname, '../components/**/*.vue'),
+      resolve(__dirname, '../layouts/**/*.vue'),
+    ]);
     const invalidLinks = [];
 
     for (const file of vueFiles) {
@@ -27,14 +33,12 @@ describe('Validate NuxtLink external targets', () => {
           if (!response.ok) {
             invalidLinks.push({ file, link, status: response.status });
           }
-        } catch (error: {message: string} | any) {
-         {
+        } catch (error: { message: string } | any) {
           invalidLinks.push({ file, link, error: error?.message });
         }
       }
     }
 
     expect(invalidLinks).toEqual([]);
-  }});
-  
+  });
 });

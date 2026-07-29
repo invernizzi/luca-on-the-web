@@ -6,6 +6,7 @@
 .cache
 cache
 dist
+coverage
 
 # Python ignores
 __pycache__

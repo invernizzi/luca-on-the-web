@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "prebuild": "pnpm wrangler types",
+    "build": "nuxt build",
     "build:github": "nuxt build --target static --ssr=false --preset=github_pages",
     "build:cloudflare": "nuxt build --ssr=true --preset=cloudflare_module",
     "dev": "nuxt dev",
@@ -19,7 +20,8 @@
     "upgrade": "npx nuxi@latest upgrade --dedupe && pnpm update --latest && pnpm audit fix",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage"
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@nuxt/eslint": "1.15.2",
@@ -46,6 +48,8 @@
     "@types/jsdom": "^28.0.1",
     "@types/node": "^25.6.0",
     "@vitejs/plugin-vue": "^6.0.6",
+    "@playwright/test": "^1.59.1",
+    "@vitest/coverage-v8": "4.1.10",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.5.2",
     "happy-dom": "^20.9.0",
