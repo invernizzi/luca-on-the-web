@@ -299,7 +299,7 @@ export const useProjectsStore = defineStore('projects', () => {
                 }
             ],
             blurb: 'Open-source FIDO security key implementation',
-            description: 'An open-source implementation of security keys written in Rust that supports both FIDO U2F and FIDO2 standards. OpenSK aims to make security keys more accessible and customizable.',
+            description: 'An open-source implementation of security keys written in Rust that supports both FIDO U2F and FIDO2 standards. In use in commercially-available keys, as well as the 2026-edition of the Defcon Badge!',
             tags: [ProjectTag.HARDWARE_SECURITY, ProjectTag.OPEN_SOURCE]
         },
         {
