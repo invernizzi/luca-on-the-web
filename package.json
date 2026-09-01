@@ -44,7 +44,7 @@
     "@iconify-json/uil": "^1.2.3",
     "@nuxt/test-utils": "4.0.3",
     "@nuxt/types": "^2.18.1",
-    "@playwright/test": "^1.59.1",
+    "@playwright/test": "^1.62.1",
     "@testing-library/vue": "^8.1.0",
     "@types/jsdom": "^28.0.1",
     "@types/node": "^26.1.0",
