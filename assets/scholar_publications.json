@@ -1,5 +1,25 @@
 [
   {
+    "title": "From Payload to Plugin: Web-Scale Ecosystem Attribution of JavaScript Injection Campaigns",
+    "authors": [
+      "Ravindu De Silva",
+      "Nicholas Shao",
+      "Yigitcan Kaya",
+      "Mingxuan Yao",
+      "Yanick Fratantonio",
+      "Luca Invernizzi",
+      "Christopher Kruegel",
+      "Giovanni Vigna"
+    ],
+    "venue": "ACM Conference on Computer and Communications Security (CCS)",
+    "year": 2026,
+    "link": "",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
     "title": "ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?",
     "authors": [
       "Zhun Wang",
