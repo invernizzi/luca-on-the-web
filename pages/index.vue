@@ -49,7 +49,7 @@
             to="https://www.bbc.com/news/technology-40737060"
             external
             class="text-primary hover:text-primary/80 transition-colors"
-            >CNN</NuxtLink
+            >BBC</NuxtLink
           >,
           <NuxtLink
             to="https://www.forbes.com/sites/daveywinder/2024/02/15/new-google-security-includes-gmail-magic-protection--ai-cyber-defense-initiative/"

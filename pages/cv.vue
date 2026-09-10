@@ -22,8 +22,8 @@
             <CardComponent
 class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
             :title="item.title" title-size="small">
-              <div class="flex-block items-center mb-2 text-sm">
-                <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
+              <div class="flex items-center mb-2 text-sm">
+                <span class="bg-yellow-500/10 text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
               </div>
@@ -54,8 +54,8 @@ class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
 class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
             
             :title="item.title" title-size="small">
-              <div class="flex-block items-center mb-2 text-sm">
-                <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
+              <div class="flex items-center mb-2 text-sm">
+                <span class="bg-yellow-500/10 text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
                 <span v-if="item.gpa" class="mx-2 text-text-secondary">•</span>
@@ -85,8 +85,8 @@ class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
           <div v-for="(item, index) in cvStore.openSourceContributions" :key="index" class="relative">
             <div class="border-b border-surface-light/30 pb-6 mb-6 last:border-0 last:pb-0 last:mb-0">
               <h2 class="text-xl font-display font-semibold text-text-primary mb-2">{{ item.title }}</h2>
-              <div class="flex-block items-center mb-2 text-sm">
-                <span class="bg-yellow-500/10 text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
+              <div class="flex items-center mb-2 text-sm">
+                <span class="bg-yellow-500/10 text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
               </div>
@@ -111,8 +111,8 @@ class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
             <CardComponent
 class="timeline-card border border-surface-light/30 bg-surface rounded-lg"
             :title="item.title" title-size="small">
-              <div class="flex items-center text-sm mb-2 text-sm">
-                <span class="bg-yellow-500/10  text-yellow-600 dark:text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
+              <div class="flex items-center mb-2 text-sm">
+                <span class="bg-yellow-500/10 text-yellow-400 font-medium px-2 py-0.5 rounded">{{ item.organization }}</span>
                 <span class="mx-2 text-text-secondary">•</span>
                 <span class="text-text-secondary">{{ item.period }}</span>
               </div>
@@ -229,11 +229,6 @@ const downloadResume = () => {
   top: 1.5rem;
   z-index: 2;
   box-shadow: 0 0 0 4px var(--color-surface), 0 0 0 5px rgba(255, 157, 2, 0.3);
-  position: relative;
-  z-index: 0;
-
-
-
 }
 
 /* Timeline Card */

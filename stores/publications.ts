@@ -160,7 +160,7 @@ const mergePublicationData = (): Publication[] => {
       categories: metadata.categories,
       projectId: metadata.projectId || pub.projectId,
       award: metadata.award || pub.award,
-      openSource: pub.venue && /github/i.test(pub.venue)
+      openSource: Boolean(pub.venue && /github/i.test(pub.venue))
     } as Publication;
   });
 };

@@ -86,7 +86,7 @@ v-for="category in pub.categories" :key="category"
         
         <!-- Open Source Section -->
         <div v-if="openSourcePublications.length > 0" class="mt-12">
-          <h1 class="text-4xl font-display font-bold text-text-primary mb-4">Open Source</h1>
+          <h2 class="text-3xl font-display font-bold text-text-primary mb-4">Open Source</h2>
           <CardComponent>
             <div class="mb-6  items-center">
             These are some of the projects I contributed to. For a better overview of my open source projects, please visit my  

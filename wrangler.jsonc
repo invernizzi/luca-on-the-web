@@ -9,7 +9,8 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "luca",
 	"compatibility_date": "2025-04-24",
-	//"pages_build_output_dir": "./dist",
+	"main": "./.output/server/index.mjs",
+	"assets": { "directory": "./.output/public/", "binding": "ASSETS" },
 	"observability": {
 		"enabled": true
 	}

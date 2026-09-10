@@ -4,12 +4,14 @@ import fs from 'fs';
 import { glob } from 'glob';
 import { JSDOM } from 'jsdom';
 
-// Helper function to extract all NuxtLink elements with external targets
+// Helper function to extract all NuxtLink and anchor elements with external targets
 const extractExternalLinks = (htmlContent: string) => {
   const dom = new JSDOM(htmlContent);
   const document = dom.window.document;
-  const links: NodeListOf<HTMLLinkElement> = document.querySelectorAll('a[target="_blank"]');
-  return Array.from(links).map((link) => link.href);
+  const links = document.querySelectorAll('a[target="_blank"], nuxtlink[target="_blank"]');
+  return Array.from(links)
+    .map((link) => (link.getAttribute('href') || link.getAttribute('to') || ''))
+    .filter((url) => url.startsWith('http://') || url.startsWith('https://'));
 };
 
 describe('Validate NuxtLink external targets', () => {

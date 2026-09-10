@@ -3,12 +3,11 @@
     <div 
       class="bg-surface/95 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-white/10 h-full flex flex-col transition-all duration-300"
       :class="{ 
-        'hover:shadow-xl hover:bg-surface/25 hover:border-primary/90 hover:translate-y-[-1px] hover:bg-surface-light/40 hover:shadow-glow': interactive 
+        'hover:shadow-xl hover:border-primary/90 hover:translate-y-[-1px] hover:bg-surface-light/40 hover:shadow-glow': interactive 
       }"
     >
       <!-- Dynamic title component -->
-      <component 
-        :is="titleSize" 
+      <h3 
         v-if="title"
         class="font-display font-semibold text-text-primary mb-2 transition-colors"
         :class="{ 
@@ -23,11 +22,11 @@
             :to="to" 
             external 
             target="_blank" 
-            class="hover:text-primary transition-colors  gap-1"
-          
+            rel="noopener noreferrer"
+            class="hover:text-primary transition-colors inline-flex items-center gap-1"
           >
             {{ title }}
-            <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4 opacity-70 size-3" />
+            <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4 opacity-70" />
           </NuxtLink>
         </template>
         
@@ -37,7 +36,7 @@
             {{ title }}
           </span>
         </template>
-      </component>
+      </h3>
       
       <div class="flex-grow">
         <slot/>
