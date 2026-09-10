@@ -117,6 +117,16 @@ const publicationMetadata: PublicationMetadata[] = [
     title: 'Magika: AI-Powered Content-Type Detection',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
     projectId: ProjectId.MAGIKA
+  },
+  {
+    title: 'TypeMap: Content-Type Segmentation for Mixed Text',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    projectId: ProjectId.MAGIKA
+  },
+  {
+    title: 'TRIAGE-CPG: A Cross-Model Study of Budgeted Static Malware Triage with Large Language Models',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    projectId: ProjectId.SECGEMINI
   }
 ];
 
