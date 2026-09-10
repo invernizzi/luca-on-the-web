@@ -254,7 +254,7 @@ const downloadResume = () => {
   }
   
   .timeline-card {
-    width: 45%;
+    width: calc(50% - 2.5rem);
     margin-left: 0;
   }
   
@@ -262,8 +262,6 @@ const downloadResume = () => {
   .timeline-item:nth-child(even) .timeline-card {
     margin-left: auto;
   }
-  
-
   
   /* Odd items (left side) */
   .timeline-item:nth-child(odd) .timeline-card {
@@ -278,14 +276,16 @@ const downloadResume = () => {
   .timeline-dot::before {
     content: ' ';
     position: absolute;
-    width: 40px;
-    top: calc( 50% - 1px);
+    width: calc(2.5rem + 2px);
     height: 2px;
     background-color: rgba(255, 157, 2, 0.4);
+    top: calc(50% - 1px);
+    left: 50%;
     z-index: -1;
   }
   .timeline-item:nth-child(odd) .timeline-dot::before {
-   transform: translateX(-30px);  
+    left: auto;
+    right: 50%;
   }
   
   

@@ -44,15 +44,21 @@ export interface CVPublication {
 }
 
 export const useCVStore = defineStore('cv', () => {
-  const title = ref('Research Scientist Manager at Google')
+  const title = ref('Senior Staff Research Scientist Manager at Google')
   const professionalExperience = ref<TimelineItem[]>([
     {
-      title: 'Research Scientist Manager',
+      title: 'Senior Staff Research Scientist Manager',
       organization: 'Google Switzerland',
-      period: '2020 - Present',
-      description: 'Lead research in the Security Research Group at Google, focusing on designing better ways to protect people online, advancing cybersecurity through AI, and implementing hardware attacks and defenses.',
+      period: 'March 2026 - Present',
+      description: 'Lead research in the Security Research Group at Google, focusing on AI and hardware security.'
+    },
+    {
+      title: 'Staff Research Scientist Manager',
+      organization: 'Google Switzerland',
+      period: '2020 - March 2026',
+      description: 'Led research in the Security Research Group at Google, focusing on designing better ways to protect people online, advancing cybersecurity through AI, and implementing hardware attacks and defenses.',
       highlights: [
-        'Lead a team of researchers focusing on applied AI for security',
+        'Led a team of researchers focusing on applied AI for security',
         'Contributed to SecGemini, an experimental AI model focused on cybersecurity',
         'Contributed to Magika, an AI-powered file type identification system',
         'Contributed to the implementation of Gmail spam and malware detection systems'
