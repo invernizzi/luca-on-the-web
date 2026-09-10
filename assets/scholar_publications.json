@@ -1,5 +1,38 @@
 [
   {
+    "title": "TypeMap: Content-Type Segmentation for Mixed Text",
+    "authors": [
+      "Martin Dallinger",
+      "Yanick Fratantonio",
+      "Luca Invernizzi"
+    ],
+    "venue": "ACM Workshop on Artificial Intelligence and Security (AISec)",
+    "year": 2026,
+    "link": "",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
+    "title": "TRIAGE-CPG: A Cross-Model Study of Budgeted Static Malware Triage with Large Language Models",
+    "authors": [
+      "Paul-Andrei Sava",
+      "Alexander Küchler",
+      "Daniel Kowatsch",
+      "Bernhard Grill",
+      "Yanick Fratantonio",
+      "Luca Invernizzi"
+    ],
+    "venue": "ACM Workshop on Artificial Intelligence and Security (AISec)",
+    "year": 2026,
+    "link": "",
+    "citations": 0,
+    "award": null,
+    "projectId": null,
+    "categories": []
+  },
+  {
     "title": "From Payload to Plugin: Web-Scale Ecosystem Attribution of JavaScript Injection Campaigns",
     "authors": [
       "Ravindu De Silva",
