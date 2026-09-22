@@ -52,7 +52,7 @@
     "@vitest/coverage-v8": "4.1.10",
     "@vue/test-utils": "^2.4.6",
     "autoprefixer": "^10.5.2",
-    "happy-dom": "^20.11.2",
+    "happy-dom": "^20.11.6",
     "jsdom": "^30.0.1",
     "nitro-cloudflare-dev": "^0.2.2",
     "node-glob": "^1.2.0",
