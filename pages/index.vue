@@ -28,7 +28,7 @@
             Luca Invernizzi
           </h1>
           <p class="text-text-secondary text-lg">
-            Research Scientist at Google
+            Senior Staff Research Scientist Manager at Google
           </p>
         </div>
       </div>
@@ -41,7 +41,7 @@
             external
             class="text-primary hover:text-primary/80 transition-colors"
             >Security Research Group</NuxtLink
-          >, focused on protecting people online through advances in cybersecurity & AI and hardware security.
+          >, focused on protecting people online through advances in cybersecurity, AI, and hardware security.
         </p>
         <p class="text-text-secondary text-lg mt-2">
           My research has been featured by
@@ -130,7 +130,7 @@
               <NuxtLink
                 to="https://www.linkedin.com/in/lucainvernizzi"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -144,7 +144,7 @@
               <NuxtLink
                 to="mailto:luca@lucainvernizzi.net"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -158,7 +158,7 @@
               <NuxtLink
                 to="https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -172,7 +172,7 @@
               <NuxtLink
                 to="https://twitter.com/invernizzi"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -186,7 +186,7 @@
               <NuxtLink
                 to="https://github.com/invernizzi"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors"
               >
                 <LazyUIcon
                   hydrate-on-visible
@@ -200,7 +200,7 @@
               <NuxtLink
                 to="https://research.google/people/104783/?&type=google"
                 external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors hover:text-primary"
+                class="flex items-center gap-1.5 hover:text-primary transition-colors"
               >
                 <LazyUIcon
                   hydrate-on-visible

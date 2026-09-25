@@ -27,11 +27,13 @@ const underlinePosition = reactive({
 
 // Function to update the underline position
 const updateUnderlinePosition = () => {
-  const activeLink = document.querySelector(`.nav-link[href="${$route.path}"]`);
+  const activeLink = document.querySelector(`.nav-link[href="${$route.path}"]`) as HTMLElement | null;
 
-  if (activeLink) {
+  if (activeLink && underlineEl.value) {
+    const parent = (underlineEl.value as HTMLElement).offsetParent as HTMLElement | null;
+    const parentLeft = parent ? parent.getBoundingClientRect().left : 0;
     const rect = activeLink.getBoundingClientRect();
-    underlinePosition.left = `${rect.left}px`;
+    underlinePosition.left = `${rect.left - parentLeft}px`;
     underlinePosition.width = `${rect.width}px`;
     underlinePosition.opacity = "1";
   } else {
@@ -54,6 +56,13 @@ onMounted(async () => {
 
   // Initial position update
   updateUnderlinePosition();
+
+  // Recalculate once web fonts finish loading to prevent font-metric shift
+  if (typeof document !== 'undefined' && 'fonts' in document) {
+    document.fonts.ready.then(() => {
+      updateUnderlinePosition();
+    });
+  }
 
   // Add resize listener
   window.addEventListener("resize", updateUnderlinePosition);

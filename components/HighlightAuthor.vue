@@ -18,8 +18,7 @@ defineProps({
 })
 
 const isHighlightedAuthor = (author: string): boolean => {
-  // Define the author name to highlight
-  const highlightedName = 'Luca Invernizzi'
-  return author.includes(highlightedName)
+  const normalized = author.trim().toLowerCase()
+  return normalized === 'luca invernizzi' || normalized === 'l invernizzi' || normalized === 'l. invernizzi' || normalized.includes('invernizzi')
 }
 </script>

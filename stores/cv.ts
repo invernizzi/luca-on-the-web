@@ -50,7 +50,29 @@ export const useCVStore = defineStore('cv', () => {
       title: 'Senior Staff Research Scientist Manager',
       organization: 'Google Switzerland',
       period: 'March 2026 - Present',
-      description: 'Lead research in the Security Research Group at Google, focusing on AI and hardware security.'
+      description: 'Lead research in the Security Research Group at Google, focusing on AI and hardware security.',
+      links: [
+        {
+          name: 'Magika',
+          type: 'website',
+          url: '/projects#magika'
+        },
+        {
+          name: 'SecGemini',
+          type: 'website',
+          url: '/projects#secgemini'
+        },
+        {
+          name: 'Sec-Gemini v3 Blog',
+          type: 'blog',
+          url: 'https://blog.google/intl/en-in/company-news/building-the-safety-foundations-for-indias-agentic-future/'
+        },
+        {
+          name: 'Ransomware in Drive',
+          type: 'blog',
+          url: 'https://workspace.google.com/blog/product-announcements/ai-ransomware-detection-in-google-drive'
+        }
+      ]
     },
     {
       title: 'Staff Research Scientist Manager',
@@ -233,6 +255,19 @@ export const useCVStore = defineStore('cv', () => {
   ])
   const competitions = ref<TimelineItem[]>([
     {
+      title: 'European Cyber Cup',
+      organization: 'EC2',
+      period: '2026',
+      links: [
+        {
+          name: 'Website',
+          type: 'website',
+          url: 'https://european-cybercup.com/'
+        }
+      ],
+      description: 'Organized the European Cyber Cup (EC2), the European ethical hacking esports competition.'
+    },
+    {
       title: 'Hacking Competitions',
       organization: 'Shellphish Team',
       period: '2010 - 2015',
@@ -273,7 +308,7 @@ export const useCVStore = defineStore('cv', () => {
               url: 'https://4.bp.blogspot.com/_PZedSw-39RQ/SSqXB53sdSI/AAAAAAAAAAc/WuE0kscIj_4/s1600/pESApod_moon.jpg'
           }
       ],
-      description: 'Built an hexapod robot with a student team. Won a €40k grant. European Space Agency\'s Robotics Challenge finalist'
+      description: 'Built a hexapod robot with a student team. Won a €40k grant. European Space Agency\'s Robotics Challenge finalist'
     },
   ])
   const awards = ref<TimelineItem[]>([

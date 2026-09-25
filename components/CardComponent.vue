@@ -1,5 +1,5 @@
 <template>
-  <div class="group h-full">
+  <div class="h-full" :class="{ 'group/card': interactive }">
     <div 
       class="bg-surface/95 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-white/10 h-full flex flex-col transition-all duration-300"
       :class="{ 
@@ -32,7 +32,7 @@
         
         <!-- Regular title without link -->
         <template v-else>
-          <span :class="{ 'group-hover:text-primary/90 interactive': interactive }">
+          <span :class="{ 'group-hover/card:text-primary/90 interactive': interactive }">
             {{ title }}
           </span>
         </template>
@@ -67,16 +67,10 @@ defineProps({
 })
 </script>
 
-<style scoped >
-.group:hover .hover\:shadow-glow {
+<style scoped>
+.group\/card:hover .hover\:shadow-glow {
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 
               0 8px 10px -6px rgba(0, 0, 0, 0.1),
               0 0 15px 2px rgba(255, 255, 255, 0.05); /* White glow effect */
-            
 }
-
-.group > div:hover >.text-xl.interactive, .group > div:hover > .text-2xl.interactive { 
-  color: var(--color-primary); /* Primary brand color */
-  transition: color 0.3s ease;
-}  
 </style> 

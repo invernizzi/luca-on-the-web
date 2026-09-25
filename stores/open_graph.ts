@@ -5,13 +5,13 @@ export const useOpenGraphStore = defineStore("open_graph", () => {
   const personGivenName = ref("Luca");
   const personFamilyName = ref("Invernizzi");
   const personName = computed(() => `${personGivenName.value} ${personFamilyName.value}`);
-  const personJobTitle = ref("Research Scientist Manager");
+  const personJobTitle = ref("Senior Staff Research Scientist Manager");
   const employerName = ref("Google");
   const employerUrl = ref("https://google.com");
 
-  const siteName = computed(() => `${personName.value} (Research Scientist)`);
+  const siteName = computed(() => `${personName.value} (Senior Staff Research Scientist Manager)`);
   const siteDescription = ref(
-    "Personal website of Luca Invernizzi, Research Scientist Manager at Google specializing in cybersecurity and machine learning."
+    "Personal website of Luca Invernizzi, Senior Staff Research Scientist Manager at Google specializing in cybersecurity and machine learning."
   );
   const siteUrl = ref("https://lucainvernizzi.net");
   const personDescription = ref(

@@ -196,6 +196,11 @@ export const useProjectsStore = defineStore('projects', () => {
                     name: "Google Cloud Blog",
                     type: "blog",
                     url: "https://www.googlecloudcommunity.com/gc/Community-Blog/Fueling-AI-Innovation-in-SecOps-Products-The-SecLM-Platform-and/ba-p/913254"
+                },
+                {
+                    name: "Google Blog (Sec-Gemini v3)",
+                    type: "blog",
+                    url: "https://blog.google/intl/en-in/company-news/building-the-safety-foundations-for-indias-agentic-future/"
                 }
             ],
             featured: true,
