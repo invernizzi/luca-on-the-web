@@ -127,6 +127,14 @@ const publicationMetadata: PublicationMetadata[] = [
     title: 'TRIAGE-CPG: A Cross-Model Study of Budgeted Static Malware Triage with Large Language Models',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
     projectId: ProjectId.SECGEMINI
+  },
+  {
+    title: 'ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Honeyval: A Comprehensive Evaluation Framework for LLM-powered HTTP Honeypots',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
   }
 ];
 
