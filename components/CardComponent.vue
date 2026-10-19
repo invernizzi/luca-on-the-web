@@ -3,7 +3,7 @@
     <div 
       class="bg-surface/95 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-white/10 h-full flex flex-col transition-all duration-300"
       :class="{ 
-        'hover:shadow-xl hover:border-primary/90 hover:translate-y-[-1px] hover:bg-surface-light/40 hover:shadow-glow': interactive 
+        'hover:shadow-xl hover:border-primary/90 hover:translate-y-[-1px] hover:bg-surface-light/95 hover:shadow-glow': interactive 
       }"
     >
       <!-- Dynamic title component -->

@@ -1,6 +1,6 @@
 <template>
-  <div class="min-h-screen bg-surface text-text-primary">
-    <!-- Background elements with lower z-index -->
+  <div class="min-h-screen text-text-primary">
+    <!-- Background elements with lower z-index (the page background itself is on <body>, see app.vue) -->
     <LazyGameOfLife hydrate-on-idle />
     <!-- Foreground content with higher z-index -->
     <div class="relative z-20">

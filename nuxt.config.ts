@@ -77,11 +77,18 @@ export default defineNuxtConfig({
   typescript: {
     typeCheck: true,
   },
+  // Families are referenced from the `--font-*` tokens in assets/css/main.css;
+  // @nuxt/fonts downloads and self-hosts them at build time.
   fonts: {
+    // The site is English with occasional accented names: skip the Cyrillic,
+    // Greek and Vietnamese subsets (each adds @font-face rules per weight).
+    defaults: {
+      subsets: ["latin", "latin-ext"],
+    },
     families: [
       {
         name: "General Sans",
-        provider: "google",
+        provider: "fontshare",
         weights: [400, 500, 600, 700],
       },
       {

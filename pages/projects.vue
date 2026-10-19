@@ -58,13 +58,9 @@
           >
             🏆 {{ project.award }}
           </span>
-          <span
-            v-for="tag in project.tags"
-            :key="tag"
-            class="px-2 py-0.5 text-[11px] bg-surface-light text-text-secondary rounded-full border border-surface-light/50"
-          >
+          <TagPill v-for="tag in project.tags" :key="tag">
             {{ tag }}
-          </span>
+          </TagPill>
         </div>
       </CardComponent>
     </div>
@@ -124,13 +120,9 @@
           >
             🏆 {{ project.award }}
           </span>
-          <span
-            v-for="tag in project.tags"
-            :key="tag"
-            class="px-2 py-0.5 text-[11px] bg-surface-light text-text-secondary rounded-full border border-surface-light/50"
-          >
+          <TagPill v-for="tag in project.tags" :key="tag">
             {{ tag }}
-          </span>
+          </TagPill>
         </div>
       </CardComponent>
     </div>

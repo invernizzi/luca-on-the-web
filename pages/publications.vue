@@ -76,13 +76,9 @@
                 >
                   {{ pub.award.toLowerCase().includes('award') ? `🏆 ${pub.award}` : pub.award }}
                 </span>
-                <span
-                  v-for="category in pub.categories"
-                  :key="category"
-                  class="px-2 py-0.5 text-[11px] text-neutral-400 bg-neutral-800/60 rounded-full border border-neutral-700/50"
-                >
+                <TagPill v-for="category in pub.categories" :key="category">
                   {{ category }}
-                </span>
+                </TagPill>
               </div>
             </CardComponent>
           </div>
@@ -143,13 +139,9 @@
                   {{ pub.description }}
                 </p>
                 <div class="flex flex-wrap items-center gap-2 mb-3">
-                  <span
-                    v-for="category in pub.categories"
-                    :key="category"
-                    class="px-2 py-0.5 text-[11px] text-neutral-400 bg-neutral-800/60 rounded-full border border-neutral-700/50"
-                  >
+                  <TagPill v-for="category in pub.categories" :key="category">
                     {{ category }}
-                  </span>
+                  </TagPill>
                 </div>
               </CardComponent>
             </div>

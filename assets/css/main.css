@@ -1,6 +1,28 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
-@theme {
-    --ui-primary: #ff9d02;
+/*
+ * Design tokens.
+ *
+ * Tailwind v4 only generates utilities (bg-surface, text-text-secondary,
+ * font-display, ...) for variables declared inside `@theme`; plain `:root`
+ * variables are invisible to it. `static` keeps every token emitted as a CSS
+ * custom property even when no utility references it, so hand-written CSS
+ * (e.g. the CV timeline) can rely on `var(--color-surface)`.
+ *
+ * `@nuxt/fonts` picks the families up from the `--font-*` variables and
+ * self-hosts them; keep the family names in sync with `fonts.families` in
+ * nuxt.config.ts.
+ */
+@theme static {
+  --ui-primary: #ff9d02;
+
+  --color-background: #151515;
+  --color-surface: #1e1e1e;
+  --color-surface-light: #2a2a2a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "General Sans", ui-sans-serif, system-ui, sans-serif;
 }

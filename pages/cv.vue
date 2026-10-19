@@ -223,7 +223,7 @@ const downloadResume = () => {
   left: 1rem;
   width: 16px;
   height: 16px;
-  background-color: var(--color-primary);
+  background-color: var(--ui-primary);
   border-radius: 50%;
   transform: translateX(-50%);
   top: 1.5rem;

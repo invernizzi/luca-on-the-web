@@ -4,7 +4,7 @@
       <div class="flex flex-col md:flex-row items-center gap-8 mb-16">
         <div class="relative group">
           <div
-            class="absolute -inset-1 bg-gradient-to-r from-primary to-accent rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"
+            class="absolute -inset-1 bg-primary rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"
           />
           <div
             class="relative w-32 h-32 rounded-full overflow-hidden ring-4 ring-surface"

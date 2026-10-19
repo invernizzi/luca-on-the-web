@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-background">
+  <div class="min-h-screen">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -8,28 +8,22 @@
 
 
 <style>
-:root {
-  --color-background: #151515;
-  --color-surface: #1e1e1e;
-  --color-surface-light: #2a2a2a;
-  --color-text-primary: #ffffff;
-  --color-text-secondary: #a0a0a0;
-  --color-primary: #ff9d02;
-  --color-accent: #ff9d02;
-}
-
+/* Design tokens live in assets/css/main.css (@theme). */
 html {
   scroll-behavior: smooth;
 }
 
 body {
+  /* The page background must stay on <body>: the Game of Life canvas is a
+     negative z-index fixed layer, so any background on a wrapper <div> would
+     paint over it. */
   background-color: var(--color-background);
   color: var(--color-text-primary); box-sizing: border-box;
   scroll-margin-top: 100px;
 }
 
 ::selection {
-  background-color: var(--color-primary);
+  background-color: var(--ui-primary);
   color: var(--color-text-primary);
 }
 
@@ -42,11 +36,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-primary);
+  background: var(--ui-primary);
   border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
 }
 </style>

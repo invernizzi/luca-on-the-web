@@ -78,7 +78,7 @@ onBeforeUnmount(() => {
 .sliding-underline {
   position: absolute;
   height: 2px;
-  background-color: var(--color-primary); /* Using the primary orange color */
+  background-color: var(--ui-primary);
   bottom: 0;
   z-index: 60;
 }
