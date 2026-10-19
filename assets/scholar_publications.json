@@ -670,21 +670,6 @@
     "categories": []
   },
   {
-    "title": "Research in Attacks, Intrusions and Defenses",
-    "authors": [
-      "Angelos Stavrou",
-      "Herbert Bos",
-      "Georgios Portokalidis"
-    ],
-    "venue": "Springer International Publishing",
-    "year": 2014,
-    "link": "https://link.springer.com/content/pdf/10.1007/978-3-319-11379-1.pdf",
-    "citations": 2,
-    "award": null,
-    "projectId": null,
-    "categories": []
-  },
-  {
     "title": "You are what you include: large-scale evaluation of remote javascript inclusions",
     "authors": [
       "Nick Nikiforakis",
