@@ -10,12 +10,10 @@ import { ref, onMounted, onUnmounted } from "vue";
 type ArrayWithAtLeastOneElement<T> = [T, ...T[]];
 type ArrayWithThreeElements<T> = [T, T, T];
 
-type RecursiveArray<T> = Array<T | RecursiveArray<T>>;
-
 const canvas = ref<HTMLCanvasElement | null>(null);
 let animationFrame: number;
-let grid: RecursiveArray<RecursiveArray<boolean>> = [[false]];
-let nextGrid: RecursiveArray<RecursiveArray<boolean>> = [[false]];
+let grid: boolean[][] = [[false]];
+let nextGrid: boolean[][] = [[false]];
 const cellSize = 8;
 let width = 0;
 let height = 0;
@@ -72,16 +70,10 @@ const initGrid = () => {
   canvas.value.height = height * cellSize;
 
   // Initialize grids
-  grid = Array(height)
-    .fill(null)
-    .map(() => Array(width).fill(false)) as ArrayWithAtLeastOneElement<
-    ArrayWithAtLeastOneElement<boolean>
-  >;
-  nextGrid = Array(height)
-    .fill(null)
-    .map(() => Array(width).fill(false)) as ArrayWithAtLeastOneElement<
-    ArrayWithAtLeastOneElement<boolean>
-  >;
+  grid = Array.from({ length: height }, () => Array<boolean>(width).fill(false));
+  nextGrid = Array.from({ length: height }, () =>
+    Array<boolean>(width).fill(false)
+  );
 
   // Create a diehard pattern in the lower right corner
   const cornerX = width - 20; // 20 cells from the right edge
@@ -97,14 +89,15 @@ const initGrid = () => {
   ];
 
   // Place the pattern in the lower right corner
-  const placeDiehard = () => placePattern(pattern, cornerX, cornerY);
-  placeDiehard();
+  placePattern(pattern, cornerX, cornerY);
 
   // Add gliders (flyers)
-  // Add gliders in different positions
+  // Glider at (16, 10) strikes the loaf + blinker formed by (30, 20) and the
+  // flipped glider at (70, 25), triggering an active Methuselah reaction across
+  // the left and right edges regardless of viewport dimensions.
   const gliderPositions: ArrayWithAtLeastOneElement<{ x: number; y: number }> =
     [
-      { x: 10, y: 10 },
+      { x: 16, y: 10 },
       { x: 30, y: 20 },
       { x: 50, y: 15 },
     ];
@@ -118,48 +111,17 @@ const initGrid = () => {
   const flippedPos = { x: 70, y: 25 };
   placePattern(flippedGlider, flippedPos.x, flippedPos.y);
 
-  // Pre-run ~20 seconds of simulation (1200 frames at 60fps) so the background
-  // starts with established glider trails and spread-out activity immediately.
-  const preRunSteps = 1200;
-  const trailWarmupSteps = 25;
-  const visited = Array.from({ length: height }, () =>
-    Array<boolean>(width).fill(false)
-  );
+  // Pre-run the simulation up to just before the reaction finishes wrapping
+  // across the right edge, and render the final warmup frames for natural fade trails.
+  const preRunSteps = 1160;
+  const trailWarmupSteps = 20;
 
   for (let step = 0; step < preRunSteps - trailWarmupSteps; step++) {
-    if (step === 600 || step === 1100) {
-      addRandomGlider();
-    }
-    if (step === preRunSteps - 40) {
-      placeDiehard();
-    }
-    for (let y = 0; y < height; y++) {
-      const gridRow = grid[y];
-      const visitedRow = visited[y];
-      if (!gridRow || !visitedRow) continue;
-      for (let x = 0; x < width; x++) {
-        if (gridRow[x]) {
-          visitedRow[x] = true;
-        }
-      }
-    }
     updateGrid();
   }
 
-  // Paint the accumulated background trails and run the final warmup frames
-  // to build smooth fade gradients behind currently moving cells.
   ctx.fillStyle = "rgb(21, 21, 21)";
   ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
-  ctx.fillStyle = "rgba(255, 157, 2, 0.07)";
-  for (let y = 0; y < height; y++) {
-    const visitedRow = visited[y];
-    if (!visitedRow) continue;
-    for (let x = 0; x < width; x++) {
-      if (visitedRow[x]) {
-        ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
-      }
-    }
-  }
 
   for (let step = 0; step < trailWarmupSteps; step++) {
     updateGrid();
@@ -168,7 +130,7 @@ const initGrid = () => {
 };
 
 const updateGrid = () => {
-  const rowHasAlive = grid.map((row) => Array.isArray(row) && row.includes(true));
+  const rowHasAlive = grid.map((row) => row.includes(true));
 
   for (let y = 0; y < height; y++) {
     const ym1 = y === 0 ? height - 1 : y - 1;
