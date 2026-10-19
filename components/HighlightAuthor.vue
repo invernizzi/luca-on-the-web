@@ -19,6 +19,6 @@ defineProps({
 
 const isHighlightedAuthor = (author: string): boolean => {
   const normalized = author.trim().toLowerCase()
-  return normalized === 'luca invernizzi' || normalized === 'l invernizzi' || normalized === 'l. invernizzi' || normalized.includes('invernizzi')
+  return normalized === 'luca invernizzi' || normalized === 'l invernizzi' || normalized === 'l. invernizzi' || normalized.includes('invernizzi') || normalized === 'sec-gemini team'
 }
 </script>
