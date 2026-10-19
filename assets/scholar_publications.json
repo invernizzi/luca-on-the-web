@@ -28,7 +28,7 @@
     "categories": []
   },
   {
-    "title": "TypeMap: Content-Type Segmentation for Mixed Text",
+    "title": "TypeSeg: Content-Type Segmentation for Mixed Text",
     "authors": [
       "Martin Dallinger",
       "Yanick Fratantonio",

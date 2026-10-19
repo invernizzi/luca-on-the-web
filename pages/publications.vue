@@ -74,7 +74,7 @@
                   v-if="pub.award" 
                   class="px-3 py-1 text-xs font-bold bg-yellow-500/10 text-yellow-400 rounded-full border border-yellow-500/30"
                 >
-                  🏆 {{ pub.award }}
+                  {{ pub.award.toLowerCase().includes('award') ? `🏆 ${pub.award}` : pub.award }}
                 </span>
                 <span
                   v-for="category in pub.categories"

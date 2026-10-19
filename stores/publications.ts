@@ -119,9 +119,10 @@ const publicationMetadata: PublicationMetadata[] = [
     projectId: ProjectId.MAGIKA
   },
   {
-    title: 'TypeMap: Content-Type Segmentation for Mixed Text',
+    title: 'TypeSeg: Content-Type Segmentation for Mixed Text',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
-    projectId: ProjectId.MAGIKA
+    projectId: ProjectId.MAGIKA,
+    award: 'Spotlight Talk'
   },
   {
     title: 'TRIAGE-CPG: A Cross-Model Study of Budgeted Static Malware Triage with Large Language Models',
