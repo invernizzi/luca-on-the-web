@@ -36,6 +36,26 @@ const flippedGlider: ArrayWithThreeElements<ArrayWithThreeElements<number>> = [
   [1, 1, 0],
 ];
 
+const placePattern = (
+  patternToPlace: readonly (readonly number[])[],
+  startX: number,
+  startY: number
+) => {
+  for (let y = 0; y < patternToPlace.length; y++) {
+    const patternRow = patternToPlace[y];
+    const gridY = startY + y;
+    if (!patternRow || gridY < 0 || gridY >= height) continue;
+    const gridRow = grid[gridY];
+    if (!gridRow) continue;
+    for (let x = 0; x < patternRow.length; x++) {
+      const gridX = startX + x;
+      if (gridX >= 0 && gridX < width) {
+        gridRow[gridX] = patternRow[x] === 1;
+      }
+    }
+  }
+};
+
 const initGrid = () => {
   // Set canvas size
   width = Math.ceil(window.innerWidth / cellSize);
@@ -77,18 +97,8 @@ const initGrid = () => {
   ];
 
   // Place the pattern in the lower right corner
-  for (let y = 0; y < pattern.length; y++) {
-    for (let x = 0; x < pattern[0].length; x++) {
-      const gridX = cornerX + x;
-      const gridY = cornerY + y;
-      if (gridX >= 0 && gridX < width && gridY >= 0 && gridY < height) {
-        if (!grid[gridY]) continue;
-        const patternRow = pattern[y];
-        if (!patternRow) continue;
-        grid[gridY][gridX] = patternRow[x] === 1;
-      }
-    }
-  }
+  const placeDiehard = () => placePattern(pattern, cornerX, cornerY);
+  placeDiehard();
 
   // Add gliders (flyers)
   // Add gliders in different positions
@@ -101,68 +111,101 @@ const initGrid = () => {
 
   // Place regular gliders
   gliderPositions.forEach((pos) => {
-    for (let y = 0; y < gliderPattern.length; y++) {
-      for (let x = 0; x < gliderPattern[0].length; x++) {
-        const gridX = pos.x + x;
-        const gridY = pos.y + y;
-        if (gridX >= 0 && gridX < width && gridY >= 0 && gridY < height) {
-          if (!grid[gridY]) continue;
-          const patternRow = gliderPattern[y];
-          if (!patternRow) continue;
-          grid[gridY][gridX] = patternRow[x] === 1;
-        }
-      }
-    }
+    placePattern(gliderPattern, pos.x, pos.y);
   });
 
   // Place flipped glider
   const flippedPos = { x: 70, y: 25 };
-  for (let y = 0; y < flippedGlider.length; y++) {
-    for (let x = 0; x < flippedGlider[0].length; x++) {
-      const gridX = flippedPos.x + x;
-      const gridY = flippedPos.y + y;
-      if (gridX >= 0 && gridX < width && gridY >= 0 && gridY < height) {
-            if (!grid[gridY]) continue;
-             const patternRow = flippedGlider[y];
-          if (!patternRow) continue;
-        grid[gridY][gridX] = patternRow[x] === 1;
+  placePattern(flippedGlider, flippedPos.x, flippedPos.y);
+
+  // Pre-run ~20 seconds of simulation (1200 frames at 60fps) so the background
+  // starts with established glider trails and spread-out activity immediately.
+  const preRunSteps = 1200;
+  const trailWarmupSteps = 25;
+  const visited = Array.from({ length: height }, () =>
+    Array<boolean>(width).fill(false)
+  );
+
+  for (let step = 0; step < preRunSteps - trailWarmupSteps; step++) {
+    if (step === 600 || step === 1100) {
+      addRandomGlider();
+    }
+    if (step === preRunSteps - 40) {
+      placeDiehard();
+    }
+    for (let y = 0; y < height; y++) {
+      const gridRow = grid[y];
+      const visitedRow = visited[y];
+      if (!gridRow || !visitedRow) continue;
+      for (let x = 0; x < width; x++) {
+        if (gridRow[x]) {
+          visitedRow[x] = true;
+        }
+      }
+    }
+    updateGrid();
+  }
+
+  // Paint the accumulated background trails and run the final warmup frames
+  // to build smooth fade gradients behind currently moving cells.
+  ctx.fillStyle = "rgb(21, 21, 21)";
+  ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
+  ctx.fillStyle = "rgba(255, 157, 2, 0.07)";
+  for (let y = 0; y < height; y++) {
+    const visitedRow = visited[y];
+    if (!visitedRow) continue;
+    for (let x = 0; x < width; x++) {
+      if (visitedRow[x]) {
+        ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
       }
     }
   }
-};
 
-const countNeighbors = (x: number, y: number): number => {
-  let count = 0;
-  for (let dy = -1; dy <= 1; dy++) {
-    for (let dx = -1; dx <= 1; dx++) {
-      if (dx === 0 && dy === 0) continue;
-      const nx = (x + dx + width) % width;
-      const ny = (y + dy + height) % height;
-      if (!grid[ny]) continue;
-      if (grid[ny][nx]) count++;
-    }
+  for (let step = 0; step < trailWarmupSteps; step++) {
+    updateGrid();
+    drawGrid();
   }
-  return count;
 };
 
 const updateGrid = () => {
+  const rowHasAlive = grid.map((row) => Array.isArray(row) && row.includes(true));
+
   for (let y = 0; y < height; y++) {
+    const ym1 = y === 0 ? height - 1 : y - 1;
+    const yp1 = y === height - 1 ? 0 : y + 1;
+    const nextGridRow = nextGrid[y];
+    if (!nextGridRow) continue;
+
+    if (!rowHasAlive[ym1] && !rowHasAlive[y] && !rowHasAlive[yp1]) {
+      nextGridRow.fill(false);
+      continue;
+    }
+
+    const rowM1 = grid[ym1];
+    const row0 = grid[y];
+    const rowP1 = grid[yp1];
+    if (!rowM1 || !row0 || !rowP1) continue;
+
     for (let x = 0; x < width; x++) {
-      const neighbors = countNeighbors(x, y);
+      const xm1 = x === 0 ? width - 1 : x - 1;
+      const xp1 = x === width - 1 ? 0 : x + 1;
+      const neighbors =
+        (rowM1[xm1] ? 1 : 0) +
+        (rowM1[x] ? 1 : 0) +
+        (rowM1[xp1] ? 1 : 0) +
+        (row0[xm1] ? 1 : 0) +
+        (row0[xp1] ? 1 : 0) +
+        (rowP1[xm1] ? 1 : 0) +
+        (rowP1[x] ? 1 : 0) +
+        (rowP1[xp1] ? 1 : 0);
 
-      const gridRow = grid[y];
-            if (!gridRow) continue;
-      const isAlive:boolean =!! gridRow[x];
-
-      // Apply Conway's Game of Life rules
-      const nextGridRow = nextGrid[y] ;
-      if (!nextGridRow) continue;
+      const isAlive = Boolean(row0[x]);
       if (isAlive && (neighbors < 2 || neighbors > 3)) {
-       nextGridRow[x] = false;
+        nextGridRow[x] = false;
       } else if (!isAlive && neighbors === 3) {
         nextGridRow[x] = true;
       } else {
-       nextGridRow[x] = isAlive;
+        nextGridRow[x] = isAlive;
       }
     }
   }
@@ -237,19 +280,7 @@ const addRandomGlider = () => {
     padding;
 
   // Place the glider
-  for (let y = 0; y < pattern.length; y++) {
-    for (let x = 0; x < pattern[0].length; x++) {
-      const gridX = randomX + x;
-      const gridY = randomY + y;
-      if (gridX >= 0 && gridX < width && gridY >= 0 && gridY < height) {
-        const gridRow = grid[gridY];
-        if (!gridRow) continue;
-        const patternRow = pattern[y];
-        if (!patternRow) continue;
-        gridRow[gridX] = patternRow[x] === 1;
-      }
-    }
-  }
+  placePattern(pattern, randomX, randomY);
 };
 
 onMounted(() => {
