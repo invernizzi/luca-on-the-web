@@ -28,4 +28,18 @@ describe('Publications Store', () => {
     );
     expect(legacyTypeMap).toBeUndefined();
   });
+
+  it('merges Nazca metadata including UCSB Computer Science Outstanding Publication Award', () => {
+    const publicationsStore = usePublicationsStore();
+
+    const nazca = publicationsStore.recentPublications.find((pub) =>
+      pub.title.startsWith('Nazca: Detecting Malware Distribution')
+    );
+
+    expect(nazca).toBeDefined();
+    expect(nazca?.award).toBe(
+      'UCSB Computer Science Outstanding Publication Award'
+    );
+    expect(nazca?.categories).toEqual([PublicationCategory.SECURITY]);
+  });
 });

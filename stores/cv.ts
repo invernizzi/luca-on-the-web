@@ -202,9 +202,10 @@ export const useCVStore = defineStore('cv', () => {
       period: '2009 - 2010',
       description: 'Worked on a novel mathematical model to drive autonomous underwater vehicles. This work was presented at the IEEE Conference on Decision and Control (CDC).'
     },
-    {        title: 'Diploma di Licenza',
+    {
+      title: 'Diploma di Licenza',
       organization: 'Sant\'Anna University, School of Advanced Studies, Italy',
-      period: '2007 - 2010',
+      period: '2004 - 2010',
       gpa: '100/100 cum laude'
     },
     {

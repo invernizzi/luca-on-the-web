@@ -73,7 +73,8 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'Nazca: Detecting Malware Distribution in Large-Scale Networks',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    award: 'UCSB Computer Science Outstanding Publication Award'
   },
   {
     title: 'Understanding the mirai botnet',
@@ -141,7 +142,7 @@ const publicationMetadata: PublicationMetadata[] = [
 
 // Function to normalize title for case-insensitive comparison
 const normalizeTitle = (title: string): string => {
-  return title.toLowerCase().trim();
+  return title.toLowerCase().trim().replace(/\.+$/, '');
 };
 
 // Function to merge Scholar data with our metadata
