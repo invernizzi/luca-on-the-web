@@ -69,7 +69,7 @@
                   {{ pub.citations }} {{ pub.citations === 1 ? 'citation' : 'citations' }}
                 </span>
               </div>
-              <div class="flex flex-wrap gap-2 mb-3">
+              <div class="flex flex-wrap items-center gap-2 mb-3">
                 <span
                   v-if="pub.award" 
                   class="px-3 py-1 text-xs font-bold bg-yellow-500/10 text-yellow-400 rounded-full border border-yellow-500/30"
@@ -79,7 +79,7 @@
                 <span
                   v-for="category in pub.categories"
                   :key="category"
-                  class="px-3 py-1 text-xs font-medium bg-surface-light text-text-secondary rounded-full border border-surface-light/50 hover:bg-surface-light/80 transition-colors"
+                  class="px-2 py-0.5 text-[11px] text-neutral-400 bg-neutral-800/60 rounded-full border border-neutral-700/50"
                 >
                   {{ category }}
                 </span>
@@ -142,11 +142,11 @@
                 >
                   {{ pub.description }}
                 </p>
-                <div class="flex flex-wrap gap-2 mb-3">
+                <div class="flex flex-wrap items-center gap-2 mb-3">
                   <span
                     v-for="category in pub.categories"
                     :key="category"
-                    class="px-3 py-1 text-xs font-medium bg-surface-light text-text-secondary rounded-full border border-surface-light/50 hover:bg-surface-light/80 transition-colors"
+                    class="px-2 py-0.5 text-[11px] text-neutral-400 bg-neutral-800/60 rounded-full border border-neutral-700/50"
                   >
                     {{ category }}
                   </span>

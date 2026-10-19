@@ -59,9 +59,17 @@ const openSourcePublications: Publication[] = [
 // Hardcoded metadata that will be merged with the Scholar data
 const publicationMetadata: PublicationMetadata[] = [
   {
+    title: 'Trajectory design for autonomous underwater vehicles for basin exploration',
+    categories: [PublicationCategory.ROBOTICS]
+  },
+  {
     title: 'Geometric control for autonomous underwater vehicles: overcoming a thruster failure',
     categories: [PublicationCategory.ROBOTICS],
     projectId: ProjectId.SCAAML
+  },
+  {
+    title: 'A geometric approach to trajectory design for an autonomous underwater vehicle: Surveying the bulbous bow of a ship',
+    categories: [PublicationCategory.ROBOTICS]
   },
   {
     title: 'Message In A Bottle: Sailing Past Censorship',
@@ -72,13 +80,72 @@ const publicationMetadata: PublicationMetadata[] = [
     categories: [PublicationCategory.SECURITY]
   },
   {
+    title: 'You are what you include: large-scale evaluation of remote javascript inclusions',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
     title: 'Nazca: Detecting Malware Distribution in Large-Scale Networks',
     categories: [PublicationCategory.SECURITY],
     award: 'UCSB Computer Science Outstanding Publication Award'
   },
   {
+    title: 'Ten Years of {iCTF}: The Good, The Bad, and The Ugly',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Do you feel lucky? A large-scale analysis of risk-rewards trade-offs in cyber security',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Eyes of a human, eyes of a program: Leveraging different views of the web for analysis and detection',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'What the app is that? deception and countermeasures in the android user interface',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Baredroid: Large-scale analysis of android apps on real devices',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Detecting malware infestations in large-scale networks',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Detecting the stealthy distribution of malicious and abusive content online',
+    categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Cloak of Visibility: Detecting When Machines Browse A Different Web',
+    categories: [PublicationCategory.SECURITY, PublicationCategory.MACHINE_LEARNING]
+  },
+  {
     title: 'Understanding the mirai botnet',
     categories: [PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Data Breaches, Phishing, or Malware?: Understanding the Risks of Stolen Credentials',
+    categories: [PublicationCategory.SECURITY, PublicationCategory.PRIVACY],
+    projectId: ProjectId.PASSWORD_CHECKUP
+  },
+  {
+    title: 'Gossip: Automatically identifying malicious domains from mailing list discussions',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Tracking ransomware end-to-end',
+    categories: [PublicationCategory.SECURITY],
+    projectId: ProjectId.RANSOMWARE
+  },
+  {
+    title: 'Three years of the Right to be Forgotten',
+    categories: [PublicationCategory.PRIVACY]
+  },
+  {
+    title: 'Keras Tuner',
+    categories: [PublicationCategory.MACHINE_LEARNING],
+    projectId: ProjectId.KERAS_TUNER
   },
   {
     title: 'Protecting accounts from credential stuffing with password breach alerting',
@@ -87,9 +154,12 @@ const publicationMetadata: PublicationMetadata[] = [
     award: 'Best Paper Award'
   },
   {
-    title: 'Data Breaches, Phishing, or Malware?: Understanding the Risks of Stolen Credentials',
-    categories: [PublicationCategory.SECURITY, PublicationCategory.PRIVACY],
-    projectId: ProjectId.PASSWORD_CHECKUP
+    title: 'Five years of the right to be forgotten',
+    categories: [PublicationCategory.PRIVACY]
+  },
+  {
+    title: 'Serverless Cybersecurity Training',
+    categories: [PublicationCategory.SECURITY]
   },
   {
     title: 'CoinPolice: Detecting Hidden Cryptojacking Attacks with Neural Networks',
@@ -111,6 +181,10 @@ const publicationMetadata: PublicationMetadata[] = [
     projectId: ProjectId.SCAAML
   },
   {
+    title: 'Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context',
+    categories: [PublicationCategory.MACHINE_LEARNING]
+  },
+  {
     title: 'Give and take: An end-to-end investigation of giveaway scam conversion rates',
     categories: [PublicationCategory.SECURITY]
   },
@@ -118,6 +192,19 @@ const publicationMetadata: PublicationMetadata[] = [
     title: 'Magika: AI-Powered Content-Type Detection',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
     projectId: ProjectId.MAGIKA
+  },
+  {
+    title: 'Sedpack - Scalable and efficient dataset library',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.HARDWARE, PublicationCategory.SECURITY],
+    projectId: ProjectId.SCAAML
+  },
+  {
+    title: 'Evaluating the robustness of a production malware detection system to transferable adversarial attacks',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+  },
+  {
+    title: 'Google announces Sec-Gemini v1, a new experimental cybersecurity model',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
   },
   {
     title: 'TypeSeg: Content-Type Segmentation for Mixed Text',
@@ -129,6 +216,10 @@ const publicationMetadata: PublicationMetadata[] = [
     title: 'TRIAGE-CPG: A Cross-Model Study of Budgeted Static Malware Triage with Large Language Models',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
     projectId: ProjectId.SECGEMINI
+  },
+  {
+    title: 'From Payload to Plugin: Web-Scale Ecosystem Attribution of JavaScript Injection Campaigns',
+    categories: [PublicationCategory.SECURITY]
   },
   {
     title: 'ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?',
@@ -167,7 +258,7 @@ const mergePublicationData = (): Publication[] => {
 
     return {
       ...pub,
-      categories: metadata.categories,
+      categories: metadata.categories.length > 0 ? metadata.categories : (pub.categories || []),
       projectId: metadata.projectId || pub.projectId,
       award: metadata.award || pub.award,
       openSource: Boolean(pub.venue && /github/i.test(pub.venue))

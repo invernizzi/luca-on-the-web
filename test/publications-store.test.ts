@@ -42,4 +42,14 @@ describe('Publications Store', () => {
     );
     expect(nazca?.categories).toEqual([PublicationCategory.SECURITY]);
   });
+
+  it('classifies every publication with at least one category tag', () => {
+    const publicationsStore = usePublicationsStore();
+
+    const unclassified = publicationsStore.recentPublications.filter(
+      (pub) => !pub.categories || pub.categories.length === 0
+    );
+
+    expect(unclassified.map((p) => p.title)).toEqual([]);
+  });
 });
