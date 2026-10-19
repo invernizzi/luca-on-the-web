@@ -156,20 +156,6 @@
           </div>
         </div>
       </div>
-
-      <div class="mt-16">
-        <CardComponent title="Research Areas" :interactive="false">
-          <p class="text-text-secondary mb-4">
-            AI-generated summary of my research areas for a quick overview:
-          </p>
-          <ul class="space-y-6">
-            <li v-for="area in publicationsStore.researchAreas" :key="area.title" class="text-text-secondary">
-              <h3 class="font-display font-medium text-text-primary text-lg mb-2">{{ area.title }}</h3>
-              <p>{{ area.description }}</p>
-            </li>
-          </ul>
-        </CardComponent>
-      </div>
     </div>
   </div>
 </template>

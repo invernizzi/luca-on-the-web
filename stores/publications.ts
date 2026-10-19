@@ -269,32 +269,6 @@ const mergePublicationData = (): Publication[] => {
 export const usePublicationsStore = defineStore('publications', () => {
   // State
   const recentPublications = ref<Publication[]>(mergePublicationData());
-  const researchAreas = ref([
-    {
-      title: 'Machine Learning Security',
-      description: 'Applying ML/AI to security problems like malware detection, file-type identification (Magika), side-channel analysis (SCAAML/GPAM), and abuse/fraud detection (CoinPolice, Giveaway Scams).'
-    },
-    {
-      title: 'System and Network Security',
-      description: 'Securing computer systems and networks, including large-scale malware analysis and distribution detection (Nazca, EvilSeed), vulnerability analysis (e.g., outdated libraries), botnet analysis (Mirai), and Android security.'
-    },
-    {
-      title: 'Hardware Security',
-      description: 'Analyzing and securing hardware components, focusing on side-channel vulnerabilities in cryptographic hardware (SCAAML/GPAM), security key architectures, post-quantum cryptography implementations, and secure firmware.'
-    },
-    {
-      title: 'Privacy and Abuse Prevention',
-      description: 'Protecting user privacy online and combating web abuse. Includes research on credential stuffing risks, cryptojacking, large-scale scam detection, and analysis of privacy policies like the "Right to be Forgotten".'
-    },
-    {
-      title: 'Censorship Resistance',
-      description: 'Developing and analyzing techniques to bypass internet censorship and ensure free communication.'
-    },
-    {
-      title: 'Robotics / Autonomous Systems',
-      description: 'Earlier work focused on control strategies for autonomous systems, particularly autonomous underwater vehicles (AUVs).'
-    }
-  ]);
 
   // Getters
   const groupedPublications = computed(() => {
@@ -326,7 +300,6 @@ export const usePublicationsStore = defineStore('publications', () => {
   // Return state and getters
   return {
     recentPublications,
-    researchAreas,
     groupedPublications,
     allCategories
   };
