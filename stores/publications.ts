@@ -27,12 +27,13 @@ export interface Publication {
 }
 
 // Define the hardcoded metadata for publications
-// This allows us to keep the categories, projectId and award data that isn't in the scholar JSON
+// This allows us to keep the categories, projectId, award and fallback link data that isn't in the scholar JSON
 interface PublicationMetadata {
   title: string // Used for matching with Scholar data
   categories: PublicationCategory[]
   projectId?: ProjectId
   award?: string
+  link?: string
 }
 
 const openSourcePublications: Publication[] = [
@@ -219,7 +220,9 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'From Payload to Plugin: Web-Scale Ecosystem Attribution of JavaScript Injection Campaigns',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    award: 'Distinguished Paper Award',
+    link: 'https://sites.cs.ucsb.edu/~chris/research/doc/ccs26_plugin.pdf'
   },
   {
     title: 'ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?',
@@ -254,10 +257,12 @@ const mergePublicationData = (): Publication[] => {
       categories: [],
       projectId: undefined,
       award: undefined,
+      link: undefined,
     };
 
     return {
       ...pub,
+      link: metadata.link || pub.link,
       categories: metadata.categories.length > 0 ? metadata.categories : (pub.categories || []),
       projectId: metadata.projectId || pub.projectId,
       award: metadata.award || pub.award,

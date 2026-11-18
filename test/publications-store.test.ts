@@ -43,6 +43,23 @@ describe('Publications Store', () => {
     expect(nazca?.categories).toEqual([PublicationCategory.SECURITY]);
   });
 
+  it('merges From Payload to Plugin metadata including Distinguished Paper Award and PDF link', () => {
+    const publicationsStore = usePublicationsStore();
+
+    const payloadToPlugin = publicationsStore.recentPublications.find(
+      (pub) =>
+        pub.title ===
+        'From Payload to Plugin: Web-Scale Ecosystem Attribution of JavaScript Injection Campaigns'
+    );
+
+    expect(payloadToPlugin).toBeDefined();
+    expect(payloadToPlugin?.award).toBe('Distinguished Paper Award');
+    expect(payloadToPlugin?.link).toBe(
+      'https://sites.cs.ucsb.edu/~chris/research/doc/ccs26_plugin.pdf'
+    );
+    expect(payloadToPlugin?.categories).toEqual([PublicationCategory.SECURITY]);
+  });
+
   it('classifies every publication with at least one category tag', () => {
     const publicationsStore = usePublicationsStore();
 
