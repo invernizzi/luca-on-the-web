@@ -39,6 +39,15 @@ interface PublicationMetadata {
 
 const openSourcePublications: Publication[] = [
   {
+    title: 'Magika',
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    link: 'https://github.com/google/magika',
+    venue: 'GitHub',
+    description: 'Fast and accurate AI-powered file type detection system, protecting Gmail, Drive, and Chrome.',
+    year: 2024,
+    authors: []
+  },
+  {
     title: 'WaseFire',
     categories: [PublicationCategory.HARDWARE, PublicationCategory.SECURITY],
     link: 'https://github.com/google/WaseFire',
@@ -54,6 +63,15 @@ const openSourcePublications: Publication[] = [
     venue: 'GitHub',
     description: 'Package for efficiently computing similarity, performing fuzzy matching, deduplicating datasets, and clustering data.',
     year: 2023,
+    authors: []
+  },
+  {
+    title: 'Getting Things GNOME! (GTG)',
+    categories: [],
+    link: 'https://github.com/getting-things-gnome/gtg',
+    venue: 'GitHub',
+    description: 'Personal task and organizer application for the GNOME desktop environment.',
+    year: 2010,
     authors: []
   }
 ]

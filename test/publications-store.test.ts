@@ -62,14 +62,23 @@ describe('Publications Store', () => {
     expect(payloadToPlugin?.categories).toEqual([PublicationCategory.SECURITY]);
   });
 
-  it('classifies every publication with at least one category tag', () => {
+  it('classifies every academic publication with at least one category tag', () => {
     const publicationsStore = usePublicationsStore();
 
     const unclassified = publicationsStore.recentPublications.filter(
-      (pub) => !pub.categories || pub.categories.length === 0
+      (pub) => !pub.openSource && (!pub.categories || pub.categories.length === 0)
     );
 
     expect(unclassified.map((p) => p.title)).toEqual([]);
+  });
+
+  it('includes Magika and Getting Things GNOME! (GTG) in open source entries', () => {
+    const publicationsStore = usePublicationsStore();
+    const ossTitles = publicationsStore.recentPublications
+      .filter((pub) => pub.openSource)
+      .map((pub) => pub.title);
+
+    expect(ossTitles).toEqual(expect.arrayContaining(['Magika', 'Getting Things GNOME! (GTG)']));
   });
 
   it('points every local pdf path to an existing PDF file in public/', () => {
