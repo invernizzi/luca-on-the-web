@@ -87,14 +87,14 @@ export default defineNuxtConfig({
     },
     families: [
       {
-        name: "Manrope",
-        provider: "google",
-        weights: [400, 500],
+        name: "General Sans",
+        provider: "fontshare",
+        weights: [400, 500, 600, 700],
       },
       {
-        name: "IBM Plex Mono",
+        name: "Manrope",
         provider: "google",
-        weights: [400],
+        weights: [400, 500, 600, 700],
       },
     ],
   },

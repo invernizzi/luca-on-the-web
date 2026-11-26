@@ -46,11 +46,11 @@ const normalizePath = (path: string): string =>
 const cacheNavbarPaths = () => {
   const navbar = document.querySelector('.nav-links-container')
   if (!navbar) return
-
+  
   const links = navbar.querySelectorAll('.nav-link')
   navPaths.value = []
-
-  links.forEach((link) => {
+  
+  links.forEach(link => {
     const href = link.getAttribute('href')
     if (href) {
       navPaths.value.push(normalizePath(href))
@@ -61,7 +61,7 @@ const cacheNavbarPaths = () => {
 // Get next page based on direction
 const getAdjacentPath = (direction: 'next' | 'prev') => {
   const currentPath = normalizePath(router.currentRoute.value.path)
-  const currentIndex = navPaths.value.findIndex((path) => path === currentPath)
+  const currentIndex = navPaths.value.findIndex(path => path === currentPath)
   
   if (currentIndex === -1) return null
 

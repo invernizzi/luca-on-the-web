@@ -1,33 +1,30 @@
 <template>
-  <CardComponent title="Featured projects" heading-tag="h2" :interactive="false">
-    <div class="divide-y divide-white/[0.06]">
-      <div
-        v-for="project in featuredProjects"
-        :key="project.id"
-        class="py-4 first:pt-0 last:pb-0"
-      >
+  <CardComponent title="Featured Projects" heading-tag="h2">
+    <div class="space-y-8">
+      <div v-for="project in featuredProjects" :key="project.title">
         <NuxtLink
-          :to="{ path: '/projects', hash: `#${project.id}` }"
-          class="group/project block"
+          :to="{ path: '/projects', hash: `#${project.id}`}"
+          class="flex items-center justify-between mb-2 group/project transition-colors"
         >
-          <h3
-            class="text-[17px] font-display font-medium leading-[1.3] text-text-primary group-hover/project:text-primary transition-colors duration-150 mb-1"
+          <div
+            class="text-xl font-display font-semibold text-text-primary group-hover/project:text-primary transition-colors"
           >
             {{ project.title }}
-          </h3>
-          <p class="text-sm leading-[1.5] text-text-secondary">
-            {{ project.blurb }}
-          </p>
+          </div>
+          <div class="p-1 bg-primary/10 rounded-full group-hover/project:bg-primary/20 transition-colors">
+            <LazyUIcon name="mdi:arrow-right" class="h-4 w-4" />
+          </div>
         </NuxtLink>
+        <p class="text-text-secondary pl-0.5">{{ project.blurb }}</p>
       </div>
     </div>
   </CardComponent>
 </template>
 
 <script setup lang="ts">
-const { projects } = storeToRefs(useProjectsStore());
+const {projects}  = storeToRefs(useProjectsStore());
 
-const featuredProjects = computed(() =>
-  projects.value.filter((p) => p.featured),
-);
+const featuredProjects = computed(() => {
+return projects.value.filter(p => p.featured);
+});
 </script>

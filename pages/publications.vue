@@ -1,311 +1,251 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8">
-    <h1
-      class="text-[clamp(1.875rem,1.5rem+1.2vw,2.375rem)] font-display font-medium tracking-[-0.025em] leading-[1.08] text-text-primary mb-6"
-    >
-      Publications
-    </h1>
-
-    <div
-      class="flex flex-wrap items-center justify-between gap-4 pb-6 mb-10 border-b border-white/[0.08]"
-    >
-      <div class="flex items-center gap-3">
-        <label for="category-filter" class="text-sm text-text-secondary">
-          Category
-        </label>
-        <select
-          id="category-filter"
-          v-model="selectedCategory"
-          class="px-3 py-1.5 text-sm bg-surface border border-white/[0.12] rounded-lg text-text-primary [color-scheme:dark] focus:outline-none focus:border-primary/70 transition-colors duration-150"
-        >
-          <option value="">All</option>
-          <option
-            v-for="category in publicationsStore.allCategories"
-            :key="category"
-            :value="category"
+  <div>
+    <div class="container overflow-x-hidden mx-auto px-4 py-12">
+      <h1 class="text-4xl font-display font-bold text-text-primary mb-8">Publications</h1>
+      
+      <!-- Top Info & Filter Bar -->
+      <div class="mb-8">
+        <p class="text-text-secondary mb-4 flex items-center flex-wrap">
+          For a complete list of my publications, please visit my
+          <NuxtLink
+            to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ" 
+            external
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 mx-1.5 px-2.5 py-0.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors align-middle"
           >
-            {{ category }}
-          </option>
-        </select>
-        <span class="font-mono text-xs text-text-muted tabular-nums">
-          {{ academicCount }}
-        </span>
-      </div>
+            <Icon name="mdi:school" class="h-4 w-4" />
+            Google Scholar
+          </NuxtLink>
+          profile.
+        </p>
 
-      <NuxtLink
-        to="https://scholar.google.com/citations?user=4CEVnEMAAAAJ"
-        external
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-primary transition-colors duration-150"
-      >
-        <span>Google Scholar</span>
-        <AppIcon name="arrow-up-right" size="sm" class="text-text-muted" />
-      </NuxtLink>
-    </div>
-
-    <div class="space-y-10">
-      <section
-        v-for="yearGroup in academicPublications"
-        :key="yearGroup.year"
-        class="grid grid-cols-1 md:grid-cols-[88px_1fr] gap-2 md:gap-8"
-      >
-        <h2
-          class="font-mono text-sm font-normal text-text-muted tabular-nums md:pt-1"
-        >
-          {{ yearGroup.year }}
-        </h2>
-
-        <div class="divide-y divide-white/[0.06]">
-          <article
-            v-for="pub in yearGroup.publications"
-            :id="slugify(pub.title)"
-            :key="pub.title"
-            class="py-5 first:pt-0 last:pb-0 scroll-mt-20 rounded-lg transition-[background-color,box-shadow] duration-200"
-            :class="
-              isHighlighted(pub.title)
-                ? 'px-4 -mx-4 bg-surface ring-1 ring-primary/70'
-                : ''
-            "
+        <div class="flex items-center gap-4">
+          <label for="category-filter" class="text-sm text-text-secondary">Filter by category:</label>
+          <select
+            id="category-filter" 
+            v-model="selectedCategory"
+            class="px-3 py-1.5 text-sm bg-surface border border-surface-light rounded-lg text-text-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           >
-            <h3
-              class="text-[17px] font-display font-medium leading-[1.35] text-text-primary max-w-[64ch] mb-1.5"
+            <option value="">All</option>
+            <option
+              v-for="category in publicationsStore.allCategories" 
+              :key="category"
+              :value="category"
             >
-              <a
-                v-if="pub.link"
-                :href="pub.link"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="hover:text-primary transition-colors duration-150"
-              >
-                <span>{{ pub.title }}</span>
-                <AppIcon
-                  name="arrow-up-right"
-                  size="sm"
-                  class="inline-block align-[-0.12em] ml-1 text-text-muted"
-                />
-              </a>
-              <span v-else>{{ pub.title }}</span>
-            </h3>
-
-            <p
-              v-if="pub.authors && pub.authors.length > 0"
-              class="text-sm leading-[1.5] text-text-secondary max-w-[68ch] mb-2"
-            >
-              <HighlightAuthor :authors="pub.authors" />
-            </p>
-
-            <div class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs">
-              <span v-if="pub.venue" class="text-text-secondary">
-                {{ pub.venue }}
-              </span>
-
-              <span
-                v-if="pub.citations"
-                class="font-mono tabular-nums whitespace-nowrap"
-                :class="pub.citations > 200 ? 'text-primary' : 'text-text-muted'"
-              >
-                {{ formatCitations(pub.citations) }}
-              </span>
-
-              <span
-                v-if="pub.award"
-                class="px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-md border border-primary/25"
-              >
-                {{ pub.award }}
-              </span>
-
-              <TagPill v-for="category in pub.categories" :key="category">
-                {{ category }}
-              </TagPill>
-            </div>
-          </article>
+              {{ category }}
+            </option>
+          </select>
         </div>
-      </section>
-    </div>
-
-    <section
-      v-if="openSourcePublications.length > 0"
-      aria-labelledby="open-source-heading"
-      class="mt-16 pt-10 border-t border-white/[0.08]"
-    >
-      <div class="flex flex-wrap items-baseline justify-between gap-4 mb-8">
-        <h2
-          id="open-source-heading"
-          class="text-xl font-display font-medium tracking-[-0.015em] text-text-primary"
-        >
-          Open source
-        </h2>
-        <NuxtLink
-          to="https://github.com/invernizzi"
-          external
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-1 text-sm text-text-secondary hover:text-primary transition-colors duration-150"
-        >
-          <span>GitHub</span>
-          <AppIcon name="arrow-up-right" size="sm" class="text-text-muted" />
-        </NuxtLink>
       </div>
 
-      <div class="space-y-8">
-        <div
-          v-for="yearGroup in openSourcePublications"
-          :key="`oss-${yearGroup.year}`"
-          class="grid grid-cols-1 md:grid-cols-[88px_1fr] gap-2 md:gap-8"
-        >
-          <div class="font-mono text-sm text-text-muted tabular-nums md:pt-1">
-            {{ yearGroup.year }}
-          </div>
-
-          <div class="divide-y divide-white/[0.06]">
-            <article
+      <div class="space-y-12">
+        <div v-for="yearGroup in academicPublications" :key="yearGroup.year" class="space-y-4">
+          <h2 class="text-2xl font-bold text-text-primary">{{ yearGroup.year }}</h2>
+          <div class="grid grid-cols-1 gap-6">
+            <CardComponent
               v-for="pub in yearGroup.publications"
-              :id="slugify(pub.title)"
+              :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
               :key="pub.title"
-              class="py-5 first:pt-0 last:pb-0 scroll-mt-20"
+              class="scroll-mt-20 transition-all duration-500"
+              :title="pub.title"
+              title-size="small"
+              heading-tag="h3"
+              :to="pub.link"
+              :class="{ 'border-l-4 border-l-primary': isHighlighted(pub.title) }"
+              :interactive="Boolean(pub.link)"
             >
-              <h3
-                class="text-[17px] font-display font-medium leading-[1.35] text-text-primary mb-1.5"
-              >
-                <a
-                  v-if="pub.link"
-                  :href="pub.link"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="hover:text-primary transition-colors duration-150"
-                >
-                  <span>{{ pub.title }}</span>
-                  <AppIcon
-                    name="arrow-up-right"
-                    size="sm"
-                    class="inline-block align-[-0.12em] ml-1 text-text-muted"
-                  />
-                </a>
-                <span v-else>{{ pub.title }}</span>
-              </h3>
-
-              <p
-                v-if="pub.description"
-                class="text-sm leading-[1.55] text-text-secondary max-w-[64ch] mb-2.5"
-              >
-                {{ pub.description }}
+              <p class="text-sm mb-1">
+                <HighlightAuthor :authors="pub.authors || []" />
               </p>
-
-              <div class="flex flex-wrap items-center gap-1.5">
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1 mb-3">
+                <p class="text-sm text-primary">{{ pub.venue }}, {{ pub.year }}</p>
+                <span
+                  v-if="pub.citations"
+                  class="text-xs px-1.5 py-0.5 rounded-md whitespace-nowrap tabular-nums"
+                  :class="pub.citations > 200 ?
+                         'text-yellow-400 font-medium bg-yellow-500/10 border border-yellow-500/20' :
+                         'text-text-secondary bg-surface-light/80'"
+                >
+                  {{ pub.citations.toLocaleString('en-US') }} {{ pub.citations === 1 ? 'citation' : 'citations' }}
+                </span>
+              </div>
+              <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span
+                  v-if="pub.award" 
+                  class="px-3 py-1 text-xs font-bold bg-yellow-500/10 text-yellow-400 rounded-full border border-yellow-500/30"
+                >
+                  {{ pub.award.toLowerCase().includes('award') ? `🏆 ${pub.award}` : pub.award }}
+                </span>
                 <TagPill v-for="category in pub.categories" :key="category">
                   {{ category }}
                 </TagPill>
               </div>
-            </article>
+            </CardComponent>
           </div>
         </div>
       </div>
-    </section>
+      
+      <!-- Open Source Section -->
+      <div v-if="openSourcePublications.length > 0" class="mt-16">
+        <h2 class="text-3xl font-display font-bold text-text-primary mb-4">Open Source</h2>
+        <p class="text-text-secondary mb-6 flex items-center flex-wrap">
+          These are some of the projects I contributed to. For a better overview of my open source projects, please visit my
+          <NuxtLink
+            to="https://github.com/invernizzi"
+            external
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 ml-1.5 mr-0.5 px-2.5 py-0.5 bg-primary/10 text-primary rounded-lg hover:bg-primary/20 transition-colors align-middle"
+          >
+            <Icon name="mdi:github" class="h-4 w-4" />
+            GitHub Profile
+          </NuxtLink>.
+        </p>
+
+        <div class="space-y-12">
+          <div v-for="yearGroup in openSourcePublications" :key="yearGroup.year" class="space-y-4">
+            <div class="text-2xl font-bold text-text-primary tabular-nums">{{ yearGroup.year }}</div>
+            <div class="grid grid-cols-1 gap-6">
+              <CardComponent
+                v-for="pub in yearGroup.publications"
+                :id="pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')"
+                :key="pub.title"
+                class="scroll-mt-20 transition-all duration-500"
+                :title="pub.title"
+                title-size="small"
+                heading-tag="h3"
+                :to="pub.link"
+                :class="{ 'border-l-4 border-l-primary': isHighlighted(pub.title) }"
+                :interactive="Boolean(pub.link)"
+              >
+                <p class="text-sm mb-1">
+                  <HighlightAuthor :authors="pub.authors || []" />
+                </p>
+                <div class="flex items-center mb-2">
+                  <span
+                    v-if="pub.citations"
+                    class="text-xs px-1.5 py-0.5 rounded-md whitespace-nowrap tabular-nums"
+                    :class="pub.citations > 200 ?
+                           'text-yellow-400 font-medium bg-yellow-500/10 border border-yellow-500/20' :
+                           'text-text-secondary bg-surface-light/80'"
+                  >
+                    {{ pub.citations.toLocaleString('en-US') }} {{ pub.citations === 1 ? 'citation' : 'citations' }}
+                  </span>
+                </div>
+                <p
+                  v-if="pub.description" 
+                  class="text-text-secondary text-sm mb-3"
+                >
+                  {{ pub.description }}
+                </p>
+                <div class="flex flex-wrap items-center gap-2 mb-3">
+                  <TagPill v-for="category in pub.categories" :key="category">
+                    {{ category }}
+                  </TagPill>
+                </div>
+              </CardComponent>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { usePublicationsStore, type PublicationCategory } from '~/stores/publications';
-import { onMounted, ref, computed } from 'vue';
-import { useRoute } from 'vue-router';
-import { NuxtLink } from '#components';
-import AppIcon from '~/components/AppIcon.vue';
+import { usePublicationsStore } from '~/stores/publications'
+import { onMounted, ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
+import type { PublicationCategory } from '~/stores/publications'
+import { Icon, NuxtLink  } from '#components'
 
-const publicationsStore = usePublicationsStore();
-const route = useRoute();
-const highlightedPublication = ref<string | null>(null);
-const selectedCategory = ref<string>('');
+const publicationsStore = usePublicationsStore()
+const route = useRoute()
+const highlightedPublication = ref<string | null>(null)
+const selectedCategory = ref<string>('')
 
-const slugify = (title: string): string =>
-  title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+const isHighlighted = (title: string) => {
+  const normalizedTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+  return highlightedPublication.value === normalizedTitle
+}
 
-const isHighlighted = (title: string) =>
-  highlightedPublication.value === slugify(title);
-
-const formatCitations = (count: number): string => {
-  const formatted = count.toLocaleString('en-US');
-  return `${formatted} ${count === 1 ? 'citation' : 'citations'}`;
-};
-
+// Get all publications that match the category filter
 const allFilteredPublications = computed(() => {
-  let publications = [...publicationsStore.recentPublications];
-
+  let publications = [...publicationsStore.recentPublications]
+  
   if (selectedCategory.value) {
-    publications = publications.filter((pub) =>
-      pub.categories.includes(selectedCategory.value as PublicationCategory),
-    );
+    publications = publications.filter(pub => 
+      pub.categories.includes(selectedCategory.value as PublicationCategory)
+    )
   }
+  
+  return publications
+})
 
-  return publications;
-});
-
+// Academic publications (not GitHub)
 const academicPublications = computed(() => {
-  const academicPubs = allFilteredPublications.value.filter(
-    (pub) => pub.openSource === false,
-  );
+  // Filter out GitHub publications
+  const academicPubs = allFilteredPublications.value.filter(pub => pub.openSource === false)
+  
+  // Group publications by year
+  const grouped = academicPubs.reduce((acc, pub) => {
+    const year = pub.year
+    if (!acc[year]) {
+      acc[year] = []
+    }
+    acc[year].push(pub)
+    return acc
+  }, {} as Record<number, typeof academicPubs>)
 
-  const grouped = academicPubs.reduce(
-    (acc, pub) => {
-      const year = pub.year;
-      if (!acc[year]) acc[year] = [];
-      acc[year].push(pub);
-      return acc;
-    },
-    {} as Record<number, typeof academicPubs>,
-  );
-
+  // Convert to array of year groups sorted by year descending
   return Object.entries(grouped)
     .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
     .map(([year, pubs]) => ({
       year: Number(year),
-      publications: pubs,
-    }));
-});
+      publications: pubs
+    }))
+})
 
-const academicCount = computed(() => {
-  const count = academicPublications.value.reduce(
-    (sum, group) => sum + group.publications.length,
-    0,
-  );
-  return `${count} ${count === 1 ? 'paper' : 'papers'}`;
-});
-
+// Open source publications (GitHub)
 const openSourcePublications = computed(() => {
-  const openSourcePubs = allFilteredPublications.value.filter(
-    (pub) => pub.openSource === true,
-  );
+  // Only include GitHub publications
+  const openSourcePubs = allFilteredPublications.value.filter(pub => 
+    pub.openSource === true
+  )
+  
+  // Group by year
+  const grouped = openSourcePubs.reduce((acc, pub) => {
+    const year = pub.year
+    if (!acc[year]) {
+      acc[year] = []
+    }
+    acc[year].push(pub)
+    return acc
+  }, {} as Record<number, typeof openSourcePubs>)
 
-  const grouped = openSourcePubs.reduce(
-    (acc, pub) => {
-      const year = pub.year;
-      if (!acc[year]) acc[year] = [];
-      acc[year].push(pub);
-      return acc;
-    },
-    {} as Record<number, typeof openSourcePubs>,
-  );
-
+  // Convert to array of year groups sorted by year descending
   return Object.entries(grouped)
     .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
     .map(([year, pubs]) => ({
       year: Number(year),
-      publications: pubs,
-    }));
-});
+      publications: pubs
+    }))
+})
 
 onMounted(() => {
-  const hash = route.hash.slice(1);
+  const hash = route.hash.slice(1) // Remove the # from the hash
   if (hash) {
-    const element = document.getElementById(hash);
+    const element = document.getElementById(hash)
     if (element) {
-      highlightedPublication.value = hash;
-      element.scrollIntoView({ behavior: 'smooth' });
-
+      highlightedPublication.value = hash
+      element.scrollIntoView({ behavior: 'smooth' })
+      
+      // Remove highlight after 5 seconds
       setTimeout(() => {
-        highlightedPublication.value = null;
-      }, 4000);
+        highlightedPublication.value = null
+      }, 5000)
     }
   }
-});
+})
 </script>

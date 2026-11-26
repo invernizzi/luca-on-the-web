@@ -1,173 +1,147 @@
 <template>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8">
-    <h1
-      class="text-[clamp(1.875rem,1.5rem+1.2vw,2.375rem)] font-display font-medium tracking-[-0.025em] leading-[1.08] text-text-primary mb-10"
-    >
+  <div class="container mx-auto px-4 py-12">
+    <h1 class="text-4xl font-display font-bold text-text-primary mb-12">
       Projects
     </h1>
 
-    <section aria-labelledby="active-projects-heading" class="mb-14">
-      <h2
-        id="active-projects-heading"
-        class="text-sm font-medium text-text-muted mb-5"
+    <!-- Active Projects Section -->
+    <h2 class="sr-only">Active Projects</h2>
+    <p class="text-text-secondary mb-4">
+      These are some of the projects my team and I have been working on.
+    </p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 [&>*]:h-full">
+      <CardComponent
+        v-for="project in activeProjects"
+        :id="project.id"
+        :key="project.title"
+        class="transition-all duration-500 scroll-mt-20"
+        :title="project.title"
+        heading-tag="h3"
+        :class="{ 'border-l-4 border-l-primary': isHighlighted(project.id) }"
       >
-        Current
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 [&>*]:h-full">
-        <CardComponent
-          v-for="project in activeProjects"
-          :id="project.id"
-          :key="project.id"
-          heading-tag="h3"
-          title-size="small"
-          :title="project.title"
-          :interactive="false"
-          class="scroll-mt-20 rounded-xl transition-[box-shadow] duration-200"
-          :class="{ 'ring-1 ring-primary/70': isHighlighted(project.id) }"
-        >
-          <div class="flex flex-col h-full">
-            <div v-if="project.award" class="mb-3">
-              <span
-                class="inline-block px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-md border border-primary/25"
-              >
-                {{ project.award }}
-              </span>
-            </div>
-
-            <p class="text-sm leading-[1.6] text-text-secondary mb-5">
-              {{ project.description }}
-            </p>
-
-            <div v-if="primaryLinks(project).length > 0" class="flex flex-wrap gap-2 mb-3">
-              <LinkPill
-                v-for="url in primaryLinks(project)"
-                :key="`${project.id}-${url.url}`"
-                :link="url"
-              />
-              <a
-                v-for="pub in projectPapers(project.id)"
-                :key="`${project.id}-${pub.title}`"
-                :href="`/publications#${slugify(pub.title)}`"
-                :title="pub.title"
-                class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs leading-[1.3] bg-surface-light text-text-secondary rounded-lg border border-white/[0.08] hover:bg-surface-hover hover:text-text-primary hover:border-white/[0.14] transition-colors duration-150"
-                @click="handlePublicationClick"
-              >
-                <AppIcon name="file-text" size="sm" class="text-text-muted" />
-                <span>{{ paperLabel(pub, projectPapers(project.id).length) }}</span>
-              </a>
-            </div>
-
-            <p
-              v-if="pressLinks(project).length > 0"
-              class="text-xs leading-[1.55] text-text-muted mb-4"
+        <div class="flex flex-wrap gap-2 mb-4">
+          <LinkPill
+            v-for="url in project.urls"
+            :key="`${url.name}-${url.url}`"
+            :link="url"
+          />
+          <a
+            v-for="pub in projectPapers(project.id)"
+            :key="pub.title"
+            :href="
+              '/publications#' +
+              pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+            "
+            :title="pub.title"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs bg-surface-light text-text-secondary rounded-lg border border-orange-500/30 hover:bg-surface-light/80 transition-colors"
+            @click="handlePublicationClick"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <span>Coverage: </span>
-              <template v-for="(item, idx) in pressLinks(project)" :key="`${project.id}-press-${item.url}`">
-                <a
-                  :href="item.url"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-text-secondary hover:text-primary transition-colors duration-150 underline decoration-white/15 underline-offset-2"
-                >{{ item.name }}</a><span v-if="idx < pressLinks(project).length - 1">, </span>
-              </template>
-            </p>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            {{ paperLabel(pub, projectPapers(project.id).length) }}
+          </a>
+        </div>
+        <p class="text-text-secondary mb-4">{{ project.description }}</p>
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span
+            v-if="project.award"
+            class="px-3 py-1 text-xs font-bold bg-yellow-500/10 text-yellow-400 rounded-full border border-yellow-500/30"
+          >
+            🏆 {{ project.award }}
+          </span>
+          <TagPill v-for="tag in project.tags" :key="tag">
+            {{ tag }}
+          </TagPill>
+        </div>
+      </CardComponent>
+    </div>
 
-            <div class="mt-auto pt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
-              <TagPill v-for="tag in project.tags" :key="tag">
-                {{ tag }}
-              </TagPill>
-            </div>
-          </div>
-        </CardComponent>
-      </div>
-    </section>
-
-    <section aria-labelledby="archived-projects-heading">
-      <h2
-        id="archived-projects-heading"
-        class="text-sm font-medium text-text-muted mb-5"
+    <!-- Archived Projects Section -->
+    <h2 class="text-3xl font-display font-bold text-text-primary mb-6">
+      Archived Projects
+    </h2>
+    <p class="text-text-secondary mb-4">Older fun projects.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 [&>*]:h-full">
+      <CardComponent
+        v-for="project in archivedProjects"
+        :id="project.id"
+        :key="project.title"
+        class="transition-all duration-500 opacity-80 hover:opacity-100 scroll-mt-20"
+        :title="project.title"
+        :class="{ 'border-l-4 border-l-primary': isHighlighted(project.id) }"
       >
-        Archive
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 [&>*]:h-full">
-        <CardComponent
-          v-for="project in archivedProjects"
-          :id="project.id"
-          :key="project.id"
-          heading-tag="h3"
-          title-size="small"
-          :title="project.title"
-          :interactive="false"
-          class="scroll-mt-20 rounded-xl transition-[box-shadow] duration-200"
-          :class="{ 'ring-1 ring-primary/70': isHighlighted(project.id) }"
-        >
-          <div class="flex flex-col h-full">
-            <div v-if="project.award" class="mb-3">
-              <span
-                class="inline-block px-2 py-0.5 text-xs font-medium bg-primary/10 text-primary rounded-md border border-primary/25"
-              >
-                {{ project.award }}
-              </span>
-            </div>
-
-            <p class="text-sm leading-[1.6] text-text-secondary mb-5">
-              {{ project.description }}
-            </p>
-
-            <div v-if="primaryLinks(project).length > 0 || projectPapers(project.id).length > 0" class="flex flex-wrap gap-2 mb-3">
-              <LinkPill
-                v-for="url in primaryLinks(project)"
-                :key="`${project.id}-${url.url}`"
-                :link="url"
-              />
-              <a
-                v-for="pub in projectPapers(project.id)"
-                :key="`${project.id}-${pub.title}`"
-                :href="`/publications#${slugify(pub.title)}`"
-                :title="pub.title"
-                class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs leading-[1.3] bg-surface-light text-text-secondary rounded-lg border border-white/[0.08] hover:bg-surface-hover hover:text-text-primary hover:border-white/[0.14] transition-colors duration-150"
-                @click="handlePublicationClick"
-              >
-                <AppIcon name="file-text" size="sm" class="text-text-muted" />
-                <span>{{ paperLabel(pub, projectPapers(project.id).length) }}</span>
-              </a>
-            </div>
-
-            <p
-              v-if="pressLinks(project).length > 0"
-              class="text-xs leading-[1.55] text-text-muted mb-4"
+        <div class="flex flex-wrap gap-2 mb-4">
+          <LinkPill
+            v-for="url in project.urls"
+            :key="`${url.name}-${url.url}`"
+            :link="url"
+          />
+          <a
+            v-for="pub in projectPapers(project.id)"
+            :key="pub.title"
+            :href="
+              '/publications#' +
+              pub.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+            "
+            :title="pub.title"
+            class="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs bg-surface-light text-text-secondary rounded-lg border border-orange-500/30 hover:bg-surface-light/80 transition-colors"
+            @click="handlePublicationClick"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-3.5 w-3.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
-              <span>Coverage: </span>
-              <template v-for="(item, idx) in pressLinks(project)" :key="`${project.id}-press-${item.url}`">
-                <a
-                  :href="item.url"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="text-text-secondary hover:text-primary transition-colors duration-150 underline decoration-white/15 underline-offset-2"
-                >{{ item.name }}</a><span v-if="idx < pressLinks(project).length - 1">, </span>
-              </template>
-            </p>
-
-            <div class="mt-auto pt-4 border-t border-white/[0.06] flex flex-wrap gap-1.5">
-              <TagPill v-for="tag in project.tags" :key="tag">
-                {{ tag }}
-              </TagPill>
-            </div>
-          </div>
-        </CardComponent>
-      </div>
-    </section>
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+            {{ paperLabel(pub, projectPapers(project.id).length) }}
+          </a>
+        </div>
+        <p class="text-text-secondary mb-4">{{ project.description }}</p>
+        <div class="flex flex-wrap gap-2 mb-2">
+          <span
+            v-if="project.award"
+            class="px-3 py-1 text-xs font-bold bg-yellow-500/10 text-yellow-400 rounded-full border border-yellow-500/30"
+          >
+            🏆 {{ project.award }}
+          </span>
+          <TagPill v-for="tag in project.tags" :key="tag">
+            {{ tag }}
+          </TagPill>
+        </div>
+      </CardComponent>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { useProjectsStore, type Project, type ProjectId } from '~/stores/projects';
-import { usePublicationsStore, type Publication } from '~/stores/publications';
-import CardComponent from '~/components/CardComponent.vue';
-import LinkPill from '~/components/LinkPill.vue';
-import AppIcon from '~/components/AppIcon.vue';
-import { useRouter, useRoute } from 'vue-router';
-import { onMounted, ref, computed } from 'vue';
+import { useProjectsStore } from "~/stores/projects";
+import { usePublicationsStore } from "~/stores/publications";
+import type { Publication } from "~/stores/publications";
+import CardComponent from "~/components/CardComponent.vue";
+import LinkPill from "~/components/LinkPill.vue";
+import { useRouter, useRoute } from "vue-router";
+import { onMounted, ref, computed } from "vue";
+import type { ProjectId } from "~/stores/projects";
 
 const projectsStore = useProjectsStore();
 const publicationsStore = usePublicationsStore();
@@ -175,66 +149,62 @@ const router = useRouter();
 const route = useRoute();
 const highlightedProject = ref<ProjectId | null>(null);
 
-const activeProjects = computed(() =>
-  projectsStore.projects.filter((project) => !project.archived),
-);
+// Computed properties to separate active and archived projects
+const activeProjects = computed(() => {
+  // Include all non-archived projects regardless of whether they have GitHub URLs
+  return projectsStore.projects.filter((project) => !project.archived);
+});
 
-const archivedProjects = computed(() =>
-  projectsStore.projects.filter((project) => project.archived),
-);
+const archivedProjects = computed(() => {
+  return projectsStore.projects.filter((project) => project.archived);
+});
 
-const isHighlighted = (id: ProjectId) => highlightedProject.value === id;
-
-const primaryLinks = (project: Project) =>
-  (project.urls || []).filter((u) => u.type !== 'news');
-
-const pressLinks = (project: Project) =>
-  (project.urls || []).filter((u) => u.type === 'news');
+const isHighlighted = (id: ProjectId) => {
+  return highlightedProject.value === id;
+};
 
 const projectPapers = (projectId: ProjectId) =>
   publicationsStore.recentPublications.filter((p: Publication) => p.projectId === projectId);
 
-const slugify = (title: string) =>
-  title.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-
 const paperLabel = (pub: Publication, count: number): string => {
-  if (count <= 1) return `Paper (${pub.year})`;
-  const short = pub.title.split(':')[0]?.trim() || pub.title;
+  if (count <= 1) return "Paper";
+  const short = pub.title.split(":")[0]?.trim() || pub.title;
   const compact = short.length > 22 ? `${short.slice(0, 20).trim()}…` : short;
   return `${compact} (${pub.year})`;
 };
 
 const handlePublicationClick = (event: MouseEvent) => {
   const link = event.currentTarget as HTMLAnchorElement;
-  const href = link.getAttribute('href') || '';
-  const hash = href.split('#')[1];
+  const hash = link.getAttribute("href")?.split("#")[1];
 
   if (hash) {
     event.preventDefault();
-    router.push(href);
+    router.push(link.getAttribute("href") || "");
 
+    // Wait for the next tick to ensure the publications page is loaded
     setTimeout(() => {
       const element = document.getElementById(hash);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }, 100);
   }
 };
 
 onMounted(() => {
-  const hash = route.hash.slice(1);
+  const hash = route.hash.slice(1); // Remove the # from the hash
   if (hash) {
     const project = projectsStore.getProjectById(hash as ProjectId);
     if (project) {
       const element = document.getElementById(hash);
       if (element) {
         highlightedProject.value = hash as ProjectId;
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
 
+        // Remove highlight after 5 seconds
         setTimeout(() => {
           highlightedProject.value = null;
-        }, 4000);
+        }, 5000);
       }
     }
   }

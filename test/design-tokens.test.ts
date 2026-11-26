@@ -23,21 +23,9 @@ const mainCssPath = resolve(projectRoot, 'assets/css/main.css');
 const require = createRequire(import.meta.url);
 
 /** Colour tokens (`--color-<token>`) that `@theme` must declare. */
-const COLOR_TOKENS = [
-  'background',
-  'surface',
-  'surface-light',
-  'surface-hover',
-  'text-primary',
-  'text-secondary',
-  'text-muted',
-];
+const COLOR_TOKENS = ['background', 'surface', 'surface-light', 'text-primary', 'text-secondary'];
 /** Font tokens (`--font-<token>`) and the brand family each must resolve to. */
-const FONT_FAMILIES: Record<string, string> = {
-  sans: 'Manrope',
-  display: 'Manrope',
-  mono: 'IBM Plex Mono',
-};
+const FONT_FAMILIES: Record<string, string> = { sans: 'Manrope', display: 'General Sans' };
 
 // --- Stylesheet compilation ---------------------------------------------------
 
@@ -141,9 +129,7 @@ describe('Design tokens (assets/css/main.css @theme)', () => {
   it('compiles every token utility used by a component into a CSS rule', async () => {
     const candidates = designTokenCandidates();
     // Sanity check that the scanner sees the templates at all.
-    expect(candidates).toEqual(
-      expect.arrayContaining(['bg-surface', 'text-text-secondary', 'font-display', 'font-mono']),
-    );
+    expect(candidates).toEqual(expect.arrayContaining(['bg-surface/95', 'text-text-secondary', 'font-display']));
 
     const css = await buildCss(candidates);
     const unresolved = candidates.filter((candidate) => !css.includes(`.${cssEscape(candidate)}`));

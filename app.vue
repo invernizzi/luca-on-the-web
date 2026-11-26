@@ -6,6 +6,7 @@
   </div>
 </template>
 
+
 <style>
 /* Design tokens live in assets/css/main.css (@theme). */
 html {
@@ -17,9 +18,8 @@ body {
      negative z-index fixed layer, so any background on a wrapper <div> would
      paint over it. */
   background-color: var(--color-background);
-  color: var(--color-text-primary);
-  box-sizing: border-box;
-  scroll-margin-top: 88px;
+  color: var(--color-text-primary); box-sizing: border-box;
+  scroll-margin-top: 100px;
 }
 
 ::selection {
@@ -32,15 +32,11 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-background);
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-hover);
+  background: var(--ui-primary);
   border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
 }
 </style>

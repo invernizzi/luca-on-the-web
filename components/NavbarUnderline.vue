@@ -2,8 +2,8 @@
   <div
     ref="underlineEl"
     aria-hidden="true"
-    class="sliding-underline pointer-events-none"
-    :style="underlineStyle"
+    class="sliding-underline absolute h-1 bg-primary rounded-full pointer-events-none"
+    :style="underlinePosition"
   />
 </template>
 
@@ -15,27 +15,27 @@ import {
   onBeforeUnmount,
   watch,
   nextTick,
-} from 'vue';
-import { useRoute } from 'vue-router';
+} from "vue";
+import { useRoute } from "vue-router";
 
 const route = useRoute();
 const underlineEl = ref<HTMLElement | null>(null);
-const underlineStyle = reactive({
-  transform: 'translateX(0px)',
-  width: '0px',
-  opacity: '0',
+const underlinePosition = reactive({
+  left: "0px",
+  width: "0px",
+  opacity: "0",
 });
 
 const normalizePath = (path: string): string =>
-  path.length > 1 ? path.replace(/\/+$/, '') : path;
+  path.length > 1 ? path.replace(/\/+$/, "") : path;
 
 const updateUnderlinePosition = () => {
   if (!underlineEl.value) return;
 
   const current = normalizePath(route.path);
-  const links = document.querySelectorAll<HTMLAnchorElement>('.nav-links-container .nav-link');
+  const links = document.querySelectorAll<HTMLAnchorElement>(".nav-link");
   const activeLink = Array.from(links).find((link) => {
-    const href = link.getAttribute('href') || '';
+    const href = link.getAttribute("href") || "";
     return normalizePath(href) === current;
   });
 
@@ -43,11 +43,11 @@ const updateUnderlinePosition = () => {
     const parent = underlineEl.value.offsetParent as HTMLElement | null;
     const parentLeft = parent ? parent.getBoundingClientRect().left : 0;
     const rect = activeLink.getBoundingClientRect();
-    underlineStyle.transform = `translateX(${rect.left - parentLeft}px)`;
-    underlineStyle.width = `${rect.width}px`;
-    underlineStyle.opacity = '1';
+    underlinePosition.left = `${rect.left - parentLeft}px`;
+    underlinePosition.width = `${rect.width}px`;
+    underlinePosition.opacity = "1";
   } else {
-    underlineStyle.opacity = '0';
+    underlinePosition.opacity = "0";
   }
 };
 
@@ -63,31 +63,30 @@ onMounted(async () => {
   await nextTick();
   updateUnderlinePosition();
 
-  if (typeof document !== 'undefined' && 'fonts' in document) {
+  if (typeof document !== "undefined" && "fonts" in document) {
     document.fonts.ready.then(() => {
       updateUnderlinePosition();
     });
   }
 
-  window.addEventListener('resize', updateUnderlinePosition);
+  window.addEventListener("resize", updateUnderlinePosition);
 });
 
 onBeforeUnmount(() => {
-  window.removeEventListener('resize', updateUnderlinePosition);
+  window.removeEventListener("resize", updateUnderlinePosition);
 });
 </script>
 
 <style scoped>
 .sliding-underline {
   position: absolute;
-  left: 0;
-  bottom: -1px;
   height: 2px;
   background-color: var(--ui-primary);
+  bottom: 0;
   z-index: 60;
   transition:
-    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 180ms cubic-bezier(0.22, 1, 0.36, 1),
-    opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
+    left 300ms ease-out,
+    width 300ms ease-out,
+    opacity 200ms ease-out;
 }
 </style>

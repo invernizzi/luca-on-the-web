@@ -5,10 +5,10 @@
  * Design tokens.
  *
  * Tailwind v4 only generates utilities (bg-surface, text-text-secondary,
- * font-display, font-mono, ...) for variables declared inside `@theme`; plain
- * `:root` variables are invisible to it. `static` keeps every token emitted as
- * a CSS custom property even when no utility references it, so hand-written CSS
- * can rely on `var(--color-surface)`.
+ * font-display, ...) for variables declared inside `@theme`; plain `:root`
+ * variables are invisible to it. `static` keeps every token emitted as a CSS
+ * custom property even when no utility references it, so hand-written CSS
+ * (e.g. the CV timeline) can rely on `var(--color-surface)`.
  *
  * `@nuxt/fonts` picks the families up from the `--font-*` variables and
  * self-hosts them; keep the family names in sync with `fonts.families` in
@@ -17,37 +17,22 @@
 @theme static {
   --ui-primary: #ff9d02;
 
-  --color-background: #141415;
-  --color-surface: #19191b;
-  --color-surface-light: #232325;
-  --color-surface-hover: #2c2c2f;
-  --color-text-primary: #ededed;
-  --color-text-secondary: #a1a1a6;
-  --color-text-muted: #94949a;
+  --color-background: #151515;
+  --color-surface: #1e1e1e;
+  --color-surface-light: #2a2a2a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
 
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
-
-  --ease-quiet: cubic-bezier(0.22, 1, 0.36, 1);
+  --font-display: "General Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
-  html {
-    font-optical-sizing: auto;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
   h1,
   h2,
   h3,
   h4 {
     text-wrap: balance;
-  }
-
-  p {
-    text-wrap: pretty;
   }
 
   a:focus-visible,
