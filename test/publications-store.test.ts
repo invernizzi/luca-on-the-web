@@ -1,4 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
+import fs from 'node:fs';
+import path from 'node:path';
 import { setActivePinia, createPinia } from 'pinia';
 import { usePublicationsStore, PublicationCategory } from '../stores/publications';
 import { ProjectId } from '../stores/projects';
@@ -68,5 +70,20 @@ describe('Publications Store', () => {
     );
 
     expect(unclassified.map((p) => p.title)).toEqual([]);
+  });
+
+  it('points every local pdf path to an existing PDF file in public/', () => {
+    const publicationsStore = usePublicationsStore();
+    const publicDir = path.resolve(__dirname, '../public');
+    const withPdf = publicationsStore.recentPublications.filter((p) => Boolean(p.pdf));
+
+    expect(withPdf.length).toBeGreaterThanOrEqual(30);
+
+    for (const pub of withPdf) {
+      const fullPath = path.join(publicDir, pub.pdf!.replace(/^\//, ''));
+      expect(fs.existsSync(fullPath), `Missing PDF for "${pub.title}": ${fullPath}`).toBe(true);
+      const header = fs.readFileSync(fullPath).subarray(0, 5).toString('ascii');
+      expect(header, `Invalid PDF header for "${pub.title}"`).toBe('%PDF-');
+    }
   });
 });

@@ -60,7 +60,7 @@
             class="inline-flex items-center gap-1.5 px-[11px] py-[5px] text-[12.5px] font-medium rounded-[8px] bg-surface-light text-[#e4e4ea] border border-white/[0.11] hover:border-white/25 hover:text-text-primary transition-colors [box-shadow:inset_0_1px_0_rgba(255,255,255,0.05)]"
             @click="handlePublicationClick"
           >
-            {{ paperLabel(pub, projectPapers(project.id).length) }}
+            {{ paperLabel(pub) }}
           </a>
         </div>
 
@@ -144,7 +144,7 @@
             class="inline-flex items-center gap-1.5 px-[11px] py-[5px] text-[12.5px] font-medium rounded-[8px] bg-surface-light text-[#e4e4ea] border border-white/[0.11] hover:border-white/25 hover:text-text-primary transition-colors [box-shadow:inset_0_1px_0_rgba(255,255,255,0.05)]"
             @click="handlePublicationClick"
           >
-            {{ paperLabel(pub, projectPapers(project.id).length) }}
+            {{ paperLabel(pub) }}
           </a>
         </div>
 
@@ -234,11 +234,28 @@ const projectPapers = (projectId: ProjectId) =>
     (p: Publication) => p.projectId === projectId,
   );
 
-const paperLabel = (pub: Publication, count: number): string => {
-  if (count <= 1) return `Paper (${pub.year})`;
-  const short = pub.title.split(":")[0]?.trim() || pub.title;
-  const compact = short.length > 22 ? `${short.slice(0, 20).trim()}…` : short;
-  return `${compact} (${pub.year})`;
+const shortVenueName = (venue?: string): string => {
+  if (!venue) return "Paper";
+  const paren = venue.match(/\(([^)]+)\)/);
+  if (paren?.[1]) return `${paren[1]} Paper`;
+  if (/usenix security/i.test(venue)) return "USENIX Security Paper";
+  if (/computer and communications security/i.test(venue)) return "ACM CCS Paper";
+  if (/acns/i.test(venue)) return "ACNS Paper";
+  if (/arxiv/i.test(venue)) return "arXiv Paper";
+  if (/github/i.test(venue)) return "Publication";
+  return "Paper";
+};
+
+const paperLabel = (pub: Publication): string => {
+  // Prefer a short, exact system name before ":" (e.g. "Magika", "TypeSeg", "TRIAGE-CPG", "Sedpack")
+  const colonIdx = pub.title.indexOf(":");
+  if (colonIdx > 0) {
+    const prefix = pub.title.slice(0, colonIdx).trim();
+    if (prefix.length <= 16 && !prefix.includes(",")) {
+      return `${prefix} (${pub.year})`;
+    }
+  }
+  return `${shortVenueName(pub.venue)} (${pub.year})`;
 };
 
 const handlePublicationClick = (event: MouseEvent) => {

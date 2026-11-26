@@ -33,11 +33,11 @@
     <!-- Bio -->
     <div class="max-w-[66ch] space-y-4 mb-11 text-[16.5px] sm:text-[17px] leading-[1.65] text-text-body">
       <p>
-        I'm a Senior Staff Research Scientist Manager at Google's
+        I lead research in Google's
         <NuxtLink
           to="https://research.google/teams/security-privacy-and-abuse/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >Security Research Group</NuxtLink>, focused on protecting people online through advances in cybersecurity, AI, and hardware security.
       </p>
       <p>
@@ -45,38 +45,38 @@
         <NuxtLink
           to="https://www.bbc.com/news/technology-40737060"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >BBC</NuxtLink>,
         <NuxtLink
           to="https://www.forbes.com/sites/daveywinder/2024/02/15/new-google-security-includes-gmail-magic-protection--ai-cyber-defense-initiative/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >Forbes</NuxtLink>,
         <NuxtLink
           to="https://www.wired.com/story/gmail-catching-more-malicious-attachments-deep-learning/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >Wired</NuxtLink>,
         <NuxtLink
           to="https://www.cnet.com/tech/services-and-software/new-google-messages-safety-features-blur-nudity-warn-about-scams/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >CNET</NuxtLink>,
         <NuxtLink
           to="https://www.theverge.com/2017/2/23/14712118/google-sha1-collision-broken-web-encryption-shattered"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >The Verge</NuxtLink>, and tech news sites like
         <NuxtLink
           to="https://arstechnica.com/information-technology/2017/02/watershed-sha1-collision-just-broke-the-webkit-repository-others-may-follow/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >Ars Technica</NuxtLink>
         and
         <NuxtLink
           to="https://www.techrepublic.com/article/news-google-sec-gemini-v1/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >TechRepublic</NuxtLink>.
       </p>
       <p>
@@ -84,22 +84,22 @@
         <NuxtLink
           to="https://www.ucsb.edu/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >UCSB</NuxtLink>, an EMBA from
         <NuxtLink
           to="https://quantic.edu/"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >Quantic School of Business</NuxtLink>, a Master in Robotics from the
         <NuxtLink
           to="https://www.unipi.it/index.php/english"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >University of Pisa</NuxtLink>, and an engineering degree from the
         <NuxtLink
           to="https://www.santannapisa.it/en"
           external
-          class="text-primary font-medium border-b border-primary/35 hover:border-primary pb-[1px] transition-colors"
+          class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >Sant'Anna School of Advanced Studies</NuxtLink>.
       </p>
     </div>

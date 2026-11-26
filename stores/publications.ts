@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue'; // Import ref and computed
+import { ref, computed } from 'vue';
 import { ProjectId } from '@/stores/projects';
 import scholarPublications from '../assets/scholar_publications.json';
 
@@ -17,6 +17,7 @@ export interface Publication {
   venue?: string
   year: number
   link: string
+  pdf?: string
   award?: string
   projectId?: ProjectId
   citations?: number
@@ -26,13 +27,14 @@ export interface Publication {
 }
 
 // Define the hardcoded metadata for publications
-// This allows us to keep the categories, projectId, award and fallback link data that isn't in the scholar JSON
+// This allows us to keep the categories, projectId, award, local PDF and fallback link data that isn't in the scholar JSON
 interface PublicationMetadata {
   title: string // Used for matching with Scholar data
   categories: PublicationCategory[]
   projectId?: ProjectId
   award?: string
   link?: string
+  pdf?: string
 }
 
 const openSourcePublications: Publication[] = [
@@ -69,48 +71,60 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'A geometric approach to trajectory design for an autonomous underwater vehicle: Surveying the bulbous bow of a ship',
-    categories: [PublicationCategory.ROBOTICS]
+    categories: [PublicationCategory.ROBOTICS],
+    pdf: '/papers/2011-a-geometric-approach-to-trajectory-design.pdf'
   },
   {
     title: 'Message In A Bottle: Sailing Past Censorship',
-    categories: [PublicationCategory.PRIVACY]
+    categories: [PublicationCategory.PRIVACY],
+    pdf: '/papers/2012-message-in-a-bottle-sailing-past.pdf'
   },
   {
     title: 'EVILSEED: A Guided Approach to Finding Malicious Web Pages',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2012-evilseed-a-guided-approach-to-finding.pdf'
   },
   {
     title: 'You are what you include: large-scale evaluation of remote javascript inclusions',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2012-you-are-what-you-include-large.pdf'
   },
   {
     title: 'Nazca: Detecting Malware Distribution in Large-Scale Networks',
     categories: [PublicationCategory.SECURITY],
-    award: 'UCSB Computer Science Outstanding Publication Award'
+    award: 'UCSB Computer Science Outstanding Publication Award',
+    pdf: '/papers/2014-nazca-detecting-malware-distribution-in-large.pdf'
   },
   {
     title: 'Ten Years of iCTF: The Good, The Bad, and The Ugly',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2014-ten-years-of-ictf-the-good.pdf'
   },
   {
     title: 'Do you feel lucky? A large-scale analysis of risk-rewards trade-offs in cyber security',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2014-do-you-feel-lucky-a-large.pdf'
   },
   {
     title: 'Eyes of a human, eyes of a program: Leveraging different views of the web for analysis and detection',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2014-eyes-of-a-human-eyes-of.pdf'
   },
   {
     title: 'What the app is that? deception and countermeasures in the android user interface',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2015-what-the-app-is-that-deception.pdf'
   },
   {
     title: 'Baredroid: Large-scale analysis of android apps on real devices',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2015-baredroid-large-scale-analysis-of-android.pdf'
   },
   {
     title: 'Detecting malware infestations in large-scale networks',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    link: 'https://patents.google.com/patent/US8959643B1/en',
+    pdf: '/papers/2015-detecting-malware-infestations-in-large-scale.pdf'
   },
   {
     title: 'Detecting the stealthy distribution of malicious and abusive content online',
@@ -118,29 +132,35 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'Cloak of Visibility: Detecting When Machines Browse A Different Web',
-    categories: [PublicationCategory.SECURITY, PublicationCategory.MACHINE_LEARNING]
+    categories: [PublicationCategory.SECURITY, PublicationCategory.MACHINE_LEARNING],
+    pdf: '/papers/2016-cloak-of-visibility-detecting-when-machines.pdf'
   },
   {
     title: 'Understanding the mirai botnet',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2017-understanding-the-mirai-botnet.pdf'
   },
   {
     title: 'Data Breaches, Phishing, or Malware?: Understanding the Risks of Stolen Credentials',
     categories: [PublicationCategory.SECURITY, PublicationCategory.PRIVACY],
-    projectId: ProjectId.PASSWORD_CHECKUP
+    projectId: ProjectId.PASSWORD_CHECKUP,
+    pdf: '/papers/2017-data-breaches-phishing-or-malware-understanding.pdf'
   },
   {
     title: 'Gossip: Automatically identifying malicious domains from mailing list discussions',
-    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    pdf: '/papers/2017-gossip-automatically-identifying-malicious-domains-from.pdf'
   },
   {
     title: 'Tracking ransomware end-to-end',
     categories: [PublicationCategory.SECURITY],
-    projectId: ProjectId.RANSOMWARE
+    projectId: ProjectId.RANSOMWARE,
+    pdf: '/papers/2018-tracking-ransomware-end-to-end.pdf'
   },
   {
     title: 'Three years of the Right to be Forgotten',
-    categories: [PublicationCategory.PRIVACY]
+    categories: [PublicationCategory.PRIVACY],
+    pdf: '/papers/2018-three-years-of-the-right-to.pdf'
   },
   {
     title: 'Keras Tuner',
@@ -151,11 +171,13 @@ const publicationMetadata: PublicationMetadata[] = [
     title: 'Protecting accounts from credential stuffing with password breach alerting',
     categories: [PublicationCategory.SECURITY, PublicationCategory.PRIVACY],
     projectId: ProjectId.PASSWORD_CHECKUP,
-    award: 'Best Paper Award'
+    award: 'Best Paper Award',
+    pdf: '/papers/2019-protecting-accounts-from-credential-stuffing-with.pdf'
   },
   {
     title: 'Five years of the right to be forgotten',
-    categories: [PublicationCategory.PRIVACY]
+    categories: [PublicationCategory.PRIVACY],
+    pdf: '/papers/2019-five-years-of-the-right-to.pdf'
   },
   {
     title: 'Serverless Cybersecurity Training',
@@ -163,35 +185,42 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'CoinPolice: Detecting Hidden Cryptojacking Attacks with Neural Networks',
-    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    pdf: '/papers/2020-coinpolice-detecting-hidden-cryptojacking-attacks-with.pdf'
   },
   {
     title: 'Spotlight: Malware Lead Generation at Scale',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2020-spotlight-malware-lead-generation-at-scale.pdf'
   },
   {
     title: 'Hybrid Post-quantum Signatures in Hardware Security Keys',
     categories: [PublicationCategory.HARDWARE, PublicationCategory.SECURITY],
     projectId: ProjectId.OPENSK,
-    award: 'Best Paper Award'
+    award: 'Best Paper Award',
+    pdf: '/papers/2022-hybrid-post-quantum-signatures-in-hardware.pdf'
   },
   {
     title: 'Generalized power attacks against crypto hardware using long-range deep learning',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.HARDWARE],
-    projectId: ProjectId.SCAAML
+    projectId: ProjectId.SCAAML,
+    pdf: '/papers/2023-generalized-power-attacks-against-crypto-hardware.pdf'
   },
   {
     title: 'Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context',
-    categories: [PublicationCategory.MACHINE_LEARNING]
+    categories: [PublicationCategory.MACHINE_LEARNING],
+    pdf: '/papers/2024-gemini-1-5-unlocking-multimodal-understanding.pdf'
   },
   {
     title: 'Give and take: An end-to-end investigation of giveaway scam conversion rates',
-    categories: [PublicationCategory.SECURITY]
+    categories: [PublicationCategory.SECURITY],
+    pdf: '/papers/2024-give-and-take-an-end-to.pdf'
   },
   {
     title: 'Magika: AI-Powered Content-Type Detection',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
-    projectId: ProjectId.MAGIKA
+    projectId: ProjectId.MAGIKA,
+    pdf: '/papers/2024-magika-ai-powered-content-type-detection.pdf'
   },
   {
     title: 'Sedpack: Scalable and Efficient Dataset Library',
@@ -200,7 +229,8 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'Evaluating the robustness of a production malware detection system to transferable adversarial attacks',
-    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    pdf: '/papers/2025-evaluating-the-robustness-of-a-production.pdf'
   },
   {
     title: 'Google announces Sec-Gemini v1, a new experimental cybersecurity model',
@@ -215,21 +245,26 @@ const publicationMetadata: PublicationMetadata[] = [
   {
     title: 'TRIAGE-CPG: A Cross-Model Study of Budgeted Static Malware Triage with Large Language Models',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
-    projectId: ProjectId.SECGEMINI
+    projectId: ProjectId.SECGEMINI,
+    link: 'https://arxiv.org/abs/2611.21331',
+    pdf: '/papers/2026-triage-cpg-a-cross-model-study.pdf'
   },
   {
     title: 'From Payload to Plugin: Web-Scale Ecosystem Attribution of JavaScript Injection Campaigns',
     categories: [PublicationCategory.SECURITY],
     award: 'Distinguished Paper Award',
-    link: 'https://sites.cs.ucsb.edu/~chris/research/doc/ccs26_plugin.pdf'
+    link: 'https://sites.cs.ucsb.edu/~chris/research/doc/ccs26_plugin.pdf',
+    pdf: '/papers/2026-from-payload-to-plugin-web-scale.pdf'
   },
   {
     title: 'ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?',
-    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    pdf: '/papers/2026-exploitgym-can-ai-agents-turn-security.pdf'
   },
   {
     title: 'Honeyval: A Comprehensive Evaluation Framework for LLM-powered HTTP Honeypots',
-    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY]
+    categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
+    pdf: '/papers/2026-honeyval-a-comprehensive-evaluation-framework-for.pdf'
   }
 ];
 
@@ -257,11 +292,13 @@ const mergePublicationData = (): Publication[] => {
       projectId: undefined,
       award: undefined,
       link: undefined,
+      pdf: undefined,
     };
 
     return {
       ...pub,
       link: metadata.link || pub.link,
+      pdf: metadata.pdf,
       categories: metadata.categories.length > 0 ? metadata.categories : (pub.categories || []),
       projectId: metadata.projectId || pub.projectId,
       award: metadata.award || pub.award,

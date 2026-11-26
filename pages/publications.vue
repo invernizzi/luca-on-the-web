@@ -130,6 +130,27 @@
               <TagPill v-for="category in pub.categories" :key="category">
                 {{ category }}
               </TagPill>
+
+              <a
+                v-if="pub.pdf"
+                :href="pub.pdf"
+                :download="pdfFilename(pub.pdf)"
+                :aria-label="`Download PDF: ${pub.title}`"
+                class="sm:ml-auto inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[7px] font-mono text-xs font-medium bg-surface-light text-[#e4e4ea] border border-white/[0.12] hover:border-primary/60 hover:text-primary transition-colors [box-shadow:inset_0_1px_0_rgba(255,255,255,0.05)] shrink-0"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-3.5 h-3.5 opacity-80 shrink-0"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  aria-hidden="true"
+                >
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v11m0 0-4-4m4 4 4-4M5 19h14" />
+                </svg>
+                <span>PDF</span>
+              </a>
             </div>
           </CardComponent>
         </div>
@@ -241,6 +262,9 @@ const isHighlighted = (title: string) => {
   const normalizedTitle = title.toLowerCase().replace(/[^a-z0-9]+/g, '-')
   return highlightedPublication.value === normalizedTitle
 }
+
+const pdfFilename = (pdfPath: string): string =>
+  pdfPath.split('/').pop() || 'paper.pdf'
 
 const allFilteredPublications = computed(() => {
   let publications = [...publicationsStore.recentPublications]

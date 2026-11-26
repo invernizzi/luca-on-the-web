@@ -38,7 +38,7 @@
                 {{ participation.conference }}
               </h3>
               <p class="mt-1 font-mono text-xs text-text-secondary">
-                Program Committee · {{ hostOf(participation.url) }}
+                Program Committee
               </p>
             </div>
 
@@ -59,12 +59,4 @@
 import { useCommitteesStore } from '~/stores/committees'
 
 const committeesStore = useCommitteesStore()
-
-const hostOf = (url: string): string => {
-  try {
-    return new URL(url).hostname.replace(/^www\./, '')
-  } catch {
-    return url
-  }
-}
 </script>

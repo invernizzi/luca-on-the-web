@@ -169,12 +169,12 @@ export const useProjectsStore = defineStore('projects', () => {
                     url: 'https://secgemini.google'
                 },
                 {
-                    name: 'Google Security Blog',
+                    name: 'Sec-Gemini v1 Blog',
                     type: 'blog',
                     url: 'https://security.googleblog.com/2025/04/google-launches-sec-gemini-v1-new.html'
                 },
                 { 
-                    name: 'Google Blog',
+                    name: 'Summer 2025 Blog',
                     type: 'blog',
                     url: 'https://blog.google/technology/safety-security/cybersecurity-updates-summer-2025/'
                 },
@@ -199,7 +199,7 @@ export const useProjectsStore = defineStore('projects', () => {
                     url: "https://www.googlecloudcommunity.com/gc/Community-Blog/Fueling-AI-Innovation-in-SecOps-Products-The-SecLM-Platform-and/ba-p/913254"
                 },
                 {
-                    name: "Google Blog (Sec-Gemini v3)",
+                    name: "Sec-Gemini v3 Blog",
                     type: "blog",
                     url: "https://blog.google/intl/en-in/company-news/building-the-safety-foundations-for-indias-agentic-future/"
                 }
@@ -223,7 +223,7 @@ export const useProjectsStore = defineStore('projects', () => {
                     url: 'https://thehackernews.com/2024/02/google-open-sources-magika-ai-powered.html'
                 },
                 {
-                    name: "Google Open Source Blog (2024)",
+                    name: "Launch Blog (2024)",
                     type: 'blog',
                     url: 'https://opensource.googleblog.com/2024/02/magika-ai-powered-fast-and-efficient-file-type-identification.html'
                 },
