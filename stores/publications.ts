@@ -8,7 +8,6 @@ export enum PublicationCategory {
   SECURITY = 'Security',
   HARDWARE = 'Hardware',
   PRIVACY = 'Privacy',
-  CENSORSHIP = 'Censorship',
   ROBOTICS = 'Robotics'
 }
 
@@ -74,7 +73,7 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'Message In A Bottle: Sailing Past Censorship',
-    categories: [PublicationCategory.CENSORSHIP]
+    categories: [PublicationCategory.PRIVACY]
   },
   {
     title: 'EVILSEED: A Guided Approach to Finding Malicious Web Pages',
