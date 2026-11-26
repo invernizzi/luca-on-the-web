@@ -1,7 +1,11 @@
 <template>
   <span>
-    <template v-for="(author, index) in authors" :key="author">
-      <span v-if="isHighlightedAuthor(author)" class="font-bold text-primary">{{ author }}</span>
+    <template v-for="(author, index) in authors" :key="`${author}-${index}`">
+      <span
+        v-if="isHighlightedAuthor(author)"
+        class="font-medium text-text-primary underline decoration-primary/70 underline-offset-[3px]"
+        >{{ author }}</span
+      >
       <span v-else>{{ author }}</span>
       <span v-if="index < authors.length - 1">, </span>
     </template>
@@ -13,12 +17,18 @@ defineProps({
   authors: {
     type: Array as () => string[],
     required: false,
-    default: () => []
-  }
-})
+    default: () => [],
+  },
+});
 
 const isHighlightedAuthor = (author: string): boolean => {
-  const normalized = author.trim().toLowerCase()
-  return normalized === 'luca invernizzi' || normalized === 'l invernizzi' || normalized === 'l. invernizzi' || normalized.includes('invernizzi') || normalized === 'sec-gemini team'
-}
+  const normalized = author.trim().toLowerCase();
+  return (
+    normalized === 'luca invernizzi' ||
+    normalized === 'l invernizzi' ||
+    normalized === 'l. invernizzi' ||
+    normalized.includes('invernizzi') ||
+    normalized === 'sec-gemini team'
+  );
+};
 </script>

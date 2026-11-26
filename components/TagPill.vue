@@ -1,6 +1,6 @@
 <template>
   <span
-    class="px-2 py-0.5 text-[11px] text-text-secondary bg-surface-light/60 rounded-full border border-surface-light"
+    class="inline-block px-2 py-0.5 text-xs leading-[1.35] text-text-muted bg-surface-light rounded-md border border-white/[0.08]"
   >
     <slot />
   </span>

@@ -90,7 +90,7 @@ const publicationMetadata: PublicationMetadata[] = [
     award: 'UCSB Computer Science Outstanding Publication Award'
   },
   {
-    title: 'Ten Years of {iCTF}: The Good, The Bad, and The Ugly',
+    title: 'Ten Years of iCTF: The Good, The Bad, and The Ugly',
     categories: [PublicationCategory.SECURITY]
   },
   {
@@ -195,7 +195,7 @@ const publicationMetadata: PublicationMetadata[] = [
     projectId: ProjectId.MAGIKA
   },
   {
-    title: 'Sedpack - Scalable and efficient dataset library',
+    title: 'Sedpack: Scalable and Efficient Dataset Library',
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.HARDWARE, PublicationCategory.SECURITY],
     projectId: ProjectId.SCAAML
   },

@@ -1,75 +1,58 @@
 <template>
-  <header
-    class="sticky top-0 z-50 bg-gradient-to-b from-surface/95 via-surface/90 to-surface/85 backdrop-blur-md border-b border-white/10"
-  >
-    <div class="container mx-auto px-4 py-4">
-      <nav class="flex items-center justify-between">
-        <span/>
-        <div class="flex space-x-3 sm:space-x-6 relative nav-links-container">
+  <header class="sticky top-0 z-50 bg-background/95 border-b border-white/[0.08]">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 h-14">
+      <nav
+        aria-label="Primary"
+        class="h-full flex items-center justify-between gap-4 nav-links-container"
+      >
+        <NuxtLink
+          to="/"
+          class="nav-link h-full inline-flex items-center font-display text-[15px] font-medium tracking-[-0.01em] whitespace-nowrap transition-colors duration-150"
+          :class="isActive('/') ? 'text-text-primary' : 'text-text-primary/90 hover:text-primary'"
+          :aria-current="isActive('/') ? 'page' : undefined"
+        >
+          Luca Invernizzi
+        </NuxtLink>
+
+        <div class="h-full flex items-center gap-3 sm:gap-6">
           <NuxtLink
-            v-for="item in navItems" 
+            v-for="item in navItems"
             :key="item.path"
             :to="item.path"
-            :aria-label="item.label"
-            :title="item.label"
-            class="nav-link px-2 py-1 text-text-secondary hover:text-primary transition-colors"
-            :class="{ 
-              'text-primary font-medium': $route.path === item.path,
-              'flex items-center': item.icon
-            }"
+            class="nav-link h-full inline-flex items-center text-[13px] sm:text-sm font-normal whitespace-nowrap transition-colors duration-150"
+            :class="
+              isActive(item.path)
+                ? 'text-text-primary'
+                : 'text-text-secondary hover:text-text-primary'
+            "
+            :aria-current="isActive(item.path) ? 'page' : undefined"
           >
-            <UIcon v-if="item.icon" :name="item.icon" class="h-7 w-7" />
-            <span v-else class="text-sm sm:text-base">{{ item.label }}</span>
+            {{ item.label }}
           </NuxtLink>
         </div>
       </nav>
     </div>
 
-    <!-- Use the new NavbarUnderline component -->
     <NavbarUnderline />
   </header>
 </template>
 
 <script setup lang="ts">
-import { useRoute } from "vue-router";
+import { useRoute } from 'vue-router';
 import NavbarUnderline from './NavbarUnderline.vue';
 
-// Navigation items configuration
 const navItems = [
-  {
-    path: '/',
-    label: 'Home',
-    icon: 'uil:home-alt'
-  },
-  {
-    path: '/projects',
-    label: 'Projects'
-  },
-  {
-    path: '/publications',
-    label: 'Publications'
-  },
-  {
-    path: '/committees',
-    label: 'Service'
-  },
-  {
-    path: '/cv',
-    label: 'C.V.'
-  }
+  { path: '/projects', label: 'Projects' },
+  { path: '/publications', label: 'Publications' },
+  { path: '/committees', label: 'Service' },
+  { path: '/cv', label: 'CV' },
 ];
 
-const $route = useRoute();
+const route = useRoute();
+
+const normalizePath = (path: string): string =>
+  path.length > 1 ? path.replace(/\/+$/, '') : path;
+
+const isActive = (path: string): boolean =>
+  normalizePath(route.path) === normalizePath(path);
 </script>
-
-<style scoped>
-.nav-links-container {
-  /* Todo: move to tailwind */
-  position: relative;
-}
-
-.nav-link {
-  position: relative;
-  white-space: nowrap;
-}
-</style>

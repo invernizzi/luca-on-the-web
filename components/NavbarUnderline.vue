@@ -1,8 +1,9 @@
 <template>
   <div
     ref="underlineEl"
-    class="sliding-underline absolute h-1 bg-primary rounded-full transition-all duration-300 ease-out"
-    :style="underlinePosition"
+    aria-hidden="true"
+    class="sliding-underline pointer-events-none"
+    :style="underlineStyle"
   />
 </template>
 
@@ -14,72 +15,79 @@ import {
   onBeforeUnmount,
   watch,
   nextTick,
-} from "vue";
-import { useRoute } from "vue-router";
+} from 'vue';
+import { useRoute } from 'vue-router';
 
-const $route = useRoute();
-const underlineEl = ref(null);
-const underlinePosition = reactive({
-  left: "0px",
-  width: "0px",
-  opacity: "0",
+const route = useRoute();
+const underlineEl = ref<HTMLElement | null>(null);
+const underlineStyle = reactive({
+  transform: 'translateX(0px)',
+  width: '0px',
+  opacity: '0',
 });
 
-// Function to update the underline position
-const updateUnderlinePosition = () => {
-  const activeLink = document.querySelector(`.nav-link[href="${$route.path}"]`) as HTMLElement | null;
+const normalizePath = (path: string): string =>
+  path.length > 1 ? path.replace(/\/+$/, '') : path;
 
-  if (activeLink && underlineEl.value) {
-    const parent = (underlineEl.value as HTMLElement).offsetParent as HTMLElement | null;
+const updateUnderlinePosition = () => {
+  if (!underlineEl.value) return;
+
+  const current = normalizePath(route.path);
+  const links = document.querySelectorAll<HTMLAnchorElement>('.nav-links-container .nav-link');
+  const activeLink = Array.from(links).find((link) => {
+    const href = link.getAttribute('href') || '';
+    return normalizePath(href) === current;
+  });
+
+  if (activeLink) {
+    const parent = underlineEl.value.offsetParent as HTMLElement | null;
     const parentLeft = parent ? parent.getBoundingClientRect().left : 0;
     const rect = activeLink.getBoundingClientRect();
-    underlinePosition.left = `${rect.left - parentLeft}px`;
-    underlinePosition.width = `${rect.width}px`;
-    underlinePosition.opacity = "1";
+    underlineStyle.transform = `translateX(${rect.left - parentLeft}px)`;
+    underlineStyle.width = `${rect.width}px`;
+    underlineStyle.opacity = '1';
   } else {
-    underlinePosition.opacity = "0";
+    underlineStyle.opacity = '0';
   }
 };
 
-// Watch for route changes to update the underline
 watch(
-  () => $route.path,
+  () => route.path,
   async () => {
     await nextTick();
     updateUnderlinePosition();
-  }
+  },
 );
 
-// Initialize and set up event listeners
 onMounted(async () => {
   await nextTick();
-
-  // Initial position update
   updateUnderlinePosition();
 
-  // Recalculate once web fonts finish loading to prevent font-metric shift
   if (typeof document !== 'undefined' && 'fonts' in document) {
     document.fonts.ready.then(() => {
       updateUnderlinePosition();
     });
   }
 
-  // Add resize listener
-  window.addEventListener("resize", updateUnderlinePosition);
+  window.addEventListener('resize', updateUnderlinePosition);
 });
 
-// Clean up event listeners
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", updateUnderlinePosition);
+  window.removeEventListener('resize', updateUnderlinePosition);
 });
 </script>
 
 <style scoped>
 .sliding-underline {
   position: absolute;
+  left: 0;
+  bottom: -1px;
   height: 2px;
   background-color: var(--ui-primary);
-  bottom: 0;
   z-index: 60;
+  transition:
+    transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    width 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 150ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-</style> 
+</style>

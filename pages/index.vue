@@ -1,218 +1,177 @@
 <template>
-  <div class="container mx-auto px-4 py-12">
-    <div class="max-w-3xl mx-auto">
-      <div class="flex flex-col md:flex-row items-center gap-8 mb-16">
-        <div class="relative group">
-          <div
-            class="absolute -inset-1 bg-primary rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000"
-          />
-          <div
-            class="relative w-32 h-32 rounded-full overflow-hidden ring-4 ring-surface"
-          >
-            <LazyNuxtPicture
-              hydrate-on-visible
-              width="400"
-              height="400"
-              src="/images/face.webp"
-              alt="Luca Invernizzi"
-              format="webp"
-              sizes="128px"
-              densities="x1 x2"
-              placeholder
-              class="w-full h-full object-cover"
-            />
-          </div>
-        </div>
-        <div>
-          <h1 class="text-4xl font-display font-bold text-text-primary mb-4">
-            Luca Invernizzi
-          </h1>
-          <p class="text-text-secondary text-lg">
-            Senior Staff Research Scientist Manager at Google
-          </p>
-        </div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16 pb-8">
+    <header class="flex items-center gap-5 sm:gap-6 mb-10">
+      <div
+        class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border border-white/[0.14] shrink-0"
+      >
+        <LazyNuxtPicture
+          hydrate-on-visible
+          width="400"
+          height="400"
+          src="/images/face.webp"
+          alt="Luca Invernizzi"
+          format="webp"
+          sizes="96px"
+          densities="x1 x2"
+          placeholder
+          class="w-full h-full object-cover"
+        />
       </div>
-
-      <div class="prose prose-invert max-w-none mb-16">
-        <p class="text-text-secondary text-lg">
-          I'm a Senior Staff Research Scientist Manager at Google's
-          <NuxtLink
-            to="https://research.google/teams/security-privacy-and-abuse/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >Security Research Group</NuxtLink
-          >, focused on protecting people online through advances in cybersecurity, AI, and hardware security.
-        </p>
-        <p class="text-text-secondary text-lg mt-2">
-          My research has been featured by
-          <NuxtLink
-            to="https://www.bbc.com/news/technology-40737060"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >BBC</NuxtLink
-          >,
-          <NuxtLink
-            to="https://www.forbes.com/sites/daveywinder/2024/02/15/new-google-security-includes-gmail-magic-protection--ai-cyber-defense-initiative/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >Forbes</NuxtLink
-          >,
-          <NuxtLink
-            to="https://www.wired.com/story/gmail-catching-more-malicious-attachments-deep-learning/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >Wired</NuxtLink
-          >,
-          <NuxtLink
-            to="https://www.cnet.com/tech/services-and-software/new-google-messages-safety-features-blur-nudity-warn-about-scams/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-          >
-            CNET</NuxtLink
-          >,
-
-          <NuxtLink
-            to="https://www.theverge.com/2017/2/23/14712118/google-sha1-collision-broken-web-encryption-shattered"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >The Verge</NuxtLink
-          >, and tech news sites like
-          <NuxtLink
-            to="https://arstechnica.com/information-technology/2017/02/watershed-sha1-collision-just-broke-the-webkit-repository-others-may-follow/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >Ars Technica</NuxtLink
-          >
-          and
-          <NuxtLink
-            to="https://www.techrepublic.com/article/news-google-sec-gemini-v1/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >TechRepublic</NuxtLink
-          >.
-        </p>
-        <p class="text-text-secondary text-lg mt-2">
-          I regularly speak at academic and industry conferences and serve on committees for venues such as USENIX Security. I hold a PhD in
-          Computer Science from
-          <NuxtLink
-            to="https://www.ucsb.edu/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >UCSB</NuxtLink
-          >, an EMBA from
-          <NuxtLink
-            to="https://quantic.edu/"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >Quantic School of Business</NuxtLink
-          >, a Master in Robotics from the
-          <NuxtLink
-            to="https://www.unipi.it/index.php/english"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >University of Pisa</NuxtLink
-          >, and an engineering degree from the
-          <NuxtLink
-            to="https://www.santannapisa.it/en"
-            external
-            class="text-primary hover:text-primary/80 transition-colors"
-            >Sant'Anna School of Advanced Studies </NuxtLink
-          >.
+      <div>
+        <h1
+          class="text-[clamp(1.875rem,1.5rem+1.2vw,2.375rem)] font-display font-medium tracking-[-0.025em] leading-[1.08] text-text-primary mb-2"
+        >
+          Luca Invernizzi
+        </h1>
+        <p class="text-[15px] leading-[1.4] text-text-secondary">
+          Senior Staff Research Scientist Manager
+          <span class="text-text-muted mx-1.5" aria-hidden="true">·</span>
+          Google Switzerland
         </p>
       </div>
+    </header>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <LazyFeaturedProjectsCard hydrate-on-visible />
+    <section aria-label="Biography" class="max-w-[63ch] space-y-4 mb-12 text-base leading-[1.62] text-text-secondary">
+      <p>
+        I lead research in Google’s
+        <NuxtLink
+          to="https://research.google/teams/security-privacy-and-abuse/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >Security Research Group</NuxtLink
+        >, working to protect people online through advances in cybersecurity, AI, and hardware security.
+      </p>
+      <p>
+        My research has been featured by
+        <NuxtLink
+          to="https://www.bbc.com/news/technology-40737060"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >BBC</NuxtLink
+        >,
+        <NuxtLink
+          to="https://www.forbes.com/sites/daveywinder/2024/02/15/new-google-security-includes-gmail-magic-protection--ai-cyber-defense-initiative/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >Forbes</NuxtLink
+        >,
+        <NuxtLink
+          to="https://www.wired.com/story/gmail-catching-more-malicious-attachments-deep-learning/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >Wired</NuxtLink
+        >,
+        <NuxtLink
+          to="https://www.cnet.com/tech/services-and-software/new-google-messages-safety-features-blur-nudity-warn-about-scams/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >CNET</NuxtLink
+        >,
+        <NuxtLink
+          to="https://www.theverge.com/2017/2/23/14712118/google-sha1-collision-broken-web-encryption-shattered"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >The Verge</NuxtLink
+        >,
+        <NuxtLink
+          to="https://arstechnica.com/information-technology/2017/02/watershed-sha1-collision-just-broke-the-webkit-repository-others-may-follow/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >Ars Technica</NuxtLink
+        >, and
+        <NuxtLink
+          to="https://www.techrepublic.com/article/news-google-sec-gemini-v1/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >TechRepublic</NuxtLink
+        >.
+      </p>
+      <p>
+        I regularly speak at academic and industry conferences and serve on program committees including USENIX Security. I hold a PhD in Computer Science from
+        <NuxtLink
+          to="https://www.ucsb.edu/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >UCSB</NuxtLink
+        >, an EMBA from
+        <NuxtLink
+          to="https://quantic.edu/"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >Quantic School of Business</NuxtLink
+        >, a Master in Robotics from the
+        <NuxtLink
+          to="https://www.unipi.it/index.php/english"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >University of Pisa</NuxtLink
+        >, and an engineering degree from the
+        <NuxtLink
+          to="https://www.santannapisa.it/en"
+          external
+          class="text-text-primary underline decoration-white/25 underline-offset-[3px] hover:text-primary hover:decoration-primary transition-colors duration-150"
+          >Sant’Anna School of Advanced Studies</NuxtLink
+        >.
+      </p>
+    </section>
 
-        <LazyCardComponent title="Contacts">
-          <ul class="space-y-2 text-text-secondary">
-            <li>
-              <NuxtLink
-                to="https://www.linkedin.com/in/lucainvernizzi"
-                external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors"
-              >
-                <LazyUIcon
-                  hydrate-on-visible
-                  name="mdi:linkedin"
-                  class="w-4 h-4"
-                />
-                LinkedIn
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="mailto:luca@lucainvernizzi.net"
-                external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors"
-              >
-                <LazyUIcon
-                  hydrate-on-visible
-                  name="mdi:email"
-                  class="w-4 h-4"
-                />
-                Email
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ"
-                external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors"
-              >
-                <LazyUIcon
-                  hydrate-on-visible
-                  name="mdi:school"
-                  class="w-4 h-4"
-                />
-                Google Scholar
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="https://twitter.com/invernizzi"
-                external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors"
-              >
-                <LazyUIcon
-                  hydrate-on-visible
-                  name="mdi:twitter"
-                  class="w-4 h-4"
-                />
-                Twitter
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="https://github.com/invernizzi"
-                external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors"
-              >
-                <LazyUIcon
-                  hydrate-on-visible
-                  name="mdi:github"
-                  class="w-4 h-4"
-                />
-                GitHub
-              </NuxtLink>
-            </li>
-            <li>
-              <NuxtLink
-                to="https://research.google/people/104783/?&type=google"
-                external
-                class="flex items-center gap-1.5 hover:text-primary transition-colors"
-              >
-                <LazyUIcon
-                  hydrate-on-visible
-                  name="mdi:google"
-                  class="w-4 h-4"
-                />
-                Google Research
-              </NuxtLink>
-            </li>
-          </ul>
-        </LazyCardComponent>
-      </div>
+    <div class="grid grid-cols-1 md:grid-cols-[1.45fr_1fr] gap-5">
+      <LazyFeaturedProjectsCard hydrate-on-visible />
+
+      <LazyCardComponent title="Contacts" heading-tag="h2" :interactive="false">
+        <ul class="space-y-2.5 text-sm text-text-secondary">
+          <li v-for="contact in contacts" :key="contact.label">
+            <NuxtLink
+              :to="contact.to"
+              external
+              class="inline-flex items-center gap-2.5 hover:text-text-primary transition-colors duration-150 group"
+            >
+              <AppIcon
+                :name="contact.icon"
+                class="text-text-muted group-hover:text-primary transition-colors duration-150"
+              />
+              <span>{{ contact.label }}</span>
+            </NuxtLink>
+          </li>
+        </ul>
+      </LazyCardComponent>
     </div>
   </div>
 </template>
+
+<script setup lang="ts">
+import type { IconName } from '~/components/AppIcon.vue';
+
+const contacts: Array<{ label: string; to: string; icon: IconName }> = [
+  {
+    label: 'Email',
+    to: 'mailto:luca@lucainvernizzi.net',
+    icon: 'mail',
+  },
+  {
+    label: 'Google Scholar',
+    to: 'https://scholar.google.com/citations?hl=en&user=4CEVnEMAAAAJ',
+    icon: 'scholar',
+  },
+  {
+    label: 'Google Research',
+    to: 'https://research.google/people/104783/?&type=google',
+    icon: 'google',
+  },
+  {
+    label: 'GitHub',
+    to: 'https://github.com/invernizzi',
+    icon: 'github',
+  },
+  {
+    label: 'LinkedIn',
+    to: 'https://www.linkedin.com/in/lucainvernizzi',
+    icon: 'linkedin',
+  },
+  {
+    label: 'Twitter',
+    to: 'https://twitter.com/invernizzi',
+    icon: 'twitter',
+  },
+];
+</script>

@@ -17,7 +17,6 @@ export interface TimelineItem {
   gpa?: string
 }
 
-
 export interface Patent {
   title: string
   authors: string
@@ -49,7 +48,7 @@ export const useCVStore = defineStore('cv', () => {
     {
       title: 'Senior Staff Research Scientist Manager',
       organization: 'Google Switzerland',
-      period: 'March 2026 - Present',
+      period: 'Mar 2026–Present',
       description: 'Lead research in the Security Research Group at Google, focusing on AI and hardware security.',
       links: [
         {
@@ -58,7 +57,7 @@ export const useCVStore = defineStore('cv', () => {
           url: '/projects#magika'
         },
         {
-          name: 'SecGemini',
+          name: 'Sec-Gemini',
           type: 'website',
           url: '/projects#secgemini'
         },
@@ -77,11 +76,11 @@ export const useCVStore = defineStore('cv', () => {
     {
       title: 'Staff Research Scientist Manager',
       organization: 'Google Switzerland',
-      period: '2020 - March 2026',
-      description: 'Led research in the Security Research Group at Google, focusing on designing better ways to protect people online, advancing cybersecurity through AI, and implementing hardware attacks and defenses.',
+      period: '2020–Mar 2026',
+      description: 'Led research in the Security Research Group at Google, focusing on protecting people online, advancing cybersecurity through AI, and implementing hardware attacks and defenses.',
       highlights: [
         'Led a team of researchers focusing on applied AI for security',
-        'Contributed to SecGemini, an experimental AI model focused on cybersecurity',
+        'Contributed to Sec-Gemini, an experimental AI model focused on cybersecurity',
         'Contributed to Magika, an AI-powered file type identification system',
         'Contributed to the implementation of Gmail spam and malware detection systems'
       ],
@@ -92,7 +91,7 @@ export const useCVStore = defineStore('cv', () => {
           url: '/projects#magika'
         },
         {
-          name: 'SecGemini',
+          name: 'Sec-Gemini',
           type: 'website',
           url: '/projects#secgemini'
         }
@@ -101,7 +100,7 @@ export const useCVStore = defineStore('cv', () => {
     {
       title: 'Senior Research Scientist',
       organization: 'Google US',
-      period: '2016 - 2020',
+      period: '2016–2020',
       description: 'Conducted research in cybersecurity, focusing on botnet detection and takedown, internet measurements, and ransomware analysis.',
       highlights: [
         'Created automatic detection and disabling for leaked credentials',
@@ -112,7 +111,8 @@ export const useCVStore = defineStore('cv', () => {
           name: 'Shattered',
           type: 'website',
           url: 'https://marc-stevens.nl/research/shattered.io/'
-        }, {
+        },
+        {
           name: 'Ransomware',
           type: 'website',
           url: '/projects#ransomware'
@@ -122,63 +122,63 @@ export const useCVStore = defineStore('cv', () => {
     {
       title: 'Research Scientist',
       organization: 'Google US',
-      period: '2015 - 2016',
-      links: [{
+      period: '2015–2016',
+      links: [
+        {
           name: 'Cloaking paper',
           type: 'paper',
           url: 'https://ieeexplore.ieee.org/abstract/document/7546533'
-      }],
-
-      description: 'Joined Google\'s anti-abuse team to better understand and detect sophisticated cloaking sites.'
+        }
+      ],
+      description: 'Joined Google’s anti-abuse team to better understand and detect cloaking sites.'
     },
     {
       title: 'Project Lead',
       organization: 'The Activity Exchange',
-      period: '2012 - 2015',
-      description: 'Led the design and running of a scalable service that collects, normalizes, and distributes sensitive health data from 20+ sources and 200k+ users, powering Achievemint.com and Humana Vitality.'
+      period: '2012–2015',
+      description: 'Led the design and operation of a service that collects, normalizes, and distributes sensitive health data from 20+ sources and 200k+ users, powering Achievemint.com and Humana Vitality.'
     },
     {
       title: 'Research Intern',
       organization: 'Narus',
       period: '2013',
       links: [
- 
         {
           name: 'The Register',
           type: 'news',
           url: 'https://www.theregister.com/2014/02/18/zoom_out_for_a_view_of_malware_say_boffins/'
         }
       ],
-      description: 'Designed Nazca, a system capable of discovering and tracking malicious downloads in the network traffic of ISPs. This work resulted in a NDSS\'14 paper, a patent, and sparked interest in the press.'
+      description: 'Designed Nazca, a system for discovering and tracking malicious downloads in ISP network traffic. This work resulted in an NDSS ’14 paper, a patent, and press coverage.'
     },
     {
       title: 'Engineering Intern, Pentester',
-      organization: 'Appfolio',
+      organization: 'AppFolio',
       period: '2011',
-      description: 'Pentested various Ruby on Rails web apps, including a payment-processing system handling financial information of 100k+ users. Fixed various vulnerabilities and left the company with a set of tools integrated in their CI system to alert developers of potential security vulnerabilities.'
+      description: 'Pentested Ruby on Rails web apps, including a payment-processing system handling financial information for 100k+ users. Fixed vulnerabilities and integrated automated security alerts into their CI pipeline.'
     },
     {
       title: 'Engineering Intern',
       organization: 'Google Summer of Code',
       period: '2010',
-      description: 'Extended "Getting Things GNOME!", a task manager for the Linux desktop, to support multiple synchronization services such as Bugzilla, Evolution, and RememberTheMilk.'
+      description: 'Extended “Getting Things GNOME!”, a Linux desktop task manager, to support synchronization with Bugzilla, Evolution, and RememberTheMilk.'
     }
   ])
   const education = ref<TimelineItem[]>([
-  {
-      title: "Executive Master of Business Administration",
-      organization: "Quantic school of business and technology",
-      period: '2018-2019',
-      gpa: ' 95% with honors'
-  },
+    {
+      title: 'Executive Master of Business Administration',
+      organization: 'Quantic School of Business and Technology',
+      period: '2018–2019',
+      gpa: '95% with honors'
+    },
     {
       title: 'Ph.D. in Computer Science, Information Security',
       organization: 'University of California, Santa Barbara',
-      period: '2010 - 2015',
-      description: 'Research focused on leveraging big-data analysis to discover malware distribution, improving Android security, maintaining privacy online, and teaching information security through hacking competitions.',
+      period: '2010–2015',
+      description: 'Research focused on large-scale analysis of malware distribution, Android security, online privacy, and teaching information security through hacking competitions.',
       highlights: [
         'UCSB Computer Science Outstanding Publication Award 2015',
-        'CSAW best security paper 2012 finalist',
+        'CSAW Best Security Paper 2012 finalist',
         'Secured $1.1M grant for Android security research'
       ],
       links: [
@@ -191,40 +191,39 @@ export const useCVStore = defineStore('cv', () => {
       gpa: '4.0/4.0'
     },
     {
-      title: 'Master\'s in Computer Science',
+      title: 'Master’s in Computer Science',
       organization: 'University of California, Santa Barbara',
-      period: '2010 - 2015',
+      period: '2010–2015',
       gpa: '4.0/4.0'
     },
     {
       title: 'Visiting Researcher',
       organization: 'University of Hawaii',
-      period: '2009 - 2010',
-      description: 'Worked on a novel mathematical model to drive autonomous underwater vehicles. This work was presented at the IEEE Conference on Decision and Control (CDC).'
+      period: '2009–2010',
+      description: 'Developed a mathematical model to drive autonomous underwater vehicles, presented at the IEEE Conference on Decision and Control (CDC).'
     },
     {
       title: 'Diploma di Licenza',
-      organization: 'Sant\'Anna University, School of Advanced Studies, Italy',
-      period: '2004 - 2010',
+      organization: 'Sant’Anna School of Advanced Studies, Italy',
+      period: '2004–2010',
       gpa: '100/100 cum laude'
     },
     {
-      title: 'Master\'s Degree in Control Engineering',
+      title: 'Master’s Degree in Control Engineering',
       organization: 'University of Pisa, Italy',
-      period: '2007 - 2010',
-      gpa: '110/110 cum laude',
+      period: '2007–2010',
+      gpa: '110/110 cum laude'
     },
-    
     {
       title: 'Visiting Researcher',
       organization: 'University of California, Santa Barbara',
       period: '2008',
-      description: 'Worked on a distributed algorithm to drive autonomous land vehicles for area patrol in UCSB\'s mechanical engineering department. Part of this work is now in the Player/Stage open-source framework.'
+      description: 'Developed a distributed area-patrol algorithm for autonomous land vehicles in UCSB’s mechanical engineering department. Part of this work was merged into the Player/Stage open-source framework.'
     },
     {
-      title: 'Bachelor\'s Degree in Computer Engineering',
+      title: 'Bachelor’s Degree in Computer Engineering',
       organization: 'University of Pisa, Italy',
-      period: '2004 - 2007',
+      period: '2004–2007',
       gpa: '110/110 cum laude with excellence path'
     }
   ])
@@ -232,8 +231,8 @@ export const useCVStore = defineStore('cv', () => {
     {
       title: 'Core Developer & Mentor',
       organization: 'The GNOME Foundation',
-      period: '2010 - 2012',
-      description: 'Core developer of "Getting Things GNOME" and member of the GNOME Foundation. Mentored five international students for several editions of the Google Summer of Code and the Gnome\'s Outreach Program for Women.',
+      period: '2010–2012',
+      description: 'Core developer of “Getting Things GNOME” and member of the GNOME Foundation. Mentored five international students across Google Summer of Code and GNOME’s Outreach Program for Women.',
       links: [
         {
           name: 'GNOME',
@@ -250,8 +249,8 @@ export const useCVStore = defineStore('cv', () => {
     {
       title: 'Open Source Contributor',
       organization: 'Various Projects',
-      period: '2009 - Present',
-      description: 'Created niche projects used by companies like Lastline and Google, including Scapy\'s support for HTTP and Chrisper (a style-checker for academic papers). Made contributions to popular open-source projects including PLAYER robotic framework, Flask-Security, and Eucalyptus.'
+      period: '2009–Present',
+      description: 'Created tools used by companies including Lastline and Google, such as HTTP support for Scapy and Chrisper (a style-checker for academic papers). Contributed to Player/Stage, Flask-Security, and Eucalyptus.'
     }
   ])
   const competitions = ref<TimelineItem[]>([
@@ -271,46 +270,44 @@ export const useCVStore = defineStore('cv', () => {
     {
       title: 'Hacking Competitions',
       organization: 'Shellphish Team',
-      period: '2010 - 2015',
+      period: '2010–2015',
       links: [
-          {
-              name: 'CNBC',
-              type: 'news',
-              url: 'https://www.cnbc.com/2013/11/08/defcon-capture-the-flag-competition-is-only-for-top-hackers.html'
-          },
-          {
-              name: 'SB Independent',
-              type: 'news',
-              url: 'https://www.independent.com/2007/12/08/ucsb-hosts-largest-computer-hacking-competition-ever/'
-          },
-          {
-              name: 'CTFtime',
-              type: 'website',
-              url: 'https://ctftime.org/team/285'
-           
-          }
+        {
+          name: 'CNBC',
+          type: 'news',
+          url: 'https://www.cnbc.com/2013/11/08/defcon-capture-the-flag-competition-is-only-for-top-hackers.html'
+        },
+        {
+          name: 'SB Independent',
+          type: 'news',
+          url: 'https://www.independent.com/2007/12/08/ucsb-hosts-largest-computer-hacking-competition-ever/'
+        },
+        {
+          name: 'CTFtime',
+          type: 'website',
+          url: 'https://ctftime.org/team/285'
+        }
       ],
-      description: 'Participated in numerous hacking competitions including DEFCON CTF in Las Vegas with the ShellPhish team (#2 in the world in 2025 according to CTFtime). Also helped design and organize the iCTF, the biggest academic hacking competition (back then) with more than 1,000 players globally, for four years.'
+      description: 'Participated in hacking competitions including DEF CON CTF in Las Vegas with the Shellphish team (#2 in the world in 2025 according to CTFtime). Also helped design and organize the iCTF for four years, reaching more than 1,000 players globally.'
     },
     {
       title: 'European Space Agency Robotic Challenge',
       organization: 'European Space Agency',
       period: '2008',
-          links: [
-
-          {
-              name: 'ESA',
-              type: 'website',
-              url: 'https://www.esa.int/Education/Germany_s_CESAR_crowned_king_of_rovers_in_ESA_s_Robotics_Challenge2'
-          },
-          {
-              name: 'Robot selfie',
-              type: 'website',
-              url: 'https://4.bp.blogspot.com/_PZedSw-39RQ/SSqXB53sdSI/AAAAAAAAAAc/WuE0kscIj_4/s1600/pESApod_moon.jpg'
-          }
+      links: [
+        {
+          name: 'ESA',
+          type: 'website',
+          url: 'https://www.esa.int/Education/Germany_s_CESAR_crowned_king_of_rovers_in_ESA_s_Robotics_Challenge2'
+        },
+        {
+          name: 'Robot selfie',
+          type: 'website',
+          url: 'https://4.bp.blogspot.com/_PZedSw-39RQ/SSqXB53sdSI/AAAAAAAAAAc/WuE0kscIj_4/s1600/pESApod_moon.jpg'
+        }
       ],
-      description: 'Built a hexapod robot with a student team. Won a €40k grant. European Space Agency\'s Robotics Challenge finalist'
-    },
+      description: 'Built a hexapod robot with a student team, won a €40k grant, and reached the finals of the European Space Agency’s Robotics Challenge.'
+    }
   ])
   const awards = ref<TimelineItem[]>([
     {
@@ -326,7 +323,7 @@ export const useCVStore = defineStore('cv', () => {
       description: 'For the Credential Alerting system that automatically detects and disables leaked service account keys.'
     }
   ])
-  const selectedPublications = ref<CVPublication[]>([ // Typed publications from CV
+  const selectedPublications = ref<CVPublication[]>([
     {
       title: 'BareDroid: Large-Scale Analysis of Android Apps on Real Devices',
       authors: 'S. Mutti, Y. Fratantonio, A. Bianchi, J. Corbetta, L. Invernizzi, D. Kirat, C. Kruegel, G. Vigna',
@@ -347,7 +344,7 @@ export const useCVStore = defineStore('cv', () => {
       title: 'EVILSEED: A Guided Approach to Finding Malicious Web Pages',
       authors: 'L. Invernizzi, S. Benvenuti, P. Milani Comparetti, M. Cova, C. Kruegel, G. Vigna',
       venue: 'Proceedings of the IEEE Symposium on Security and Privacy (S&P 2012)',
-      award: 'AT&T NYU CSAW best security paper \'12 finalist'
+      award: 'AT&T NYU CSAW Best Security Paper ’12 finalist'
     }
   ])
   const patents = ref<Patent[]>([
@@ -361,7 +358,7 @@ export const useCVStore = defineStore('cv', () => {
     { title: 'New detection system spots zero-day malware', source: 'Net Security' },
     { title: 'Zoom out for a view of malware, say boffins', source: 'The Register' },
     { title: 'UCSB Security Researchers To Help Too-Trusting Smartphone App Users', source: 'Campus Technology' },
-    { title: 'World\'s Largest Computer Hacking Contest Happening at UCSB', source: 'KEYT' },
+    { title: 'World’s Largest Computer Hacking Contest Happening at UCSB', source: 'KEYT' },
     { title: 'Cyberteams duke it out in the World Series of hacking', source: 'CNBC' }
   ])
   const contactInfo = ref<ContactItem[]>([

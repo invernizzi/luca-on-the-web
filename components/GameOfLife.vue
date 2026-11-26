@@ -1,27 +1,28 @@
 <template>
-  <div class="fixed inset-0 -z-10 overflow-hidden">
+  <div class="gol-layer fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
     <canvas ref="canvas" class="w-full h-full" />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted } from 'vue';
 
 type ArrayWithAtLeastOneElement<T> = [T, ...T[]];
 type ArrayWithThreeElements<T> = [T, T, T];
 
 const canvas = ref<HTMLCanvasElement | null>(null);
-let animationFrame: number;
+let animationFrame: number | null = null;
 let grid: boolean[][] = [[false]];
 let nextGrid: boolean[][] = [[false]];
 const cellSize = 8;
+const stepIntervalMs = 160; // ~6 generations/sec: calm ambient motion, low CPU
 let width = 0;
 let height = 0;
-let scanLineY = 0;
-const scanLineSpeed = 2;
+let lastFrameTime = 0;
 let gliderInterval: number | null = null;
+let reducedMotion = false;
+let motionQuery: MediaQueryList | null = null;
 
-// Define patterns outside functions so they're available everywhere
 const gliderPattern: ArrayWithThreeElements<ArrayWithThreeElements<number>> = [
   [0, 1, 0],
   [0, 0, 1],
@@ -37,7 +38,7 @@ const flippedGlider: ArrayWithThreeElements<ArrayWithThreeElements<number>> = [
 const placePattern = (
   patternToPlace: readonly (readonly number[])[],
   startX: number,
-  startY: number
+  startY: number,
 ) => {
   for (let y = 0; y < patternToPlace.length; y++) {
     const patternRow = patternToPlace[y];
@@ -51,81 +52,6 @@ const placePattern = (
         gridRow[gridX] = patternRow[x] === 1;
       }
     }
-  }
-};
-
-const initGrid = () => {
-  // Set canvas size
-  width = Math.ceil(window.innerWidth / cellSize);
-  height = Math.ceil(window.innerHeight / cellSize);
-
-  if (width < 1) return;
-  if (height < 1) return;
-  if (!canvas.value) return;
-
-  const ctx = canvas.value.getContext("2d");
-  if (!ctx) return;
-
-  canvas.value.width = width * cellSize;
-  canvas.value.height = height * cellSize;
-
-  // Initialize grids
-  grid = Array.from({ length: height }, () => Array<boolean>(width).fill(false));
-  nextGrid = Array.from({ length: height }, () =>
-    Array<boolean>(width).fill(false)
-  );
-
-  // Create a diehard pattern in the lower right corner
-  const cornerX = width - 20; // 20 cells from the right edge
-  const cornerY = height - 15; // 15 cells from the bottom edge
-
-  // Diehard pattern
-  const pattern: ArrayWithAtLeastOneElement<
-    ArrayWithAtLeastOneElement<number>
-  > = [
-    [0, 0, 0, 0, 0, 0, 1, 0],
-    [1, 1, 0, 0, 0, 0, 0, 0],
-    [0, 1, 0, 0, 0, 1, 1, 1],
-  ];
-
-  // Place the pattern in the lower right corner
-  placePattern(pattern, cornerX, cornerY);
-
-  // Add gliders (flyers)
-  // Glider at (16, 10) strikes the loaf + blinker formed by (30, 20) and the
-  // flipped glider at (70, 25), triggering an active Methuselah reaction across
-  // the left and right edges regardless of viewport dimensions.
-  const gliderPositions: ArrayWithAtLeastOneElement<{ x: number; y: number }> =
-    [
-      { x: 16, y: 10 },
-      { x: 30, y: 20 },
-      { x: 50, y: 15 },
-    ];
-
-  // Place regular gliders
-  gliderPositions.forEach((pos) => {
-    placePattern(gliderPattern, pos.x, pos.y);
-  });
-
-  // Place flipped glider
-  const flippedPos = { x: 70, y: 25 };
-  placePattern(flippedGlider, flippedPos.x, flippedPos.y);
-
-  // Pre-run the simulation up to just before the reaction finishes wrapping
-  // across the right edge, and render the final warmup frames for natural fade trails.
-  const preRunSteps = 1160;
-  const trailWarmupSteps = 20;
-
-  for (let step = 0; step < preRunSteps - trailWarmupSteps; step++) {
-    updateGrid();
-  }
-
-  ctx.fillStyle = "rgb(21, 21, 21)";
-  ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
-
-  for (let step = 0; step < trailWarmupSteps; step++) {
-    updateGrid();
-    drawGrid();
   }
 };
 
@@ -172,7 +98,6 @@ const updateGrid = () => {
     }
   }
 
-  // Swap grids
   const temp = grid;
   grid = nextGrid;
   nextGrid = temp;
@@ -181,39 +106,19 @@ const updateGrid = () => {
 const drawGrid = () => {
   if (!canvas.value) return;
 
-  const ctx = canvas.value.getContext("2d");
+  const ctx = canvas.value.getContext('2d');
   if (!ctx) return;
 
-  // Clear canvas with more pronounced fade effect
-  ctx.fillStyle = "rgba(21, 21, 21, 0.25)";
+  // Soft trail decay against #141415 background
+  ctx.fillStyle = 'rgba(20, 20, 21, 0.28)';
   ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
 
-  // Draw scanning line with blur effect
-  ctx.shadowColor = "rgba(255, 157, 2, 0.15)";
-  ctx.shadowBlur = 10;
-  ctx.strokeStyle = "rgba(255, 157, 2, 0.10)";
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(0, scanLineY);
-  ctx.lineTo(canvas.value.width, scanLineY);
-  ctx.stroke();
-
-  // Reset shadow
-  ctx.shadowColor = "transparent";
-  ctx.shadowBlur = 0;
-
-  // Update scan line position
-  scanLineY += scanLineSpeed;
-  if (scanLineY > canvas.value.height) {
-    scanLineY = 0;
-  }
-
-  // Draw cells with very low opacity
-  ctx.fillStyle = "rgba(255, 157, 2, 0.07)";
+  // Subtle amber cells without glow or scanline
+  ctx.fillStyle = 'rgba(255, 157, 2, 0.08)';
   for (let y = 0; y < height; y++) {
+    const gridRow = grid[y];
+    if (!gridRow) continue;
     for (let x = 0; x < width; x++) {
-      const gridRow = grid[y];
-      if (!gridRow) continue;
       if (gridRow[x]) {
         ctx.fillRect(x * cellSize, y * cellSize, cellSize - 1, cellSize - 1);
       }
@@ -221,46 +126,155 @@ const drawGrid = () => {
   }
 };
 
-const animate = () => {
-  updateGrid();
-  drawGrid();
-  animationFrame = requestAnimationFrame(animate);
+const initGrid = () => {
+  width = Math.ceil(window.innerWidth / cellSize);
+  height = Math.ceil(window.innerHeight / cellSize);
+
+  if (width < 1 || height < 1 || !canvas.value) return;
+
+  const ctx = canvas.value.getContext('2d');
+  if (!ctx) return;
+
+  canvas.value.width = width * cellSize;
+  canvas.value.height = height * cellSize;
+
+  grid = Array.from({ length: height }, () => Array<boolean>(width).fill(false));
+  nextGrid = Array.from({ length: height }, () =>
+    Array<boolean>(width).fill(false),
+  );
+
+  const cornerX = width - 20;
+  const cornerY = height - 15;
+  const pattern: ArrayWithAtLeastOneElement<ArrayWithAtLeastOneElement<number>> = [
+    [0, 0, 0, 0, 0, 0, 1, 0],
+    [1, 1, 0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 1, 1, 1],
+  ];
+  placePattern(pattern, cornerX, cornerY);
+
+  const gliderPositions: ArrayWithAtLeastOneElement<{ x: number; y: number }> = [
+    { x: 16, y: 10 },
+    { x: 30, y: 20 },
+    { x: 50, y: 15 },
+  ];
+  gliderPositions.forEach((pos) => placePattern(gliderPattern, pos.x, pos.y));
+  placePattern(flippedGlider, 70, 25);
+
+  const preRunSteps = 1160;
+  const trailWarmupSteps = 16;
+
+  for (let step = 0; step < preRunSteps - trailWarmupSteps; step++) {
+    updateGrid();
+  }
+
+  ctx.fillStyle = 'rgb(20, 20, 21)';
+  ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
+
+  for (let step = 0; step < trailWarmupSteps; step++) {
+    updateGrid();
+    drawGrid();
+  }
 };
 
-// Function to add a new glider at a random position
+const stopLoop = () => {
+  if (animationFrame !== null) {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = null;
+  }
+  if (gliderInterval !== null) {
+    clearInterval(gliderInterval);
+    gliderInterval = null;
+  }
+};
+
 const addRandomGlider = () => {
-  // Choose randomly between regular and flipped glider
+  if (document.hidden || reducedMotion) return;
   const pattern = Math.random() > 0.5 ? gliderPattern : flippedGlider;
-
-  // Generate a random position, staying away from edges
   const padding = 10;
-  const randomX =
-    Math.floor(Math.random() * (width - pattern[0].length - 2 * padding)) +
-    padding;
-  const randomY =
-    Math.floor(Math.random() * (height - pattern.length - 2 * padding)) +
-    padding;
-
-  // Place the glider
+  const maxX = Math.max(1, width - pattern[0].length - 2 * padding);
+  const maxY = Math.max(1, height - pattern.length - 2 * padding);
+  const randomX = Math.floor(Math.random() * maxX) + padding;
+  const randomY = Math.floor(Math.random() * maxY) + padding;
   placePattern(pattern, randomX, randomY);
 };
 
-onMounted(() => {
-  initGrid();
-  animate();
-  window.addEventListener("resize", initGrid);
+const animate = (timestamp: number) => {
+  if (reducedMotion || document.hidden) {
+    animationFrame = null;
+    return;
+  }
+  if (timestamp - lastFrameTime >= stepIntervalMs) {
+    lastFrameTime = timestamp;
+    updateGrid();
+    drawGrid();
+  }
+  animationFrame = requestAnimationFrame(animate);
+};
 
-  // Start the interval to add new gliders every 10 seconds
-  gliderInterval = window.setInterval(addRandomGlider, 10000);
+const startLoop = () => {
+  if (reducedMotion || document.hidden) return;
+  if (animationFrame === null) {
+    lastFrameTime = performance.now();
+    animationFrame = requestAnimationFrame(animate);
+  }
+  if (gliderInterval === null) {
+    gliderInterval = window.setInterval(addRandomGlider, 14000);
+  }
+};
+
+const handleVisibilityChange = () => {
+  if (document.hidden) {
+    stopLoop();
+  } else {
+    startLoop();
+  }
+};
+
+const handleMotionChange = (event: MediaQueryListEvent) => {
+  reducedMotion = event.matches;
+  if (reducedMotion) {
+    stopLoop();
+  } else {
+    startLoop();
+  }
+};
+
+onMounted(() => {
+  motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  reducedMotion = motionQuery.matches;
+
+  initGrid();
+  if (!reducedMotion) {
+    startLoop();
+  }
+
+  window.addEventListener('resize', initGrid);
+  document.addEventListener('visibilitychange', handleVisibilityChange);
+  motionQuery.addEventListener('change', handleMotionChange);
 });
 
 onUnmounted(() => {
-  cancelAnimationFrame(animationFrame);
-  window.removeEventListener("resize", initGrid);
-
-  // Clear the interval when component is unmounted
-  if (gliderInterval !== null) {
-    clearInterval(gliderInterval);
-  }
+  stopLoop();
+  window.removeEventListener('resize', initGrid);
+  document.removeEventListener('visibilitychange', handleVisibilityChange);
+  motionQuery?.removeEventListener('change', handleMotionChange);
 });
 </script>
+
+<style scoped>
+.gol-layer {
+  /* Keep the central reading column calm while letting cells live quietly at the margins */
+  -webkit-mask-image: radial-gradient(
+    ellipse 46% 68% at 50% 45%,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.16) 55%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 46% 68% at 50% 45%,
+    rgba(0, 0, 0, 0.06) 0%,
+    rgba(0, 0, 0, 0.16) 55%,
+    rgba(0, 0, 0, 0.95) 100%
+  );
+}
+</style>

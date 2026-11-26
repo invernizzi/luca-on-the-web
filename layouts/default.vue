@@ -12,9 +12,7 @@
           </main>
         </SwipeHandler>
       </PageTransition>
-      <footer
-        class="container mx-auto px-4 py-8 text-center text-text-secondary"
-      >
+      <footer class="max-w-4xl mx-auto px-4 sm:px-6 py-10 mt-8 border-t border-white/[0.06] text-xs text-text-muted">
         <p>© {{ new Date().getFullYear() }} Luca Invernizzi</p>
       </footer>
     </div>

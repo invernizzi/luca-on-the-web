@@ -39,26 +39,29 @@ const navPaths = ref<string[]>([])
 // Get the transition handler from PageTransition
 const triggerDirectionalTransition = inject('triggerDirectionalTransition') as ((direction: 'left' | 'right', path: string) => void) | undefined
 
+const normalizePath = (path: string): string =>
+  path.length > 1 ? path.replace(/\/+$/, '') : path
+
 // Cache the ordered navbar paths
 const cacheNavbarPaths = () => {
   const navbar = document.querySelector('.nav-links-container')
   if (!navbar) return
-  
+
   const links = navbar.querySelectorAll('.nav-link')
   navPaths.value = []
-  
-  links.forEach(link => {
+
+  links.forEach((link) => {
     const href = link.getAttribute('href')
     if (href) {
-      navPaths.value.push(href)
+      navPaths.value.push(normalizePath(href))
     }
   })
 }
 
 // Get next page based on direction
 const getAdjacentPath = (direction: 'next' | 'prev') => {
-  const currentPath = router.currentRoute.value.path
-  const currentIndex = navPaths.value.findIndex(path => path === currentPath)
+  const currentPath = normalizePath(router.currentRoute.value.path)
+  const currentIndex = navPaths.value.findIndex((path) => path === currentPath)
   
   if (currentIndex === -1) return null
 

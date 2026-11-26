@@ -1,6 +1,6 @@
 [
   {
-    "title": "Exploitgym: Can ai agents turn security vulnerabilities into real attacks?",
+    "title": "ExploitGym: Can AI Agents Turn Security Vulnerabilities into Real Attacks?",
     "authors": [
       "Zhun Wang",
       "Nico Schiller",
@@ -126,8 +126,8 @@
   {
     "title": "Google announces Sec-Gemini v1, a new experimental cybersecurity model",
     "authors": [
-      "E Burzstein",
-      "M Tishchenko",
+      "Elie Bursztein",
+      "M. Tishchenko",
       "Sec-Gemini Team"
     ],
     "venue": "Google Online Security Blog",
@@ -202,14 +202,14 @@
     "categories": []
   },
   {
-    "title": "Sedpack - Scalable and efficient dataset library",
+    "title": "Sedpack: Scalable and Efficient Dataset Library",
     "authors": [
       "Karel Král",
       "Jean-Michel Picod",
       "Luca Invernizzi",
       "Elie Bursztein"
     ],
-    "venue": "Open Tools  Interfaces and Metrics for Implementation Security Testing (OPTIMIST 2024)",
+    "venue": "Open Tools, Interfaces and Metrics for Implementation Security Testing (OPTIMIST 2024)",
     "year": 2024,
     "link": "https://optimist-ose.org/ches24",
     "citations": 0,
@@ -428,7 +428,7 @@
       "Kurt Thomas",
       "Al Verney"
     ],
-    "venue": "ArXiv",
+    "venue": "arXiv",
     "year": 2018,
     "link": "https://img.corrierecomunicazioni.it/wp-content/uploads/2018/02/google.pdf",
     "citations": 26,
@@ -437,7 +437,7 @@
     "categories": []
   },
   {
-    "title": "Understanding the mirai botnet",
+    "title": "Understanding the Mirai Botnet",
     "authors": [
       "Manos Antonakakis",
       "Tim April",
@@ -459,7 +459,7 @@
       "Kurt Thomas",
       "Yi Zhou"
     ],
-    "venue": "USENIX security symposium (USENIX Security 17)",
+    "venue": "USENIX Security Symposium (USENIX Security ’17)",
     "year": 2017,
     "link": "https://www.usenix.org/conference/usenixsecurity17/technical-sessions/presentation/antonakakis",
     "citations": 3773,
@@ -528,7 +528,7 @@
     "categories": []
   },
   {
-    "title": "What the app is that? deception and countermeasures in the android user interface",
+    "title": "What the App Is That? Deception and Countermeasures in the Android User Interface",
     "authors": [
       "Antonio Bianchi",
       "Jacopo Corbetta",
@@ -546,7 +546,7 @@
     "categories": []
   },
   {
-    "title": "Baredroid: Large-scale analysis of android apps on real devices",
+    "title": "BareDroid: Large-Scale Analysis of Android Apps on Real Devices",
     "authors": [
       "Simone Mutti",
       "Yanick Fratantonio",
@@ -619,7 +619,7 @@
     "categories": []
   },
   {
-    "title": "Ten Years of {iCTF}: The Good, The Bad, and The Ugly",
+    "title": "Ten Years of iCTF: The Good, The Bad, and The Ugly",
     "authors": [
       "Giovanni Vigna",
       "Kevin Borgolte",
@@ -630,7 +630,7 @@
       "Dhilung Kirat",
       "Yan Shoshitaishvili"
     ],
-    "venue": "USENIX Summit on Gaming  Games  and Gamification in Security Education (3GSE 14)",
+    "venue": "USENIX Summit on Gaming, Games, and Gamification in Security Education (3GSE ’14)",
     "year": 2014,
     "link": "https://www.usenix.org/conference/3gse14/summit-program/presentation/vigna",
     "citations": 96,
@@ -662,7 +662,7 @@
       "Christopher Kruegel",
       "Giovanni Vigna"
     ],
-    "venue": "Research in Attacks  Intrusions and Defenses (RAID)",
+    "venue": "Research in Attacks, Intrusions and Defenses (RAID)",
     "year": 2014,
     "link": "https://link.springer.com/chapter/10.1007/978-3-319-11379-1_7",
     "citations": 14,
@@ -671,7 +671,7 @@
     "categories": []
   },
   {
-    "title": "You are what you include: large-scale evaluation of remote javascript inclusions",
+    "title": "You Are What You Include: Large-Scale Evaluation of Remote JavaScript Inclusions",
     "authors": [
       "Nick Nikiforakis",
       "Luca Invernizzi",
@@ -694,14 +694,13 @@
     "title": "EVILSEED: A Guided Approach to Finding Malicious Web Pages",
     "authors": [
       "Luca Invernizzi",
-      "UC Santa Barbara",
       "Stefano Benvenuti",
       "Marco Cova",
       "Paolo Milani Comparetti",
       "Christopher Kruegel",
       "Giovanni Vigna"
     ],
-    "venue": "IEEE Symposium on Security & Privacy (S&P)  and AT&T NYU CSAW best security paper '12 finalist",
+    "venue": "IEEE Symposium on Security & Privacy (S&P), AT&T NYU CSAW Best Security Paper ’12 finalist",
     "year": 2012,
     "link": "https://ieeexplore.ieee.org/abstract/document/6234428/",
     "citations": 266,
@@ -716,7 +715,7 @@
       "Christopher Kruegel",
       "Giovanni Vigna"
     ],
-    "venue": "Annual Computer Security Applications Conference (ACSAC)  and in HotPETS12 (workshop)",
+    "venue": "Annual Computer Security Applications Conference (ACSAC) and HotPETS ’12",
     "year": 2012,
     "link": "https://dl.acm.org/doi/abs/10.1145/2523649.2523654",
     "citations": 49,

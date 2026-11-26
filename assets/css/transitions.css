@@ -1,37 +1,16 @@
-/* Global page transitions */
+/* Global page transitions: quiet opacity fade only (no layout shift or permanent will-change) */
 .page-enter-active,
 .page-leave-active {
-  transition: all 0.3s ease-out;
+  transition: opacity 160ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.page-enter-from {
-  opacity: 0;
-  transform: translateX(30px);
-}
-
+.page-enter-from,
 .page-leave-to {
   opacity: 0;
-  transform: translateX(-30px);
 }
 
-/* Ensure proper containment for transitions */
-.page {
-  position: relative;
-  overflow-x: hidden;
-}
-
-/* Improve transition performance */
-.page > * {
-  will-change: transform, opacity;
-}
-
-/* Override default Nuxt transitions */
+.page,
 .page-transition {
   position: relative;
   overflow-x: hidden;
 }
-
-/* Improve transition performance */
-.page-transition > * {
-  will-change: transform, opacity;
-} 

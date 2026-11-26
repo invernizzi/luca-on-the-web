@@ -1,201 +1,78 @@
 <template>
-  <div class="min-h-screen bg-surface text-text-primary flex flex-col">
-    <!-- Background elements with lower z-index -->
-    <div class="fixed inset-0 bg-gradient-to-b from-surface/80 to-surface z-0"/>
-    
-    <!-- Error content with higher z-index -->
-    <div class="container mx-auto px-4 py-16 flex-grow flex items-center justify-center z-10 relative">
-      <CardComponent class="w-full max-w-2xl mx-auto" :interactive="true">
-        <div class="text-center py-8">
-          <!-- Cybersecurity-themed animation -->
-          <div class="mb-8 flex justify-center">
-            <div class="relative w-40 h-40">
-              <!-- Main shield outline -->
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-36 h-36 rounded-lg border-4 border-primary/30 transform rotate-45"/>
-              </div>
-              
-              <!-- Binary code elements -->
-              <div class="binary-code opacity-25">
-                <div
-v-for="i in 8" :key="`bin-${i}`" 
-                     class="absolute text-primary font-mono text-xs"
-                     :style="{
-                       left: `${Math.random() * 100}%`,
-                       top: `${Math.random() * 100}%`,
-                       opacity: Math.random() * 0.8 + 0.2,
-                       animationDelay: `${Math.random() * 2}s`
-                     }">
-                  {{ Math.random() > 0.5 ? '1' : '0' }}
-                </div>
-              </div>
-              
-              <!-- Circular shield element -->
-              <div class="absolute inset-0 flex items-center justify-center">
-                <div class="w-28 h-28 rounded-full border-2 border-primary/60 animate-pulse"/>
-              </div>
-              
-              <!-- Lock icon -->
-              <div class="absolute inset-0 flex items-center justify-center">
-                <UIcon name="i-heroicons-lock-closed" class="w-16 h-16 text-primary animate-pulse" />
-              </div>
-              
-              <!-- Pulsing radar circles -->
-              <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
-                <div class="radar-circle w-full h-full rounded-full border border-primary/20"/>
-                <div class="radar-circle w-3/4 h-3/4 rounded-full border border-primary/30 animation-delay-300"/>
-                <div class="radar-circle w-1/2 h-1/2 rounded-full border border-primary/40 animation-delay-600"/>
-              </div>
-            </div>
-          </div>
-          
-          <h1 class="text-3xl md:text-4xl font-display font-bold mb-4">{{ error?.statusCode === 404 ? 'Access Denied' : '?' }}</h1>
-          
-          <p class="text-text-secondary text-lg mb-8">
-            {{ error?.statusCode === 404 
-              ? "The resource you're trying to access doesn't exist or requires authorization." 
-              : "Something's not right." 
-            }}
-          </p>
-          
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <button 
-              class="px-6 py-3  text-white rounded-lg hover:bg-primary/80 transition-colors font-medium inline-flex items-center justify-center gap-2" 
-              @click="handleError"
-            >
-              <UIcon name="i-heroicons-arrow-left" class="w-5 h-5" />
-              Return to Home
-            </button>
-            
-            <button 
-              v-if="error?.statusCode !== 404"
-              class="px-6 py-3 border border-white/10 rounded-lg hover:bg-surface-light/20 transition-colors inline-flex items-center justify-center gap-2" 
-              @click="clearError"
-            >
-              <UIcon name="i-heroicons-arrow-path" class="w-5 h-5" />
-              Retry Connection
-            </button>
-          </div>
-        </div>
-      </CardComponent>
-    </div>
-    
-    <!-- Matrix-like digital rain effect in background -->
-    <div class="fixed inset-0 pointer-events-none z-5 overflow-hidden opacity-20">
-      <div
-v-for="i in 20" :key="`rain-${i}`" 
-           class="absolute w-0.5 h-16 bg-primary/40"
-           :style="{
-             left: `${Math.random() * 100}%`,
-             top: `${Math.random() * 100}%`,
-             height: `${Math.random() * 100 + 50}px`,
-             animationDuration: `${Math.random() * 5 + 2}s`,
-             animationDelay: `${Math.random() * 3}s`
-           }"
-      />
+  <div class="min-h-screen bg-background text-text-primary flex items-center justify-center px-4 py-16">
+    <div class="w-full max-w-md bg-surface border border-white/[0.08] rounded-xl p-8">
+      <!-- Static Conway's Game of Life glider mark echoing the site's ambient signature -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 28 28"
+        width="28"
+        height="28"
+        aria-hidden="true"
+        class="mb-6 text-primary"
+      >
+        <rect x="10" y="2" width="6" height="6" rx="1" fill="currentColor" />
+        <rect x="18" y="10" width="6" height="6" rx="1" fill="currentColor" />
+        <rect x="2" y="18" width="6" height="6" rx="1" fill="currentColor" />
+        <rect x="10" y="18" width="6" height="6" rx="1" fill="currentColor" />
+        <rect x="18" y="18" width="6" height="6" rx="1" fill="currentColor" />
+      </svg>
+
+      <p class="font-mono text-xs text-text-muted tabular-nums mb-2">
+        {{ statusCode }}
+      </p>
+
+      <h1 class="font-display text-2xl font-medium tracking-[-0.02em] text-text-primary mb-3">
+        {{ isNotFound ? 'Page not found' : 'Something went wrong' }}
+      </h1>
+
+      <p class="text-sm leading-[1.6] text-text-secondary mb-6">
+        {{
+          isNotFound
+            ? 'This address does not match any page on the site.'
+            : 'An unexpected error interrupted this page. Try reloading or return to the homepage.'
+        }}
+      </p>
+
+      <div class="flex flex-wrap gap-3">
+        <button
+          type="button"
+          class="px-4 py-2 text-sm font-medium bg-primary text-background rounded-lg hover:bg-primary/90 transition-colors duration-150 cursor-pointer"
+          @click="handleError"
+        >
+          Back to home
+        </button>
+
+        <button
+          v-if="!isNotFound"
+          type="button"
+          class="px-4 py-2 text-sm font-medium bg-surface-light text-text-primary border border-white/[0.12] rounded-lg hover:bg-surface-hover transition-colors duration-150 cursor-pointer"
+          @click="clearError"
+        >
+          Reload page
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import CardComponent from '~/components/CardComponent.vue'
+import { computed } from 'vue';
 
-// Access the error from the app instance
-defineProps({
+const props = defineProps<{
   error: {
-    type: Object,
-    required: true
-  }
-  
-})
+    statusCode?: number;
+    message?: string;
+  };
+}>();
 
-// Handles clearing the error or navigating home
+const statusCode = computed(() => props.error?.statusCode || 500);
+const isNotFound = computed(() => statusCode.value === 404);
+
 const handleError = () => {
-  // Navigate to the home page
-  navigateTo('/')
-}
+  navigateTo('/');
+};
 
-// Try again by clearing the error and refreshing
 const clearError = () => {
-  // Clear the error by refreshing the page
-  window.location.reload()
-}
+  window.location.reload();
+};
 </script>
-
-<style scoped>
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) translateX(0);
-  }
-  50% {
-    transform: translateY(-20px) translateX(10px);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes binary-flash {
-  0%, 100% {
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes digital-rain {
-  0% {
-    transform: translateY(-100px);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(calc(100vh + 100px));
-    opacity: 0;
-  }
-}
-
-@keyframes radar-pulse {
-  0% {
-    transform: scale(0.8);
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 0.2;
-  }
-  100% {
-    transform: scale(1.2);
-    opacity: 0;
-  }
-}
-
-.binary-code > div {
-  animation: binary-flash 2s infinite;
-}
-
-.radar-circle {
-  position: absolute;
-  animation: radar-pulse 3s infinite;
-}
-
-.animation-delay-300 {
-  animation-delay: 0.3s;
-}
-
-.animation-delay-600 {
-  animation-delay: 0.6s;
-}
-
-[class^="rain-"] {
-  animation: digital-rain linear infinite;
-}
-</style> 

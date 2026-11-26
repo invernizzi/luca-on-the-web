@@ -23,9 +23,21 @@ const mainCssPath = resolve(projectRoot, 'assets/css/main.css');
 const require = createRequire(import.meta.url);
 
 /** Colour tokens (`--color-<token>`) that `@theme` must declare. */
-const COLOR_TOKENS = ['background', 'surface', 'surface-light', 'text-primary', 'text-secondary'];
+const COLOR_TOKENS = [
+  'background',
+  'surface',
+  'surface-light',
+  'surface-hover',
+  'text-primary',
+  'text-secondary',
+  'text-muted',
+];
 /** Font tokens (`--font-<token>`) and the brand family each must resolve to. */
-const FONT_FAMILIES: Record<string, string> = { sans: 'Manrope', display: 'General Sans' };
+const FONT_FAMILIES: Record<string, string> = {
+  sans: 'Manrope',
+  display: 'Manrope',
+  mono: 'IBM Plex Mono',
+};
 
 // --- Stylesheet compilation ---------------------------------------------------
 
@@ -116,6 +128,7 @@ const referencesDesignToken = (candidate: string): boolean => {
 const designTokenCandidates = (): string[] => {
   const files = glob.sync([
     resolve(projectRoot, 'app.vue'),
+    resolve(projectRoot, 'error.vue'),
     resolve(projectRoot, '{components,layouts,pages}/**/*.vue'),
   ]);
   const candidates = new Set(files.flatMap(sfcClassCandidates).filter(referencesDesignToken));
@@ -128,7 +141,9 @@ describe('Design tokens (assets/css/main.css @theme)', () => {
   it('compiles every token utility used by a component into a CSS rule', async () => {
     const candidates = designTokenCandidates();
     // Sanity check that the scanner sees the templates at all.
-    expect(candidates).toEqual(expect.arrayContaining(['bg-surface/95', 'text-text-secondary', 'font-display']));
+    expect(candidates).toEqual(
+      expect.arrayContaining(['bg-surface', 'text-text-secondary', 'font-display', 'font-mono']),
+    );
 
     const css = await buildCss(candidates);
     const unresolved = candidates.filter((candidate) => !css.includes(`.${cssEscape(candidate)}`));

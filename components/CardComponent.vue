@@ -1,76 +1,77 @@
 <template>
   <div class="h-full" :class="{ 'group/card': interactive }">
-    <div 
-      class="bg-surface/95 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-white/10 h-full flex flex-col transition-all duration-300"
-      :class="{ 
-        'hover:shadow-xl hover:border-primary/90 hover:translate-y-[-1px] hover:bg-surface-light/95 hover:shadow-glow': interactive 
-      }"
+    <div
+      class="bg-surface rounded-xl p-6 border border-white/[0.08] h-full flex flex-col"
+      :class="
+        interactive
+          ? 'transition-[background-color,border-color] duration-150 hover:border-white/[0.16] hover:bg-surface-light/60'
+          : ''
+      "
     >
-      <!-- Dynamic title component -->
-      <h3 
+      <component
+        :is="headingTag"
         v-if="title"
-        class="font-display font-semibold text-text-primary mb-2 transition-colors"
-        :class="{ 
-          'text-2xl': titleSize === 'normal',
-          'text-xl': titleSize === 'small',
-          'interactive': interactive
-        }"
+        class="font-display font-medium text-text-primary mb-3 leading-[1.28]"
+        :class="
+          titleSize === 'small'
+            ? 'text-[17px] tracking-[-0.01em]'
+            : 'text-xl tracking-[-0.015em]'
+        "
       >
-        <!-- Conditionally wrap title in link -->
         <template v-if="to">
-          <NuxtLink 
-            :to="to" 
-            external 
-            target="_blank" 
+          <NuxtLink
+            :to="to"
+            external
+            target="_blank"
             rel="noopener noreferrer"
-            class="hover:text-primary transition-colors inline-flex items-center gap-1"
+            class="hover:text-primary transition-colors duration-150"
           >
-            {{ title }}
-            <UIcon name="i-heroicons-arrow-top-right-on-square" class="w-4 h-4 opacity-70" />
+            <span>{{ title }}</span>
+            <AppIcon
+              name="arrow-up-right"
+              size="sm"
+              class="inline-block align-[-0.12em] ml-1 text-text-muted"
+            />
           </NuxtLink>
         </template>
-        
-        <!-- Regular title without link -->
         <template v-else>
-          <span :class="{ 'group-hover/card:text-primary/90 interactive': interactive }">
-            {{ title }}
-          </span>
+          {{ title }}
         </template>
-      </h3>
-      
+      </component>
+
       <div class="flex-grow">
-        <slot/>
+        <slot />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import type { PropType } from 'vue';
+import AppIcon from './AppIcon.vue';
+
 defineProps({
   title: {
     type: String,
-    default: ''
+    default: '',
   },
   interactive: {
     type: Boolean,
-    default: true
+    default: false,
   },
   titleSize: {
-    type: String,
+    type: String as PropType<'normal' | 'small'>,
     default: 'normal',
-    validator: (value: string) => ['normal', 'small'].includes(value)
+    validator: (value: string) => ['normal', 'small'].includes(value),
+  },
+  headingTag: {
+    type: String as PropType<'h2' | 'h3'>,
+    default: 'h2',
+    validator: (value: string) => ['h2', 'h3'].includes(value),
   },
   to: {
     type: String,
-    default: ''
-  }
-})
+    default: '',
+  },
+});
 </script>
-
-<style scoped>
-.group\/card:hover .hover\:shadow-glow {
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 
-              0 8px 10px -6px rgba(0, 0, 0, 0.1),
-              0 0 15px 2px rgba(255, 255, 255, 0.05); /* White glow effect */
-}
-</style> 
