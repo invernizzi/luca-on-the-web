@@ -1,6 +1,7 @@
 <template>
   <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
     <canvas ref="canvas" class="w-full h-full" />
+    <div class="gol-readability-scrim absolute inset-0" />
   </div>
 </template>
 
@@ -176,13 +177,13 @@ const drawGrid = (brightLiveFrame = true) => {
   const ctx = canvas.value.getContext("2d");
   if (!ctx) return;
 
-  // Crisp trail decay on obsidian ground — zero blur, no CRT scanline
-  ctx.fillStyle = "rgba(13, 13, 15, 0.24)";
+  // Crisp trail decay on obsidian ground — capped steady-state brightness
+  ctx.fillStyle = "rgba(13, 13, 15, 0.28)";
   ctx.fillRect(0, 0, canvas.value.width, canvas.value.height);
 
   ctx.fillStyle = brightLiveFrame
-    ? "rgba(255, 157, 2, 0.22)"
-    : "rgba(255, 157, 2, 0.08)";
+    ? "rgba(255, 157, 2, 0.14)"
+    : "rgba(255, 157, 2, 0.07)";
 
   for (let y = 0; y < height; y++) {
     const gridRow = grid[y];
@@ -280,3 +281,25 @@ onUnmounted(() => {
   motionQuery?.removeEventListener("change", handleMotionChange);
 });
 </script>
+
+<style scoped>
+/* Soft obsidian veil behind the reading column so live Game of Life cells stay
+   crisp in the margins without competing with uncarded body text or links. */
+.gol-readability-scrim {
+  background: rgba(13, 13, 15, 0.78);
+}
+
+@media (min-width: 1024px) {
+  .gol-readability-scrim {
+    background: linear-gradient(
+      90deg,
+      rgba(13, 13, 15, 0) 0%,
+      rgba(13, 13, 15, 0) max(0px, calc(50% - 615px)),
+      rgba(13, 13, 15, 0.88) max(0px, calc(50% - 475px)),
+      rgba(13, 13, 15, 0.88) min(100%, calc(50% + 475px)),
+      rgba(13, 13, 15, 0) min(100%, calc(50% + 615px)),
+      rgba(13, 13, 15, 0) 100%
+    );
+  }
+}
+</style>
