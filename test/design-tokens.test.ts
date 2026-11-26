@@ -23,9 +23,21 @@ const mainCssPath = resolve(projectRoot, 'assets/css/main.css');
 const require = createRequire(import.meta.url);
 
 /** Colour tokens (`--color-<token>`) that `@theme` must declare. */
-const COLOR_TOKENS = ['background', 'surface', 'surface-light', 'text-primary', 'text-secondary'];
+const COLOR_TOKENS = [
+  'background',
+  'surface',
+  'surface-light',
+  'surface-elevated',
+  'text-primary',
+  'text-body',
+  'text-secondary',
+];
 /** Font tokens (`--font-<token>`) and the brand family each must resolve to. */
-const FONT_FAMILIES: Record<string, string> = { sans: 'Manrope', display: 'General Sans' };
+const FONT_FAMILIES: Record<string, string> = {
+  sans: 'Manrope',
+  display: 'Manrope',
+  mono: 'IBM Plex Mono',
+};
 
 // --- Stylesheet compilation ---------------------------------------------------
 

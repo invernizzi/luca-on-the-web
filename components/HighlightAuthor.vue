@@ -1,7 +1,7 @@
 <template>
   <span>
     <template v-for="(author, index) in authors" :key="author">
-      <span v-if="isHighlightedAuthor(author)" class="font-bold text-primary">{{ author }}</span>
+      <span v-if="isHighlightedAuthor(author)" class="font-semibold text-primary">{{ author }}</span>
       <span v-else>{{ author }}</span>
       <span v-if="index < authors.length - 1">, </span>
     </template>

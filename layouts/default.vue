@@ -1,21 +1,24 @@
 <template>
-  <div class="min-h-screen text-text-primary">
+  <div class="min-h-screen text-text-primary flex flex-col">
     <!-- Background elements with lower z-index (the page background itself is on <body>, see app.vue) -->
     <LazyGameOfLife hydrate-on-idle />
     <!-- Foreground content with higher z-index -->
-    <div class="relative z-20">
+    <div class="relative z-20 flex flex-col min-h-screen">
       <LazyNavBar hydrate-on-idle />
       <PageTransition>
         <SwipeHandler>
-          <main class="relative">
+          <main class="relative flex-grow">
             <slot />
           </main>
         </SwipeHandler>
       </PageTransition>
-      <footer
-        class="container mx-auto px-4 py-8 text-center text-text-secondary"
-      >
-        <p>© {{ new Date().getFullYear() }} Luca Invernizzi</p>
+      <footer class="mt-auto border-t border-white/[0.08]">
+        <div
+          class="max-w-[980px] mx-auto px-5 sm:px-7 py-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs font-mono text-text-secondary"
+        >
+          <p>© {{ new Date().getFullYear() }} Luca Invernizzi</p>
+          <p>Zurich, Switzerland</p>
+        </div>
       </footer>
     </div>
   </div>

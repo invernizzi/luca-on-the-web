@@ -2,7 +2,7 @@
   <div
     ref="underlineEl"
     aria-hidden="true"
-    class="sliding-underline absolute h-1 bg-primary rounded-full pointer-events-none"
+    class="sliding-underline absolute bg-primary pointer-events-none"
     :style="underlinePosition"
   />
 </template>
@@ -82,11 +82,11 @@ onBeforeUnmount(() => {
   position: absolute;
   height: 2px;
   background-color: var(--ui-primary);
-  bottom: 0;
+  bottom: -1px;
   z-index: 60;
   transition:
-    left 300ms ease-out,
-    width 300ms ease-out,
-    opacity 200ms ease-out;
+    left 260ms ease-out,
+    width 260ms ease-out,
+    opacity 180ms ease-out;
 }
 </style>
