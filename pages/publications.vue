@@ -219,10 +219,16 @@
                   {{ pub.venue }}
                 </span>
                 <span
-                  v-if="pub.title === 'Magika'"
-                  class="font-mono text-xs px-2 py-0.5 rounded-[6px] whitespace-nowrap tabular-nums border text-primary bg-primary/[0.12] border-primary/[0.38] font-medium"
+                  v-if="statsForRepo(pub.link)"
+                  :title="`${statsForRepo(pub.link)?.starsFormatted} GitHub stars · ${statsForRepo(pub.link)?.forksFormatted} forks`"
+                  class="font-mono text-xs px-2 py-0.5 rounded-[6px] whitespace-nowrap tabular-nums border"
+                  :class="
+                    statsForRepo(pub.link)?.isNotable
+                      ? 'text-primary bg-primary/[0.12] border-primary/[0.38] font-medium'
+                      : 'text-text-body bg-surface-light border-white/[0.08]'
+                  "
                 >
-                  ★ {{ magikaStars }} stars
+                  ★ {{ statsForRepo(pub.link)?.starsFormatted }} stars
                 </span>
                 <span
                   v-if="pub.citations"
@@ -256,7 +262,7 @@ import type { PublicationCategory } from '~/stores/publications'
 import { NuxtLink } from '#components'
 
 const publicationsStore = usePublicationsStore()
-const { starsFormatted: magikaStars } = useMagikaStats()
+const { statsForRepo } = useGithubStats()
 const route = useRoute()
 const highlightedPublication = ref<string | null>(null)
 const selectedCategory = ref<string>('')

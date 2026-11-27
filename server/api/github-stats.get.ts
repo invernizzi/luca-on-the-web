@@ -1,14 +1,27 @@
 import {
-  FALLBACK_MAGIKA,
+  TRACKED_GITHUB_REPOS,
+  createFallbackStatsMap,
   parseGithubRepoStats,
-  type GithubStatsResponse,
+  type GithubStatsMap,
 } from "../utils/githubStats";
 
 const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours per isolate
-let cachedResponse: { data: GithubStatsResponse; expiresAt: number } | null =
-  null;
+let cachedResponse: { data: GithubStatsMap; expiresAt: number } | null = null;
 
-export default defineEventHandler(async (event): Promise<GithubStatsResponse> => {
+async function fetchRepo(apiPath: string) {
+  const response = await fetch(`https://api.github.com/repos/${apiPath}`, {
+    headers: {
+      Accept: "application/vnd.github+json",
+      "User-Agent": "lucainvernizzi.net",
+    },
+    signal: AbortSignal.timeout(4000),
+  });
+  if (!response.ok) return null;
+  const json: unknown = await response.json();
+  return parseGithubRepoStats(json);
+}
+
+export default defineEventHandler(async (event): Promise<GithubStatsMap> => {
   setResponseHeader(
     event,
     "Cache-Control",
@@ -20,27 +33,29 @@ export default defineEventHandler(async (event): Promise<GithubStatsResponse> =>
     return cachedResponse.data;
   }
 
-  try {
-    const response = await fetch("https://api.github.com/repos/google/magika", {
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "lucainvernizzi.net",
-      },
-      signal: AbortSignal.timeout(4000),
-    });
+  const base: GithubStatsMap = cachedResponse?.data
+    ? { ...cachedResponse.data }
+    : createFallbackStatsMap();
 
-    if (response.ok) {
-      const json: unknown = await response.json();
-      const parsed = parseGithubRepoStats(json);
-      if (parsed) {
-        const data: GithubStatsResponse = { magika: parsed };
-        cachedResponse = { data, expiresAt: now + CACHE_TTL_MS };
-        return data;
-      }
+  const entries = Object.entries(TRACKED_GITHUB_REPOS);
+  const settled = await Promise.allSettled(
+    entries.map(async ([key, cfg]) => ({
+      key,
+      stats: await fetchRepo(cfg.apiPath),
+    })),
+  );
+
+  let anyLive = false;
+  for (const outcome of settled) {
+    if (outcome.status === "fulfilled" && outcome.value.stats) {
+      base[outcome.value.key] = outcome.value.stats;
+      anyLive = true;
     }
-  } catch {
-    // Gracefully fall back to last known good stats
   }
 
-  return cachedResponse?.data ?? { magika: FALLBACK_MAGIKA };
+  if (anyLive) {
+    cachedResponse = { data: base, expiresAt: now + CACHE_TTL_MS };
+  }
+
+  return base;
 });

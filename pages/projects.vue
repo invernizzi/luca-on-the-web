@@ -25,7 +25,7 @@
         heading-tag="h3"
         :accent="isHighlighted(project.id)"
       >
-        <template v-if="project.award || project.id === ProjectId.MAGIKA" #header-right>
+        <template v-if="project.award || projectGithubStats(project)" #header-right>
           <span
             v-if="project.award"
             class="inline-flex items-center px-2.5 py-[3px] rounded-[6px] text-xs font-semibold bg-primary text-[#111113] tracking-[-0.005em] shrink-0"
@@ -33,12 +33,17 @@
             {{ project.award }}
           </span>
           <a
-            v-else-if="project.id === ProjectId.MAGIKA"
-            href="https://github.com/google/magika"
+            v-else-if="projectGithubStats(project)"
+            :href="projectGithubStats(project)?.url"
             target="_blank"
             rel="noopener noreferrer"
-            :title="`${magikaStars} GitHub stars · ${magikaForks} forks`"
-            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium text-primary bg-primary/[0.12] border border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60 transition-colors tabular-nums shrink-0"
+            :title="`${projectGithubStats(project)?.starsFormatted} GitHub stars · ${projectGithubStats(project)?.forksFormatted} forks`"
+            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium border transition-colors tabular-nums shrink-0"
+            :class="
+              projectGithubStats(project)?.isNotable
+                ? 'text-primary bg-primary/[0.12] border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60'
+                : 'text-text-body bg-surface-light border-white/[0.10] hover:border-primary/50 hover:text-primary'
+            "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -48,7 +53,7 @@
             >
               <path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46L12 17.3l-5.8 3.06 1.11-6.46-4.7-4.58 6.49-.94L12 2.5z" />
             </svg>
-            <span>{{ magikaStars }} stars</span>
+            <span>{{ projectGithubStats(project)?.starsFormatted }} stars</span>
           </a>
         </template>
 
@@ -128,7 +133,7 @@
         heading-tag="h3"
         :accent="isHighlighted(project.id)"
       >
-        <template v-if="project.award || project.id === ProjectId.MAGIKA" #header-right>
+        <template v-if="project.award || projectGithubStats(project)" #header-right>
           <span
             v-if="project.award"
             class="inline-flex items-center px-2.5 py-[3px] rounded-[6px] text-xs font-semibold bg-primary text-[#111113] tracking-[-0.005em] shrink-0"
@@ -136,12 +141,17 @@
             {{ project.award }}
           </span>
           <a
-            v-else-if="project.id === ProjectId.MAGIKA"
-            href="https://github.com/google/magika"
+            v-else-if="projectGithubStats(project)"
+            :href="projectGithubStats(project)?.url"
             target="_blank"
             rel="noopener noreferrer"
-            :title="`${magikaStars} GitHub stars · ${magikaForks} forks`"
-            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium text-primary bg-primary/[0.12] border border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60 transition-colors tabular-nums shrink-0"
+            :title="`${projectGithubStats(project)?.starsFormatted} GitHub stars · ${projectGithubStats(project)?.forksFormatted} forks`"
+            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium border transition-colors tabular-nums shrink-0"
+            :class="
+              projectGithubStats(project)?.isNotable
+                ? 'text-primary bg-primary/[0.12] border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60'
+                : 'text-text-body bg-surface-light border-white/[0.10] hover:border-primary/50 hover:text-primary'
+            "
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -151,7 +161,7 @@
             >
               <path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46L12 17.3l-5.8 3.06 1.11-6.46-4.7-4.58 6.49-.94L12 2.5z" />
             </svg>
-            <span>{{ magikaStars }} stars</span>
+            <span>{{ projectGithubStats(project)?.starsFormatted }} stars</span>
           </a>
         </template>
 
@@ -223,10 +233,16 @@ import { onMounted, ref, computed } from "vue";
 
 const projectsStore = useProjectsStore();
 const publicationsStore = usePublicationsStore();
-const { starsFormatted: magikaStars, forksFormatted: magikaForks } = useMagikaStats();
+const { statsForRepo } = useGithubStats();
 const router = useRouter();
 const route = useRoute();
 const highlightedProject = ref<ProjectId | null>(null);
+
+const projectGithubStats = (project: Project) => {
+  if (project.id === ProjectId.MAGIKA) return statsForRepo("google/magika");
+  const gh = project.urls?.find((u) => u.type === "github");
+  return gh ? statsForRepo(gh.url) : null;
+};
 
 const activeProjects = computed(() =>
   projectsStore.projects.filter((project) => !project.archived),

@@ -175,13 +175,25 @@
             {{ item.description }}
           </p>
 
-          <div v-if="item.links && item.links.length > 0" class="mt-auto flex flex-wrap gap-2">
+          <div v-if="item.links && item.links.length > 0" class="mt-auto flex flex-wrap items-center gap-2">
             <LinkPill
               v-for="link in item.links"
               :key="`${link.name}-${link.url}`"
               :link="link"
               :show-external-arrow="!link.url.startsWith('/')"
             />
+            <span
+              v-if="itemGithubStats(item)"
+              :title="`${itemGithubStats(item)?.starsFormatted} GitHub stars · ${itemGithubStats(item)?.forksFormatted} forks`"
+              class="font-mono text-xs px-2 py-[3px] rounded-[6px] whitespace-nowrap tabular-nums border"
+              :class="
+                itemGithubStats(item)?.isNotable
+                  ? 'text-primary bg-primary/[0.12] border-primary/[0.38] font-medium'
+                  : 'text-text-body bg-surface-light border-white/[0.08]'
+              "
+            >
+              ★ {{ itemGithubStats(item)?.starsFormatted }} stars
+            </span>
           </div>
         </article>
       </div>
@@ -240,9 +252,15 @@
 </template>
 
 <script setup lang="ts">
-import { useCVStore } from '@/stores/cv'
+import { useCVStore, type TimelineItem } from '@/stores/cv'
 
 const cvStore = useCVStore()
+const { statsForRepo } = useGithubStats()
+
+const itemGithubStats = (item: TimelineItem) => {
+  const gh = item.links?.find((l) => l.type === 'github')
+  return gh ? statsForRepo(gh.url) : null
+}
 </script>
 
 <style scoped>
