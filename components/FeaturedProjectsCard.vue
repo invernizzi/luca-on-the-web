@@ -30,8 +30,13 @@
           <p class="text-sm text-text-body leading-[1.45]">
             {{ project.blurb }}
           </p>
-          <div class="mt-2 font-mono text-[11.5px] text-primary">
-            {{ project.tags.join(' · ') }}
+          <div class="mt-2 font-mono text-[11.5px] text-primary tabular-nums">
+            <template v-if="project.id === ProjectId.MAGIKA">
+              ★ {{ magikaStars }} GitHub stars · {{ project.tags.join(' · ') }}
+            </template>
+            <template v-else>
+              {{ project.tags.join(' · ') }}
+            </template>
           </div>
         </div>
         <span
@@ -46,7 +51,10 @@
 </template>
 
 <script setup lang="ts">
+import { ProjectId } from "~/stores/projects";
+
 const { projects } = storeToRefs(useProjectsStore());
+const { starsFormatted: magikaStars } = useMagikaStats();
 
 const featuredProjects = computed(() => {
   return projects.value.filter((p) => p.featured);

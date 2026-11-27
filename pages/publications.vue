@@ -219,6 +219,12 @@
                   {{ pub.venue }}
                 </span>
                 <span
+                  v-if="pub.title === 'Magika'"
+                  class="font-mono text-xs px-2 py-0.5 rounded-[6px] whitespace-nowrap tabular-nums border text-primary bg-primary/[0.12] border-primary/[0.38] font-medium"
+                >
+                  ★ {{ magikaStars }} stars
+                </span>
+                <span
                   v-if="pub.citations"
                   class="font-mono text-xs px-2 py-0.5 rounded-[6px] whitespace-nowrap tabular-nums border"
                   :class="
@@ -250,6 +256,7 @@ import type { PublicationCategory } from '~/stores/publications'
 import { NuxtLink } from '#components'
 
 const publicationsStore = usePublicationsStore()
+const { starsFormatted: magikaStars } = useMagikaStats()
 const route = useRoute()
 const highlightedPublication = ref<string | null>(null)
 const selectedCategory = ref<string>('')

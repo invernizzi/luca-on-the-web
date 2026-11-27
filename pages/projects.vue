@@ -25,12 +25,31 @@
         heading-tag="h3"
         :accent="isHighlighted(project.id)"
       >
-        <template v-if="project.award" #header-right>
+        <template v-if="project.award || project.id === ProjectId.MAGIKA" #header-right>
           <span
+            v-if="project.award"
             class="inline-flex items-center px-2.5 py-[3px] rounded-[6px] text-xs font-semibold bg-primary text-[#111113] tracking-[-0.005em] shrink-0"
           >
             {{ project.award }}
           </span>
+          <a
+            v-else-if="project.id === ProjectId.MAGIKA"
+            href="https://github.com/google/magika"
+            target="_blank"
+            rel="noopener noreferrer"
+            :title="`${magikaStars} GitHub stars · ${magikaForks} forks`"
+            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium text-primary bg-primary/[0.12] border border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60 transition-colors tabular-nums shrink-0"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-3.5 h-3.5 fill-current shrink-0"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46L12 17.3l-5.8 3.06 1.11-6.46-4.7-4.58 6.49-.94L12 2.5z" />
+            </svg>
+            <span>{{ magikaStars }} stars</span>
+          </a>
         </template>
 
         <p class="text-[14.5px] text-text-body leading-[1.6] mb-[18px]">
@@ -109,12 +128,31 @@
         heading-tag="h3"
         :accent="isHighlighted(project.id)"
       >
-        <template v-if="project.award" #header-right>
+        <template v-if="project.award || project.id === ProjectId.MAGIKA" #header-right>
           <span
+            v-if="project.award"
             class="inline-flex items-center px-2.5 py-[3px] rounded-[6px] text-xs font-semibold bg-primary text-[#111113] tracking-[-0.005em] shrink-0"
           >
             {{ project.award }}
           </span>
+          <a
+            v-else-if="project.id === ProjectId.MAGIKA"
+            href="https://github.com/google/magika"
+            target="_blank"
+            rel="noopener noreferrer"
+            :title="`${magikaStars} GitHub stars · ${magikaForks} forks`"
+            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium text-primary bg-primary/[0.12] border border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60 transition-colors tabular-nums shrink-0"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-3.5 h-3.5 fill-current shrink-0"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path d="M12 2.5l2.9 5.88 6.49.94-4.7 4.58 1.11 6.46L12 17.3l-5.8 3.06 1.11-6.46-4.7-4.58 6.49-.94L12 2.5z" />
+            </svg>
+            <span>{{ magikaStars }} stars</span>
+          </a>
         </template>
 
         <p class="text-[14.5px] text-text-body leading-[1.6] mb-[18px]">
@@ -174,8 +212,8 @@
 </template>
 
 <script setup lang="ts">
-import { useProjectsStore } from "~/stores/projects";
-import type { OnlineItem, Project, ProjectId } from "~/stores/projects";
+import { ProjectId, useProjectsStore } from "~/stores/projects";
+import type { OnlineItem, Project } from "~/stores/projects";
 import { usePublicationsStore } from "~/stores/publications";
 import type { Publication } from "~/stores/publications";
 import CardComponent from "~/components/CardComponent.vue";
@@ -185,6 +223,7 @@ import { onMounted, ref, computed } from "vue";
 
 const projectsStore = useProjectsStore();
 const publicationsStore = usePublicationsStore();
+const { starsFormatted: magikaStars, forksFormatted: magikaForks } = useMagikaStats();
 const router = useRouter();
 const route = useRoute();
 const highlightedProject = ref<ProjectId | null>(null);
