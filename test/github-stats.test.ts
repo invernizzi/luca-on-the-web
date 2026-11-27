@@ -7,6 +7,7 @@ import {
   extractGithubRepoSlug,
   parseGithubRepoStats,
   shouldDisplayRepoStats,
+  shouldRetryUnauthenticated,
 } from '../server/utils/githubStats';
 
 describe('GitHub stats utilities', () => {
@@ -79,5 +80,13 @@ describe('GitHub stats utilities', () => {
 
     const auth = buildGithubApiHeaders('  ghp_example_token  ');
     expect(auth.Authorization).toBe('Bearer ghp_example_token');
+  });
+
+  it('retries unauthenticated on 401/403 SAML rejections when auth was sent', () => {
+    expect(shouldRetryUnauthenticated(403, true)).toBe(true);
+    expect(shouldRetryUnauthenticated(401, true)).toBe(true);
+    expect(shouldRetryUnauthenticated(403, false)).toBe(false);
+    expect(shouldRetryUnauthenticated(404, true)).toBe(false);
+    expect(shouldRetryUnauthenticated(200, true)).toBe(false);
   });
 });

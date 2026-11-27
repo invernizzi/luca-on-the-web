@@ -27,6 +27,16 @@ export function buildGithubApiHeaders(token?: string): Record<string, string> {
 }
 
 /**
+ * GitHub returns 403 (SAML SSO enforcement) on public repositories belonging to
+ * SAML-protected orgs (such as `google/*`) when queried with an un-SSO'd PAT
+ * owned by a member of that org. Falling back to an unauthenticated request
+ * cleanly reads those public repo stats.
+ */
+export function shouldRetryUnauthenticated(status: number, hadAuth: boolean): boolean {
+  return hadAuth && (status === 401 || status === 403);
+}
+
+/**
  * Canonical allowlist of GitHub repositories shown across Projects,
  * Publications (Open Source), and CV. Keys are lowercase `owner/repo`.
  */
