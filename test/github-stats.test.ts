@@ -2,6 +2,7 @@ import { describe, it, expect } from 'vitest';
 import {
   MIN_DISPLAY_STARS,
   TRACKED_GITHUB_REPOS,
+  buildGithubApiHeaders,
   createFallbackStatsMap,
   extractGithubRepoSlug,
   parseGithubRepoStats,
@@ -67,5 +68,16 @@ describe('GitHub stats utilities', () => {
     expect(shouldDisplayRepoStats(map['google/wasefire'])).toBe(false);
     expect(shouldDisplayRepoStats(map['google/unisim'])).toBe(false);
     expect(shouldDisplayRepoStats(map['google/maldoca'])).toBe(false);
+  });
+
+  it('adds Bearer auth header only when a non-empty GITHUB_TOKEN is provided', () => {
+    const unauth = buildGithubApiHeaders();
+    expect(unauth.Accept).toBe('application/vnd.github+json');
+    expect(unauth.Authorization).toBeUndefined();
+
+    expect(buildGithubApiHeaders('   ').Authorization).toBeUndefined();
+
+    const auth = buildGithubApiHeaders('  ghp_example_token  ');
+    expect(auth.Authorization).toBe('Bearer ghp_example_token');
   });
 });

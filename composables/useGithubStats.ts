@@ -25,12 +25,27 @@ export function useGithubStats() {
     hasFetched.value = true;
 
     try {
-      const data = await $fetch<GithubStatsMap>("/api/github-stats");
+      const response = await fetch("/api/github-stats", {
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) return;
+      const data: unknown = await response.json();
       if (data && typeof data === "object") {
-        const merged = { ...statsMap.value };
-        for (const [slug, repo] of Object.entries(data)) {
-          if (repo && typeof repo.stars === "number" && repo.stars > 0) {
-            merged[slug.toLowerCase()] = repo;
+        const merged: GithubStatsMap = { ...statsMap.value };
+        for (const [slug, raw] of Object.entries(data as Record<string, unknown>)) {
+          if (
+            raw &&
+            typeof raw === "object" &&
+            typeof (raw as RepoStats).stars === "number" &&
+            (raw as RepoStats).stars > 0 &&
+            typeof (raw as RepoStats).forks === "number"
+          ) {
+            const repo = raw as RepoStats;
+            merged[slug.toLowerCase()] = {
+              stars: repo.stars,
+              forks: repo.forks,
+              live: Boolean(repo.live),
+            };
           }
         }
         statsMap.value = merged;

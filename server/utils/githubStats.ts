@@ -13,6 +13,19 @@ export function shouldDisplayRepoStats(stats?: RepoStats | null): boolean {
   return Boolean(stats && stats.stars >= MIN_DISPLAY_STARS);
 }
 
+export function buildGithubApiHeaders(token?: string): Record<string, string> {
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "lucainvernizzi.net",
+    "X-GitHub-Api-Version": "2022-11-28",
+  };
+  const trimmed = token?.trim();
+  if (trimmed) {
+    headers.Authorization = `Bearer ${trimmed}`;
+  }
+  return headers;
+}
+
 /**
  * Canonical allowlist of GitHub repositories shown across Projects,
  * Publications (Open Source), and CV. Keys are lowercase `owner/repo`.

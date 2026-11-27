@@ -1,5 +1,6 @@
 import {
   TRACKED_GITHUB_REPOS,
+  buildGithubApiHeaders,
   createFallbackStatsMap,
   parseGithubRepoStats,
   type GithubStatsMap,
@@ -8,12 +9,9 @@ import {
 const CACHE_TTL_MS = 6 * 60 * 60 * 1000; // 6 hours per isolate
 let cachedResponse: { data: GithubStatsMap; expiresAt: number } | null = null;
 
-async function fetchRepo(apiPath: string) {
+async function fetchRepo(apiPath: string, headers: Record<string, string>) {
   const response = await fetch(`https://api.github.com/repos/${apiPath}`, {
-    headers: {
-      Accept: "application/vnd.github+json",
-      "User-Agent": "lucainvernizzi.net",
-    },
+    headers,
     signal: AbortSignal.timeout(4000),
   });
   if (!response.ok) return null;
@@ -33,6 +31,16 @@ export default defineEventHandler(async (event): Promise<GithubStatsMap> => {
     return cachedResponse.data;
   }
 
+  const cfEnv = (
+    event.context as { cloudflare?: { env?: Record<string, unknown> } }
+  ).cloudflare?.env;
+  const rawToken = cfEnv?.GITHUB_TOKEN ?? process.env.GITHUB_TOKEN;
+  const token =
+    typeof rawToken === "string" && rawToken.trim()
+      ? rawToken.trim()
+      : undefined;
+  const headers = buildGithubApiHeaders(token);
+
   const base: GithubStatsMap = cachedResponse?.data
     ? { ...cachedResponse.data }
     : createFallbackStatsMap();
@@ -41,7 +49,7 @@ export default defineEventHandler(async (event): Promise<GithubStatsMap> => {
   const settled = await Promise.allSettled(
     entries.map(async ([key, cfg]) => ({
       key,
-      stats: await fetchRepo(cfg.apiPath),
+      stats: await fetchRepo(cfg.apiPath, headers),
     })),
   );
 
