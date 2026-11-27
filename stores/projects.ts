@@ -171,12 +171,12 @@ export const useProjectsStore = defineStore('projects', () => {
                 {
                     name: 'Sec-Gemini v1 Blog',
                     type: 'blog',
-                    url: 'https://security.googleblog.com/2025/04/google-launches-sec-gemini-v1-new.html'
+                    url: 'https://blog.google/security/google-launches-sec-gemini-v1-new/'
                 },
                 { 
                     name: 'Summer 2025 Blog',
                     type: 'blog',
-                    url: 'https://blog.google/technology/safety-security/cybersecurity-updates-summer-2025/'
+                    url: 'https://blog.google/innovation-and-ai/technology/safety-security/cybersecurity-updates-summer-2025/'
                 },
                 {
                     name: 'TechRepublic',
@@ -196,7 +196,7 @@ export const useProjectsStore = defineStore('projects', () => {
                 {
                     name: "Google Cloud Blog",
                     type: "blog",
-                    url: "https://www.googlecloudcommunity.com/gc/Community-Blog/Fueling-AI-Innovation-in-SecOps-Products-The-SecLM-Platform-and/ba-p/913254"
+                    url: "https://security.googlecloudcommunity.com/community-blog-42/fueling-ai-innovation-in-secops-products-the-seclm-platform-and-sec-gemini-research-pipeline-3997"
                 },
                 {
                     name: "Sec-Gemini v3 Blog",
@@ -226,11 +226,6 @@ export const useProjectsStore = defineStore('projects', () => {
                     name: "Launch Blog (2024)",
                     type: 'blog',
                     url: 'https://opensource.googleblog.com/2024/02/magika-ai-powered-fast-and-efficient-file-type-identification.html'
-                },
-                {
-                    name: "The Register",
-                    type: 'news',
-                    url: 'https://www.theregister.com/2024/02/15/google_magika_open_source/'
                 },
                 {
                     name: "Website",
@@ -356,11 +351,6 @@ export const useProjectsStore = defineStore('projects', () => {
                     name: "Ars Technica",
                     type: 'news',
                     url: 'https://arstechnica.com/information-technology/2019/10/google-adds-password-checkup-into-web-account-password-manager/'
-                },
-                {
-                    name: "Sophos",
-                    type: 'news',
-                    url: 'https://news.sophos.com/en-us/2019/10/03/googles-password-manager-now-checks-for-breached-credentials/'
                 }
             ],
             blurb: 'Privacy-focused password breach checker',

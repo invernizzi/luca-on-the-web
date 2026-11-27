@@ -92,7 +92,7 @@
           class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >Quantic School of Business</NuxtLink>, a Master in Robotics from the
         <NuxtLink
-          to="https://www.unipi.it/index.php/english"
+          to="https://www.unipi.it/en/"
           external
           class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
         >University of Pisa</NuxtLink>, and an engineering degree from the

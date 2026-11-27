@@ -146,7 +146,7 @@ export const useCVStore = defineStore('cv', () => {
         {
           name: 'The Register',
           type: 'news',
-          url: 'https://www.theregister.com/2014/02/18/zoom_out_for_a_view_of_malware_say_boffins/'
+          url: 'https://www.theregister.com/security/2014/02/18/zoom-out-for-a-view-of-malware-say-boffins/1047151'
         }
       ],
       description: 'Designed Nazca, a system for discovering and tracking malicious downloads in ISP network traffic. This work resulted in an NDSS ’14 paper, a patent, and press coverage.'
@@ -298,7 +298,7 @@ export const useCVStore = defineStore('cv', () => {
         {
           name: 'ESA',
           type: 'website',
-          url: 'https://www.esa.int/Education/Germany_s_CESAR_crowned_king_of_rovers_in_ESA_s_Robotics_Challenge2'
+          url: 'https://education.esa.int/Germany_s_CESAR_crowned_king_of_rovers_in_ESA_s_Robotics_Challenge2/'
         },
         {
           name: 'Robot selfie',
