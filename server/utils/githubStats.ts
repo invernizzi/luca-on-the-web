@@ -6,6 +6,13 @@ export interface RepoStats {
 
 export type GithubStatsMap = Record<string, RepoStats>;
 
+/** Minimum GitHub star count required before showing a star badge in the UI. */
+export const MIN_DISPLAY_STARS = 1000;
+
+export function shouldDisplayRepoStats(stats?: RepoStats | null): boolean {
+  return Boolean(stats && stats.stars >= MIN_DISPLAY_STARS);
+}
+
 /**
  * Canonical allowlist of GitHub repositories shown across Projects,
  * Publications (Open Source), and CV. Keys are lowercase `owner/repo`.

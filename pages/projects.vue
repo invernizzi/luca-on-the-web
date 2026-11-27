@@ -38,12 +38,7 @@
             target="_blank"
             rel="noopener noreferrer"
             :title="`${projectGithubStats(project)?.starsFormatted} GitHub stars · ${projectGithubStats(project)?.forksFormatted} forks`"
-            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium border transition-colors tabular-nums shrink-0"
-            :class="
-              projectGithubStats(project)?.isNotable
-                ? 'text-primary bg-primary/[0.12] border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60'
-                : 'text-text-body bg-surface-light border-white/[0.10] hover:border-primary/50 hover:text-primary'
-            "
+            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium text-primary bg-primary/[0.12] border border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60 transition-colors tabular-nums shrink-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -146,12 +141,7 @@
             target="_blank"
             rel="noopener noreferrer"
             :title="`${projectGithubStats(project)?.starsFormatted} GitHub stars · ${projectGithubStats(project)?.forksFormatted} forks`"
-            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium border transition-colors tabular-nums shrink-0"
-            :class="
-              projectGithubStats(project)?.isNotable
-                ? 'text-primary bg-primary/[0.12] border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60'
-                : 'text-text-body bg-surface-light border-white/[0.10] hover:border-primary/50 hover:text-primary'
-            "
+            class="inline-flex items-center gap-1.5 px-2.5 py-[3px] rounded-[6px] font-mono text-xs font-medium text-primary bg-primary/[0.12] border border-primary/[0.38] hover:bg-primary/[0.20] hover:border-primary/60 transition-colors tabular-nums shrink-0"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

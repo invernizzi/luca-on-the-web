@@ -185,12 +185,7 @@
             <span
               v-if="itemGithubStats(item)"
               :title="`${itemGithubStats(item)?.starsFormatted} GitHub stars · ${itemGithubStats(item)?.forksFormatted} forks`"
-              class="font-mono text-xs px-2 py-[3px] rounded-[6px] whitespace-nowrap tabular-nums border"
-              :class="
-                itemGithubStats(item)?.isNotable
-                  ? 'text-primary bg-primary/[0.12] border-primary/[0.38] font-medium'
-                  : 'text-text-body bg-surface-light border-white/[0.08]'
-              "
+              class="font-mono text-xs px-2 py-[3px] rounded-[6px] whitespace-nowrap tabular-nums border text-primary bg-primary/[0.12] border-primary/[0.38] font-medium"
             >
               ★ {{ itemGithubStats(item)?.starsFormatted }} stars
             </span>

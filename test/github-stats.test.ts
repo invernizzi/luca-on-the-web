@@ -1,9 +1,11 @@
 import { describe, it, expect } from 'vitest';
 import {
+  MIN_DISPLAY_STARS,
   TRACKED_GITHUB_REPOS,
   createFallbackStatsMap,
   extractGithubRepoSlug,
   parseGithubRepoStats,
+  shouldDisplayRepoStats,
 } from '../server/utils/githubStats';
 
 describe('GitHub stats utilities', () => {
@@ -48,5 +50,22 @@ describe('GitHub stats utilities', () => {
     expect(parseGithubRepoStats({ message: 'API rate limit exceeded' })).toBeNull();
     expect(parseGithubRepoStats({ stargazers_count: 0, forks_count: 0 })).toBeNull();
     expect(parseGithubRepoStats({ stargazers_count: '3495', forks_count: 359 })).toBeNull();
+  });
+
+  it('only displays star counts for repositories with at least 1,000 stars', () => {
+    expect(MIN_DISPLAY_STARS).toBe(1000);
+    expect(shouldDisplayRepoStats(null)).toBe(false);
+    expect(shouldDisplayRepoStats({ stars: 999, forks: 10, live: true })).toBe(false);
+    expect(shouldDisplayRepoStats({ stars: 1000, forks: 10, live: true })).toBe(true);
+
+    const map = createFallbackStatsMap();
+    expect(shouldDisplayRepoStats(map['google/magika'])).toBe(true);
+    expect(shouldDisplayRepoStats(map['google/opensk'])).toBe(true);
+    expect(shouldDisplayRepoStats(map['keras-team/keras-tuner'])).toBe(true);
+    expect(shouldDisplayRepoStats(map['getting-things-gnome/gtg'])).toBe(false);
+    expect(shouldDisplayRepoStats(map['google/scaaml'])).toBe(false);
+    expect(shouldDisplayRepoStats(map['google/wasefire'])).toBe(false);
+    expect(shouldDisplayRepoStats(map['google/unisim'])).toBe(false);
+    expect(shouldDisplayRepoStats(map['google/maldoca'])).toBe(false);
   });
 });

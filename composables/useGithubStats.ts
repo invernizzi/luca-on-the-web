@@ -2,6 +2,7 @@ import {
   TRACKED_GITHUB_REPOS,
   createFallbackStatsMap,
   extractGithubRepoSlug,
+  shouldDisplayRepoStats,
   type GithubStatsMap,
   type RepoStats,
 } from "~/server/utils/githubStats";
@@ -11,7 +12,6 @@ export interface FormattedRepoStats extends RepoStats {
   url: string;
   starsFormatted: string;
   forksFormatted: string;
-  isNotable: boolean;
 }
 
 export function useGithubStats() {
@@ -44,7 +44,7 @@ export function useGithubStats() {
     const slug = extractGithubRepoSlug(repoOrUrl);
     if (!slug) return null;
     const entry = statsMap.value[slug];
-    if (!entry) return null;
+    if (!entry || !shouldDisplayRepoStats(entry)) return null;
     const apiPath = TRACKED_GITHUB_REPOS[slug]?.apiPath ?? slug;
     return {
       ...entry,
@@ -52,7 +52,6 @@ export function useGithubStats() {
       url: `https://github.com/${apiPath}`,
       starsFormatted: entry.stars.toLocaleString("en-US"),
       forksFormatted: entry.forks.toLocaleString("en-US"),
-      isNotable: entry.stars >= 500,
     };
   };
 
