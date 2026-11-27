@@ -43,7 +43,7 @@ const openSourcePublications: Publication[] = [
     categories: [PublicationCategory.MACHINE_LEARNING, PublicationCategory.SECURITY],
     link: 'https://github.com/google/magika',
     venue: 'GitHub',
-    description: 'Fast and accurate AI-powered file type detection system, protecting Gmail, Drive, and Chrome.',
+    description: 'Fast and accurate AI-powered file-type detection system protecting Gmail, Drive, Chrome, and many other Google services.',
     year: 2024,
     authors: []
   },
@@ -84,8 +84,7 @@ const publicationMetadata: PublicationMetadata[] = [
   },
   {
     title: 'Geometric control for autonomous underwater vehicles: overcoming a thruster failure',
-    categories: [PublicationCategory.ROBOTICS],
-    projectId: ProjectId.SCAAML
+    categories: [PublicationCategory.ROBOTICS]
   },
   {
     title: 'A geometric approach to trajectory design for an autonomous underwater vehicle: Surveying the bulbous bow of a ship',

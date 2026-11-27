@@ -66,12 +66,12 @@
           to="https://www.theverge.com/2017/2/23/14712118/google-sha1-collision-broken-web-encryption-shattered"
           external
           class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
-        >The Verge</NuxtLink>, and tech news sites like
+        >The Verge</NuxtLink>,
         <NuxtLink
           to="https://arstechnica.com/information-technology/2017/02/watershed-sha1-collision-just-broke-the-webkit-repository-others-may-follow/"
           external
           class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
-        >Ars Technica</NuxtLink>
+        >Ars Technica</NuxtLink>,
         and
         <NuxtLink
           to="https://www.techrepublic.com/article/news-google-sec-gemini-v1/"
@@ -90,7 +90,7 @@
           to="https://quantic.edu/"
           external
           class="text-text-primary font-medium border-b border-primary/55 hover:text-primary hover:border-primary pb-[1px] transition-colors"
-        >Quantic School of Business</NuxtLink>, a Master in Robotics from the
+        >Quantic School of Business</NuxtLink>, a Master's in Control Engineering from the
         <NuxtLink
           to="https://www.unipi.it/en/"
           external

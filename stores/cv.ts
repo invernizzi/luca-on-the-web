@@ -49,7 +49,12 @@ export const useCVStore = defineStore('cv', () => {
       title: 'Senior Staff Research Scientist Manager',
       organization: 'Google Switzerland',
       period: 'Mar 2026–Present',
-      description: 'Lead research in the Security Research Group at Google, focusing on AI and hardware security.',
+      description: 'Lead research teams in Google’s Security Research Group, setting technical direction across AI-powered cybersecurity, content analysis, and hardware security.',
+      highlights: [
+        'Lead Sec-Gemini, an experimental AI model advancing agentic cybersecurity defense and threat analysis',
+        'Lead Magika, Google’s open-source AI file-type detection system protecting Gmail, Drive, Chrome, and many other Google services',
+        'Drive translation of foundational security research into production defenses across Google'
+      ],
       links: [
         {
           name: 'Magika',
@@ -77,12 +82,12 @@ export const useCVStore = defineStore('cv', () => {
       title: 'Staff Research Scientist Manager',
       organization: 'Google Switzerland',
       period: '2020–Mar 2026',
-      description: 'Led research in the Security Research Group at Google, focusing on protecting people online, advancing cybersecurity through AI, and implementing hardware attacks and defenses.',
+      description: 'Led research teams in Google’s Security Research Group, advancing applied AI for security, large-scale anti-abuse defenses, and hardware security.',
       highlights: [
-        'Led a team of researchers focusing on applied AI for security',
-        'Contributed to Sec-Gemini, an experimental AI model focused on cybersecurity',
-        'Contributed to Magika, an AI-powered file type identification system',
-        'Contributed to the implementation of Gmail spam and malware detection systems'
+        'Led Sec-Gemini from inception through launch as an experimental AI model for cybersecurity',
+        'Led Magika from research through open-source release and deployment across Google services',
+        'Directed research and production launches for Gmail spam, phishing, and malicious document detection',
+        'Managed multidisciplinary researchers spanning applied AI, anti-abuse, and hardware attacks and defenses'
       ],
       links: [
         {
@@ -209,7 +214,7 @@ export const useCVStore = defineStore('cv', () => {
       gpa: '100/100 cum laude'
     },
     {
-      title: 'Master’s Degree in Control Engineering',
+      title: 'Master’s in Control Engineering',
       organization: 'University of Pisa, Italy',
       period: '2007–2010',
       gpa: '110/110 cum laude'

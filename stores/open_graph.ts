@@ -34,12 +34,21 @@ export const useOpenGraphStore = defineStore("open_graph", () => {
     return `${siteUrl.value}${personImageRelativePath.value}`;
   });
 
+  const ROUTE_TITLES: Record<string, string> = {
+    projects: "Projects",
+    publications: "Publications",
+    committees: "Academic Service",
+    cv: "CV",
+  };
+
   const getPageName = computed(() => {
     const route = useRoute();
     const routeName = String(route.name);
-    return routeName === "index"
-      ? null
-      : routeName.charAt(0).toUpperCase() + routeName.slice(1);
+    if (routeName === "index") return null;
+    return (
+      ROUTE_TITLES[routeName] ??
+      routeName.charAt(0).toUpperCase() + routeName.slice(1)
+    );
   });
 
   const pageTitle = computed(() => {

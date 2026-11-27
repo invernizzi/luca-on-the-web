@@ -205,7 +205,7 @@ export const useProjectsStore = defineStore('projects', () => {
                 }
             ],
             featured: true,
-            blurb: 'Research model on agentic security',
+            blurb: 'Experimental AI model advancing agentic cybersecurity defense and threat analysis at Google.',
             description: 'An experimental AI model focused on advancing cybersecurity AI frontiers to help shift the balance back to the defenders. Sec-Gemini combines advanced ML techniques with security expertise to provide real-time threat detection and analysis.',
             tags: [ProjectTag.SECURITY_RESEARCH, ProjectTag.AI],
         },
@@ -239,8 +239,8 @@ export const useProjectsStore = defineStore('projects', () => {
                 }
             ],
             featured: true,
-            blurb: 'ML-based file type detection system',
-            description: 'A state-of-the-art file type detection system that uses machine learning to accurately identify file types. Magika provides fast and reliable file type detection, helping to improve security and user experience. Magika protects Gmail, Drive, Chrome, and it has been adopted by many open source projects.',
+            blurb: 'Open-source AI file-type detection system protecting Gmail, Drive, Chrome, and many other Google services.',
+            description: 'A state-of-the-art file type detection system that uses machine learning to accurately identify file types. Magika provides fast and reliable file type detection, helping to improve security and user experience. Magika protects Gmail, Drive, Chrome, and many other Google services, and has been widely adopted across open-source ecosystems.',
             tags: [ProjectTag.ANTI_ABUSE, ProjectTag.AI, ProjectTag.OPEN_SOURCE] // Added OPEN_SOURCE tag
         },
         {
@@ -305,7 +305,7 @@ export const useProjectsStore = defineStore('projects', () => {
         },
         {
             id: ProjectId.VAXEN,
-            title: 'Scam Detection',
+            title: 'Malicious Document Detection',
             featured: false, 
             urls: [
                 {
