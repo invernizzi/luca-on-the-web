@@ -143,9 +143,9 @@ export const useProjectsStore = defineStore('projects', () => {
                     url: 'https://www.forbes.com/sites/thomasbrewster/2017/07/25/google-ransomware-multi-million-dollar-business-with-locky-and-cerber/'
                 },
                 {
-                    name: "CCN",
+                    name: "Business Insider",
                     type: 'news',
-                    url: 'https://www.ccn.com/google-ransomware-extortionists-net-25-million-in-two-years-95-percent-cashed-out-through-btc-e/'
+                    url: 'https://www.businessinsider.com/ransomware-victims-25-million-ransomware-two-years-google-study-2017-7'
                 },
                 {
                     name: 'Google Workspace',
